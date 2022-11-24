@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9506b906fea98df49a6e8e2b580b9422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_loadWaitInterval: 0.1
+  m_FakeLoadingThreshold: 4
 --- !u!4 &214711185
 Transform:
   m_ObjectHideFlags: 0
@@ -500,6 +502,7 @@ GameObject:
   - component: {fileID: 2002980032}
   - component: {fileID: 2002980031}
   - component: {fileID: 2002980030}
+  - component: {fileID: 2002980035}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -599,3 +602,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &2002980035
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002980029}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: df1ce6f879f0a11498ec02d0b7620a93, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []

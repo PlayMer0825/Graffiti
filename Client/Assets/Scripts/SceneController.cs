@@ -6,23 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    #region Singleton
     private SceneController _instance = null;
     public SceneController Instance { get { return _instance; } }
 
-    [Tooltip("DontDestroyObjects' or static Objects' Operations")]
-    public Action<bool> PostLoadingAction = null;
+    #endregion
 
-    private WaitForSeconds m_sceneLoadingWait = new WaitForSeconds(0.1f);
-    private float m_FakeLoadingThreshold = 4.0f;
-    private float m_SceneLoadindgProgress = 0.0f;
-    public float SceneLoadingProgress { get => m_SceneLoadindgProgress; }
+    #region Local Variables
+    private WaitForSeconds m_sceneLoadingWait = null;
+    [SerializeField] private float m_loadWaitInterval = 0.1f;
+    [SerializeField] private float m_FakeLoadingThreshold = 4.0f;
+                     private float m_SceneLoadindgProgress = 0.0f;
+
+    #endregion
+
+    #region Properties
+    /// <summary>
+    /// 외부 오브젝트가 씬 로드 매니저로부터 로드 진행도를 받기 위한 Property
+    /// </summary>
+    public float SceneLoadingProgress { 
+        get => m_SceneLoadindgProgress; 
+    }
+
+    #endregion
 
     private void Awake() {
         if(_instance != null)
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
         _instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        m_sceneLoadingWait = new WaitForSeconds(m_loadWaitInterval);
     }
 
     public void Update() {
@@ -31,29 +46,38 @@ public class SceneController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 다음 씬 로드 요청을 받는 함수
+    /// </summary>
+    /// <param name="sceneIndex">Next Scene's Build Index to load</param>
     public void ChangeSceneTo(int sceneIndex) {
         //TODO: 씬을 페이드인/아웃 할거면 여기서 Completed에 코루틴 넣어주고 페이드 인/아웃 호출
         StartCoroutine(CoStartLoading(sceneIndex));
     }
 
+    /// <summary>
+    /// 다음 씬을 비동기적으로 로드하기 위한 Coroutine함수
+    /// </summary>
+    /// <param name="sceneIndex">Next Scene's Build Index to load</param>
     private IEnumerator CoStartLoading(int sceneIndex) {
         float fakeLoading = 0.0f;
         bool isDone = false;
 
-        AsyncOperation loadSceneAsyncOper = SceneManager.LoadSceneAsync("TestScene2");
-        loadSceneAsyncOper.allowSceneActivation = false;
+        AsyncOperation loadTask = SceneManager.LoadSceneAsync("TestScene2");
+        loadTask.allowSceneActivation = false;
 
-        while(isDone == false) {
-            fakeLoading += 0.1f;
-            m_SceneLoadindgProgress = loadSceneAsyncOper.progress;
+        while(true) {
+            fakeLoading += m_loadWaitInterval;
+            m_SceneLoadindgProgress = loadTask.progress;
 
             isDone = ( fakeLoading >= m_FakeLoadingThreshold ) &&
-                     ( loadSceneAsyncOper.progress >= 0.9f );
+                     ( loadTask.progress >= 0.9f );
 
+            if(isDone) break;
             yield return m_sceneLoadingWait;
         }
 
-        loadSceneAsyncOper.allowSceneActivation = true;
+        loadTask.allowSceneActivation = true;
         m_SceneLoadindgProgress = 0.0f;
         //TODO: 씬을 페이드인/아웃 할거면 여기서 페이드 아웃 진행
 
