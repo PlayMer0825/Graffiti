@@ -41,9 +41,9 @@ public class SceneController : MonoBehaviour
     }
 
     public void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            ChangeSceneTo(1);
-        }
+        //if(Input.GetKeyDown(KeyCode.Space)) {
+        //    ChangeSceneTo(1);
+        //}
     }
 
     /// <summary>

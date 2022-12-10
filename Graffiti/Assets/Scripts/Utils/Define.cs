@@ -4,9 +4,10 @@ public class Define
 {
     [Serializable]
     public struct MovementStat {
-        public float _speed;
-        public float _turnSmoothVelocity;
-        public float _turnSmoothTime;
+        public float speed;
+        public float acceleration;
+        public float turnSmoothVelocity;
+        public float turnSmoothTime;
     }
 
     public enum InputPriority : ushort {
