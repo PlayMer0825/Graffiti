@@ -1,5 +1,4 @@
 using Cinemachine;
-using Giacomelli.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ using UnityEngine;
 public class Interactable : MonoBehaviour {
     #region Components
     [SerializeField]
-    [HelpBox("Any Collider Reference Needed", type: HelpBoxType.Warning)]
     protected Collider m_interactionTrigger = null;
     public BoxCollider test = null;
     #endregion

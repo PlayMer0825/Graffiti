@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SprayController : MonoBehaviour {
     #region Components
-    [SerializeField] private ParticleSystem _sprayParticle = null;
-    [SerializeField] private P3dPaintSphere _sprayDrawer = null;
+    //[SerializeField] private ParticleSystem _sprayParticle = null;
+    //[SerializeField] private P3dPaintSphere _sprayDrawer = null;
 
     #endregion
 

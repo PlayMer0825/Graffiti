@@ -2,7 +2,7 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "Player_Wandering",
+            "name": "PlayerActions",
             "id": "ea835960-5c2a-458b-afd3-2f962df839f1",
             "actions": [
                 {
@@ -13,6 +13,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "166b8703-c859-4e50-be59-a9b03cd900f6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "b3d99214-448a-4f1f-9ed3-a5be2367f7d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "7a84d014-f51e-4ee1-af77-b5ba7b5aee8a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -28,7 +55,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "Move_Keyboard",
                     "id": "e83a30b6-806d-4f6e-8173-5942ad76a55d",
                     "path": "2DVector",
                     "interactions": "",
@@ -83,7 +110,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "LStick",
+                    "name": "Move_Stick",
                     "id": "79d7b0c3-5469-49d1-953c-f5bd79e2bb07",
                     "path": "3DVector",
                     "interactions": "",
@@ -136,60 +163,37 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "Player_Drawing",
-            "id": "bbd1a5c9-ef25-4c3b-a254-31cbb214715b",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "05d83e5c-4222-4f51-a828-d9bff5a8a721",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "5a619a29-b956-4160-8452-b798e0d71402",
-                    "path": "",
+                    "id": "63c7e56b-7dfa-4d4b-9625-5fa167a69c80",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "PC",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Player_Talking",
-            "id": "e7cdd127-8fe8-4b26-b909-ba15a15c7163",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "9f4957c3-265a-478c-b240-5d9b620fd2cc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "3f434f51-6ef5-46d9-a3ef-a0ccd2bc9504",
-                    "path": "",
+                    "id": "039f385a-069a-443e-a965-dc75c21037c8",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "PC",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92901e31-1db9-440d-99d1-f5bc05422fc2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
