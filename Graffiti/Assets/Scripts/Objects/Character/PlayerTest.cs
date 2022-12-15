@@ -10,7 +10,7 @@ using static Define;
 public class PlayerTest : MonoBehaviour {
     #region Components
     [SerializeField] private CharacterController _controller = null;
-    [SerializeField] private PlayerInput _inputManager = null;
+    [SerializeField] private PlayerInput _inputSystem = null;
     [HideInInspector] private InputActionMap _actionWander = null;
     [HideInInspector] private InputActionMap _actionDraw = null;
     
@@ -46,23 +46,21 @@ public class PlayerTest : MonoBehaviour {
     #region Unity Event Functions
 
     private void OnValidate() {
-        _interManager = Managers.Interact;
-        _inputManager = GetComponent<PlayerInput>();
+        _inputSystem = GetComponent<PlayerInput>();
 
-        if(_interManager == null)
-            Debug.LogError($"{this.name}: Can't Find {typeof(InteractionManager)}");
-        if(_inputManager == null)
+        if(_inputSystem == null)
             Debug.LogError($"{this.name}: Can't FInd {typeof(PlayerInput)}");
 
-        _actionWander = _inputManager.actions.FindActionMap("Player_Wander");
-        _actionDraw = _inputManager.actions.FindActionMap("Player_Draw");
+        _actionWander = _inputSystem.actions.FindActionMap("Player_Wander");
+        _actionDraw = _inputSystem.actions.FindActionMap("Player_Draw");
     }
 
     private void Awake() {
-        _inputManager = GetComponent<PlayerInput>();
+        _inputSystem = GetComponent<PlayerInput>();
 
-        if(_inputManager == null)
+        if(_inputSystem == null)
             Debug.LogError($"{this.name}: Can't FInd {typeof(PlayerInput)}");
+
     }
 
     private void Start() {
@@ -74,8 +72,8 @@ public class PlayerTest : MonoBehaviour {
             return;
         }
             
-        _actionWander = _inputManager.actions.FindActionMap("Player_Wander");
-        _actionDraw = _inputManager.actions.FindActionMap("Player_Draw");
+        _actionWander = _inputSystem.actions.FindActionMap("Player_Wander");
+        _actionDraw = _inputSystem.actions.FindActionMap("Player_Draw");
     }
 
     private void Update() {
@@ -124,7 +122,18 @@ public class PlayerTest : MonoBehaviour {
 
     #region User Defined Functions
 
-
+    public void ChangeInputTypeTo(InputType type) {
+        switch(type) {
+            case InputType.Player_Wander: {
+                _actionWander.Enable();
+                _actionDraw.Disable();
+            }break;
+            case InputType.Player_Draw: {
+                _actionWander.Disable();
+                _actionDraw.Enable();
+            }break;
+        }
+    }
 
     #endregion
 
@@ -184,20 +193,20 @@ public class PlayerTest : MonoBehaviour {
     //----------------------------<Player_Wander>----------------------------
 
     public void ISE_OnInteract(InputAction.CallbackContext value) {
-        if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
-            return;
+        //if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
+        //    return;
 
-        if(_interManager == null)
-            return;
+        //if(_interManager == null)
+        //    return;
 
-        bool success = _interManager.EnterInteractWithCurObj();
-        //TODO: InputActionMap 변경하기
-        if(!success)
-            return;
+        //bool success = _interManager.EnterInteractWithCurObj();
+        ////TODO: InputActionMap 변경하기
+        //if(!success)
+        //    return;
 
-        _inputManager.SwitchCurrentActionMap("Player_Draw");
-        _actionWander.Disable();
-        _actionDraw.Enable();
+        //_inputManager.SwitchCurrentActionMap("Player_Draw");
+        //_actionWander.Disable();
+        //_actionDraw.Enable();
     }
 
     //----------------------------<Player_Draw>----------------------------
@@ -222,17 +231,11 @@ public class PlayerTest : MonoBehaviour {
 
     }
 
-    public void ISE_EscapeFromDraw(InputAction.CallbackContext value) {
-        if(_interManager == null)
+    public void ISE_OnEscape(InputAction.CallbackContext value) {
+        if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
             return;
 
-        bool success = _interManager.ExitInteractWithCurObj();
-        if(!success) 
-            return;
-        _inputManager.SwitchCurrentActionMap("Player_Wander");
-
-        _actionWander.Enable();
-        _actionDraw.Disable();
+        Managers.Interact.ExitInteractWithCurObj();
     }
 
     public void ISE_OnTab(InputAction.CallbackContext value) {

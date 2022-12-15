@@ -24,12 +24,24 @@ public class Define
         UI,
     }
 
+    public enum InputType : byte {
+        Player_Wander = 0,
+        Player_Draw = 1,
+
+    }
+
     public enum MovementType : byte { 
         Walk,
         Run,
         Crouch,
     }
-
+    
+    public enum InteractionType : ushort {
+        //TODO: 값을 레이어와 일치시
+        None = 0,
+        Paintable = 1,
+        Dialog,
+    }
 }
 
 public static class Extensions {

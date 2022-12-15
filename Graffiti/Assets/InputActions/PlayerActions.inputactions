@@ -370,7 +370,7 @@
                 },
                 {
                     "name": "LeftClick",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "2f08fcd4-e8b7-4693-9e09-f52e7bfa0372",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -421,6 +421,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "d64e65e0-2629-47df-b24f-defda07e0172",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -652,6 +661,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b012ad1-a4e5-46b2-95f0-bfc3dd5217d6",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

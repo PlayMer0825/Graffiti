@@ -18,20 +18,16 @@ public class InteractArea : MonoBehaviour {
             gameObject.SetActive(false);
         }
     }
+    private void Awake() {
+        _interactRange = GetComponent<Collider>();
 
-    private void OnTriggerEnter(Collider other) {
-        if(_interactRange == null)
-            return;
-
-        OnTriggerEnterAction?.Invoke(other);
+        if(_interactRange == null) {
+            Debug.LogError($"InteractArea: {gameObject.name}'s InteractRange Trigger is not Validated");
+            gameObject.SetActive(false);
+        }
     }
-
-    private void OnTriggerExit(Collider other) {
-        if(_interactRange == null)
-            return;
-
-        OnTriggerExitAction?.Invoke(other);
-    }
+    private void OnTriggerEnter(Collider other) { OnTriggerEnterAction?.Invoke(other); }
+    private void OnTriggerExit(Collider other) { OnTriggerExitAction?.Invoke(other); }
 
     #endregion
 }

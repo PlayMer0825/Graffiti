@@ -14,16 +14,14 @@ public class PaintableObject : Interactable
 
     #endregion
 
-    public override bool OnInteract(bool successed = false) {
+    public override void OnInteract() {
+        base.OnInteract();
         _paintable.enabled = true;
-        return base.OnInteract(true);
-        //TODO: Draw캠으로 전환
     }
 
-    public override bool OffInteract(bool successed  = false) {
+    public override void OffInteract() {
+        base.OffInteract();
         _paintable.enabled = false;
-        return base.OffInteract(true);
-        //TODO: PlayerFollow캠으로 전환
     }
 
     protected override void OnPlayerTriggered() {

@@ -5,27 +5,37 @@ using UnityEngine;
 public class InteractionManager{
     [SerializeField] private Interactable _curInteractingObj = null;
     public Interactable CurInteractObj { get => _curInteractingObj; }
+    private PlayerTest Player {
+        get {
+            if(_player == null)
+                _player = Managers.Player;
+            return _player;
+        }
+    }
+    private PlayerTest _player = null;
 
-    public bool EnterInteractWithCurObj() {
+    public bool EnterInteractWithCurObj(Interactable interactedObject) {
         if(_curInteractingObj == null)
             return false;
 
-        bool success = _curInteractingObj.OnInteract();
-        if(success) {
-            Camera.main.cullingMask = Camera.main.cullingMask & ~(1 << LayerMask.NameToLayer("PlayerBody"));
-        }
-        return success;
+        if(_curInteractingObj.Equals(interactedObject) == false)
+            return false;
+
+        //TODO: 그림그리기 외 다른 상호작용이 생기면 Interactable의 타입에 따라서 컬링할 레이어를 선택하도록 수정 필요
+        //Managers.Cam.DisableLayerMask(LayerMask.NameToLayer("PlayerBody"));
+        Player.ChangeInputTypeTo(Define.InputType.Player_Draw);
+        return true;
     }
 
     public bool ExitInteractWithCurObj() {
         if(_curInteractingObj == null)
             return false;
 
-        bool success = _curInteractingObj.OffInteract();
-        if(success) {
-            Camera.main.cullingMask = Camera.main.cullingMask | ( 1 << LayerMask.NameToLayer("PlayerBody") );
-        }
-        return success;
+        _curInteractingObj.OffInteract();
+        //TODO: 그림그리기 외 다른 상호작용이 생기면 Interactable의 타입에 따라서 컬링할 레이어를 선택하도록 수정 필요
+        //Managers.Cam.EnableLayerMask(LayerMask.NameToLayer("PlayerBody"));
+        Player.ChangeInputTypeTo(Define.InputType.Player_Wander);
+        return true;
     }
 
     public void ChangeCurIntObj(Interactable newIntObj) {
