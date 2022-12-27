@@ -1,4 +1,3 @@
-using Giacomelli.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
@@ -38,8 +37,8 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         //_controller.Move(m_moveDir * m_Stat._speed * Time.deltaTime);
         Vector3 velocity = _controller.velocity;
-        Vector3 addForce = m_moveDir * m_Stat.speed * Time.deltaTime;
-        _controller.velocity.Set(velocity.x + addForce.x, velocity.y + addForce.y, velocity.z + addForce.z);
+        //Vector3 addForce = m_moveDir * m_Stat.walkSpeed * Time.deltaTime;
+        //_controller.velocity.Set(velocity.x + addForce.x, velocity.y + addForce.y, velocity.z + addForce.z);
     }
 
     #endregion
@@ -57,7 +56,7 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
 
             Vector3 moveDir = transform.rotation * Vector3.forward;
-            _controller.Move(moveDir.normalized * m_Stat.speed * Time.deltaTime);
+            //_controller.Move(moveDir.normalized * m_Stat.walkSpeed * Time.deltaTime);
         }
     }
 

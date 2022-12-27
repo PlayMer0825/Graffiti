@@ -1,54 +1,49 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using static Define;
+
 public class InputManager : MonoBehaviour {
-    #region Singleton
-    private static InputManager _instance = null;
-    public static InputManager Instance { get => _instance; }
+    [Tooltip("PlayerInput Scriptable Object")]
+    [SerializeField] InputActionAsset _actionAsset = null;
 
-    #endregion
+    [Tooltip("PlayerInput Component")]
+    [SerializeField] private PlayerInput _playerInput = null;
+    private List<InputActionMap> _actionMaps = null;
 
-    #region Local Variables
-    [SerializeField] private InputableObject _ingameInputHandler = null;
-    [SerializeField] private InputableObject _uiInputHandler = null;
-    #endregion
-
-    #region Properties
-
-
-    #endregion
-
-    #region Unity Event Functions
     private void Awake() {
-        if(_instance != null) {
-            Destroy(gameObject);
+        if(_playerInput == null) {
+            Debug.LogError($"InputManager: PlayerInput is not Validated!");
             return;
         }
 
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
+        GetActionMaps();
     }
 
-    private void Update() {
-        _uiInputHandler?.HandleInput();
-        _ingameInputHandler?.HandleInput();
+    public void RegisterPlayerInput(PlayerInput inputSystem) {
+        if(_playerInput.Equals(inputSystem))
+            return;
+
+        _playerInput = inputSystem;
+        GetActionMaps();
     }
 
-    #endregion
-
-    #region User Defined Functions
-    /// <summary>
-    /// Input값을 적용할 <see cref="InputableObject"/> 인스턴스를 변경합니다.
-    /// Start() 이벤트 함수 이후부터 호출 가능합니다.
-    /// </summary>
-    /// <returns>true if Interruption successed, else false.</returns>
-    public bool InterruptHandleInput(InputableObject input) {
-        if(input.Equals(_ingameInputHandler))
-            return false;
-        _ingameInputHandler = input;
-        return true;
+    private void GetActionMaps() {
+        _actionMaps = _playerInput.actions.actionMaps.ToList();
     }
-    #endregion
+
+    //TODO: 나중에 다양한 입력을 받는 오브젝트가 생성되면 추가해야함
+    //public void ChangePlayerInputStateTo(PlayerInput inputSystem) { }
+
+    public void ChangeInputState(InputType type) {
+        for(int i = 0; i < _actionMaps.Count; i++) {
+            _actionMaps[i].Disable();
+        }
+
+        _actionMaps[(int)type].Enable();
+    }
 }
