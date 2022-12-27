@@ -7,31 +7,38 @@ public class Camera_Change : MonoBehaviour
 {
     Transform target = null;
     public bool Click_Check = false;
+    public bool Draw_Check = false;
     public GameObject Player;
     public CinemachineVirtualCamera Player_Cam;
     public CinemachineVirtualCamera Draw_Cam;
+    public CinemachineFreeLook TPS_Cam;
+    public bool player_cam = true;
+    public bool draw_cam = false;
+    public bool tps_cam = false;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerCamera();
+        Player_Cam.enabled = true;
+        Draw_Cam.enabled = false;
+        TPS_Cam.enabled = false;
     }
     void Update()
     {
-        if(Player_Cam.enabled==false&&Draw_Cam.enabled==true)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                PlayerCamera();
-            }
+            PlayerCamera();
         }
-
+       
         if (Input.GetMouseButtonDown(0))
         {
             if(Click_Check==true)
             {
                 DrawCamera();
             }
-            
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            TPS_CAM();
         }
     }
     private void OnTriggerEnter(Collider col)
@@ -51,14 +58,67 @@ public class Camera_Change : MonoBehaviour
     }
     public void PlayerCamera()
     {
-        Player.SetActive(true);
-        Player_Cam.enabled = true;
-        Draw_Cam.enabled = false;
+        if(draw_cam==true)
+        {
+            //Player.SetActive(true);
+            Player_Cam.enabled = true;
+            player_cam = true;
+            Draw_Cam.enabled = false;
+            draw_cam = false;
+        }
     }
     public void DrawCamera()
     {
-        Player.SetActive(false);
-        Player_Cam.enabled = false;
-        Draw_Cam.enabled = true;
+        if(player_cam==true||tps_cam==true)
+        {
+            if (player_cam == true)
+            {
+                player_cam = false;
+                Player_Cam.enabled = false;
+            }
+            if (tps_cam == true)
+            {
+                tps_cam = false;
+                TPS_Cam.enabled = false;
+            }
+            //Player.SetActive(false);
+            Draw_Cam.enabled = true;
+            draw_cam = true;
+        }
+    }
+
+    public void TPS_CAM()
+    {
+        if (player_cam == true && tps_cam == false && draw_cam == false)
+        {
+            Debug.Log("d");
+            player_cam = false;
+            Player_Cam.enabled = false;
+            tps_cam = true;
+            TPS_Cam.enabled = true;
+        }
+        else if (draw_cam == true && tps_cam == false)
+        {
+            Draw_Check = true;
+            draw_cam = false;
+            Draw_Cam.enabled = false;
+            tps_cam = true;
+            TPS_Cam.enabled = true;
+        }
+        else if (draw_cam == false && tps_cam == true&&Draw_Check==true)
+        {
+            draw_cam = true;
+            Draw_Cam.enabled = true;
+            tps_cam = false;
+            TPS_Cam.enabled = false;
+            Draw_Check = false;
+        }
+        else if (player_cam == false && tps_cam == true)
+        {
+            player_cam = true;
+            Player_Cam.enabled = true;
+            tps_cam = false;
+            TPS_Cam.enabled = false;
+        }
     }
 }
