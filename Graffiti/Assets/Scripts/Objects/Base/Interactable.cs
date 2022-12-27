@@ -23,8 +23,17 @@ public class Interactable : MonoBehaviour {
 
     #region External Objects
     public CinemachineVirtualCamera _focusCam = null;
-    private static InteractionManager _interactMgr = null;
 
+    private static PlayerTest _player = null;
+    public PlayerTest Player { get {
+            if(_player == null) {
+                Debug.LogError($"Interaction Object {gameObject.name}'s PlayerTest is not declared");
+                gameObject.SetActive(false);
+                return null;
+            }
+            return _player;
+        } 
+    }
     #endregion
 
     #region Variables
@@ -34,22 +43,25 @@ public class Interactable : MonoBehaviour {
 
     #region Unity Event Functions
     private void OnValidate() {
-        _focusCam = GetComponentInChildren<CinemachineVirtualCamera>();
-
         if(_focusCam == null) {
-            Debug.LogError($"Interactable: {gameObject.name}'s FocusCam is not Validated");
+            Debug.LogError($"Interactable: {gameObject.name}'s FocusCam is not Validated!");
             gameObject.SetActive(false);
+            return;
         }
 
         if(m_interactArea == null) {
-            Debug.LogError($"Interaction Object {gameObject.name}'s InteractionArea is not declared");
+            Debug.LogError($"Interaction Object {gameObject.name}'s InteractionArea is not Validated!");
             gameObject.SetActive(false);
             return;
+        }
+
+        if(m_interactButton == null) {
+            Debug.LogError($"Interaction Object {gameObject.name}'s Button is not Validated!");
         }
     }
 
     private void Awake() {
-        _focusCam = GetComponentInChildren<CinemachineVirtualCamera>();
+        _player = FindObjectOfType<PlayerTest>();
 
         if(_focusCam == null) {
             Debug.LogError($"Interactable: {gameObject.name}'s FocusCam is not Validated!");
@@ -72,15 +84,6 @@ public class Interactable : MonoBehaviour {
         m_interactButton.onClick.AddListener(m_OnInteract);
     }
 
-    private void Start() {
-        _interactMgr = Managers.Interact;
-
-        if(_interactMgr == null) {
-            Debug.LogError($"Interactable: {gameObject.name}'s InteractManager is not Validated!");
-            gameObject.SetActive(false);
-            return;
-        }
-    }
 
     private void OnDisable() {
         UnSubscribeCallback_InteractArea();
@@ -96,9 +99,9 @@ public class Interactable : MonoBehaviour {
 
     #region Virtual Functions
     public virtual void OnInteract() {
-        bool success = _interactMgr.EnterInteractWithCurObj(this);
-        if(success == false)
-            return;
+        //bool success = _interactMgr.EnterInteractWithCurObj(this);
+        //if(success == false)
+        //    return;
 
         m_interactArea.enabled = false;
         m_interactCanvas.gameObject.SetActive(false);
@@ -125,7 +128,6 @@ public class Interactable : MonoBehaviour {
 
     protected virtual void DisableObject() {
         m_interactButton.onClick.RemoveListener(m_OnInteract);
-        _interactMgr.ResetCurIntObj();
         UnSubscribeCallback_InteractArea();
     }
 
@@ -147,7 +149,8 @@ public class Interactable : MonoBehaviour {
         if(!other.CompareTag("Player"))
             return;
 
-        _interactMgr.ChangeCurIntObj(this);
+        //_interactMgr.ChangeCurIntObj(this);
+        _player.Notify_OnInteractArea(this);
         m_interactButton.gameObject.SetActive(true);
         OnPlayerTriggered();
     }
@@ -156,7 +159,8 @@ public class Interactable : MonoBehaviour {
         if(!other.CompareTag("Player"))
             return;
 
-        _interactMgr.ExtractFromCurIntObj(this);
+        //_interactMgr.ExtractFromCurIntObj(this);
+        _player.Notify_OffInteractArea(this);
         m_interactButton.gameObject.SetActive(false);
         OnPlayerUntriggered();
     }

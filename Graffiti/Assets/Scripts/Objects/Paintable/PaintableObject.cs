@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(P3dPaintable))]
-[RequireComponent(typeof(P3dMaterialCloner))]
-[RequireComponent(typeof(P3dPaintableTexture))]
-
 public class PaintableObject : Interactable
 {
     #region Components
+    [Header("PaintableObject Instances")]
+    [Tooltip("Model Must be Contained P3dPaintable Component")]
     [SerializeField] private P3dPaintable _paintable = null;
 
     #endregion
@@ -25,10 +23,10 @@ public class PaintableObject : Interactable
     }
 
     protected override void OnPlayerTriggered() {
-        base.OnPlayerTriggered();
+
     }
 
     protected override void OnPlayerUntriggered() {
-        base.OnPlayerUntriggered();
+
     }
 }

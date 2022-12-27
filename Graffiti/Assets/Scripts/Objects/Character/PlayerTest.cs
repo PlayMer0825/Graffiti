@@ -27,6 +27,9 @@ public class PlayerTest : MonoBehaviour {
     [Header("NonSerialized Objects")]
     [SerializeField] private InteractionManager _interManager = null;
 
+    [Header("Current Interactable Object")]
+    [SerializeField] private Interactable _interactable = null;
+    //public Interactable 
     #endregion
 
     #region Variables
@@ -37,8 +40,6 @@ public class PlayerTest : MonoBehaviour {
     private Vector3      m_VerticalForce  = Vector3.down;
 
     private float        m_currentSpeed   = 0.0f;
-    public  bool         _isRunning = false;
-    public  bool         _isCrounching = false;
     private byte         _isBraking = 0;
     #endregion
 
@@ -135,16 +136,25 @@ public class PlayerTest : MonoBehaviour {
         }
     }
 
+    public void Notify_OnInteractArea(Interactable onRanged) {
+        if(_interactable == onRanged)
+            return;
+
+        _interactable = onRanged;
+    }
+
+    public void Notify_OffInteractArea(Interactable outRanged) {
+        if(_interactable != outRanged)
+            return;
+
+        _interactable = null;
+    }
+
+
     #endregion
 
-    #region InputSystem Event Functions
-
-    //----------------------------<General>----------------------------
-    /// <summary>
-    /// 입력된 값을 <see cref="UnityEvent"/>에게서 받아옵니다.
-    /// </summary>
-    /// <param name="value"></param>
-    public void ISE_OnMove(InputAction.CallbackContext value) {
+    #region InputSystem General Events
+    public void IS_General_OnMove(InputAction.CallbackContext value) {
         if(t_mainCam == null)
             return;
 
@@ -157,7 +167,7 @@ public class PlayerTest : MonoBehaviour {
         m_inputDirNormal = inputRaw.normalized;
     }
 
-    public void ISE_OnRun(InputAction.CallbackContext value) {
+    public void IS_General_OnRun(InputAction.CallbackContext value) {
         //TODO: 지금은 Continuous 타입이지만 나중에 인게임에서 키매핑 수정할 수 있으면 Toggle도 추가해야됨.
         if(m_curMoveType == MovementType.Crouch)
             return;
@@ -170,7 +180,7 @@ public class PlayerTest : MonoBehaviour {
         }
     }
 
-    public void ISE_OnCrouch(InputAction.CallbackContext value) {
+    public void IS_General_OnCrouch(InputAction.CallbackContext value) {
         //TODO: 지금은 Continuous 타입이지만 나중에 인게임에서 키매핑 수정할 수 있으면 Toggle도 추가해야됨.
         if(m_curMoveType == MovementType.Run)
             return;
@@ -183,16 +193,18 @@ public class PlayerTest : MonoBehaviour {
         }
     }
 
-    public void ISE_OnJump(InputAction.CallbackContext value) {
+    public void IS_General_OnJump(InputAction.CallbackContext value) {
         if(!_controller.isGrounded)
             return;
+
         //TODO: 점프 기능 구현 필요
         bool isJump = value.ReadValueAsButton();
     }
 
-    //----------------------------<Player_Wander>----------------------------
+    #endregion
 
-    public void ISE_OnInteract(InputAction.CallbackContext value) {
+    #region InputSystem Wander Events
+    public void IS_Wander_OnInteract(InputAction.CallbackContext value) {
         //if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
         //    return;
 
@@ -207,39 +219,50 @@ public class PlayerTest : MonoBehaviour {
         //_inputManager.SwitchCurrentActionMap("Player_Draw");
         //_actionWander.Disable();
         //_actionDraw.Enable();
+
+        Debug.LogWarning($"IS_Wander_OnInteract: Testing Function");
+
+        _interactable.OnInteract();
+
+        //TODO: 여기서 자기 자신의 컴포넌트들 & 객체들 관리 우선적으로 실행.
     }
 
-    //----------------------------<Player_Draw>----------------------------
+    #endregion
 
-    public void ISE_OnFocus(InputAction.CallbackContext value) {
-
+    #region InputSystem Draw Events
+    public void IS_Draw_OnFocus(InputAction.CallbackContext value) {
+        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
-    public void ISE_OnLeftClick(InputAction.CallbackContext value) {
-
+    public void IS_Draw_OnLeftClick(InputAction.CallbackContext value) {
+        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
-    public void ISE_OnRightClick(InputAction.CallbackContext value) {
-
+    public void IS_Draw_OnRightClick(InputAction.CallbackContext value) {
+        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
-    public void ISE_OnMiddleClick(InputAction.CallbackContext value) {
-
+    public void IS_Draw_OnMiddleClick(InputAction.CallbackContext value) {
+        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
-    public void ISE_OnScroll(InputAction.CallbackContext value) {
-
+    public void IS_Draw_OnScroll(InputAction.CallbackContext value) {
+        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
-    public void ISE_OnEscape(InputAction.CallbackContext value) {
+    public void IS_General_OnEscape(InputAction.CallbackContext value) {
         if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
             return;
 
-        Managers.Interact.ExitInteractWithCurObj();
+        Debug.LogWarning($"IS_General_OnEscape: Just Implemented for OffInteract");
+
+        //TODO: 여기서 자기 자신의 컴포넌트들 & 객체들 관리 우선적으로 실행.
+
+        _interactable.OffInteract();
     }
 
-    public void ISE_OnTab(InputAction.CallbackContext value) {
-
+    public void IS_Draw_OnTab(InputAction.CallbackContext value) {
+        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
     #endregion

@@ -42,7 +42,7 @@ public class SprayController : MonoBehaviour {
         _sprayDrawer.Color = color;
     }
 
-    public void ISE_ChangeSpraySize(InputAction.CallbackContext value) {
+    public void IS_Draw_ChangeSpraySize(InputAction.CallbackContext value) {
         float size = value.ReadValue<float>();
         var shape = _sprayParticle.shape;
         shape.angle += size;
@@ -53,7 +53,7 @@ public class SprayController : MonoBehaviour {
     //    Vector3 mousePos = value.ReadValue<Vector3>();
     //}
 
-    public void ISE_OnLeftClick(InputAction.CallbackContext value) {
+    public void IS_Draw_OnLeftClick(InputAction.CallbackContext value) {
         if(value.phase == InputActionPhase.Performed) {
             _sprayParticle.Play();
 

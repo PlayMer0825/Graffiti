@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cave - Fog Portal 1
+  m_Shader: {fileID: -6465566751694194690, guid: cfa23777b25174f04a5a1885a7eb9483, type: 3}
+  m_ShaderKeywords: _BLEND_MODE_OVERWRITE
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - __Gradient_Color_Map:
+        m_Texture: {fileID: 5914111101166320495}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BLEND_MODE: 0
+    - _Borders: 1.73
+    - _Edge: 0.5
+    - _EdgeWidth: 1
+    - _Fill: 1.59
+    - _Height: 1
+    - _Opacity: 1
+    - _Polygon_Sides: 4
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Range_Scale: 10
+    - _Range_Scale_1: 5.84
+    - _Roundness: 1
+    - _Sharpness: 0.351
+    - _Vignette: 3.85
+    - _Width: 1
+    m_Colors:
+    - _Dissolve_Camera_Distance: {r: 1.0826998, g: 1.6071452, b: 0, a: 0}
+    - _Range: {r: 0, g: 5.744681, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!28 &5914111101166320495
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: z___Gradient_Color_MapTex{"mode":0,"colorKeys":[{"color":{"r":0.2549019753932953,"g":0.40392157435417178,"b":0.16862745583057404,"a":1.0},"time":0.07692073285579682},{"color":{"r":0.615686297416687,"g":0.8117647171020508,"b":0.45490196347236636,"a":1.0},"time":0.7335164546966553}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 2
+  m_Width: 256
+  m_Height: 1
+  m_CompleteImageSize: 1024
+  m_MipsStripped: 0
+  m_TextureFormat: 5
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMasterTextureLimit: 0
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 1024
+  _typelessdata: ff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff41672bff42682cff42682cff43692cff436a2dff446a2dff456b2eff456c2eff466c2fff466d2fff476d30ff476e30ff486f30ff486f31ff497031ff497132ff4a7132ff4b7233ff4b7233ff4c7333ff4c7434ff4d7434ff4d7535ff4e7635ff4e7636ff4f7736ff4f7737ff507837ff517937ff517938ff527a38ff527a39ff537b39ff537c3aff547c3aff547d3aff557e3bff567e3bff567f3cff577f3cff57803dff58813dff58813dff59823eff59833eff5a833fff5a843fff5b8440ff5c8540ff5c8641ff5d8641ff5d8741ff5e8842ff5e8842ff5f8943ff5f8943ff608a44ff618b44ff618b44ff628c45ff628d45ff638d46ff638e46ff648e47ff648f47ff659048ff659048ff669148ff679149ff679249ff68934aff68934aff69944bff69954bff6a954bff6a964cff6b964cff6c974dff6c984dff6d984eff6d994eff6e9a4eff6e9a4fff6f9b4fff6f9b50ff709c50ff709d51ff719d51ff729e52ff729f52ff739f52ff73a053ff74a053ff74a154ff75a254ff75a255ff76a355ff77a355ff77a456ff78a556ff78a557ff79a657ff79a758ff7aa758ff7aa859ff7ba859ff7ba959ff7caa5aff7daa5aff7dab5bff7eac5bff7eac5cff7fad5cff7fad5cff80ae5dff80af5dff81af5eff82b05eff82b15fff83b15fff83b25fff84b260ff84b360ff85b461ff85b461ff86b562ff86b662ff87b663ff88b763ff88b763ff89b864ff89b964ff8ab965ff8aba65ff8bba66ff8bbb66ff8cbc66ff8cbc67ff8dbd67ff8ebe68ff8ebe68ff8fbf69ff8fbf69ff90c06aff90c16aff91c16aff91c26bff92c36bff93c36cff93c46cff94c46dff94c56dff95c66dff95c66eff96c76eff96c86fff97c86fff97c970ff98c970ff99ca70ff99cb71ff9acb71ff9acc72ff9bcc72ff9bcd73ff9cce73ff9cce74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74ff9dcf74
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
+--- !u!114 &6163086304218336242
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 6
