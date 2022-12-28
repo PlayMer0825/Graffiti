@@ -1,10 +1,13 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonMovemonet : MonoBehaviour
 {
-    public Transform cam;
+    public CinemachineBrain cam;
+    public CinemachineVirtualCameraBase playerVC;
+    public CinemachineVirtualCameraBase tpsVC;
     public CharacterController controller;
 
     //Player status speed
@@ -15,6 +18,7 @@ public class ThirdPersonMovemonet : MonoBehaviour
     public float Player_Sit = 2.5f;
     public float gravityMultiply = 1.0f;
     public float sitHeight;
+    public float rotateSpeed;
 
     private Vector3 direction;
     private bool wasGround;
@@ -57,9 +61,9 @@ public class ThirdPersonMovemonet : MonoBehaviour
        
         if (direction.magnitude >= 0.1f)
         {
-            float targetAngle=Mathf.Atan2(direction.x, direction.z)*Mathf.Rad2Deg+cam.eulerAngles.y;
+            float targetAngle=Mathf.Atan2(direction.x, direction.z)*Mathf.Rad2Deg+cam.transform.eulerAngles.y;
             Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, targetAngle, 0f), Time.deltaTime * rotateSpeed);
 
             Vector3 moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * speed;
             Vector3 velocity = otherVelocity + moveDir;
@@ -67,6 +71,20 @@ public class ThirdPersonMovemonet : MonoBehaviour
         }
         else
         {
+            if (cam.ActiveVirtualCamera.Equals(tpsVC))
+            {
+                float mouseX = Input.GetAxisRaw("Mouse X");
+                float mouseY = Input.GetAxisRaw("Mouse Y");
+
+                if (mouseX != 0.0f || mouseY != 0.0f)
+                {
+                    Vector3 camForward = cam.transform.forward;
+                    camForward.y = 0.0f;
+                    camForward.Normalize();
+                    transform.forward = Vector3.Lerp(transform.forward, camForward, Time.deltaTime * rotateSpeed);
+                }
+            }
+
             controller.Move(otherVelocity * Time.deltaTime);
         }
 
