@@ -7,30 +7,52 @@ using UnityEngine.InputSystem;
 using static UnityEngine.ParticleSystem;
 
 public class SprayController : MonoBehaviour {
+    #region GameObjects
+    [Header("Standard Transform")]
+    [SerializeField] Transform e_standardDir = null;
+
+    #endregion
+
     #region Components
-    [SerializeField] private ParticleSystem _sprayParticle = null;
-    [SerializeField] private P3dPaintSphere _sprayDrawer = null;
+    [SerializeField] private ParticleSystem e_sprayParticle = null;
+    [SerializeField] private P3dPaintSphere e_sprayDrawer = null;
 
     #endregion
 
 
     #region Variables
-    private bool _isFocusing = false;
+    private bool i_isFocusing = false;
+    [SerializeField] private float i_rayCastIntervalValue = 0.1f;
+    [SerializeField] private float i_sprayDistance = 5.0f;
+    [SerializeField] private Vector3 i_expectedDrawPos = Vector3.zero;
 
+    private WaitForSeconds i_rayCastInterval = null;
     #endregion
 
     #region Unity Event Functions
+    private void Awake() {
+        i_rayCastInterval = new WaitForSeconds(i_rayCastIntervalValue);
+    }
+
     private void Update() {
-        if(!_isFocusing)
+        if(!i_isFocusing)
             return;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction, Color.green, 1f);
-        
-        if(Physics.Raycast(ray, out hit)) {
-            
+        Debug.DrawRay(e_standardDir.position, e_standardDir.forward * i_sprayDistance, Color.green);
+        if(Physics.Raycast(e_standardDir.position, e_standardDir.forward, out hit, i_sprayDistance)) {
+            Debug.Log($"{hit.transform.tag}");
+            if(hit.collider.CompareTag("Untagged")) {
+                hit.transform.gameObject.SetActive(false);
+                return;
+            }
+                
+            if(hit.collider.CompareTag("Paintable")) {
+                i_expectedDrawPos = hit.point;
+            }
         }
+
+        e_sprayParticle.transform.LookAt(i_expectedDrawPos);
     }
 
     #endregion
@@ -38,13 +60,13 @@ public class SprayController : MonoBehaviour {
     #region User Defined Functions
 
     public void ChangeColorTo(Color color) {
-        _sprayParticle.startColor = color;
-        _sprayDrawer.Color = color;
+        e_sprayParticle.startColor = color;
+        e_sprayDrawer.Color = color;
     }
 
     public void IS_Draw_ChangeSpraySize(InputAction.CallbackContext value) {
         float size = value.ReadValue<float>();
-        var shape = _sprayParticle.shape;
+        var shape = e_sprayParticle.shape;
         shape.angle += size;
     }
 
@@ -55,12 +77,30 @@ public class SprayController : MonoBehaviour {
 
     public void IS_Draw_OnLeftClick(InputAction.CallbackContext value) {
         if(value.phase == InputActionPhase.Performed) {
-            _sprayParticle.Play();
+            e_sprayParticle.Play();
 
         }
 
         if(value.phase == InputActionPhase.Canceled) {
-            _sprayParticle.Stop();
+            e_sprayParticle.Stop();
+        }
+    }
+
+    public void OnFocus(bool performed) {
+        if(performed) {
+            i_isFocusing = true;
+        }
+        else {
+            i_isFocusing = false;
+        }
+    }
+
+    public void OnLeftClick(bool performed) {
+        if(performed) {
+            e_sprayParticle.Play();
+        }
+        else {
+            e_sprayParticle.Stop();
         }
     }
 

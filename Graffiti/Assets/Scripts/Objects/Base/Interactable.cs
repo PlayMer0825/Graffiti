@@ -22,10 +22,10 @@ public class Interactable : MonoBehaviour {
     #endregion
 
     #region External Objects
-    public CinemachineVirtualCamera _focusCam = null;
+    public CinemachineVirtualCameraBase _focusCam = null;
 
-    private static PlayerTest _player = null;
-    public PlayerTest Player { get {
+    private static PlayerBrain _player = null;
+    public PlayerBrain Player { get {
             if(_player == null) {
                 Debug.LogError($"Interaction Object {gameObject.name}'s PlayerTest is not declared");
                 gameObject.SetActive(false);
@@ -61,7 +61,7 @@ public class Interactable : MonoBehaviour {
     }
 
     private void Awake() {
-        _player = FindObjectOfType<PlayerTest>();
+        _player = FindObjectOfType<PlayerBrain>();
 
         if(_focusCam == null) {
             Debug.LogError($"Interactable: {gameObject.name}'s FocusCam is not Validated!");

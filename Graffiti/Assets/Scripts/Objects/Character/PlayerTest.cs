@@ -10,26 +10,16 @@ using static Define;
 public class PlayerTest : MonoBehaviour {
     #region Components
     [SerializeField] private CharacterController _controller = null;
-    [SerializeField] private PlayerInput _inputSystem = null;
-    [HideInInspector] private InputActionMap _actionWander = null;
-    [HideInInspector] private InputActionMap _actionDraw = null;
     
-
     #endregion
 
     #region External Objects
     [Header("Camera Objects")]
     [SerializeField] private Transform t_mainCam = null;
 
-    [Header("Owned Objects")]
-    [SerializeField] private SprayController o_Spray = null;
-
-    [Header("NonSerialized Objects")]
-    [SerializeField] private InteractionManager _interManager = null;
-
     [Header("Current Interactable Object")]
     [SerializeField] private Interactable _interactable = null;
-    //public Interactable 
+
     #endregion
 
     #region Variables
@@ -41,41 +31,10 @@ public class PlayerTest : MonoBehaviour {
 
     private float        m_currentSpeed   = 0.0f;
     private byte         _isBraking = 0;
+
     #endregion
 
-
     #region Unity Event Functions
-
-    private void OnValidate() {
-        _inputSystem = GetComponent<PlayerInput>();
-
-        if(_inputSystem == null)
-            Debug.LogError($"{this.name}: Can't FInd {typeof(PlayerInput)}");
-
-        _actionWander = _inputSystem.actions.FindActionMap("Player_Wander");
-        _actionDraw = _inputSystem.actions.FindActionMap("Player_Draw");
-    }
-
-    private void Awake() {
-        _inputSystem = GetComponent<PlayerInput>();
-
-        if(_inputSystem == null)
-            Debug.LogError($"{this.name}: Can't FInd {typeof(PlayerInput)}");
-
-    }
-
-    private void Start() {
-        _interManager = Managers.Interact;
-
-        if(_interManager == null) {
-            Debug.LogError($"{this.name}: Can't Find {typeof(InteractionManager)}");
-            gameObject.SetActive(false);
-            return;
-        }
-            
-        _actionWander = _inputSystem.actions.FindActionMap("Player_Wander");
-        _actionDraw = _inputSystem.actions.FindActionMap("Player_Draw");
-    }
 
     private void Update() {
         //TODO: 점프 추가 시 기능 수정 필요.
@@ -123,19 +82,6 @@ public class PlayerTest : MonoBehaviour {
 
     #region User Defined Functions
 
-    public void ChangeInputTypeTo(InputType type) {
-        switch(type) {
-            case InputType.Player_Wander: {
-                _actionWander.Enable();
-                _actionDraw.Disable();
-            }break;
-            case InputType.Player_Draw: {
-                _actionWander.Disable();
-                _actionDraw.Enable();
-            }break;
-        }
-    }
-
     public void Notify_OnInteractArea(Interactable onRanged) {
         if(_interactable == onRanged)
             return;
@@ -148,121 +94,6 @@ public class PlayerTest : MonoBehaviour {
             return;
 
         _interactable = null;
-    }
-
-
-    #endregion
-
-    #region InputSystem General Events
-    public void IS_General_OnMove(InputAction.CallbackContext value) {
-        if(t_mainCam == null)
-            return;
-
-        Vector3 inputRaw = value.ReadValue<Vector2>();
-        inputRaw = Quaternion.Euler(new Vector3(0, t_mainCam.eulerAngles.y, 0)) * new Vector3(inputRaw.x, 0, inputRaw.y);
-        inputRaw.x = (float)Math.Round(inputRaw.x, 0);
-        inputRaw.y = (float)Math.Round(inputRaw.y, 0);
-        inputRaw.z = (float)Math.Round(inputRaw.z, 0);
-
-        m_inputDirNormal = inputRaw.normalized;
-    }
-
-    public void IS_General_OnRun(InputAction.CallbackContext value) {
-        //TODO: 지금은 Continuous 타입이지만 나중에 인게임에서 키매핑 수정할 수 있으면 Toggle도 추가해야됨.
-        if(m_curMoveType == MovementType.Crouch)
-            return;
-
-        if(value.performed) {
-            m_curMoveType = MovementType.Run;
-        }
-        else if(value.canceled) {
-            m_curMoveType = MovementType.Walk;
-        }
-    }
-
-    public void IS_General_OnCrouch(InputAction.CallbackContext value) {
-        //TODO: 지금은 Continuous 타입이지만 나중에 인게임에서 키매핑 수정할 수 있으면 Toggle도 추가해야됨.
-        if(m_curMoveType == MovementType.Run)
-            return;
-
-        if(value.performed) {
-            m_curMoveType = MovementType.Crouch;
-        }
-        else if(value.canceled) {
-            m_curMoveType = MovementType.Walk;
-        }
-    }
-
-    public void IS_General_OnJump(InputAction.CallbackContext value) {
-        if(!_controller.isGrounded)
-            return;
-
-        //TODO: 점프 기능 구현 필요
-        bool isJump = value.ReadValueAsButton();
-    }
-
-    #endregion
-
-    #region InputSystem Wander Events
-    public void IS_Wander_OnInteract(InputAction.CallbackContext value) {
-        //if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
-        //    return;
-
-        //if(_interManager == null)
-        //    return;
-
-        //bool success = _interManager.EnterInteractWithCurObj();
-        ////TODO: InputActionMap 변경하기
-        //if(!success)
-        //    return;
-
-        //_inputManager.SwitchCurrentActionMap("Player_Draw");
-        //_actionWander.Disable();
-        //_actionDraw.Enable();
-
-        Debug.LogWarning($"IS_Wander_OnInteract: Testing Function");
-
-        _interactable.OnInteract();
-
-        //TODO: 여기서 자기 자신의 컴포넌트들 & 객체들 관리 우선적으로 실행.
-    }
-
-    #endregion
-
-    #region InputSystem Draw Events
-    public void IS_Draw_OnFocus(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
-    }
-
-    public void IS_Draw_OnLeftClick(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
-    }
-
-    public void IS_Draw_OnRightClick(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
-    }
-
-    public void IS_Draw_OnMiddleClick(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
-    }
-
-    public void IS_Draw_OnScroll(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
-    }
-
-    public void IS_General_OnEscape(InputAction.CallbackContext value) {
-        if(value.phase != InputActionPhase.Performed && value.phase != InputActionPhase.Canceled)
-            return;
-
-        Debug.LogWarning($"IS_General_OnEscape: Just Implemented for OffInteract");
-
-        //TODO: 여기서 자기 자신의 컴포넌트들 & 객체들 관리 우선적으로 실행.
-
-        _interactable.OffInteract();
-    }
-
-    public void IS_Draw_OnTab(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnFocus: Not Implemented!");
     }
 
     #endregion
