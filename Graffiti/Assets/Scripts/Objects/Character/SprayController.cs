@@ -22,6 +22,7 @@ public class SprayController : MonoBehaviour {
 
     #region Variables
     private bool i_isFocusing = false;
+    private bool i_isDrawable = false;
     [SerializeField] private float i_rayCastIntervalValue = 0.1f;
     [SerializeField] private float i_sprayDistance = 5.0f;
     [SerializeField] private Vector3 i_expectedDrawPos = Vector3.zero;
@@ -41,15 +42,16 @@ public class SprayController : MonoBehaviour {
         RaycastHit hit;
         Debug.DrawRay(e_standardDir.position, e_standardDir.forward * i_sprayDistance, Color.green);
         if(Physics.Raycast(e_standardDir.position, e_standardDir.forward, out hit, i_sprayDistance)) {
-            Debug.Log($"{hit.transform.tag}");
-            if(hit.collider.CompareTag("Untagged")) {
-                hit.transform.gameObject.SetActive(false);
-                return;
-            }
-                
+            Debug.Log($"Tag: {hit.transform.tag}");
             if(hit.collider.CompareTag("Paintable")) {
                 i_expectedDrawPos = hit.point;
+                i_isDrawable = true;
             }
+            else {
+                i_isDrawable = false;
+                e_sprayParticle.Stop();
+            }
+                
         }
 
         e_sprayParticle.transform.LookAt(i_expectedDrawPos);
@@ -64,28 +66,6 @@ public class SprayController : MonoBehaviour {
         e_sprayDrawer.Color = color;
     }
 
-    public void IS_Draw_ChangeSpraySize(InputAction.CallbackContext value) {
-        float size = value.ReadValue<float>();
-        var shape = e_sprayParticle.shape;
-        shape.angle += size;
-    }
-
-    //TODO: 마우스 위치로 나갈 수 있도록 조절
-    //public void ISE_MousePosition(InputAction.CallbackContext value) {
-    //    Vector3 mousePos = value.ReadValue<Vector3>();
-    //}
-
-    public void IS_Draw_OnLeftClick(InputAction.CallbackContext value) {
-        if(value.phase == InputActionPhase.Performed) {
-            e_sprayParticle.Play();
-
-        }
-
-        if(value.phase == InputActionPhase.Canceled) {
-            e_sprayParticle.Stop();
-        }
-    }
-
     public void OnFocus(bool performed) {
         if(performed) {
             i_isFocusing = true;
@@ -96,6 +76,11 @@ public class SprayController : MonoBehaviour {
     }
 
     public void OnLeftClick(bool performed) {
+        if(i_isFocusing == false)
+            return;
+        if(i_isDrawable == false)
+            return;
+
         if(performed) {
             e_sprayParticle.Play();
         }
