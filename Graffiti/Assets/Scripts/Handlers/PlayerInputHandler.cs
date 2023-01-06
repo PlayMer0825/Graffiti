@@ -69,8 +69,11 @@ public class PlayerInputHandler : MonoBehaviour {
         e_playerBrain.OnFocus(false, true);
     }
 
-    public void IS_Draw_OnTab(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnTab: Not Implemented!");
+    public void IS_Draw_SwitchUIActivation(InputAction.CallbackContext value) {
+        if(!value.performed)
+            return;
+
+        e_playerBrain.SwitchUIActivation();
     }
 
     #endregion

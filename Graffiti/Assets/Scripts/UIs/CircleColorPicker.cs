@@ -25,8 +25,6 @@ public class CircleColorPicker : MonoBehaviour {
     }
 
     void Start() {
-        this.gameObject.SetActive(false);
-
         paletteCollider = circlePalette.GetComponent<CircleCollider2D>();
 
         sizeOfPalette = new Vector2(

@@ -89,12 +89,17 @@ public class BaseMovement : MonoBehaviour {
         }
 
 
-        e_Controller.Move(i_moveDir.normalized * i_currentSpeed * Time.deltaTime + i_verticalForce * 9.8f * Time.deltaTime);
+
+        e_Controller.Move(i_moveDir.normalized * i_currentSpeed * Time.deltaTime);
+    }
+
+    private void FixedUpdate() {
+        e_Controller.Move(i_verticalForce * 9.8f * Time.deltaTime);
     }
 
     #endregion
 
-        #region User Defined Functions
+    #region User Defined Functions
     public void ControlMovementType(MovementType type, bool performed, bool canceled, bool isToggle = false) {
         if(i_curMoveType != MovementType.Walk && i_curMoveType != type)
             return;

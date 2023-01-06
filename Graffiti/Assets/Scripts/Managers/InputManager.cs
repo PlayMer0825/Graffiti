@@ -24,14 +24,6 @@ public class InputManager : MonoBehaviour {
         GetActionMaps();
     }
 
-    public void RegisterPlayerInput(PlayerInput inputSystem) {
-        if(_playerInput.Equals(inputSystem))
-            return;
-
-        _playerInput = inputSystem;
-        GetActionMaps();
-    }
-
     private void GetActionMaps() {
         _actionMaps = _playerInput.actions.actionMaps.ToList();
     }

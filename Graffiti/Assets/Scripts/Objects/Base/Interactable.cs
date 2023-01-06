@@ -106,14 +106,12 @@ public class Interactable : MonoBehaviour {
         m_interactArea.SetColliderActive(false);
         m_interactCanvas.gameObject.SetActive(false);
         _focusCam.enabled = true;
-        Managers.Input.ChangeInputState(Define.InputType.Player_Draw);
     }
 
     public virtual void OffInteract() {
         m_interactArea.SetColliderActive(true);
         m_interactCanvas.gameObject.SetActive(true);
         _focusCam.enabled = false;
-        Managers.Input.ChangeInputState(Define.InputType.Player_Wander);
     }
 
     /// <summary>

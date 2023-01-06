@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1001419843511401722}
   - component: {fileID: 849983538505946567}
   m_Layer: 8
-  m_Name: OnHandSpray
+  m_Name: Spray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_standardDir: {fileID: 0}
+  e_nozzle: {fileID: 0}
   e_sprayParticle: {fileID: 0}
   e_sprayDrawer: {fileID: 0}
   i_rayCastIntervalValue: 0.1
   i_sprayDistance: 5
-  i_expectedDrawPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8620248765709314710
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +60,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8050569697283014976}
+  - component: {fileID: 880691016656964255}
   - component: {fileID: 3003148305194583151}
   - component: {fileID: 6977977976694403988}
   - component: {fileID: 7971257740765671027}
@@ -85,6 +86,20 @@ Transform:
   m_Father: {fileID: 1001419843511401722}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &880691016656964255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620248765709314710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c80eb4ad03a1f6f408842f284443967b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  e_particle: {fileID: 0}
+  e_sprayDrawer: {fileID: 0}
 --- !u!199 &3003148305194583151
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -167,7 +182,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
