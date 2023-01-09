@@ -32,6 +32,11 @@ public class SprayController : MonoBehaviour {
     private WaitForSeconds i_rayCastInterval = null;
     #endregion
 
+    #region Properties
+    public bool IsFocusing { get => i_isFocusing; }
+
+    #endregion
+
     #region Unity Event Functions
     private void Awake() { i_rayCastInterval = new WaitForSeconds(i_rayCastIntervalValue); }
 
@@ -41,16 +46,13 @@ public class SprayController : MonoBehaviour {
 
         RaycastHit hit;
         Debug.DrawRay(e_standardDir.position, e_standardDir.forward * i_sprayDistance, Color.green);
-        if(Physics.Raycast(e_standardDir.position, e_standardDir.forward, out hit, i_sprayDistance)) {
-            Debug.Log($"Tag: {hit.transform.tag}");
-            if(hit.collider.CompareTag("Paintable")) {
-                i_expectedDrawPos = hit.point;
-                i_isDrawable = true;
-            }
-            else {
-                i_isDrawable = false;
-                e_sprayParticle.Stop();
-            }
+        if(Physics.Raycast(e_standardDir.position, e_standardDir.forward, out hit, i_sprayDistance, 1 << LayerMask.NameToLayer("Paintable"))) {
+            i_expectedDrawPos = hit.point;
+            i_isDrawable = true;
+        }
+        else {
+            i_isDrawable = false;
+            e_nozzle.Stop();
         }
 
         e_nozzle.LookAt(i_expectedDrawPos);
@@ -62,7 +64,15 @@ public class SprayController : MonoBehaviour {
 
     public void ChangeColorTo(Color color) { e_nozzle.ChangeColor(color); }
 
-    public void ChangeSprayNozzleSize(float wheelDelta) { }
+    public void ChangeSprayNozzleSize(float wheelDelta) {
+        ShapeModule shape = e_sprayParticle.shape;
+        shape.angle = Mathf.Max(0.1f, Mathf.Min(120f, shape.angle + wheelDelta));
+        SizeOverLifetimeModule sizeModule = e_sprayParticle.sizeOverLifetime;
+        Debug.Log($"Size: {sizeModule.sizeMultiplier}");
+
+        //얘는 굳이 조절 안해줘도 될듯? 얘보단 Opacity조절하는게 더 쓸모있어보임
+        //e_sprayDrawer.Scale = new Vector3(shape.angle, shape.angle, shape.angle);
+    }
 
     public void OnFocus(bool performed) {
         if(performed) { i_isFocusing = true;  }

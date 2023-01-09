@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Define;
-using static UnityEngine.Rendering.DebugUI;
 
-public class BaseMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
     #region Components
     [SerializeField] private CharacterController e_Controller = null;
 
@@ -19,7 +16,7 @@ public class BaseMovement : MonoBehaviour {
 
     #region Variables
     [SerializeField] private MovementStat i_moveStat;
-    private MovementType i_curMoveType    = MovementType.Walk;
+    private Status i_curMoveType    = Status.Walk;
     [SerializeField] private Vector3      i_inputDirNormal = Vector3.zero;
     [SerializeField] private Vector3      i_moveDir        = Vector3.zero;
     private Vector3      i_verticalForce  = Vector3.down;
@@ -31,7 +28,7 @@ public class BaseMovement : MonoBehaviour {
 
     #region Properties
     public Vector3 InputVector { get; set; }
-    public MovementType CurrentMovementType { get => i_curMoveType; set { i_curMoveType = value; } }
+    public Status CurrentMovementType { get => i_curMoveType; set { i_curMoveType = value; } }
 
     #endregion
 
@@ -56,7 +53,7 @@ public class BaseMovement : MonoBehaviour {
             byte isNotOpposite = (byte)( i_moveDir.normalized + i_inputDirNormal ).normalized.magnitude;
             // 현재 Input값과 현재 m_moveDir값이 정반대 방향일 경우 true, 나머지는 false.
 
-            i_isBraking = (byte)( ( i_isBraking.Not() * isInputVoid.Not() * isNotOpposite.Not() * i_currentSpeed > i_moveStat.moveType[(byte)MovementType.Walk].speed ? 1 : 0 )
+            i_isBraking = (byte)( ( i_isBraking.Not() * isInputVoid.Not() * isNotOpposite.Not() * i_currentSpeed > i_moveStat.moveType[(byte)Status.Walk].speed ? 1 : 0 )
                                   + ( i_isBraking * i_currentSpeed > 0.1f ? 1 : 0 )
                                 );
             //Input값과 m_moveDir방향이 정반대거나 아직 Braking 상태일 경우 true, 나머지는 false.
@@ -78,7 +75,7 @@ public class BaseMovement : MonoBehaviour {
                                 + i_moveStat.moveType[(byte)i_curMoveType].damping * isInputVoid.Not() * isNotOpposite.Not() * i_isBraking.Not() * -1
                                 + i_moveStat.moveType[(byte)i_curMoveType].damping * i_isBraking * -1
                                 + i_moveStat.moveType[(byte)i_curMoveType].damping * isDeceleration * -1;
-                i_currentSpeed = Mathf.Clamp(i_currentSpeed, 0.0f, i_moveStat.moveType[(byte)MovementType.Run].speed);
+                i_currentSpeed = Mathf.Clamp(i_currentSpeed, 0.0f, i_moveStat.moveType[(byte)Status.Run].speed);
 
                 i_moveDir = Vector3.zero * isInputVoid * ( i_currentSpeed <= 0 ? 1 : 0 ) +
                             i_moveDir * isInputVoid +                                                                // Input값이 없을 땐 m_moveDir을 그대로 유지한다.
@@ -88,23 +85,25 @@ public class BaseMovement : MonoBehaviour {
             }// Calculating Player's Current Speed and Absolute moving direction 
         }
 
-
-
         e_Controller.Move(i_moveDir.normalized * i_currentSpeed * Time.deltaTime);
-    }
-
-    private void FixedUpdate() {
-        e_Controller.Move(i_verticalForce * 9.8f * Time.deltaTime);
     }
 
     #endregion
 
     #region User Defined Functions
-    public void ControlMovementType(MovementType type, bool performed, bool canceled, bool isToggle = false) {
-        if(i_curMoveType != MovementType.Walk && i_curMoveType != type)
+    public void ControlMovementType(Status type, bool performed, bool canceled, bool isToggle = false) {
+        if(i_curMoveType != Status.Walk && i_curMoveType != type)
             return;
 
-        i_curMoveType = performed ? type : MovementType.Walk;
+        i_curMoveType = performed ? type : Status.Walk;
+    }
+
+    #endregion
+
+    #region Virtual Functions
+
+    protected virtual void Move() {
+
     }
 
     #endregion

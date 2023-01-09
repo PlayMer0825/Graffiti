@@ -19,12 +19,12 @@ public class PlayerInputHandler : MonoBehaviour {
 
     public void IS_General_OnRun(InputAction.CallbackContext value) {
         //TODO: 2022-12-28 입력받을 때 토글인지, 활성화인지 체크할 건데 performed를 주는게 맞는지 체크하기
-        e_playerMovement.ControlMovementType(MovementType.Run, value.performed, value.canceled);
+        e_playerMovement.ControlMovementType(Status.Run, value.performed, value.canceled);
     }
 
     public void IS_General_OnCrouch(InputAction.CallbackContext value) {
         //TODO: 2022-12-28 입력받을 때 토글인지, 활성화인지 체크할 건데 performed를 주는게 맞는지 체크하기
-        e_playerMovement.ControlMovementType(MovementType.Crouch, value.performed, value.canceled);
+        e_playerMovement.ControlMovementType(Status.Crouch, value.performed, value.canceled);
     }
 
     public void IS_General_OnJump(InputAction.CallbackContext value) {
@@ -58,7 +58,11 @@ public class PlayerInputHandler : MonoBehaviour {
     }
 
     public void IS_Draw_OnScroll(InputAction.CallbackContext value) {
-        Debug.LogError($"IS_Draw_OnScroll: Not Implemented!");
+        if(value.phase != InputActionPhase.Started)
+            return;
+
+        float scrollDelta = value.ReadValue<float>() < 0 ? -0.1f : 0.1f;
+        e_playerBrain.OnWheelScroll(scrollDelta);
     }
 
     public void IS_General_OnEscape(InputAction.CallbackContext value) {

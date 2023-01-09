@@ -30,11 +30,7 @@ public class Define
 
     }
 
-    public enum MovementType : byte { 
-        Walk,
-        Run,
-        Crouch,
-    }
+    public enum Status : byte { Walk, Run, Crouch, }
     
     public enum InteractionType : ushort {
         //TODO: 값을 레이어와 일치시

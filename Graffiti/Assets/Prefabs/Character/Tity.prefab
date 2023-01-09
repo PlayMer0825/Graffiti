@@ -177,26 +177,6 @@ MonoBehaviour:
     m_ActionId: 166b8703-c859-4e50-be59-a9b03cd900f6
     m_ActionName: Player_Wander/Run[/Keyboard/leftShift]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5b7c5ebe-2032-473c-bac9-a5cb03a85955
-    m_ActionName: Player_Wander/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0d573ba8-9534-4697-914b-9b910119f01f
-    m_ActionName: Player_Wander/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0da434f7-5a62-4db2-b0d5-95242b9713ca
-    m_ActionName: Player_Wander/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 90ef7cdf-da10-43c3-b355-41caa16ad0f3
-    m_ActionName: Player_Wander/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3af422c6-7dd3-47cc-9e1b-9334f48b365c
-    m_ActionName: Player_Wander/Point[/Mouse/position]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 450962337155054137}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
@@ -328,6 +308,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d64e65e0-2629-47df-b24f-defda07e0172
     m_ActionName: Player_Draw/MousePosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 361e651b-1ce8-4bee-8f50-6091c3a25fc8
+    m_ActionName: Player_Wander/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player_Wander
@@ -493,11 +477,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spray
       objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: cullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: useRigidbodyForVelocity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.startSizeY.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977977976694403988, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: InitialModule.startSizeZ.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8620248765709314710, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_Name
       value: SpraySystem
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7971257740765671027, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
 --- !u!4 &846738184877745945 stripped
 Transform:

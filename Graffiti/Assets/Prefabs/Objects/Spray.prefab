@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 6977977976694403988}
   - component: {fileID: 7971257740765671027}
   - component: {fileID: 9085303896030428267}
+  - component: {fileID: 1352247121180962948}
   m_Layer: 9
   m_Name: Painter
   m_TagString: Untagged
@@ -98,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80eb4ad03a1f6f408842f284443967b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_particle: {fileID: 0}
-  e_sprayDrawer: {fileID: 0}
+  e_particle: {fileID: 6977977976694403988}
+  e_sprayDrawer: {fileID: 9085303896030428267}
 --- !u!199 &3003148305194583151
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -178,8 +179,8 @@ ParticleSystem:
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
-  ringBufferMode: 0
-  ringBufferLoopRange: {x: 0, y: 1}
+  ringBufferMode: 2
+  ringBufferLoopRange: {x: 0, y: 0}
   looping: 1
   prewarm: 1
   playOnAwake: 0
@@ -302,7 +303,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -418,7 +419,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
+      scalar: 0.1
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -999,7 +1000,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 500
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4953,6 +4954,45 @@ MonoBehaviour:
     modifiers: []
   references:
     version: 1
+--- !u!114 &1352247121180962948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620248765709314710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79b29143865f7c43ac098b70c6cffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  layers:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  requiredButtons: -1
+  requiredKey: 0
+  guiLayers:
+    serializedVersion: 2
+    m_Bits: 32
+  emit: 0
+  rotateTo: 0
+  normalDirection: 2
+  normalRelativeTo: 1
+  customTransform: {fileID: 0}
+  normalOffset: 0
+  mouseOffset: 0
+  touchOffset: 0
+  storeStates: 1
+  showPreview: 1
+  priority: 0
+  frequency: 5
+  interval: 10
+  connector:
+    hitSpacing: 0
+    hitLimit: 30
+    connectHits: 0
+    clipConnected: 0
 --- !u!1001 &4322332855435734949
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,10 +23,23 @@ public class PlayerBrain : MonoBehaviour {
     [Header("UIPanel Object")]
     [SerializeField] private GameObject e_uiPanel = null;
 
+    #region Unity Event Functions
     private void Awake() {
         i_actionMaps = e_input.actions.actionMaps.ToList();
     }
 
+    #endregion
+
+    #region User Defined Functions
+    private void ChangeInputState(Define.InputType type) {
+        for(int i = 0; i < i_actionMaps.Count; i++) {
+            i_actionMaps[i].Disable();
+        }
+
+        i_actionMaps[(int)type].Enable();
+    }
+
+    #endregion
 
     #region Interaction Event Functions
     public void OnInteract() {
@@ -67,14 +80,6 @@ public class PlayerBrain : MonoBehaviour {
         e_curInteract = null;
     }
 
-    private void ChangeInputState(Define.InputType type) {
-        for(int i = 0; i < i_actionMaps.Count; i++) {
-            i_actionMaps[i].Disable();
-        }
-
-        i_actionMaps[(int)type].Enable();
-    }
-
     #endregion
 
     #region Action Event Functions
@@ -87,13 +92,13 @@ public class PlayerBrain : MonoBehaviour {
             return;
         }
 
-        if(Cursor.lockState == CursorLockMode.None) {
+        if(e_spray.IsFocusing == false) {
             Cursor.lockState = CursorLockMode.Locked;
             e_spray.OnFocus(true);
             e_tpsCam.enabled = true;
         }
             
-        else if(Cursor.lockState == CursorLockMode.Locked) {
+        else if(e_spray.IsFocusing == true) {
             Cursor.lockState = CursorLockMode.None;
             e_spray.OnFocus(false);
             e_tpsCam.enabled = false;
@@ -102,6 +107,10 @@ public class PlayerBrain : MonoBehaviour {
 
     public void OnLeftClick(bool performed) {
         e_spray.OnLeftClick(performed);
+    }
+
+    public void OnWheelScroll(float scrollDelta) {
+        e_spray.ChangeSprayNozzleSize(scrollDelta);
     }
 
     public void SwitchUIActivation() {
