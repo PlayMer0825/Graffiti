@@ -49,9 +49,11 @@ public class SprayController : MonoBehaviour {
         if(Physics.Raycast(e_standardDir.position, e_standardDir.forward, out hit, i_sprayDistance, 1 << LayerMask.NameToLayer("Paintable"))) {
             i_expectedDrawPos = hit.point;
             i_isDrawable = true;
+            e_sprayDrawer.enabled = true;
         }
         else {
             i_isDrawable = false;
+            e_sprayDrawer.enabled = false;
             e_nozzle.Stop();
         }
 
@@ -70,6 +72,7 @@ public class SprayController : MonoBehaviour {
         SizeOverLifetimeModule sizeModule = e_sprayParticle.sizeOverLifetime;
         Debug.Log($"Size: {sizeModule.sizeMultiplier}");
 
+        e_sprayDrawer.Radius += wheelDelta * 0.1f;
         //얘는 굳이 조절 안해줘도 될듯? 얘보단 Opacity조절하는게 더 쓸모있어보임
         //e_sprayDrawer.Scale = new Vector3(shape.angle, shape.angle, shape.angle);
     }
