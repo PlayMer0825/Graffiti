@@ -378,16 +378,13 @@ MonoBehaviour:
   e_targetTransform: {fileID: 0}
   i_moveStat:
     moveType:
-    - type: {fileID: 0}
-      speed: 2
+    - speed: 2
       acceleration: 0.1
       damping: 0.1
-    - type: {fileID: 0}
-      speed: 5
+    - speed: 5
       acceleration: 0.15
       damping: 0.07
-    - type: {fileID: 0}
-      speed: 1
+    - speed: 1
       acceleration: 0.05
       damping: 0.05
     turnSmoothVelocity: 2
@@ -395,6 +392,7 @@ MonoBehaviour:
   i_inputDirNormal: {x: 0, y: 0, z: 0}
   i_moveDir: {x: 0, y: 0, z: 0}
   i_currentSpeed: 0
+  i_isFocusing: 0
 --- !u!1001 &443030541669997539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,15 +430,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1001419843511401722, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.381
       objectReference: {fileID: 0}
     - target: {fileID: 1001419843511401722, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.546
       objectReference: {fileID: 0}
     - target: {fileID: 1001419843511401722, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 1001419843511401722, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_LocalRotation.w
@@ -469,6 +467,10 @@ PrefabInstance:
     - target: {fileID: 1001419843511401722, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352247121180962948, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: connector.hitLimit
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3980455315776869108, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
       propertyPath: m_Name
@@ -526,8 +528,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpraySystem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7971257740765671027, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+    - target: {fileID: 9085303896030428267, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: radius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085303896030428267, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: opacity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085303896030428267, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
+      propertyPath: hardness
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1602ef6218e387946aa7dc9c98cfc516, type: 3}
 --- !u!4 &846738184877745945 stripped
 Transform:

@@ -19,12 +19,12 @@ public class PlayerInputHandler : MonoBehaviour {
 
     public void IS_General_OnRun(InputAction.CallbackContext value) {
         //TODO: 2022-12-28 입력받을 때 토글인지, 활성화인지 체크할 건데 performed를 주는게 맞는지 체크하기
-        e_playerMovement.ControlMovementType(Status.Run, value.performed, value.canceled);
+        e_playerMovement.MoveInput(Status.Run, value.performed, value.canceled);
     }
 
     public void IS_General_OnCrouch(InputAction.CallbackContext value) {
         //TODO: 2022-12-28 입력받을 때 토글인지, 활성화인지 체크할 건데 performed를 주는게 맞는지 체크하기
-        e_playerMovement.ControlMovementType(Status.Crouch, value.performed, value.canceled);
+        e_playerMovement.MoveInput(Status.Crouch, value.performed, value.canceled);
     }
 
     public void IS_General_OnJump(InputAction.CallbackContext value) {
@@ -40,6 +40,7 @@ public class PlayerInputHandler : MonoBehaviour {
     #region InputSystem Draw Events
     public void IS_Draw_OnFocus(InputAction.CallbackContext value) {
         e_playerBrain.OnFocus(value.performed);
+        e_playerMovement.OnFocus(value.performed);
     }
 
     public void IS_Draw_OnLeftClick(InputAction.CallbackContext value) {
@@ -71,6 +72,7 @@ public class PlayerInputHandler : MonoBehaviour {
 
         e_playerBrain.OffInteract();
         e_playerBrain.OnFocus(false, true);
+        e_playerMovement.OnFocus(false, true);
     }
 
     public void IS_Draw_SwitchUIActivation(InputAction.CallbackContext value) {
