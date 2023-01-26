@@ -26,11 +26,13 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private bool i_isFocusing = false;
 
+
     #endregion
 
     #region Properties
     public Vector3 InputVector { get; set; }
     public Status CurrentMovementType { get => i_curMoveType; set { i_curMoveType = value; } }
+    public bool CanInput = true;
 
     #endregion
 
@@ -39,6 +41,8 @@ public class PlayerMovement : MonoBehaviour {
         //Cursor.lockState= CursorLockMode.Locked;
     }
     private void Update() {
+        if(CanInput == false)
+            return;
 
         if(i_isFocusing) {
             transform.rotation = Quaternion.Euler(0f, e_targetTransform.eulerAngles.y, 0f);

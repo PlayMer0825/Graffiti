@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 6977977976694403988}
   - component: {fileID: 9085303896030428267}
   - component: {fileID: 1352247121180962948}
+  - component: {fileID: 3660284565645573111}
   m_Layer: 9
   m_Name: Painter
   m_TagString: Untagged
@@ -4910,7 +4911,7 @@ MonoBehaviour:
     Kernel: 1
     Channels: {x: 1, y: 1, z: 1, w: 1}
   color: {r: 1, g: 0, b: 0, a: 1}
-  opacity: 0.5
+  opacity: 0.1
   angle: 0
   scale: {x: 0.3, y: 0.3, z: 0.3}
   radius: 0.1
@@ -4939,7 +4940,7 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 4294967291
-  requiredButtons: -1
+  requiredButtons: 0
   requiredKey: 0
   guiLayers:
     serializedVersion: 2
@@ -4955,13 +4956,43 @@ MonoBehaviour:
   storeStates: 1
   showPreview: 1
   priority: 0
-  frequency: 0
-  interval: 0.5
+  frequency: 2
+  interval: 0.1
   connector:
     hitSpacing: 0
     hitLimit: 30
-    connectHits: 0
-    clipConnected: 0
+    connectHits: 1
+    clipConnected: 1
+--- !u!114 &3660284565645573111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620248765709314710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f9cea69abe8304a84accae904c56be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emit: 0
+  raycastDistance: 0.0001
+  layers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  orientation: 0
+  _camera: {fileID: 0}
+  normal: 1
+  offset: 0
+  skip: 0
+  preview: 0
+  priority: 0
+  pressureMode: 0
+  pressureMin: 0
+  pressureMax: 0
+  pressureConstant: 1
+  pressureMultiplier: 1
+  root: {fileID: 0}
 --- !u!1001 &4322332855435734949
 PrefabInstance:
   m_ObjectHideFlags: 0

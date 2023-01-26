@@ -7,8 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerBrain : MonoBehaviour {
     [Header("Player Input Component")]
-    [SerializeField] private PlayerInput e_input = null;
-    private List<InputActionMap> i_actionMaps = new List<InputActionMap>();
+    [SerializeField] private PlayerInputHandler e_input = null;
 
     [Header("Player Cameras")]
     [SerializeField] private CinemachineVirtualCameraBase e_sideCam = null;
@@ -23,21 +22,14 @@ public class PlayerBrain : MonoBehaviour {
     [Header("UIPanel Object")]
     [SerializeField] private GameObject e_uiPanel = null;
 
+    private bool i_canInput = true;
+
     #region Unity Event Functions
-    private void Awake() {
-        i_actionMaps = e_input.actions.actionMaps.ToList();
-    }
 
     #endregion
 
     #region User Defined Functions
-    private void ChangeInputState(Define.InputType type) {
-        for(int i = 0; i < i_actionMaps.Count; i++) {
-            i_actionMaps[i].Disable();
-        }
 
-        i_actionMaps[(int)type].Enable();
-    }
 
     #endregion
 
@@ -50,7 +42,7 @@ public class PlayerBrain : MonoBehaviour {
 
         //TODO: 여기서 자기 자신의 컴포넌트들 & 객체들 관리 실행.
 
-        ChangeInputState(Define.InputType.Player_Draw);
+        e_input.ChangeInputState(Define.InputType.Player_Draw);
         e_sideCam.enabled = false;
     }
 
@@ -59,7 +51,7 @@ public class PlayerBrain : MonoBehaviour {
             return;
 
         //TODO: 여기서 자기 자신의 컴포넌트들 & 객체들 관리 우선적으로 실행.
-        ChangeInputState(Define.InputType.Player_Wander);
+        e_input.ChangeInputState(Define.InputType.Player_Wander);
 
         e_sideCam.enabled = true;
 
@@ -85,39 +77,64 @@ public class PlayerBrain : MonoBehaviour {
     #region Action Event Functions
 
     public void OnFocus(bool performed, bool sudoExit = false) {
+        if(i_canInput == false)
+            return;
+
         if(sudoExit) {
-            Cursor.lockState = CursorLockMode.None;
             e_spray.OnFocus(false);
             e_tpsCam.enabled = false;
             return;
         }
 
         if(e_spray.IsFocusing == false) {
-            Cursor.lockState = CursorLockMode.Locked;
+            CursorManager.ChangeCursorModeTo(CursorLockMode.Locked);
             e_spray.OnFocus(true);
             e_tpsCam.enabled = true;
         }
             
         else if(e_spray.IsFocusing == true) {
-            Cursor.lockState = CursorLockMode.None;
+            CursorManager.ChangeCursorModeTo(CursorLockMode.None);
             e_spray.OnFocus(false);
             e_tpsCam.enabled = false;
         }
     }
 
     public void OnLeftClick(bool performed) {
+        if(i_canInput == false)
+            return;
+
         e_spray.OnLeftClick(performed);
     }
 
     public void OnWheelScroll(float scrollDelta) {
+        if(i_canInput == false)
+            return;
+
         e_spray.ChangeSprayNozzleSize(scrollDelta);
     }
 
-    public void SwitchUIActivation() {
+    public bool SwitchUIActivation(bool sudoExit = false) {
         if(e_uiPanel == null)
-            return;
+            return true;
 
-        e_uiPanel.SetActive(!e_uiPanel.active);
+        if(sudoExit) {
+            e_uiPanel.SetActive(false);
+            i_canInput = true;
+            return true;
+        }
+
+        if(e_uiPanel.activeSelf) {
+            e_uiPanel.SetActive(false);
+            i_canInput = true;
+            CursorManager.ChangeCursorModeTo(CursorLockMode.Locked);
+        }
+        else {
+            e_uiPanel.SetActive(true);
+            i_canInput = false;
+            CursorManager.ChangeCursorModeTo(CursorLockMode.None);
+        }
+
+        return i_canInput;
     }
 
     #endregion
