@@ -27,14 +27,11 @@ public class Define
     public enum InputType : byte {
         Player_Wander = 0,
         Player_Draw = 1,
+        Player_PaintUI = 2,
 
     }
 
-    public enum MovementType : byte { 
-        Walk,
-        Run,
-        Crouch,
-    }
+    public enum Status : byte { Walk, Run, Crouch, }
     
     public enum InteractionType : ushort {
         //TODO: 값을 레이어와 일치시

@@ -15,18 +15,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "OnInteract",
+                    "name": "Run",
                     "type": "Button",
-                    "id": "7f866bd7-9ba7-49d6-a9f4-0a1436cf5c4e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "7a84d014-f51e-4ee1-af77-b5ba7b5aee8a",
+                    "id": "166b8703-c859-4e50-be59-a9b03cd900f6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -42,58 +33,22 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Run",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "166b8703-c859-4e50-be59-a9b03cd900f6",
+                    "id": "7a84d014-f51e-4ee1-af77-b5ba7b5aee8a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Click",
-                    "type": "PassThrough",
-                    "id": "5b7c5ebe-2032-473c-bac9-a5cb03a85955",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "RightClick",
-                    "type": "PassThrough",
-                    "id": "0d573ba8-9534-4697-914b-9b910119f01f",
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "361e651b-1ce8-4bee-8f50-6091c3a25fc8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MiddleClick",
-                    "type": "PassThrough",
-                    "id": "0da434f7-5a62-4db2-b0d5-95242b9713ca",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ScrollWheel",
-                    "type": "PassThrough",
-                    "id": "90ef7cdf-da10-43c3-b355-41caa16ad0f3",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Point",
-                    "type": "PassThrough",
-                    "id": "3af422c6-7dd3-47cc-9e1b-9334f48b365c",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -220,45 +175,12 @@
                 },
                 {
                     "name": "",
-                    "id": "d8b83b21-f961-4a3d-b50e-06efccd2dfc2",
-                    "path": "<Mouse>/position",
+                    "id": "92901e31-1db9-440d-99d1-f5bc05422fc2",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6797b37b-c911-4848-bc52-67628fe73ccb",
-                    "path": "<Mouse>/scroll",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "ScrollWheel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ad2eb52-113c-4717-b4b5-481acd2d0bf5",
-                    "path": "<Mouse>/middleButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "MiddleClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d7843aaa-85b0-411d-8a39-75701f6753f6",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "RightClick",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -286,34 +208,12 @@
                 },
                 {
                     "name": "",
-                    "id": "92901e31-1db9-440d-99d1-f5bc05422fc2",
-                    "path": "<Keyboard>/space",
+                    "id": "906fd154-2f13-464e-9cec-7fa81eacf9db",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PC",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "53fc2954-df09-4a65-ad3d-eda690295df3",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "OnInteract",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "23c4c6a0-4000-4c32-a64e-044502cfe71c",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Click",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -339,7 +239,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Crouch",
@@ -348,7 +248,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
@@ -397,12 +297,12 @@
                 },
                 {
                     "name": "WheelScroll",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "f52d0137-3e22-4f54-96a8-d8c5c59f17af",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Escape",
@@ -433,17 +333,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "WASD",
-                    "id": "296b8342-cdfd-4909-8bad-4372b4875502",
-                    "path": "3DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "Move_Keyboard",
                     "id": "6733d94d-74b9-45ad-85f9-54423ab7d5f2",
@@ -492,61 +381,6 @@
                     "name": "Right",
                     "id": "016f5510-e2ba-49c0-80d1-720f8c3da12c",
                     "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Move_Stick",
-                    "id": "55ba02ee-b5e6-4165-8250-ee2fbe4ef3f5",
-                    "path": "3DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "c7c8749a-7ecb-4119-98a7-2ec0d0f8abe5",
-                    "path": "<Joystick>/stick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "449a2790-e6ef-4b76-bbf3-9ceb3be31390",
-                    "path": "<Joystick>/stick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "c0ce9c69-6d11-4c07-ada2-e2812b78c357",
-                    "path": "<Joystick>/stick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "30b59b3c-11e2-454f-9433-f8a0242c3f64",
-                    "path": "<Joystick>/stick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
@@ -672,6 +506,34 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player_PaintUI",
+            "id": "85fc9000-528f-4873-87d4-8c1bfb100866",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "ef314341-e43a-4b99-88d3-85e6855df2d3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1eea7852-c406-40a7-8488-a787ed4b3feb",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

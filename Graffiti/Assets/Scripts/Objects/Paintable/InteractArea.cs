@@ -30,4 +30,11 @@ public class InteractArea : MonoBehaviour {
     private void OnTriggerExit(Collider other) { OnTriggerExitAction?.Invoke(other); }
 
     #endregion
+
+    #region User Defined Functions
+    public void SetColliderActive(bool isActive) {
+        _interactRange.enabled = isActive;
+    }
+
+    #endregion
 }
