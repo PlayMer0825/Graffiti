@@ -46,10 +46,10 @@ public class PlayerMove_SIDE : MonoBehaviour
             {
                 transform.Rotate(0, 1, 0);
             }
-            transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.deltaTime);
+            transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
 
-        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speed * Time.deltaTime);
+        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speed * Time.fixedDeltaTime);
     }
 
     void CheckGround()
