@@ -15,10 +15,13 @@ public class PlayerMove_SIDE : MonoBehaviour
     private bool ground = false;
     public LayerMask layer;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
+        animator=GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class PlayerMove_SIDE : MonoBehaviour
             Vector3 jumpPower = Vector3.up * jumpHeight;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
         }
+        AnimationUpdate();
     }
 
     private void FixedUpdate()
@@ -46,10 +50,10 @@ public class PlayerMove_SIDE : MonoBehaviour
             {
                 transform.Rotate(0, 1, 0);
             }
-            transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.deltaTime);
+            transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
 
-        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speed * Time.deltaTime);
+        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speed * Time.fixedDeltaTime);
     }
 
     void CheckGround()
@@ -63,5 +67,13 @@ public class PlayerMove_SIDE : MonoBehaviour
         {
             ground = false;
         }
+    }
+
+    void AnimationUpdate()
+    {
+        if (dir.x == 0 && dir.z == 0)
+            animator.SetBool("isWalk", false);
+        else
+            animator.SetBool("isWalk", true);
     }
 }

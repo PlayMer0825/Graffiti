@@ -10905,10 +10905,10 @@ MonoBehaviour:
       Tags { \"LightMode\" = \"SceneSelectionPass\" }\n        \n            ColorMask
       0\n\n            \n\n            HLSLPROGRAM\n\n            #pragma target
       4.5\n            #pragma only_renderers d3d11 ps4 xboxone vulkan metal switch\n           
-      //#pragma enable_d3d11_debug_symbols\n\n            #pragma multi_compile_instancing\n
-      \n            //#pragma multi_compile_local _ _ALPHATEST_ON\n\n\n           
-      //#pragma shader_feature _SURFACE_TYPE_TRANSPARENT\n//#pragma shader_feature_local
-      _ _BLENDMODE_ALPHA _BLENDMODE_ADD _BLENDMODE_PRE_MULTIPLY\n\n            //-------------------------------------------------------------------------------------\n//
+      //#pragma enable_d3d11_debug_symbols\n\n            #pragma multi_compile_instancing\n\n           
+      //#pragma multi_compile_local _ _ALPHATEST_ON\n\n\n            //#pragma shader_feature
+      _SURFACE_TYPE_TRANSPARENT\n//#pragma shader_feature_local _ _BLENDMODE_ALPHA
+      _BLENDMODE_ADD _BLENDMODE_PRE_MULTIPLY\n\n            //-------------------------------------------------------------------------------------\n//
       Variant Definitions (active field translations to HDRP defines)\n//-------------------------------------------------------------------------------------\n//
       #define _MATERIAL_FEATURE_SUBSURFACE_SCATTERING 1\n            // #define _MATERIAL_FEATURE_TRANSMISSION
       1\n            // #define _MATERIAL_FEATURE_ANISOTROPY 1\n            // #define
@@ -17123,8 +17123,8 @@ MonoBehaviour:
       End Render Modes\n            //-------------------------------------------------------------------------------------\n\n           
       HLSLPROGRAM\n        \n            #pragma target 4.5\n#pragma only_renderers
       d3d11 playstation xboxone xboxseries vulkan metal switch\n\n\n            #pragma
-      multi_compile_instancing\n\n            //#pragma multi_compile_local _ _ALPHATEST_ON\n\n\n
-      \n            //-------------------------------------------------------------------------------------\n//
+      multi_compile_instancing\n\n            //#pragma multi_compile_local _ _ALPHATEST_ON\n\n\n\n           
+      //-------------------------------------------------------------------------------------\n//
       Variant Definitions (active field translations to HDRP defines)\n//-------------------------------------------------------------------------------------\n//
       #define _MATERIAL_FEATURE_SUBSURFACE_SCATTERING 1\n            // #define _MATERIAL_FEATURE_TRANSMISSION
       1\n            // #define _MATERIAL_FEATURE_ANISOTROPY 1\n            // #define
