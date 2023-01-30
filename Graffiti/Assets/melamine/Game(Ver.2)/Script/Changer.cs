@@ -52,7 +52,7 @@ public class Changer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().area == true)
+            if (GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().area == true && Area_Check == true)
             {
                 if (TPS.enabled == true)
                 {
@@ -65,7 +65,7 @@ public class Changer : MonoBehaviour
                 {
                     GameObject.Find("Player").GetComponent<PlayerMove_SIDE>().enabled = false;
                     GameObject.Find("Player").GetComponent<PlayerMove_TPS>().enabled = true;
-                    TPS.enabled = false;
+                    TPS.enabled = true;
                     Fixed_Point.enabled = false;
                 }
             }

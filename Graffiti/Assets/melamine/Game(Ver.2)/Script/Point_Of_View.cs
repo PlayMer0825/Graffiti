@@ -59,6 +59,8 @@ public class Point_Of_View : MonoBehaviour
                     if (hit.collider.TryGetComponent(out Changer changer))
                     {
                         GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().state = false;
+                        GameObject.Find("Player").GetComponent<PlayerMove_SIDE>().enabled = false;
+                        GameObject.Find("Player").GetComponent<PlayerMove_TPS>().enabled = true;
                         SIDE.enabled = false;
                         TPS.enabled = true;
                         changer.MouseClicked();

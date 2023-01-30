@@ -35,6 +35,7 @@ public class PlayerMove_TPS : MonoBehaviour
     {
         Move();
         CameraRotation();
+        //if(Input.GetKeyDown(KeyCode.LeftAlt))
         CharacterRotation();
 
         CheckGround();
