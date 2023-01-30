@@ -27,6 +27,7 @@ public class Define
     public enum InputType : byte {
         Player_Wander = 0,
         Player_Draw = 1,
+        Player_PaintUI = 2,
 
     }
 

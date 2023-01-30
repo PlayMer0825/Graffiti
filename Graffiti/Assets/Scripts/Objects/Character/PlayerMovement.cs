@@ -16,19 +16,23 @@ public class PlayerMovement : MonoBehaviour {
 
     #region Variables
     [SerializeField] private MovementStat i_moveStat;
-    private Status i_curMoveType    = Status.Walk;
+                     private Status i_curMoveType    = Status.Walk;
     [SerializeField] private Vector3      i_inputDirNormal = Vector3.zero;
     [SerializeField] private Vector3      i_moveDir        = Vector3.zero;
-    private Vector3      i_verticalForce  = Vector3.down;
+                     private Vector3 i_verticalForce  = Vector3.down;
 
     [SerializeField] private float        i_currentSpeed   = 0.0f;
-    private byte         i_isBraking = 0;
+                     private byte         i_isBraking = 0;
+
+    [SerializeField] private bool i_isFocusing = false;
+
 
     #endregion
 
     #region Properties
     public Vector3 InputVector { get; set; }
     public Status CurrentMovementType { get => i_curMoveType; set { i_curMoveType = value; } }
+    public bool CanInput = true;
 
     #endregion
 
@@ -37,7 +41,16 @@ public class PlayerMovement : MonoBehaviour {
         //Cursor.lockState= CursorLockMode.Locked;
     }
     private void Update() {
-        {
+        if(CanInput == false)
+            return;
+
+        if(i_isFocusing) {
+            transform.rotation = Quaternion.Euler(0f, e_targetTransform.eulerAngles.y, 0f);
+
+            i_moveDir = transform.rotation * new Vector3(InputVector.x, 0, InputVector.y);
+            i_currentSpeed = i_moveStat.moveType[(int)i_curMoveType].speed;
+        }
+        else {
             Vector3 inputRaw = InputVector;
             inputRaw = Quaternion.Euler(new Vector3(0, e_targetTransform.eulerAngles.y, 0)) * new Vector3(inputRaw.x, 0, inputRaw.y);
             inputRaw.x = (float)Math.Round(inputRaw.x, 0);
@@ -91,19 +104,23 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
 
     #region User Defined Functions
-    public void ControlMovementType(Status type, bool performed, bool canceled, bool isToggle = false) {
+    public void MoveInput(Status type, bool performed, bool canceled, bool isToggle = false) {
         if(i_curMoveType != Status.Walk && i_curMoveType != type)
             return;
 
         i_curMoveType = performed ? type : Status.Walk;
     }
 
-    #endregion
+    public void OnFocus(bool performed, bool sudoExit = false) {
+        if(sudoExit) {
+            i_isFocusing = false;
+            return;
+        }
 
-    #region Virtual Functions
+        if(performed == false)
+            return;
 
-    protected virtual void Move() {
-
+        i_isFocusing = performed;
     }
 
     #endregion
