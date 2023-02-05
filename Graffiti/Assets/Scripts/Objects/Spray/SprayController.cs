@@ -4,10 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
 public class SprayController : MonoBehaviour {
     #region GameObjects
+    [Header("Spray UI")]
+    [SerializeField] private GameObject e_sprayUI = null;
+    [SerializeField] private Slider e_sprayLeftOverUI = null;
+    [SerializeField] private Image e_sprayLeftOverFillUI = null;
+
     [Header("Standard Transform")]
     [SerializeField] Transform e_standardDir = null;
 
@@ -29,7 +35,14 @@ public class SprayController : MonoBehaviour {
     [SerializeField] private float i_sprayDistance = 5.0f;
     private Vector3 i_expectedDrawPos = Vector3.zero;
 
-    private WaitForSeconds i_rayCastInterval = null;
+    [SerializeField] private float i_sprayLeftover = 1500.0f;
+    public float SprayLeftOver { get => i_sprayLeftover; }
+
+    [SerializeField] private float i_sprayDecreaseAmount = 1.3f;
+    [SerializeField] private float i_sprayDecreaseInterval = 0.5f;
+    private WaitForSeconds i_sprayDecreaseIntervalWait = null;
+    private bool i_isSpraying = false;
+
     #endregion
 
     #region Properties
@@ -38,7 +51,9 @@ public class SprayController : MonoBehaviour {
     #endregion
 
     #region Unity Event Functions
-    private void Awake() { i_rayCastInterval = new WaitForSeconds(i_rayCastIntervalValue); }
+    private void Awake() {
+        i_sprayDecreaseIntervalWait = new WaitForSeconds(i_sprayDecreaseInterval);
+    }
 
     private void Update() {
         if(!i_isFocusing)
@@ -64,7 +79,10 @@ public class SprayController : MonoBehaviour {
 
     #region User Defined Functions
 
-    public void ChangeColorTo(Color color) { e_nozzle.ChangeColor(color); }
+    public void ChangeColorTo(Color color) { 
+        e_nozzle.ChangeColor(color);
+        e_sprayLeftOverFillUI.color = color;
+    }
 
     public void ChangeSprayNozzleSize(float wheelDelta) {
         //ShapeModule shape = e_sprayParticle.shape;
@@ -82,8 +100,14 @@ public class SprayController : MonoBehaviour {
     }
 
     public void OnFocus(bool performed) {
-        if(performed) { i_isFocusing = true;  }
-        else          { i_isFocusing = false; }
+        if(performed) { 
+            i_isFocusing = true;
+            e_sprayUI.SetActive(true);
+        }
+        else { 
+            i_isFocusing = false;
+            e_sprayUI.SetActive(false);
+        }
     }
 
     public void OnLeftClick(bool performed) {
@@ -93,8 +117,30 @@ public class SprayController : MonoBehaviour {
         if(i_isDrawable == false)
             return;
 
-        if(performed) { e_nozzle.Play(); }
-        else          { e_nozzle.Stop(); }
+        if(i_sprayLeftover <= 0f)
+            return;
+
+        if(performed) {
+            StartCoroutine(CoUseSprayLiquid());
+            
+        }
+        else {
+            i_isSpraying = false;
+        }
+    }
+
+    private IEnumerator CoUseSprayLiquid() {
+        i_isSpraying = true;
+        e_nozzle.Play();
+
+        while(i_isSpraying && i_sprayLeftover > 0f) {
+            i_sprayLeftover -= i_sprayDecreaseAmount;
+            e_sprayLeftOverUI.value = i_sprayLeftover / 100f;
+            yield return i_sprayDecreaseIntervalWait;
+        }
+
+        e_nozzle.Stop();
+        yield break;
     }
 
     #endregion

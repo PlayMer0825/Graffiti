@@ -23,6 +23,7 @@ public class PlayerBrain : MonoBehaviour {
     [SerializeField] private GameObject e_uiPanel = null;
 
     private bool i_canInput = true;
+    private bool i_isSprayFocused = false;
 
     #region Unity Event Functions
 
@@ -127,8 +128,17 @@ public class PlayerBrain : MonoBehaviour {
             e_uiPanel.SetActive(false);
             i_canInput = true;
             CursorManager.ChangeCursorModeTo(CursorLockMode.Locked);
+            if(i_isSprayFocused) {
+                i_isSprayFocused = false;
+                OnFocus(true);
+            }
         }
         else {
+            if(e_spray.IsFocusing) {
+                OnFocus(false, true);
+                i_isSprayFocused = true;
+            }
+                
             e_uiPanel.SetActive(true);
             i_canInput = false;
             CursorManager.ChangeCursorModeTo(CursorLockMode.None);
