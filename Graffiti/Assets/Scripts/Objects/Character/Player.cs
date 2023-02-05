@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static Define;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInputHandler))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerBrain))]
+[RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour {
     [SerializeField] private PlayerBrain e_brain = null;
     [SerializeField] private PlayerMovement e_movement = null;
