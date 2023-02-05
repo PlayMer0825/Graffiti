@@ -10,8 +10,6 @@ using static Define;
 public class Player : MonoBehaviour {
     [SerializeField] private PlayerBrain e_brain = null;
     [SerializeField] private PlayerMovement e_movement = null;
-    [SerializeField] private PlayerInputHandler e_handler = null;
-    [SerializeField] private CharacterController e_controller = null;
 
     public Vector3 InputVector {
         get {
@@ -28,11 +26,13 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public PlayerBrain Brain { get => e_brain; }
+    public PlayerMovement Movement {  get => e_movement; }
+
+
     private void Awake() {
         e_brain  = GetComponent<PlayerBrain>();
         e_movement = GetComponent<PlayerMovement>();
-        e_handler = GetComponent<PlayerInputHandler>();
-        e_controller = GetComponent<CharacterController>();
     }
 
     public void OnFocus(bool performed, bool sudoExit = false) {
