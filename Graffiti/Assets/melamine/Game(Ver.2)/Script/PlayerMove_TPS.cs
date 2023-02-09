@@ -24,11 +24,20 @@ public class PlayerMove_TPS : MonoBehaviour
     private bool ground = false;
     public LayerMask layer;
 
+    public float animMoveWeightSpeed;
+    private float animationMoveWeight;
+
+    Vector3 _velocity;
+
+    Animator animator;
+
 
     // Use this for initialization
     void Start()
     {
         myRigid = GetComponent<Rigidbody>();
+        animationMoveWeight = 0f;
+        animator=GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -45,6 +54,8 @@ public class PlayerMove_TPS : MonoBehaviour
             Vector3 jumpPower = Vector3.up * jumpHeight;
             myRigid.AddForce(jumpPower, ForceMode.VelocityChange);
         }
+
+        AnimationUpdate();
     }
     private void Move()
     {
@@ -54,7 +65,7 @@ public class PlayerMove_TPS : MonoBehaviour
         Vector3 _moveHorizontal = transform.right * _moveDirX;
         Vector3 _moveVertical = transform.forward * _moveDirZ;
 
-        Vector3 _velocity = (_moveHorizontal + _moveVertical).normalized * walkSpeed;
+        _velocity = (_moveHorizontal + _moveVertical).normalized * walkSpeed;
 
         myRigid.MovePosition(transform.position + _velocity * Time.smoothDeltaTime);
     }
@@ -90,5 +101,80 @@ public class PlayerMove_TPS : MonoBehaviour
         {
             ground = false;
         }
+    }
+
+    void AnimationUpdate()
+    {
+        bool front = Input.GetKey(KeyCode.W);
+        bool back=Input.GetKey(KeyCode.S);
+        bool left=Input.GetKey(KeyCode.A);
+        bool right=Input.GetKey(KeyCode.D);
+
+        bool isMove = _velocity.x != 0 || _velocity.z != 0;
+        
+        if(isMove)
+        {
+            if(left)
+            {
+                animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
+                if (animationMoveWeight < 0f)
+                    animationMoveWeight = 0f;
+            }
+            else if(right)
+            {
+                if (animationMoveWeight < 0.25f)
+                {
+                    animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
+                    if (animationMoveWeight > 0.25f)
+                        animationMoveWeight = 0.25f;
+                }
+                else if (animationMoveWeight > 0.25)
+                {
+                    animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
+                    if (animationMoveWeight < 0.25f)
+                        animationMoveWeight = 0.25f;
+                }
+            }
+            else if (front) 
+            {
+                if (animationMoveWeight < 0.75f)
+                {
+                    animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
+                    if (animationMoveWeight > 0.75f)
+                        animationMoveWeight = 0.75f;
+                }
+                else if (animationMoveWeight > 0.75)
+                {
+                    animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
+                    if (animationMoveWeight < 0.75f)
+                        animationMoveWeight = 0.75f;
+                }
+            }
+            else if (back)
+            {
+                animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
+                if (animationMoveWeight > 1f)
+                    animationMoveWeight = 1f;
+            }
+        }
+        else
+        {
+            if(animationMoveWeight>0.5f)
+            {
+                animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
+                if (animationMoveWeight < 0.5f)
+                    animationMoveWeight = 0.5f;
+            }
+            else if(animationMoveWeight<0.5f)
+            {
+                animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
+                if (animationMoveWeight > 0.5f)
+                    animationMoveWeight = 0.5f;
+            }
+            
+        }
+
+        animator.SetFloat("moveWeight_Tps", animationMoveWeight);
+
     }
 }

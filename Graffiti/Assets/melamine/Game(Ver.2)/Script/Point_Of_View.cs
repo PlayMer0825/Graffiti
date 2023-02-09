@@ -24,6 +24,8 @@ public class Point_Of_View : MonoBehaviour
 
     private GrabableObject grabbing;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,9 @@ public class Point_Of_View : MonoBehaviour
         grabbing = null;
 
         trigger.EventTriggerExit.AddListener(TriggerExit);
+        animator = GetComponent<Animator>();
+
+        animator.SetBool("isTps", false);
     }
     // Update is called once per frame
     void Update()
@@ -117,6 +122,7 @@ public class Point_Of_View : MonoBehaviour
 
     void Side_View()
     {
+        animator.SetBool("isTps", false);
         Side = true;
         Tps = false;
         SIDE.enabled = true;
@@ -127,6 +133,7 @@ public class Point_Of_View : MonoBehaviour
 
     void Tps_View()
     {
+        animator.SetBool("isTps", true);
         Side = false;
         Tps = true;
         SIDE.enabled = false;
