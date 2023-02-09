@@ -64,4 +64,12 @@ public class Player : MonoBehaviour {
     public void SwitchPaintUIActive(bool sudoExit = false) {
         e_movement.CanInput = e_brain.SwitchUIActivation(sudoExit);
     }
+
+    public void OnMouseMove(Vector2 mouseDelta) {
+        e_brain.OnMouseDelta(mouseDelta);
+    }
+
+    public void OnMiddleClick(bool performed) {
+        e_brain.OnShakeModeClicked(performed);
+    }
 }

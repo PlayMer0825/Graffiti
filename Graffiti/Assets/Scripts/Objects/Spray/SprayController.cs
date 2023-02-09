@@ -35,13 +35,24 @@ public class SprayController : MonoBehaviour {
     [SerializeField] private float i_sprayDistance = 5.0f;
     private Vector3 i_expectedDrawPos = Vector3.zero;
 
-    [SerializeField] private float i_sprayLeftover = 1500.0f;
+    [SerializeField] private float i_sprayLeftover = 100.0f;
+    public float LeftOver { 
+        get => i_sprayLeftover; 
+        private set { 
+            i_sprayLeftover = value;
+            e_sprayLeftOverUI.value = i_sprayLeftover / 100f;
+        } }
     public float SprayLeftOver { get => i_sprayLeftover; }
+
+    [SerializeField] private float i_sprayIncreaseAmount = 1.0f;
+    [SerializeField] private float i_sprayIncreaseInterval = 0.5f;
+    private float i_increaseTime = 0.0f;
 
     [SerializeField] private float i_sprayDecreaseAmount = 1.3f;
     [SerializeField] private float i_sprayDecreaseInterval = 0.5f;
     private WaitForSeconds i_sprayDecreaseIntervalWait = null;
     private bool i_isSpraying = false;
+    [SerializeField] private bool i_isShaking = false;
 
     #endregion
 
@@ -99,6 +110,10 @@ public class SprayController : MonoBehaviour {
         e_sprayDrawer.Radius = value;
     }
 
+    public void ChangeSprayOpacityWithSlider(float value) {
+        e_sprayDrawer.Opacity = Mathf.Clamp(value, 0.01f, 0.1f); ;
+    }
+
     public void OnFocus(bool performed) {
         if(performed) { 
             i_isFocusing = true;
@@ -117,7 +132,7 @@ public class SprayController : MonoBehaviour {
         if(i_isDrawable == false)
             return;
 
-        if(i_sprayLeftover <= 0f)
+        if(LeftOver <= 0f)
             return;
 
         if(performed) {
@@ -133,14 +148,34 @@ public class SprayController : MonoBehaviour {
         i_isSpraying = true;
         e_nozzle.Play();
 
-        while(i_isSpraying && i_sprayLeftover > 0f) {
-            i_sprayLeftover -= i_sprayDecreaseAmount;
-            e_sprayLeftOverUI.value = i_sprayLeftover / 100f;
+        while(i_isSpraying && LeftOver > 0f) {
+            LeftOver -= i_sprayDecreaseAmount;
             yield return i_sprayDecreaseIntervalWait;
         }
 
         e_nozzle.Stop();
         yield break;
+    }
+
+    public void ShakingSpray(Vector2 mouseDelta) {
+        if(i_isShaking == false)
+            return;
+        Debug.Log($"i_increaseTime: {i_increaseTime}");
+        //Debug.Log($"MouseDelta X: {mouseDelta.x} Y: {mouseDelta.y}");
+        i_increaseTime += Time.deltaTime;
+
+        if(i_increaseTime >= i_sprayIncreaseInterval) {
+            Debug.Log($"Increased");
+            LeftOver += i_sprayIncreaseAmount;
+            i_increaseTime = 0.0f;
+        }
+        
+    }
+
+    public bool ShakeModeActivation(bool performed) {
+        i_isShaking = !i_isShaking;
+
+        return i_isShaking;
     }
 
     #endregion

@@ -23,7 +23,6 @@ public class PlayerBrain : MonoBehaviour {
     [SerializeField] private GameObject e_uiPanel = null;
 
     private bool i_canInput = true;
-    private bool i_isSprayFocused = false;
 
     #region Unity Event Functions
 
@@ -128,23 +127,36 @@ public class PlayerBrain : MonoBehaviour {
             e_uiPanel.SetActive(false);
             i_canInput = true;
             CursorManager.ChangeCursorModeTo(CursorLockMode.Locked);
-            if(i_isSprayFocused) {
-                i_isSprayFocused = false;
-                OnFocus(true);
-            }
+            ( e_tpsCam as CinemachineFreeLook ).m_XAxis.m_MaxSpeed = 100f;
+            ( e_tpsCam as CinemachineFreeLook ).m_YAxis.m_MaxSpeed = 2.5f;
         }
         else {
-            if(e_spray.IsFocusing) {
-                OnFocus(false, true);
-                i_isSprayFocused = true;
-            }
-                
             e_uiPanel.SetActive(true);
             i_canInput = false;
             CursorManager.ChangeCursorModeTo(CursorLockMode.None);
+
+            ( e_tpsCam as CinemachineFreeLook ).m_XAxis.m_MaxSpeed = 0f;
+            ( e_tpsCam as CinemachineFreeLook ).m_YAxis.m_MaxSpeed = 0f;
         }
 
         return i_canInput;
+    }
+
+    public void OnMouseDelta(Vector2 value) {
+        e_spray.ShakingSpray(value);
+    }
+
+    public void OnShakeModeClicked(bool performed) {
+        bool isPerformed = e_spray.ShakeModeActivation(performed);
+
+        if(isPerformed) {
+            ( e_tpsCam as CinemachineFreeLook ).m_XAxis.m_MaxSpeed = 10f;
+            ( e_tpsCam as CinemachineFreeLook ).m_YAxis.m_MaxSpeed = 0.5f;
+        }
+        else {
+            ( e_tpsCam as CinemachineFreeLook ).m_XAxis.m_MaxSpeed = 100f;
+            ( e_tpsCam as CinemachineFreeLook ).m_YAxis.m_MaxSpeed = 2.5f;
+        }
     }
 
     #endregion

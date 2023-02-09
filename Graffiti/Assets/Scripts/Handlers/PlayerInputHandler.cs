@@ -111,7 +111,10 @@ public class PlayerInputHandler : MonoBehaviour {
         if(i_isInitialized == false)
             return;
 
-        Debug.LogError($"IS_Draw_OnMiddleClick: Not Implemented!");
+        if(value.phase == InputActionPhase.Performed)
+            e_player.OnMiddleClick(true);
+        else if(value.phase == InputActionPhase.Canceled)
+            e_player.OnMiddleClick(false);
     }
 
     public void IS_Draw_OnScroll(InputAction.CallbackContext value) {
@@ -133,6 +136,10 @@ public class PlayerInputHandler : MonoBehaviour {
             return;
 
         e_player.SwitchPaintUIActive();
+    }
+
+    public void IS_Draw_OnMouseDelta(InputAction.CallbackContext value) {
+        e_player.OnMouseMove(value.ReadValue<Vector2>());
     }
 
     #endregion
