@@ -6,13 +6,16 @@ public class PlayerMove_SIDE : MonoBehaviour
 {
     private Rigidbody rigidbody;
     public float speed = 10f;
+    public float speeds=0;
     public float jumpHeight = 3f;
-    public float dash = 5f;
+    public float dash = 2f;
     public float rotSpeed = 6f;
+    public float animMoveWeightSpeed;
 
     private Vector3 dir = Vector3.zero;
 
     private bool ground = false;
+    private float animationMoveWeight;
     public LayerMask layer;
 
     Animator animator;
@@ -22,6 +25,8 @@ public class PlayerMove_SIDE : MonoBehaviour
     {
         rigidbody = this.GetComponent<Rigidbody>();
         animator=GetComponent<Animator>();
+        animationMoveWeight= 0f;
+        speeds = speed;
     }
 
     // Update is called once per frame
@@ -38,6 +43,13 @@ public class PlayerMove_SIDE : MonoBehaviour
             Vector3 jumpPower = Vector3.up * jumpHeight;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speeds = speed * dash;
+        }
+        else
+            speeds = speed;
         AnimationUpdate();
     }
 
@@ -53,7 +65,7 @@ public class PlayerMove_SIDE : MonoBehaviour
             transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
 
-        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speed * Time.fixedDeltaTime);
+        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speeds * Time.fixedDeltaTime);
     }
 
     void CheckGround()
@@ -71,9 +83,40 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     void AnimationUpdate()
     {
-        if (dir.x == 0 && dir.z == 0)
-            animator.SetBool("isWalk", false);
+        bool isSprint = Input.GetKey(KeyCode.LeftShift);
+        bool isMove = dir.x != 0 || dir.z != 0;
+
+        if (isMove)
+        {
+            if (isSprint)
+            {
+                animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
+                if (animationMoveWeight > 1f)
+                    animationMoveWeight = 1f;
+            }
+            else
+            {
+                if (animationMoveWeight > 0.5f)
+                {
+                    animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
+                    if (animationMoveWeight < 0.5f)
+                        animationMoveWeight = 0.5f;
+                }
+                else if(animationMoveWeight<0.5f)
+                {
+                    animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
+                    if (animationMoveWeight > 0.5f)
+                        animationMoveWeight = 0.5f;
+                }
+            }
+        }
         else
-            animator.SetBool("isWalk", true);
+        {
+            animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
+            if (animationMoveWeight < 0f) 
+                animationMoveWeight = 0f;
+        }
+
+        animator.SetFloat("moveWeight_Side", animationMoveWeight);
     }
 }

@@ -245,7 +245,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: titi_body_V11_noBAG_normal
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: eb2cd0386c09a6b42b1ac805abac90c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eb2cd0386c09a6b42b1ac805abac90c8, type: 3}
 --- !u!1 &332020396
 GameObject:
@@ -596,6 +597,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4096
+  animMoveWeightSpeed: 0
 --- !u!114 &609973044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,9 +625,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  speeds: 0
   jumpHeight: 3
   dash: 5
   rotSpeed: 6
+  animMoveWeightSpeed: 0
   layer:
     serializedVersion: 2
     m_Bits: 4096
@@ -807,13 +811,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 827768377}
+  - component: {fileID: 827768378}
   - component: {fileID: 827768376}
   - component: {fileID: 827768375}
   - component: {fileID: 827768374}
   - component: {fileID: 827768373}
   - component: {fileID: 827768372}
   - component: {fileID: 827768371}
-  - component: {fileID: 827768378}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -865,7 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c7c336703207d4f97da3e5cf3d1933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 20
+  walkSpeed: 10
   lookSensitivity: 2
   cameraRotationLimit: 90
   theCamera: {fileID: 205099160}
@@ -873,6 +877,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4096
+  animMoveWeightSpeed: 2
 --- !u!114 &827768374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,9 +891,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  speeds: 0
   jumpHeight: 3
-  dash: 5
+  dash: 2
   rotSpeed: 15
+  animMoveWeightSpeed: 2
   layer:
     serializedVersion: 2
     m_Bits: 4096
