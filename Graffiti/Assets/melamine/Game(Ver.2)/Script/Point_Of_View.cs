@@ -99,6 +99,16 @@ public class Point_Of_View : MonoBehaviour
                 grabbing = null;
             }
         }
+        if (GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().hideOut_Area == true
+            && GameObject.Find("Changer").GetComponent<Changer>().Hide_Check==false)
+        {
+            GameObject.Find("Changer").GetComponent<Changer>().Hide_Check = true;
+            animator.SetBool("isTps", true);
+            GameObject.Find("Player").GetComponent<PlayerMove_SIDE>().enabled = false;
+            GameObject.Find("Player").GetComponent<PlayerMove_TPS>().enabled = true;
+            SIDE.enabled = false;
+            TPS.enabled = true;
+        }
     }
 
     private void FixedUpdate()
