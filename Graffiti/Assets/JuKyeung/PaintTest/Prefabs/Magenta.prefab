@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6448712952044590227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6448712952044590226}
+  - component: {fileID: 6448712952044590231}
+  - component: {fileID: 6448712952044590224}
+  - component: {fileID: 6448712952044590225}
+  - component: {fileID: 6448712952044590230}
+  m_Layer: 0
+  m_Name: Magenta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6448712952044590226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448712952044590227}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6448712952044590231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448712952044590227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2055732bd5a4a4a8f4fe43e20eca6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 8923318066386265646, guid: b9af208301e449844baf83517b961df7, type: 3}
+  buttonRoot: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5e3d2f6c34d56a241a65bfdfb86d7c13, type: 3}
+  color: {r: 1, g: 0, b: 1, a: 1}
+  overrideName: 0
+  clone: {fileID: 0}
+--- !u!114 &6448712952044590224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448712952044590227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79b29143865f7c43ac098b70c6cffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  layers:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  requiredButtons: 33
+  requiredKey: 0
+  guiLayers:
+    serializedVersion: 2
+    m_Bits: 32
+  emit: 0
+  rotateTo: 0
+  normalDirection: 0
+  normalRelativeTo: 0
+  customTransform: {fileID: 0}
+  normalOffset: 0
+  mouseOffset: 0
+  touchOffset: 0
+  storeStates: 0
+  showPreview: 1
+  priority: 0
+  frequency: 5
+  interval: 5
+  connector:
+    hitSpacing: 0
+    hitLimit: 30
+    connectHits: 1
+    clipConnected: 0
+--- !u!114 &6448712952044590225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448712952044590227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724ff6f732015ec4e8fecdb3d889fb82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  group:
+    index: 0
+  targetModel: {fileID: 0}
+  targetTexture: {fileID: 0}
+  blendMode:
+    Index: 0
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    Texture: {fileID: 0}
+    Kernel: 1
+    Channels: {x: 1, y: 1, z: 1, w: 1}
+  color: {r: 0.94275093, g: 0, b: 1, a: 1}
+  opacity: 1
+  angle: 0
+  scale: {x: 1, y: 1, z: 1}
+  radius: 0.1
+  hardness: 5
+  tileTexture: {fileID: 2800000, guid: af28470bd0e2e9543a6dfa9a1a4b348d, type: 3}
+  tileTransform: {fileID: 0}
+  tileOpacity: 0.871
+  tileTransition: 4
+  modifiers:
+    modifiers: []
+  references:
+    version: 1
+--- !u!114 &6448712952044590230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448712952044590227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724ff6f732015ec4e8fecdb3d889fb82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  group:
+    index: 0
+  targetModel: {fileID: 0}
+  targetTexture: {fileID: 0}
+  blendMode:
+    Index: 0
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    Texture: {fileID: 0}
+    Kernel: 1
+    Channels: {x: 1, y: 1, z: 1, w: 1}
+  color: {r: 1, g: 1, b: 0, a: 1}
+  opacity: 1
+  angle: 0
+  scale: {x: 1, y: 1, z: 1}
+  radius: 0.1
+  hardness: 5
+  tileTexture: {fileID: 2800000, guid: af28470bd0e2e9543a6dfa9a1a4b348d, type: 3}
+  tileTransform: {fileID: 0}
+  tileOpacity: 0.871
+  tileTransition: 4
+  modifiers:
+    modifiers: []
+  references:
+    version: 1

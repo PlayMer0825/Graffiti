@@ -45,6 +45,12 @@ namespace Graffiti.Dialogue
 
         /// <summary>
         /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
         /// </summary>
         /// <returns></returns>
         public bool HasNext()
