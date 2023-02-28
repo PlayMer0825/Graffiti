@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEditorInternal;
-using UnityEditor.Experimental.Rendering;
+
 
 public class Point_Of_View : MonoBehaviour
 {
@@ -39,6 +38,17 @@ public class Point_Of_View : MonoBehaviour
         animator = GetComponent<Animator>();
 
         animator.SetBool("isTps", false);
+
+        Cursor.visible= false;
+        Debug.Log("1");
+        SetResolution();
+        Debug.Log("2");
+    }
+    public void SetResolution()
+    {
+        int setWidth = 1920;
+        int setHeight = 1080;
+        Screen.SetResolution(setWidth, setHeight, true);
     }
     // Update is called once per frame
     void Update()
@@ -129,7 +139,6 @@ public class Point_Of_View : MonoBehaviour
         //    changer.Exit();
         //}
     }
-
     void Side_View()
     {
         animator.SetBool("isTps", false);
