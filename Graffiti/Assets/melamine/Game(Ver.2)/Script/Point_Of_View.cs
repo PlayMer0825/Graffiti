@@ -39,7 +39,7 @@ public class Point_Of_View : MonoBehaviour
 
         animator.SetBool("isTps", false);
 
-        Cursor.visible= false;
+        //Cursor.visible= false;
         Debug.Log("1");
         SetResolution();
         Debug.Log("2");
