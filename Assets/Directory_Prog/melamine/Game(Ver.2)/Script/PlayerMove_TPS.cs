@@ -43,9 +43,9 @@ public class PlayerMove_TPS : MonoBehaviour
     void Update()
     {
         Move();
-        CameraRotation();
+        //CameraRotation();
         //if(Input.GetKeyDown(KeyCode.LeftAlt))
-        CharacterRotation();
+        //CharacterRotation();
 
         CheckGround();
 
@@ -56,6 +56,12 @@ public class PlayerMove_TPS : MonoBehaviour
         }
 
         AnimationUpdate();
+    }
+
+    void FixedUpdate()
+    {
+        CharacterRotation();
+        CameraRotation();
     }
     private void Move()
     {
@@ -71,9 +77,11 @@ public class PlayerMove_TPS : MonoBehaviour
     }
     private void CharacterRotation()
     {
+        Vector3 _characterRotationY;
         // 좌우 캐릭터 회전
-        float _yRotation = Input.GetAxisRaw("Mouse X");
-        Vector3 _characterRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
+        float _yRotation = Input.GetAxis("Mouse X");
+        _characterRotationY = //Vector3.Lerp(_characterRotationY, new Vector3(0f, _yRotation, 0f) * lookSensitivity, 0f);
+            lookSensitivity * Time.fixedDeltaTime * new Vector3(0f, _yRotation, 0f);
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY));
         //Debug.Log(myRigid.rotation);
         //Debug.Log(myRigid.rotation.eulerAngles);
@@ -82,12 +90,13 @@ public class PlayerMove_TPS : MonoBehaviour
     private void CameraRotation()
     {
         // 상하 카메라 회전
-        float _xRotation = Input.GetAxisRaw("Mouse Y");
-        float _cameraRotationX = _xRotation * lookSensitivity;
+        float _xRotation = Input.GetAxis("Mouse Y");
+        float _cameraRotationX = _xRotation * lookSensitivity*Time.fixedDeltaTime;
         currentCameraRotationX -= _cameraRotationX;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
         theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+        //new Vector3(currentCameraRotationX, 0f, 0f);
     }
 
     void CheckGround()
