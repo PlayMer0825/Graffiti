@@ -57,10 +57,11 @@ public class PlayerMove_SIDE : MonoBehaviour
     {
         if (dir != Vector3.zero)
         {
-            //if (Mathf.Sign(transform.forward.x) != Mathf.Sign(dir.x) || Mathf.Sign(transform.forward.z) != Mathf.Sign(dir.z))
-            //{
-            //    transform.Rotate(0, 1, 0);
-            //}
+            if (Mathf.Sign(transform.forward.x) != Mathf.Sign(dir.x)
+                || Mathf.Sign(transform.forward.z) != Mathf.Sign(dir.z))
+            {
+                transform.Rotate(0, 1, 0);
+            }
             transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
 
