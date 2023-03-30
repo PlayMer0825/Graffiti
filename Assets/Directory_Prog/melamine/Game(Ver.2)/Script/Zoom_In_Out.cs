@@ -10,7 +10,7 @@ public class Zoom_In_Out : MonoBehaviour
     float CameraDistance;
     CinemachineComponentBase componentBase;
     [SerializeField]
-    float sensitivity = 10.0f;
+    float sensitivity = 14f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +20,16 @@ public class Zoom_In_Out : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CameraDistance<3.5||CameraDistance>25)
+        if (componentBase == null)
         {
-            if (componentBase == null)
+            componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            CameraDistance = Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+            if (componentBase is CinemachineFramingTransposer)
             {
-                componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") != 0)
-            {
-                CameraDistance = Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-                if (componentBase is CinemachineFramingTransposer)
-                {
-                    (componentBase as CinemachineFramingTransposer).m_CameraDistance -= CameraDistance;
-                }
+                (componentBase as CinemachineFramingTransposer).m_CameraDistance -= CameraDistance;
             }
         }
     }

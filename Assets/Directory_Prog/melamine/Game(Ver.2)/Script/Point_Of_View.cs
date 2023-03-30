@@ -2,11 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEditorInternal;
-using UnityEditor.Experimental.Rendering;
+
 
 public class Point_Of_View : MonoBehaviour
 {
+    public void SavePlayer()
+    {
+        SaveData save=new SaveData();
+        save.X=transform.position.x;
+        save.Y=transform.position.y;
+        save.Z=transform.position.z;
+        SaveManager.Save(save);
+    }
+
+    public void LoadPlayer()
+    {
+        SaveData save = SaveManager.Load();
+        transform.position=new Vector3(save.X, save.Y, save.Z);
+    }
     public bool Side = true;
     public bool Tps = false;
 
@@ -39,6 +52,17 @@ public class Point_Of_View : MonoBehaviour
         animator = GetComponent<Animator>();
 
         animator.SetBool("isTps", false);
+
+        //Cursor.visible= false;
+        Debug.Log("1");
+        SetResolution();
+        Debug.Log("2");
+    }
+    public void SetResolution()
+    {
+        int setWidth = 1920;
+        int setHeight = 1080;
+        Screen.SetResolution(setWidth, setHeight, true);
     }
     // Update is called once per frame
     void Update()
@@ -129,7 +153,6 @@ public class Point_Of_View : MonoBehaviour
         //    changer.Exit();
         //}
     }
-
     void Side_View()
     {
         animator.SetBool("isTps", false);
