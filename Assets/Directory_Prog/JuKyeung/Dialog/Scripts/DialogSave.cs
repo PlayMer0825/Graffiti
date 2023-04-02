@@ -13,7 +13,7 @@ public class DialogSave : MonoBehaviour
 
     // EventID를 기준으로 ActorID와 Context를 그룹화하여 저장할 딕셔너리
     public Dictionary<string, Dictionary<string, List<string>>> save = new Dictionary<string, Dictionary<string, List<string>>>();
-    // Start 메소드에서 CSV 파일을 읽어서 데이터를 저장하고 DialogSave 딕셔너리에 값을 저장합니다.
+    // Start 메소드에서 CSV 파일을 읽어서 데이터를 저장하고 DialogSave 딕셔너리에 값을 저장
     void Start()
      {
          fileName = csv_data.name;
@@ -26,12 +26,15 @@ public class DialogSave : MonoBehaviour
              string actorID = row["ActorID"].ToString();
              string context = row["Context"].ToString();
 
+
+
+
             if (!save.ContainsKey(eventID))
             {
                 save[eventID] = new Dictionary<string, List<string>>();
             }
 
-            // ActorID가 딕셔너리에 없으면 새로운 List를 추가합니다.
+            // ActorID가 딕셔너리에 없으면 새로운 List를 추가
             if (!save[eventID].ContainsKey(actorID))
             {
                 save[eventID][actorID] = new List<string>();

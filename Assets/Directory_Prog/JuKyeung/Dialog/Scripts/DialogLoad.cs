@@ -44,10 +44,15 @@ public class DialogLoad : MonoBehaviour
         // eventID에 해당하는 대화 정보를 가져와서 개행 문자로 구분된 문자열로 출력합니다.
         //Debug.Log(string.Join("\n", GetDialog(eventID)));
 
-        for(int i =0; i < GetDialog(eventID).Length; i++)
+        PrintDialog();
+
+    }
+
+    private void PrintDialog()
+    {
+        for (int i = 0; i < GetDialog(eventID).Length; i++)
         {
             Debug.Log(GetDialog(eventID)[i]);
         }
-        
     }
 }
