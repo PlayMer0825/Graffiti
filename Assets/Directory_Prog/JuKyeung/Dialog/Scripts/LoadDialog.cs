@@ -1,36 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LoadDialog : MonoBehaviour
 {
-    private DialogLoad dialogLoad;
+    public DialogLoad dialogLoad;
+    public TextMeshProUGUI dialogText;
+    private int i = 0;
+
     void Start()
     {
         dialogLoad = GameObject.FindObjectOfType<DialogLoad>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // getEventID °ªÀ» ÀĞ¾î¿Í¼­ »ç¿ë
-        string getEventID = dialogLoad.eventID_Setting;
+        // getEventID ê°’ì„ ì½ì–´ì˜´
+        string currentEventID = dialogLoad.eventID_Setting;
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if(i < dialogLoad.dialogArray.Length)
+            {
+                dialogText.text = dialogLoad.dialogArray[i];
+                i++;
+            }
+            else
+            {
+                i = 0;
+                ResetText();
+
+            }
+        }
+    }
+
+    // ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ 
+    private void ResetText()
+    {
+        dialogText.text = null;
+        
+        dialogText.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// ÀÌ·±½ÄÀ¸·Î ÀÌº¥Æ®¸¦ ÇÒ´çÇØ¼­ ³»¿ëÀ» ºÒ·¯¿Ã ¼ö ÀÖÀ½ -> Ãâ·Â ÀÚÃ¼µµ dialogArray ÀÇ ³»¿ëµéÀ» ÇÏ³ª¾¿ »óÈ£ÀÛ¿ëÀ» ÇÒ ¶§¸¶´Ù ºÒ·¯¿À´Â ½ÄÀ¸·Î °¡´ÉÇÔ
+    /// ì´ëŸ°ì‹ìœ¼ë¡œ ì´ë²¤íŠ¸ë¥¼ í• ë‹¹í•´ì„œ ë‚´ìš©ì„ ë¶ˆëŸ¬ì˜¬ ìˆ˜ ìˆìŒ -> ì¶œë ¥ ìì²´ë„ dialogArray ì˜ ë‚´ìš©ë“¤ì„ í•˜ë‚˜ì”© ìƒí˜¸ì‘ìš©ì„ í•  ë•Œë§ˆë‹¤ ë¶ˆëŸ¬ì˜¤ëŠ” ì‹ìœ¼ë¡œ ê°€ëŠ¥í•¨
     /// </summary>
-    public void Event101()
+    public void ExEventSetting(string _eventID)
     {
-        dialogLoad.eventID_Setting = ChangeEventID("100101");
+        dialogLoad.eventID_Setting = ChangeEventID(_eventID);
+        dialogText.gameObject.SetActive(true);
     }
-    public void Event401()
-    {
 
-        dialogLoad.eventID_Setting = ChangeEventID("100401"); // 
-    }
-    
-
+    /// <summary>
+    /// ì´ë²¤íŠ¸ ID ë¥¼ ì„¤ì •í•´ì£¼ëŠ” ë©”ì„œë“œ
+    /// </summary>
+    /// <param name="_currentEventID"></param>
+    /// <returns></returns>
     string ChangeEventID(string _currentEventID)
     {
         return _currentEventID;

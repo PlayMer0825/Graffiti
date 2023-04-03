@@ -6,47 +6,44 @@ using UnityEngine.UI;
 
 public class DialogLoad : MonoBehaviour
 {
-    // ÀúÀåµÈ ´ëÈ­ Á¤º¸¸¦ °¡Á®¿Ã DialogSave ½ºÅ©¸³Æ®ÀÇ ÀÎ½ºÅÏ½º
+    // ì €ì¥ëœ ëŒ€í™” ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ DialogSave ìŠ¤í¬ë¦½íŠ¸ì˜ ì¸ìŠ¤í„´ìŠ¤
     public DialogSave dialogSave;
 
     public string eventID_Setting;
 
     public string[] dialogArray;
 
-    // ÀÌº¥Æ® ID¿Í ¾×ÅÍ ID¸¦ ÀÎÀÚ·Î Àü´ŞÇÏ¸é ÇØ´ç ´ëÈ­ Á¤º¸¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-    private string[] GetDialog(string eventID)
+    // ì´ë²¤íŠ¸ IDì™€ ì•¡í„° IDë¥¼ ì¸ìë¡œ ì „ë‹¬í•˜ë©´ í•´ë‹¹ ëŒ€í™” ì •ë³´ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    public string[] GetDialog(string _eventID)
     {
-        Dictionary<string, List<string>> currentDialog;
-        if (dialogSave.save.TryGetValue(eventID, out currentDialog))
+        Dictionary<string, List<string>> _currentDialog;
+        if (dialogSave.save.TryGetValue(_eventID, out _currentDialog))
         {
             List<string> dialogList = new List<string>();
-            // ÇØ´ç ÀÌº¥Æ®¿¡ ¼ÓÇÑ ¸ğµç ´ëÈ­ Á¤º¸¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+            // í•´ë‹¹ ì´ë²¤íŠ¸ì— ì†í•œ ëª¨ë“  ëŒ€í™” ì •ë³´ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 
-            foreach (KeyValuePair<string, List<string>> pair in currentDialog)
+            foreach (KeyValuePair<string, List<string>> pair in _currentDialog)
             {
-                string actorID = pair.Key;
-                foreach (string context in pair.Value)
+                string _actorID = pair.Key;
+                foreach (string _context in pair.Value)
                 {
-                    dialogList.Add(actorID + " | " + context);
+                    // ì„ì‹œë¡œ ActorID ë„ í•¨ê»˜ í™•ì¸í•˜ê¸° ìœ„í•´ ê°™ì´ ê°€ì ¸ì˜´. 
+                    // dialogList.Add(_actorID + " | " + _context);
+                    dialogList.Add(_context);
                 }
             }
 
             return dialogList.ToArray();
         }
 
-        // ÇØ´ç ÀÌº¥Æ®°¡ ¾øÀ¸¸é ºó ¹è¿­À» ¹İÈ¯ÇÕ´Ï´Ù.
+        // í•´ë‹¹ ì´ë²¤íŠ¸ê°€ ì—†ìœ¼ë©´ ë¹ˆ ë°°ì—´ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
         return new string[0];
     }
 
     private void Start()
     {
-        // DialogSave Å¬·¡½º ÀÎ½ºÅÏ½º¸¦ ÇÒ´çÇÕ´Ï´Ù.
+        // DialogSave í´ë˜ìŠ¤ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í• ë‹¹í•©ë‹ˆë‹¤.
         dialogSave = FindObjectOfType<DialogSave>();
-
-        // eventID¿¡ ÇØ´çÇÏ´Â ´ëÈ­ Á¤º¸¸¦ °¡Á®¿Í¼­ °³Çà ¹®ÀÚ·Î ±¸ºĞµÈ ¹®ÀÚ¿­·Î Ãâ·ÂÇÕ´Ï´Ù.
-        //Debug.Log(string.Join("\n", GetDialog(eventID)));
-        
-
     }
 
     private void Update()
@@ -55,20 +52,15 @@ public class DialogLoad : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÏ´Ü ºÒ·¯¿Ã °Í
+    /// ì¼ë‹¨ ë¶ˆëŸ¬ì˜¬ ê²ƒ(ë””ë²„ê·¸) 
     /// </summary>
     public void LoadDialog()
     {
         dialogArray = GetDialog(eventID_Setting);
-        for (int i = 0; i < /*GetDialog(eventID_Setting).Length*/ dialogArray.Length; i++)
-        {
-            Debug.Log(GetDialog(eventID_Setting)[i]);
-
-        }
     }
 
     /// <summary>
-    /// ÀÌº¥Æ® ¾ÆÀÌµğ¸¦ ¼³Á¤ÇÒ ¼ö ÀÖ´Â ¸Ş¼­µå 
+    /// ì´ë²¤íŠ¸ ì•„ì´ë””ë¥¼ ì„¤ì •í•  ìˆ˜ ìˆëŠ” ë©”ì„œë“œ 
     /// </summary>
     /// <param name="_eventID"></param>
     /// <returns></returns>

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DialogSave : MonoBehaviour
 {
-    // CSV ÆÄÀÏ ÀÌ¸§
+    // CSV íŒŒì¼ ì´ë¦„
     private string fileName;
     [SerializeField] private TextAsset csv_data = null;
 
-    // CSV ÆÄÀÏ¿¡¼­ °¡Á®¿Â µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ ¸®½ºÆ®
+    // CSV íŒŒì¼ì—ì„œ ê°€ì ¸ì˜¨ ë°ì´í„°ë¥¼ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
     private List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
 
-    // EventID¸¦ ±âÁØÀ¸·Î ActorID¿Í Context¸¦ ±×·ìÈ­ÇÏ¿© ÀúÀåÇÒ µñ¼Å³Ê¸®
+    // EventIDë¥¼ ê¸°ì¤€ìœ¼ë¡œ ActorIDì™€ Contextë¥¼ ê·¸ë£¹í™”í•˜ì—¬ ì €ì¥í•  ë”•ì…”ë„ˆë¦¬
     public Dictionary<string, Dictionary<string, List<string>>> save = new Dictionary<string, Dictionary<string, List<string>>>();
-    // Start ¸Ş¼Òµå¿¡¼­ CSV ÆÄÀÏÀ» ÀĞ¾î¼­ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ°í DialogSave µñ¼Å³Ê¸®¿¡ °ªÀ» ÀúÀå
+    // Start ë©”ì†Œë“œì—ì„œ CSV íŒŒì¼ì„ ì½ì–´ì„œ ë°ì´í„°ë¥¼ ì €ì¥í•˜ê³  DialogSave ë”•ì…”ë„ˆë¦¬ì— ê°’ì„ ì €ì¥
     void Start()
      {
          fileName = csv_data.name;
@@ -26,15 +26,12 @@ public class DialogSave : MonoBehaviour
              string actorID = row["ActorID"].ToString();
              string context = row["Context"].ToString();
 
-
-
-
             if (!save.ContainsKey(eventID))
             {
                 save[eventID] = new Dictionary<string, List<string>>();
             }
 
-            // ActorID°¡ µñ¼Å³Ê¸®¿¡ ¾øÀ¸¸é »õ·Î¿î List¸¦ Ãß°¡
+            // ActorIDê°€ ë”•ì…”ë„ˆë¦¬ì— ì—†ìœ¼ë©´ ìƒˆë¡œìš´ Listë¥¼ ì¶”ê°€
             if (!save[eventID].ContainsKey(actorID))
             {
                 save[eventID][actorID] = new List<string>();
@@ -44,17 +41,17 @@ public class DialogSave : MonoBehaviour
         }
      }
 
-    public void SaveDialog(string eventID, string actorID, string context)
-    {
-        if (!save.ContainsKey(eventID))
-        {
-            save[eventID] = new Dictionary<string, List<string>>();
-        }
-        if (!save[eventID].ContainsKey(actorID))
-        {
-            save[eventID][actorID] = new List<string>();
-        }
+    //public void SaveDialog(string eventID, string actorID, string context)
+    //{
+    //    if (!save.ContainsKey(eventID))
+    //    {
+    //        save[eventID] = new Dictionary<string, List<string>>();
+    //    }
+    //    if (!save[eventID].ContainsKey(actorID))
+    //    {
+    //        save[eventID][actorID] = new List<string>();
+    //    }
 
-        save[eventID][actorID].Add(context);
-    }
+    //    save[eventID][actorID].Add(context);
+    //}
 }
