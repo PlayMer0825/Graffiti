@@ -69,20 +69,20 @@ public class DialogUI : MonoBehaviour
     /// <summary>
     /// 현재 이벤트 목록의 actorID 에 따라 출력되는 다이얼로그 박스의 위치를 찾아옵니다. 
     /// </summary>
-    public void FindActorPos()
-    {
-        // 선택된 액터 ID에 맞는 GameObject를 찾아옵니다.
-        GameObject actorObject = actorDialogPos.FirstOrDefault(x => x.name.Contains(EactorList.ToString()));
+    //public void FindActorPos()
+    //{
+    //    // 선택된 액터 ID에 맞는 GameObject를 찾아옵니다.
+    //    GameObject actorObject = actorDialogPos.FirstOrDefault(x => x.name.Contains(EactorList.ToString()));
 
-        // 액터 GameObject의 자식 중 다이얼로그 박스 위치를 나타내는 "DialogPos" 태그를 가진 오브젝트를 찾아옵니다.
-        Transform dialogPosition = actorObject.transform.Find("DialogPos");
+    //    // 액터 GameObject의 자식 중 다이얼로그 박스 위치를 나타내는 "DialogPos" 태그를 가진 오브젝트를 찾아옵니다.
+    //    Transform dialogPosition = actorObject.transform.Find("DialogPos");
 
-        // 다이얼로그 박스 위치를 dialogPosition 위치로 이동합니다.
-        dialog_bubble.transform.position = dialogPosition.position;
+    //    // 다이얼로그 박스 위치를 dialogPosition 위치로 이동합니다.
+    //    dialog_bubble.transform.position = dialogPosition.position;
 
-        // 다이얼로그 박스가 카메라를 바라보도록 합니다.
-        dialog_bubble.transform.LookAt(lookCamera.transform);
-    }
+    //    // 다이얼로그 박스가 카메라를 바라보도록 합니다.
+    //    dialog_bubble.transform.LookAt(lookCamera.transform);
+    //}
 
 
     /// <summary>
