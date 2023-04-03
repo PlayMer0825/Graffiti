@@ -6,12 +6,17 @@ using TMPro;
 public class LoadDialog : MonoBehaviour
 {
     public DialogLoad dialogLoad;
+
+    public GameObject dialogObject;
     public TextMeshProUGUI dialogText;
+
     private int i = 0;
 
     void Start()
     {
         dialogLoad = GameObject.FindObjectOfType<DialogLoad>();
+        dialogObject.SetActive(false);
+        dialogText.text = null;
     }
     void Update()
     {
@@ -38,8 +43,8 @@ public class LoadDialog : MonoBehaviour
     private void ResetText()
     {
         dialogText.text = null;
-        
-        dialogText.gameObject.SetActive(false);
+
+        dialogObject.SetActive(false);
     }
 
     /// <summary>
@@ -48,7 +53,7 @@ public class LoadDialog : MonoBehaviour
     public void ExEventSetting(string _eventID)
     {
         dialogLoad.eventID_Setting = ChangeEventID(_eventID);
-        dialogText.gameObject.SetActive(true);
+        dialogObject.SetActive(true);
     }
 
     /// <summary>
