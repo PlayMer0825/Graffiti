@@ -31,6 +31,13 @@ public class Define
 
     }
 
+    public enum EventFuncInvokePoint {
+        OnReady,
+        OnUnReady,
+        OnStart,
+        OnFinish
+    }
+
     public enum Status : byte { Walk, Run, Crouch, }
     
     public enum InteractionType : ushort {

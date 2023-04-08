@@ -7,11 +7,17 @@ using UnityEngine;
 namespace OperaHouse {
     public class InteractionArea : MonoBehaviour {
         [SerializeField] private string _playerTag = "Player";
-        private Paintable_MountedObject _myPaintable = null;
+        private Interactable _interactObj = null;
 
         private void Awake() {
-            _myPaintable = GetComponentInParent<Paintable_MountedObject>();
-            if(_myPaintable == null)
+            _interactObj = GetComponentInParent<Interactable>();
+            if(_interactObj == null)
+                gameObject.SetActive(false);
+        }
+
+        private void OnValidate() {
+            _interactObj = GetComponentInParent<Interactable>();
+            if(_interactObj == null)
                 gameObject.SetActive(false);
         }
 
@@ -19,7 +25,7 @@ namespace OperaHouse {
             if(other.CompareTag(_playerTag) == false)
                 return;
 
-            //TODO: 상호작용 UI 활성화
+            _interactObj.ReadyInteract();
         }
 
         private void OnTriggerExit(Collider other) {
@@ -29,13 +35,11 @@ namespace OperaHouse {
             if(!gameObject.activeSelf)
                 return;
 
-            //TODO: 상호작용 UI 비활성화
+            _interactObj.UnReadyInteract();
         }
 
         public void OnInteractClicked() {
-            //TODO: 상호작용 UI 비활성화
-
-            _myPaintable.StartInteract();
+            _interactObj.StartInteract();
         }
     }
 }
