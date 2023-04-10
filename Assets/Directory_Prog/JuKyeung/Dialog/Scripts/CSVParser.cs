@@ -10,42 +10,42 @@ public class CSVParser : MonoBehaviour
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     static char[] TRIM_CHARS = { '\"' };
 
-    public static List<Dictionary<string, object>> Read(string file) // CSV ÆÄÀÏÀ» ÀĞ¾îµéÀÓ file ¸Å°³º¯¼ö¸¦ ¹Ş¾Æ¼­  List~~ Çü½ÄÀ¸·Î ¹İÈ¯... 
+    public static List<Dictionary<string, object>> Read(string file) // CSV íŒŒì¼ì„ ì½ì–´ë“¤ì„ file ë§¤ê°œë³€ìˆ˜ë¥¼ ë°›ì•„ì„œ  List~~ í˜•ì‹ìœ¼ë¡œ ë°˜í™˜... 
     {
-        var list = new List<Dictionary<string, object>>(); // list = ¸®½ºÆ® ÃÊ±âÈ­
-        TextAsset data = Resources.Load(file) as TextAsset; // TextAsset data =  º¯¼ö ¾È¿¡ CSV ÆÄÀÏÀ» ÀĞ¾î¿È 
+        var list = new List<Dictionary<string, object>>(); // list = ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
+        TextAsset data = Resources.Load(file) as TextAsset; // TextAsset data =  ë³€ìˆ˜ ì•ˆì— CSV íŒŒì¼ì„ ì½ì–´ì˜´ 
 
-        var lines = Regex.Split(data.text, LINE_SPLIT_RE); // lines = ÇÒ´çµÈ CSV ³»¿ëµéÀ» ÁÙ´ÜÀ§·Î ºĞÇÒ
+        var lines = Regex.Split(data.text, LINE_SPLIT_RE); // lines = í• ë‹¹ëœ CSV ë‚´ìš©ë“¤ì„ ì¤„ë‹¨ìœ„ë¡œ ë¶„í• 
 
-        string csvText = file.Substring(0, file.Length - 1); // file ¸Å°³º¯¼ö¿¡¼­ ¸¶Áö¸· ¹®ÀÚ¸¦ »èÁ¦ÇÑ ¹®ÀÚ¿­À» ÀúÀå // »èÁ¦ÇØµµ µÉµí 
+        string csvText = file.Substring(0, file.Length - 1); // file ë§¤ê°œë³€ìˆ˜ì—ì„œ ë§ˆì§€ë§‰ ë¬¸ìë¥¼ ì‚­ì œí•œ ë¬¸ìì—´ì„ ì €ì¥ // ì‚­ì œí•´ë„ ë ë“¯ 
 
-        if (lines.Length <= 1) return list; // lines ¿¡ ºĞÇÒµÈ ÁÙÀÇ ¼ö°¡ 1 ÀÌÇÏ¶ó¸é ºó ¸®½ºÆ®¸¦ ¹İÈ¯
+        if (lines.Length <= 1) return list; // lines ì— ë¶„í• ëœ ì¤„ì˜ ìˆ˜ê°€ 1 ì´í•˜ë¼ë©´ ë¹ˆ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°˜í™˜
 
-        var header = Regex.Split(lines[0], SPLIT_RE); // header = linesÀÇ 0¹øÂ° ÁÙÀ» ºĞÇÒ EventName| ActorID|  Context|
-        for (var i = 1; i < lines.Length; i++) // CSV ÆÄÀÏ ³»¿ëÀ» °¢°¢ ºĞÇÒÇÏ¿© µñ¼Å³Ê¸® ÇüÅÂ·Î ÀúÀå 
+        var header = Regex.Split(lines[0], SPLIT_RE); // header = linesì˜ 0ë²ˆì§¸ ì¤„ì„ ë¶„í•  EventName| ActorID|  Context|
+        for (var i = 1; i < lines.Length; i++) // CSV íŒŒì¼ ë‚´ìš©ì„ ê°ê° ë¶„í• í•˜ì—¬ ë”•ì…”ë„ˆë¦¬ í˜•íƒœë¡œ ì €ì¥ 
         {
-            var values = Regex.Split(lines[i], SPLIT_RE); // values ¿¡ 1¹øÂ° ÁÙºÎÅÍ ÇÏ³ª¾¿ ÇØ´ç ÁÙÀÇ ³»¿ëµéÀ» ´Ù½Ã ºĞÇÒÇÑ´Ù. -> ¾ê³×¶ÇÇÑ  |  |  | 
-            //if (values.Length == 0 || values[0] == "") continue; // ¿¹¿ÜÃ³¸®. valuesÀÇ ³»¿ëÀÌ ¾ø°Å³ª 0¹øÂ°¸éÀº ´Ù½Ã ·Îµå ?
+            var values = Regex.Split(lines[i], SPLIT_RE); // values ì— 1ë²ˆì§¸ ì¤„ë¶€í„° í•˜ë‚˜ì”© í•´ë‹¹ ì¤„ì˜ ë‚´ìš©ë“¤ì„ ë‹¤ì‹œ ë¶„í• í•œë‹¤. -> ì–˜ë„¤ë˜í•œ  |  |  | 
+            //if (values.Length == 0 || values[0] == "") continue; // ì˜ˆì™¸ì²˜ë¦¬. valuesì˜ ë‚´ìš©ì´ ì—†ê±°ë‚˜ 0ë²ˆì§¸ë©´ì€ ë‹¤ì‹œ ë¡œë“œ ?
 
-            if (values.Length == 0) continue; // *** ¼öÁ¤ ºÎºĞ  ÇØ´ç ÁÙÀÌ ºñ¾îÀÖÀ» °æ¿ì °Ç³ÊµÛ´Ù. 
+            if (values.Length == 0) continue; // *** ìˆ˜ì • ë¶€ë¶„  í•´ë‹¹ ì¤„ì´ ë¹„ì–´ìˆì„ ê²½ìš° ê±´ë„ˆë’¨ë‹¤. 
 
-            var entry = new Dictionary<string, object>(); // entty = °¢ ÇÑÁÙÇÑÁÙÀÇ °ªÀ» ÀúÀåÇÒ µñ¼Å³Ê¸® »ı¼º
-            for (var j = 0; j < header.Length && j < values.Length; j++) // ºĞÇÒµÈ CSV ÆÄÀÏÀ» ÇÑÁÙ¾¿ Ã³¸®, °¢ ÁÙÀÇ ³»¿ëµéÀ» ´Ù½Ã ºĞÇÒ,°¢ ¿­À» µñ¼Å³Ê¸® ÇüÅÂ·Î ÀúÀå...
+            var entry = new Dictionary<string, object>(); // entty = ê° í•œì¤„í•œì¤„ì˜ ê°’ì„ ì €ì¥í•  ë”•ì…”ë„ˆë¦¬ ìƒì„±
+            for (var j = 0; j < header.Length && j < values.Length; j++) // ë¶„í• ëœ CSV íŒŒì¼ì„ í•œì¤„ì”© ì²˜ë¦¬, ê° ì¤„ì˜ ë‚´ìš©ë“¤ì„ ë‹¤ì‹œ ë¶„í• ,ê° ì—´ì„ ë”•ì…”ë„ˆë¦¬ í˜•íƒœë¡œ ì €ì¥...
             {
-                string value = values[j]; // CSV ÆÄÀÏ¿¡¼­ ºĞÇÒµÈ °¢ ÁÙÀÇ ³»¿ë values À» ÇÑ ¿­ ¾¿ Ã³¸®ÇÏ´Â ºÎºĞ
+                string value = values[j]; // CSV íŒŒì¼ì—ì„œ ë¶„í• ëœ ê° ì¤„ì˜ ë‚´ìš© values ì„ í•œ ì—´ ì”© ì²˜ë¦¬í•˜ëŠ” ë¶€ë¶„
                 value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
-                object finalvalue = value; // ÇØ´ç Ã³¸®°¡ ¿Ï·áµÈ ÈÄÀÇ ¹®ÀÚ¿­À» object Çü½Ä¿¡ ÀúÀå
+                object finalvalue = value; // í•´ë‹¹ ì²˜ë¦¬ê°€ ì™„ë£Œëœ í›„ì˜ ë¬¸ìì—´ì„ object í˜•ì‹ì— ì €ì¥
                 int n;
                 float f;
                 if (int.TryParse(value, out n))
                 {
                     finalvalue = n;
                 }
-                else if (float.TryParse(value, out f)) // value ¹®ÀÚ¿­ÀÇ °ªÀ» int Á¤¼öÇü½ÄÀ¸·Î º¯È¯½ÃÄÑ f ¿¡ ÀúÀå 
+                else if (float.TryParse(value, out f)) // value ë¬¸ìì—´ì˜ ê°’ì„ int ì •ìˆ˜í˜•ì‹ìœ¼ë¡œ ë³€í™˜ì‹œì¼œ f ì— ì €ì¥ 
                 {
                     finalvalue = f;
                 }
-                entry[header[j]] = finalvalue; // ºĞÇÒµÈ °¢ ÁÙÀÇ ³»¿ëÀ» µñ¼Å³Ê¸® ÇüÅÂ·Î ÀúÀå [header[j]] Àº °¢ ¿­ÀÇ ÀÌ¸§(Çì´õ) 
+                entry[header[j]] = finalvalue; // ë¶„í• ëœ ê° ì¤„ì˜ ë‚´ìš©ì„ ë”•ì…”ë„ˆë¦¬ í˜•íƒœë¡œ ì €ì¥ [header[j]] ì€ ê° ì—´ì˜ ì´ë¦„(í—¤ë”) 
             }
             list.Add(entry);
         }

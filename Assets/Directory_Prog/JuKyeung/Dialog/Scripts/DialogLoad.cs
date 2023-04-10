@@ -28,8 +28,8 @@ public class DialogLoad : MonoBehaviour
                 foreach (string _context in pair.Value)
                 {
                     // 임시로 ActorID 도 함께 확인하기 위해 같이 가져옴. 
-                    // dialogList.Add(_actorID + " | " + _context);
-                    dialogList.Add(_context);
+                    dialogList.Add(_actorID + " | " + _context);
+                    //dialogList.Add(_context);
                 }
             }
 
@@ -40,9 +40,8 @@ public class DialogLoad : MonoBehaviour
         return new string[0];
     }
 
-    private void Start()
+    private void Awake()
     {
-        // DialogSave 클래스 인스턴스를 할당합니다.
         dialogSave = FindObjectOfType<DialogSave>();
     }
 

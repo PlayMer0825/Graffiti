@@ -14,7 +14,7 @@ public class DialogSave : MonoBehaviour
     // EventID를 기준으로 ActorID와 Context를 그룹화하여 저장할 딕셔너리
     public Dictionary<string, Dictionary<string, List<string>>> save = new Dictionary<string, Dictionary<string, List<string>>>();
     // Start 메소드에서 CSV 파일을 읽어서 데이터를 저장하고 DialogSave 딕셔너리에 값을 저장
-    void Start()
+    void Awake()
      {
          fileName = csv_data.name;
          data = CSVParser.Read(fileName);

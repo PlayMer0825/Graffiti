@@ -8,24 +8,24 @@ using DG.DemiLib;
 
 public class DialogUI : MonoBehaviour
 {
-    [Header("´ÙÀÌ¾ó·Î±× UI ¼³Á¤")]
-    public GameObject dialog_bubble; // ´ÙÀÌ¾ó·Î±× ¿ÀºêÁ§Æ®
-    [SerializeField] TextMeshProUGUI dialog_Context = null; // ´ÙÀÌ¾ó·Î±× ÅØ½ºÆ® UI
+    [Header("ë‹¤ì´ì–¼ë¡œê·¸ UI ì„¤ì •")]
+    [SerializeField] private GameObject dialog_bubble; // ë‹¤ì´ì–¼ë¡œê·¸ ì˜¤ë¸Œì íŠ¸
+    [SerializeField] TextMeshProUGUI dialog_Context = null; // ë‹¤ì´ì–¼ë¡œê·¸ í…ìŠ¤íŠ¸ UI
 
-    [Header("Actor µéÀÇ ´ÙÀÌ¾ó·Î±× À§Ä¡")]
-    public GameObject titi_Dialog_HeadUpPos; // ´ÙÀÌ¾ó·Î±× À§Ä¡ Æ÷Áö¼Ç
+    [Header("Actor ë“¤ì˜ ë‹¤ì´ì–¼ë¡œê·¸ ìœ„ì¹˜")]
+    public GameObject titi_Dialog_HeadUpPos; // ë‹¤ì´ì–¼ë¡œê·¸ ìœ„ì¹˜ í¬ì§€ì…˜
 
-    [Header("UI ´ë»ó Ä«¸Ş¶ó")]
+    [Header("UI ëŒ€ìƒ ì¹´ë©”ë¼")]
     [SerializeField] Camera lookCamera;
 
     [SerializeField] bool playerCheck ;
 
-    //string dialog_FileName; // csv_Dialoog ÀÇ ÆÄÀÏ ÀÌ¸§
+    //string dialog_FileName; // csv_Dialoog ì˜ íŒŒì¼ ì´ë¦„
     //[SerializeField] private TextAsset csv_Dialog = null;
 
     //List<Dictionary<string, object>> dialog_Data;
 
-    [Header("ÇöÀç ÀÌº¥Æ® ID")]
+    [Header("í˜„ì¬ ì´ë²¤íŠ¸ ID")]
     public int nowEventID;
 
     int nowIndex = 0;
@@ -58,7 +58,7 @@ public class DialogUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ´ÙÀÌ¾ó·Î±×´Â Ä«¸Ş¶ó¸¦ Ç×»ó ¹Ù¶óº¸µµ·Ï ¼³Á¤µÇ¾î ÀÖ½À´Ï´Ù. 
+    /// ë‹¤ì´ì–¼ë¡œê·¸ëŠ” ì¹´ë©”ë¼ë¥¼ í•­ìƒ ë°”ë¼ë³´ë„ë¡ ì„¤ì •ë˜ì–´ ìˆìŠµë‹ˆë‹¤. 
     /// </summary>
     void DialogPosition()
     {
@@ -67,26 +67,26 @@ public class DialogUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇöÀç ÀÌº¥Æ® ¸ñ·ÏÀÇ actorID ¿¡ µû¶ó Ãâ·ÂµÇ´Â ´ÙÀÌ¾ó·Î±× ¹Ú½ºÀÇ À§Ä¡¸¦ Ã£¾Æ¿É´Ï´Ù. 
+    /// í˜„ì¬ ì´ë²¤íŠ¸ ëª©ë¡ì˜ actorID ì— ë”°ë¼ ì¶œë ¥ë˜ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ ë°•ìŠ¤ì˜ ìœ„ì¹˜ë¥¼ ì°¾ì•„ì˜µë‹ˆë‹¤. 
     /// </summary>
     //public void FindActorPos()
     //{
-    //    // ¼±ÅÃµÈ ¾×ÅÍ ID¿¡ ¸Â´Â GameObject¸¦ Ã£¾Æ¿É´Ï´Ù.
+    //    // ì„ íƒëœ ì•¡í„° IDì— ë§ëŠ” GameObjectë¥¼ ì°¾ì•„ì˜µë‹ˆë‹¤.
     //    GameObject actorObject = actorDialogPos.FirstOrDefault(x => x.name.Contains(EactorList.ToString()));
 
-    //    // ¾×ÅÍ GameObjectÀÇ ÀÚ½Ä Áß ´ÙÀÌ¾ó·Î±× ¹Ú½º À§Ä¡¸¦ ³ªÅ¸³»´Â "DialogPos" ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ¿É´Ï´Ù.
+    //    // ì•¡í„° GameObjectì˜ ìì‹ ì¤‘ ë‹¤ì´ì–¼ë¡œê·¸ ë°•ìŠ¤ ìœ„ì¹˜ë¥¼ ë‚˜íƒ€ë‚´ëŠ” "DialogPos" íƒœê·¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ì˜µë‹ˆë‹¤.
     //    Transform dialogPosition = actorObject.transform.Find("DialogPos");
 
-    //    // ´ÙÀÌ¾ó·Î±× ¹Ú½º À§Ä¡¸¦ dialogPosition À§Ä¡·Î ÀÌµ¿ÇÕ´Ï´Ù.
+    //    // ë‹¤ì´ì–¼ë¡œê·¸ ë°•ìŠ¤ ìœ„ì¹˜ë¥¼ dialogPosition ìœ„ì¹˜ë¡œ ì´ë™í•©ë‹ˆë‹¤.
     //    dialog_bubble.transform.position = dialogPosition.position;
 
-    //    // ´ÙÀÌ¾ó·Î±× ¹Ú½º°¡ Ä«¸Ş¶ó¸¦ ¹Ù¶óº¸µµ·Ï ÇÕ´Ï´Ù.
+    //    // ë‹¤ì´ì–¼ë¡œê·¸ ë°•ìŠ¤ê°€ ì¹´ë©”ë¼ë¥¼ ë°”ë¼ë³´ë„ë¡ í•©ë‹ˆë‹¤.
     //    dialog_bubble.transform.LookAt(lookCamera.transform);
     //}
 
 
     /// <summary>
-    /// richText(´ÙÀÌ¾ó·Î±×ÀÇ »ö»ó ÄÚµå µî )¸¦ ¹èÁ¦ÇÏ±â À§ÇÑ ¸Ş¼­µå
+    /// richText(ë‹¤ì´ì–¼ë¡œê·¸ì˜ ìƒ‰ìƒ ì½”ë“œ ë“± )ë¥¼ ë°°ì œí•˜ê¸° ìœ„í•œ ë©”ì„œë“œ
     /// </summary>
     /// <param name="richText"></param>
     /// <returns></returns>
