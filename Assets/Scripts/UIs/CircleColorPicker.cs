@@ -1,3 +1,4 @@
+using PaintIn3D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class CircleColorPicker : MonoBehaviour {
     public Image circlePalette;
     public Image picker;
     public Color selectedColor;
-    public SprayController e_spray = null;
+    public P3dPaintSphere e_Tool = null;
 
     [SerializeField] private Vector2 sizeOfPalette;
     [SerializeField] private CircleCollider2D paletteCollider;
@@ -56,7 +57,7 @@ public class CircleColorPicker : MonoBehaviour {
     }
 
     private void selectColor() {
-        if(e_spray == null)
+        if(e_Tool == null)
             return;
 
         Vector3 offset = Input.mousePosition - transform.position;
@@ -66,6 +67,6 @@ public class CircleColorPicker : MonoBehaviour {
 
         selectedColor = getColor();
 
-        e_spray.ChangeColorTo(getColor());
+        e_Tool.Color = selectedColor;
     }
 }
