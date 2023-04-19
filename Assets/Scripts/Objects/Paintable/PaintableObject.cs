@@ -14,6 +14,7 @@ public class PaintableObject : Interactable
 
     public override void OnInteract() {
         base.OnInteract();
+        InteractManager.Instance.StartInteractWith(this);
         _paintable.enabled = true;
     }
 
