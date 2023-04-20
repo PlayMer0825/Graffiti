@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum Actors
-{
-    Titi = 100,
-    Red = 200,
-    Yellow = 300,
-    Blue = 400,
-    NPC1 = 500
-}
-
 
 public class LoadDialog : MonoBehaviour
 {
@@ -20,7 +11,7 @@ public class LoadDialog : MonoBehaviour
     public GameObject dialogObject;
     public TextMeshProUGUI dialogText;
 
-    [SerializeField] string currentEventID;
+    [SerializeField] private string currentEventID;
     private int i = 0;
 
     void Awake()

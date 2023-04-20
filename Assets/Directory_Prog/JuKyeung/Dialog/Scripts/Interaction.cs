@@ -5,66 +5,109 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
-    [SerializeField] private GameObject interact_UI;
-    [SerializeField] private GameObject interact_UIUpPos;
+    [Header("ìƒí˜¸ì‘ìš© ì„¸íŒ…")]
+    public GameObject interactUIprefabs;
+    public Transform[] interact_UIPos;
+    private GameObject[] uiObjs;
+    [SerializeField] private KeyCode interactSetKey;
 
-    [SerializeField] Camera lookCamera;
-
-    [SerializeField] DialogUI dialogUI;
-
-    [Header("ÇÃ·¹ÀÌ¾î ÀÎ¾Æ¿ô Ã¼Å©")]
-    [SerializeField] bool playerCheck;
+    [Header("ì²´í¬")]
+    [SerializeField] bool isPlayerInCheck = false;
 
     private void Awake()
     {
-        playerCheck = false;
-    }
+        isPlayerInCheck = false;
 
+        uiObjs = new GameObject[interact_UIPos.Length];       
+        for(int i =0; i< interact_UIPos.Length; i++)
+        {
+            Vector3 _interactUIpos = interact_UIPos[i].position;
+            uiObjs[i] = Instantiate(interactUIprefabs, _interactUIpos, Quaternion.identity, transform);
+            uiObjs[i].SetActive(false);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if(other.tag == "Player")
         {
-            playerCheck = true;
+            isPlayerInCheck = true;
+            interactUIprefabs.SetActive(true);
+            StartInteract(interactSetKey);
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
-        playerCheck = false;
+        isPlayerInCheck = false;
     }
 
-    private void Update()
+    void StartInteract(KeyCode _keyCode)
     {
-        DialogPosition();
-        PlayerInOutCheck();
-
-    }
-    private void PlayerInOutCheck()
-    {
-        if (playerCheck == true)
+        if(Input.GetKeyDown(_keyCode))
         {
-            Debug.Log("ÇÃ·¹ÀÌ¾î IN");
-            interact_UI.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("E Å°ÀÇ ÀÔ·ÂÀÌ °¨ÁöµÇ¾ú½À´Ï´Ù. ");
-                interact_UI.SetActive(false);
-                dialogUI.GetContext();
-            }
 
         }
-        else if (playerCheck == false)
-        {
-            Debug.Log("ÇÃ·¹ÀÌ¾î Out");
-            interact_UI.SetActive(false);
-        }
     }
+    //    [SerializeField] private GameObject interact_UI;
+    //    [SerializeField] private GameObject interact_UIUpPos;
 
-    void DialogPosition() // Ä«¸Ş¶ó¸¦ ¹Ù¶óº¸¾Æ¶ó
-    {
-        interact_UI.transform.position = interact_UIUpPos.transform.position;
-        interact_UI.transform.LookAt(lookCamera.transform);
-    }
+    //    [SerializeField] Camera lookCamera;
+
+    //    [SerializeField] DialogUI dialogUI;
+
+    //    [Header("í”Œë ˆì´ì–´ ì¸ì•„ì›ƒ ì²´í¬")]
+    //    [SerializeField] bool playerCheck;
+
+    //    private void Awake()
+    //    {
+    //        playerCheck = false;
+    //    }
+
+
+    //    private void OnTriggerEnter(Collider other)
+    //    {
+    //        if (other.tag == "Player")
+    //        {
+    //            playerCheck = true;
+    //        }
+    //    }
+
+    //    private void OnTriggerExit(Collider other)
+    //    {
+    //        playerCheck = false;
+    //    }
+
+    //    private void Update()
+    //    {
+    //        DialogPosition();
+    //        PlayerInOutCheck();
+
+    //    }
+    //    private void PlayerInOutCheck()
+    //    {
+    //        if (playerCheck == true)
+    //        {
+    //            Debug.Log("í”Œë ˆì´ì–´ IN");
+    //            interact_UI.SetActive(true);
+
+    //            if (Input.GetKeyDown(KeyCode.E))
+    //            {
+    //                Debug.Log("E í‚¤ì˜ ì…ë ¥ì´ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤. ");
+    //                interact_UI.SetActive(false);
+    //                dialogUI.GetContext();
+    //            }
+
+    //        }
+    //        else if (playerCheck == false)
+    //        {
+    //            Debug.Log("í”Œë ˆì´ì–´ Out");
+    //            interact_UI.SetActive(false);
+    //        }
+    //    }
+
+    //    void DialogPosition() // ì¹´ë©”ë¼ë¥¼ ë°”ë¼ë³´ì•„ë¼
+    //    {
+    //        interact_UI.transform.position = interact_UIUpPos.transform.position;
+    //        interact_UI.transform.LookAt(lookCamera.transform);
+    //    }
 }

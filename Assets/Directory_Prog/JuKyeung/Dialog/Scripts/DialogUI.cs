@@ -24,7 +24,7 @@ public class DialogUI : MonoBehaviour
     //[SerializeField] private TextAsset csv_Dialog = null;
 
     //List<Dictionary<string, object>> dialog_Data;
-
+     
     [Header("현재 이벤트 ID")]
     public int nowEventID;
 

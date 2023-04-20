@@ -20,6 +20,7 @@ public class DialogLoad : MonoBehaviour
         if (dialogSave.save.TryGetValue(_eventID, out _currentDialog))
         {
             List<string> dialogList = new List<string>();
+            List<string> actorList = new List<string>();
             // 해당 이벤트에 속한 모든 대화 정보를 반환합니다.
 
             foreach (KeyValuePair<string, List<string>> pair in _currentDialog)
@@ -28,7 +29,8 @@ public class DialogLoad : MonoBehaviour
                 foreach (string _context in pair.Value)
                 {
                     // 임시로 ActorID 도 함께 확인하기 위해 같이 가져옴. 
-                    dialogList.Add(_actorID + " | " + _context);
+                    dialogList.Add(/*_actorID + " | " +*/ _context);
+                    actorList.Add(_actorID);
                     //dialogList.Add(_context);
                 }
             }

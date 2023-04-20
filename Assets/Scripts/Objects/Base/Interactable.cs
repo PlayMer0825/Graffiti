@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-/// <summary> »óÈ£ÀÛ¿ë ¿ÀºêÁ§Æ® »óÀ§ Å¬·¡½º </summary>
+/// <summary> ìƒí˜¸ì‘ìš© ì˜¤ë¸Œì íŠ¸ ìƒìœ„ í´ë˜ìŠ¤ </summary>
 public class Interactable : MonoBehaviour {
     #region Components
     [Header("Interaction_GameObject")]
@@ -115,12 +115,12 @@ public class Interactable : MonoBehaviour {
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ Æ®¸®°Å¿¡ ÁøÀÔÇßÀ» ¶§ ÇØ´ç ¿ÀºêÁ§Æ®°¡ Ã³¸®ÇÒ ³»¿ë
+    /// í”Œë ˆì´ì–´ê°€ íŠ¸ë¦¬ê±°ì— ì§„ì…í–ˆì„ ë•Œ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ê°€ ì²˜ë¦¬í•  ë‚´ìš©
     /// </summary>
     protected virtual void OnPlayerTriggered() { }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ Æ®¸®°Å¿¡¼­ Å»ÃâÇßÀ» ¶§ ÇØ´ç ¿ÀºêÁ§Æ®°¡ Ã³¸®ÇÒ ³»¿ë
+    /// í”Œë ˆì´ì–´ê°€ íŠ¸ë¦¬ê±°ì—ì„œ íƒˆì¶œí–ˆì„ ë•Œ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ê°€ ì²˜ë¦¬í•  ë‚´ìš©
     /// </summary>
     protected virtual void OnPlayerUntriggered() { }
 
