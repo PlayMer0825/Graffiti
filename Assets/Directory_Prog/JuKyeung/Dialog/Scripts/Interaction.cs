@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+ 
 
 public class Interaction : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class Interaction : MonoBehaviour
     public GameObject interactUIprefabs;
     public Transform[] interact_UIPos;
     private GameObject[] uiObjs;
-    [SerializeField] private KeyCode interactSetKey;
+
+    public GameObject[] interactArea;
+
 
     [Header("체크")]
     [SerializeField] bool isPlayerInCheck = false;
@@ -18,12 +21,31 @@ public class Interaction : MonoBehaviour
     {
         isPlayerInCheck = false;
 
+        // 상호작용 대상 오브젝트에 UI 추가 
         uiObjs = new GameObject[interact_UIPos.Length];       
         for(int i =0; i< interact_UIPos.Length; i++)
         {
             Vector3 _interactUIpos = interact_UIPos[i].position;
             uiObjs[i] = Instantiate(interactUIprefabs, _interactUIpos, Quaternion.identity, transform);
             uiObjs[i].SetActive(false);
+        }
+
+        BoxCollider interactAreaObj;
+
+        foreach(GameObject interact in interactArea)
+        {
+            interactAreaObj= interact.gameObject.GetComponent<BoxCollider>();
+        }
+    }
+
+    private void Update()
+    {
+        if(isPlayerInCheck && Input.GetKeyDown(KeyCode.F))
+        {
+            foreach(GameObject interact in interactArea)
+            {
+                Debug.Log("상호작용가능" + interact.name);
+            }
         }
     }
 
@@ -32,22 +54,26 @@ public class Interaction : MonoBehaviour
         if(other.tag == "Player")
         {
             isPlayerInCheck = true;
-            interactUIprefabs.SetActive(true);
-            StartInteract(interactSetKey);
+
+            foreach(GameObject interact in interactArea)
+            {
+                interactUIprefabs.SetActive(true);
+
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         isPlayerInCheck = false;
-    }
 
-    void StartInteract(KeyCode _keyCode)
-    {
-        if(Input.GetKeyDown(_keyCode))
+        foreach(GameObject interact in interactArea)
         {
-
+            interactUIprefabs.SetActive(false);
         }
     }
+
+
+
     //    [SerializeField] private GameObject interact_UI;
     //    [SerializeField] private GameObject interact_UIUpPos;
 
