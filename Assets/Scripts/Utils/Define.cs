@@ -31,7 +31,7 @@ public class Define
 
     }
 
-    public enum EventFuncInvokePoint {
+    public enum InteractType {
         OnReady,
         OnUnReady,
         OnStart,
