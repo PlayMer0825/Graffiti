@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DrawToolManager : MonoBehaviour{
+namespace OperaHouse {
+    public class DrawToolManager : MonoBehaviour {
+
+    }
 
 }

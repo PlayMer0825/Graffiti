@@ -46,6 +46,7 @@ namespace OperaHouse {
             _ptble.enabled = true;
             _interactCanvas.SetActive(false);
             _interactArea.SetColliderActivation(false);
+            InteractionManager.Instance.StartedInteract(this);
         }
 
         public override void FinishInteract() {
@@ -53,6 +54,7 @@ namespace OperaHouse {
             _ptble.enabled = false;
             _interactCanvas.SetActive(true);
             _interactArea.SetColliderActivation(true);
+            InteractionManager.Instance.FinishedInteract(this);
         }
 
         #endregion
