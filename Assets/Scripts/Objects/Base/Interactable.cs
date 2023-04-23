@@ -105,13 +105,13 @@ public class Interactable : MonoBehaviour {
 
         m_interactArea.SetColliderActive(false);
         m_interactCanvas.gameObject.SetActive(false);
-        _focusCam.enabled = true;
+        _focusCam.gameObject.SetActive(true);
     }
 
     public virtual void OffInteract() {
         m_interactArea.SetColliderActive(true);
         m_interactCanvas.gameObject.SetActive(true);
-        _focusCam.enabled = false;
+        _focusCam.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -148,7 +148,7 @@ public class Interactable : MonoBehaviour {
             return;
 
         //_interactMgr.ChangeCurIntObj(this);
-        _player.Notify_OnInteractArea(this);
+        //_player.Notify_OnInteractArea(this);
         m_interactButton.gameObject.SetActive(true);
         OnPlayerTriggered();
     }
@@ -158,7 +158,7 @@ public class Interactable : MonoBehaviour {
             return;
 
         //_interactMgr.ExtractFromCurIntObj(this);
-        _player.Notify_OffInteractArea(this);
+        //_player.Notify_OffInteractArea(this);
         m_interactButton.gameObject.SetActive(false);
         OnPlayerUntriggered();
     }
