@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackBook : MonoBehaviour
-{
+namespace OperaHouse {
+    public class Bag : MonoBehaviour {
 
+    }
 }

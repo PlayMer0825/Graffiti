@@ -7,15 +7,12 @@ using UnityEngine;
 namespace OperaHouse {
     public class InteractionArea : MonoBehaviour {
         [SerializeField] private string _playerTag = "Player";
-        private Interactable _interactObj = null;
+        [SerializeField] private Interactable _interactObj = null;
+        private Collider _interactTrigger = null;
+
 
         private void Awake() {
-            _interactObj = GetComponentInParent<Interactable>();
-            if(_interactObj == null)
-                gameObject.SetActive(false);
-        }
-
-        private void OnValidate() {
+            _interactTrigger = GetComponent<Collider>();
             _interactObj = GetComponentInParent<Interactable>();
             if(_interactObj == null)
                 gameObject.SetActive(false);
@@ -25,7 +22,7 @@ namespace OperaHouse {
             if(other.CompareTag(_playerTag) == false)
                 return;
 
-            _interactObj.ReadyInteract();
+            _interactObj.ReadyInteract(other);
         }
 
         private void OnTriggerExit(Collider other) {
@@ -35,11 +32,15 @@ namespace OperaHouse {
             if(!gameObject.activeSelf)
                 return;
 
-            _interactObj.UnReadyInteract();
+            _interactObj.UnReadyInteract(other);
         }
 
         public void OnInteractClicked() {
             _interactObj.StartInteract();
+        }
+
+        public void SetColliderActivation(bool isActive) {
+            _interactTrigger.enabled = isActive;
         }
     }
 }
