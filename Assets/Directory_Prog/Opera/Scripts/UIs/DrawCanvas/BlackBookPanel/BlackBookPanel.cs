@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace OperaHouse {
 
-    public class BlackBook : MonoBehaviour {
+    public class BlackBookPanel : UIPanel {
+        [SerializeField] private GameObject _blackBookGroup = null;
         [SerializeField] private TextMeshProUGUI _pageText = null;
         [SerializeField] private StencilInstaller _stencilInstaller = null;
         [SerializeField] private PageGroupUI _leftPage = null;
@@ -14,8 +15,35 @@ namespace OperaHouse {
 
         private StencilData _curStencils = null;
 
-        public void Init() {
+        private void Update() {
+            if(Input.GetKeyDown(KeyCode.Escape)) {
+                OnClick_ExitBlackBook();
+            }
+        }
 
+        public override void OpenPanel() {
+            if(DrawManager.Instance.IsAnyPanelOpened() && IsOpened == false)
+                return;
+            if(IsOpened)
+                base.ClosePanel();
+            else
+                base.OpenPanel();
+        }
+
+        public override void ClosePanel() {
+            base.ClosePanel();
+        }
+
+        protected override void OnEnablePanel() {
+            //TODO: BlackBookPanel:OnEnablePanel() 아직은 그냥 오브젝트.SetActive(true/false)만 한다.
+            _blackBookGroup.SetActive(true);
+            base.OnEnablePanel();
+        }
+
+        protected override void OnDisablePanel() {
+            //TODO: BlackBookPanel:OnEnablePanel() 아직은 그냥 오브젝트.SetActive(true/false)만 한다.
+            _blackBookGroup.SetActive(false);
+            base.OnDisablePanel();
         }
 
         public void OnClick_NextPage() {
@@ -48,6 +76,10 @@ namespace OperaHouse {
             SetPageGroupsWithCurrentPage();
         }
 
+        public void OnClick_ExitBlackBook() {
+            ClosePanel();
+        }
+
         /// <summary>
         /// 왼쪽/오른쪽 PageGroup을 현재 페이지의 데이터로 초기화하는 함수.
         /// </summary>
@@ -65,8 +97,8 @@ namespace OperaHouse {
             if(data.MaskSprite == null)
                 return;
 
-            _stencilInstaller.InstallStencilObject(data.MaskSprite, data.MaskOutlineSprite);
-            DrawManager.Instance.CloseAllPanels();
+            _stencilInstaller.StartInstallStencil(data.MaskSprite, data.MaskOutlineSprite);
+            ClosePanel();
         }
 
         /// <summary>

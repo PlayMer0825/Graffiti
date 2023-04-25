@@ -23,10 +23,11 @@ namespace OperaHouse {
             _curInteracting = interacted;
         }
 
-        public void FinishedInteract(Interactable interacted) {
-            if(interacted == null)
+        public void FinishedInteract() {
+            if(_curInteracting == null)
                 return;
 
+            _curInteracting.FinishInteract();
             _isInteracting = false;
             _curInteracting = null;
         }

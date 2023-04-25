@@ -2,10 +2,11 @@ using PaintIn3D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace OperaHouse {
-    public class CircleColorPicker : MonoBehaviour {
+    public class CircleColorPicker : Singleton<CircleColorPicker>{
         public Image circlePalette;
         public Image picker;
         public Color selectedColor;
@@ -14,19 +15,8 @@ namespace OperaHouse {
         [SerializeField] private Vector2 sizeOfPalette;
         [SerializeField] private CircleCollider2D paletteCollider;
 
-        private static CircleColorPicker instance = null;
-        public static CircleColorPicker Instance {
-            get {
-                if(null == instance) instance = FindObjectOfType<CircleColorPicker>();
-                return instance;
-            }
-        }
-
-        private void Awake() {
-            if(null == instance) instance = this;
-        }
-
         void Start() {
+
             paletteCollider = circlePalette.GetComponent<CircleCollider2D>();
 
             sizeOfPalette = new Vector2(

@@ -71,7 +71,7 @@ namespace OperaHouse {
         public void InstallMask(Vector3 position, Vector3 rotation) {
             SetMaskTransform(position, rotation);
             _maskPreview.gameObject.SetActive(false);
-            DrawManager.Instance.Draw.ActivateRemoveButtonWithMask(this);
+            DrawManager.Instance.Bag.ActivateRemoveButtonWithMask(this);
         }
 
         /// <summary>
