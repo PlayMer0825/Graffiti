@@ -15,6 +15,7 @@ public class PlayerMove_SIDE : MonoBehaviour
     private Vector3 dir = Vector3.zero;
 
     private bool ground = false;
+    private bool isBorder;
     private float animationMoveWeight;
     public LayerMask layer;
 
@@ -55,6 +56,8 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        StopToWall();
         if (dir != Vector3.zero)
         {
             if (Mathf.Sign(transform.forward.x) != Mathf.Sign(dir.x)
@@ -64,9 +67,18 @@ public class PlayerMove_SIDE : MonoBehaviour
             }
             transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
-
-        rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speeds * Time.fixedDeltaTime);
+        if (!isBorder)
+        {
+            rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speeds * Time.fixedDeltaTime);
+        }
     }
+
+    void StopToWall()
+    {
+        Debug.DrawRay(transform.position, transform.forward * 3, Color.red);
+        isBorder = Physics.Raycast(transform.position, transform.forward, 3, LayerMask.GetMask("Wall"));
+    }
+
 
     void CheckGround()
     {
