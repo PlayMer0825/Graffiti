@@ -1,3 +1,4 @@
+using OperaHouse;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,5 @@ public class InteractManager : MonoBehaviour
         _interactable.OffInteract();
         _interactable = null;
         _isInteracting = false;
-        CanvasManager_Tmp.Instance.SetCanvasActiveFalse();
     }
 }

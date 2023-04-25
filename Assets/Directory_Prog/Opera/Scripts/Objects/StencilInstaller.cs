@@ -12,7 +12,7 @@ namespace OperaHouse {
 
         public bool IsInstalled { get => _isInstalled; }
 
-        public void InstallStencilObject(Texture maskTexture, Sprite maskVisual) {
+        public void StartInstallStencil(Texture maskTexture, Sprite maskVisual) {
             if(_mask == null)
                 return;
 
