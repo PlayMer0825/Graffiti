@@ -1181,6 +1181,7 @@ MonoBehaviour:
   _drawPanel: {fileID: 2683707893421656973}
   _bagPanel: {fileID: 5909972033830578232}
   _blackBookPanel: {fileID: 8002079144002871427}
+  _spray: {fileID: 6360375945782215989}
 --- !u!1 &1031339301522546526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9085793126076289373}
   - component: {fileID: 9206149331117803410}
+  - component: {fileID: 5629111251084133358}
   m_Layer: 5
   m_Name: SprayRemaining
   m_TagString: Untagged
@@ -2259,6 +2261,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5629111251084133358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794737923474063657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e15d7bab92ef14699d4f4af4405ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprayRemainSlider: {fileID: 9206149331117803410}
+  _spray: {fileID: 6360375945782215989}
 --- !u!1 &1959523266994071026
 GameObject:
   m_ObjectHideFlags: 0
@@ -9380,7 +9396,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14231,6 +14247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 8498219741847756709}
   _p3dPaint: {fileID: 1741734391996618467}
+  _sprayDecreaseIntervalTime: 1
+  _sprayDecreaseIntervalAmount: 0.4
 --- !u!1 &8950061952186409972
 GameObject:
   m_ObjectHideFlags: 0

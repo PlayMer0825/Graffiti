@@ -16,7 +16,7 @@ public class PlayerMove_TPS : MonoBehaviour
     private float currentCameraRotationX = 0;
 
     [SerializeField]
-    private CinemachineVirtualCamera theCamera;
+    private GameObject theCamera;
 
     private Rigidbody myRigid;
 
@@ -32,14 +32,22 @@ public class PlayerMove_TPS : MonoBehaviour
     Animator animator;
 
 
-    // Use this for initialization
+
     void Start()
     {
         myRigid = GetComponent<Rigidbody>();
         animationMoveWeight = 0f;
         animator=GetComponent<Animator>();
     }
-    // Update is called once per frame
+
+    private void OnEnable() {
+        theCamera.SetActive(true);
+    }
+
+    private void OnDisable() {
+        theCamera.SetActive(false);
+    }
+
     void Update()
     {
         Move();

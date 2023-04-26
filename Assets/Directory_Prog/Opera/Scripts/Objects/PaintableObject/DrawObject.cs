@@ -52,6 +52,9 @@ namespace OperaHouse {
             _ptble.enabled = false;
             _interactCanvas.SetActive(true);
             _interactArea.SetColliderActivation(true);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         #endregion
