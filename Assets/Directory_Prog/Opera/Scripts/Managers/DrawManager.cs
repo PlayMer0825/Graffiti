@@ -44,6 +44,9 @@ namespace OperaHouse {
             }
         }
 
+        [SerializeField] private Spray _spray = null;
+        public Spray Spray { get => _spray; }
+
 
         protected override void Awake() {
             base.Awake();
@@ -81,6 +84,8 @@ namespace OperaHouse {
             _blackBookPanel.ClosePanel();
             _bagPanel.ClosePanel();
             _drawPanel.ClosePanel();
+
+            GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
         }
     }
 }

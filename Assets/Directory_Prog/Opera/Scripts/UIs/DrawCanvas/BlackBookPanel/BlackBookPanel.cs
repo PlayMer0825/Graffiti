@@ -41,12 +41,20 @@ namespace OperaHouse {
         }
 
         protected override void OnEnablePanel() {
-            _blackBookGroup.DOMove(_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
+            _blackBookGroup.DOMove(_blackBookGroup.position - new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             base.OnEnablePanel();
         }
 
         protected override void OnDisablePanel() {
-            _blackBookGroup.DOMove(_blackBookGroup.position - new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
+            _blackBookGroup.DOMove(_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             base.OnDisablePanel();
         }
 

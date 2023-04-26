@@ -36,14 +36,21 @@ namespace OperaHouse {
 
         protected override void OnEnablePanel() {
             _panel.DOMove(_panel.position + new Vector3(_panel.rect.width, 0, 0), 1f);
-            //_panel.transform.DOMove(transform.position + new Vector3())
             _buttonGroup.DOMove(_buttonGroup.position - new Vector3(0, _buttonGroup.rect.height, 0), 1f);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             base.OnEnablePanel();
         }
 
         protected override void OnDisablePanel() {
             _panel.DOMove(_panel.position - new Vector3(_panel.rect.width, 0, 0), 1f);
             _buttonGroup.DOMove(_buttonGroup.position + new Vector3(0, _buttonGroup.rect.height, 0), 1f);
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             base.OnDisablePanel();
         }
 
