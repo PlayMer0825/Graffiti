@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace OperaHouse {
 
     public class BlackBookPanel : UIPanel {
-        [SerializeField] private GameObject _blackBookGroup = null;
+        [SerializeField] private RectTransform _blackBookGroup = null;
         [SerializeField] private TextMeshProUGUI _pageText = null;
         [SerializeField] private StencilInstaller _stencilInstaller = null;
         [SerializeField] private PageGroupUI _leftPage = null;
@@ -19,6 +20,11 @@ namespace OperaHouse {
             if(Input.GetKeyDown(KeyCode.Escape)) {
                 OnClick_ExitBlackBook();
             }
+        }
+
+        protected override void InitPos() {
+            _blackBookGroup.position =_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0);
+            _blackBookGroup.gameObject.SetActive(true);
         }
 
         public override void OpenPanel() {
@@ -35,14 +41,12 @@ namespace OperaHouse {
         }
 
         protected override void OnEnablePanel() {
-            //TODO: BlackBookPanel:OnEnablePanel() 아직은 그냥 오브젝트.SetActive(true/false)만 한다.
-            _blackBookGroup.SetActive(true);
+            _blackBookGroup.DOMove(_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
             base.OnEnablePanel();
         }
 
         protected override void OnDisablePanel() {
-            //TODO: BlackBookPanel:OnEnablePanel() 아직은 그냥 오브젝트.SetActive(true/false)만 한다.
-            _blackBookGroup.SetActive(false);
+            _blackBookGroup.DOMove(_blackBookGroup.position - new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
             base.OnDisablePanel();
         }
 
