@@ -11,6 +11,7 @@ public class PlayerMove_SIDE : MonoBehaviour
     public float dash = 2f;
     public float rotSpeed = 6f;
     public float animMoveWeightSpeed;
+    public float wallCheck = 1f;
 
     private Vector3 dir = Vector3.zero;
 
@@ -48,9 +49,14 @@ public class PlayerMove_SIDE : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speeds = speed * dash;
+            wallCheck = 1f;
         }
         else
+        {
             speeds = speed;
+            wallCheck = 1f;
+        }
+            
         AnimationUpdate();
     }
 
@@ -88,8 +94,8 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     void StopToWall()
     {
-        Debug.DrawRay(transform.position, transform.forward*3,Color.red);
-        isBorder = Physics.Raycast(transform.position, transform.forward, 3, LayerMask.GetMask("Wall"));
+        Debug.DrawRay(transform.position, transform.forward*wallCheck,Color.red);
+        isBorder = Physics.Raycast(transform.position, transform.forward, wallCheck, LayerMask.GetMask("Wall"));
     }
 
     void AnimationUpdate()
