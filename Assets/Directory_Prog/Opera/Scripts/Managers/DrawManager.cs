@@ -48,8 +48,15 @@ namespace OperaHouse {
         public Spray Spray { get => _spray; }
 
 
+        #region Melamine Works
+        [SerializeField] private Point_Of_View _pointOfView = null;
+
+
+        #endregion
+
         protected override void Awake() {
             base.Awake();
+            _pointOfView = GameObject.Find("Player").GetComponent<Point_Of_View>();
         }
 
 
@@ -70,6 +77,7 @@ namespace OperaHouse {
             _blackBookPanel.ClosePanel();
             _bagPanel.ClosePanel();
             _drawPanel.OpenPanel();
+            _pointOfView.ForceChangeToTps();
         }
 
         /// <summary>
@@ -84,7 +92,8 @@ namespace OperaHouse {
             _blackBookPanel.ClosePanel();
             _bagPanel.ClosePanel();
             _drawPanel.ClosePanel();
-
+            _spray.OnClickMouseLeft(false);
+            _pointOfView.ForceChangeToSide();
             GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
         }
     }

@@ -52,7 +52,7 @@ namespace OperaHouse {
                 return;
 
             _isFiring = isPerformed;
-            if(_isFiring)
+            if(_isFiring && _sprayRemain > 0)
                 StartCoroutine(CoStartFireSpray());
         }
 

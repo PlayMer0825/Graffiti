@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using UnityEngine;
 
 namespace OperaHouse {
     public class UIPanel : MonoBehaviour {
         [SerializeField] private bool _isOpened = false;
         public bool IsOpened { get => _isOpened; }
+
+        public virtual bool IsPlayingAnimation { get; }
 
         private void Awake() {
             InitPos();

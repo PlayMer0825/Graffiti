@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOpened: 0
+  _isPlayingAnim: 0
   _remainSlider: {fileID: 9206149331117803410}
 --- !u!1 &40159875254446859
 GameObject:
@@ -1182,6 +1183,7 @@ MonoBehaviour:
   _bagPanel: {fileID: 5909972033830578232}
   _blackBookPanel: {fileID: 8002079144002871427}
   _spray: {fileID: 6360375945782215989}
+  _pointOfView: {fileID: 0}
 --- !u!1 &1031339301522546526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,7 +2295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1305099187067696346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2366,6 +2368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOpened: 0
+  _isPlayingAnim: 0
   _panel: {fileID: 4067840626437401676}
   _buttonGroup: {fileID: 1813184841449289268}
   _clearButton: {fileID: 9044299812367862967}
@@ -3794,12 +3797,12 @@ GameObject:
   - component: {fileID: 6311585116356569533}
   - component: {fileID: 2891883458644735863}
   m_Layer: 0
-  m_Name: StencilMask
+  m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6947591555926287480
 Transform:
   m_ObjectHideFlags: 0
@@ -3807,8 +3810,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3604373803996620697}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.65, z: -1.28}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 6678619533018111673}
@@ -4045,7 +4048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7282981190783202270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5083,6 +5086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOpened: 0
+  _isPlayingAnim: 0
   _blackBookGroup: {fileID: 7282981190783202270}
   _pageText: {fileID: 4364599732603469526}
   _stencilInstaller: {fileID: 50685265946539485}
@@ -6179,7 +6183,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
