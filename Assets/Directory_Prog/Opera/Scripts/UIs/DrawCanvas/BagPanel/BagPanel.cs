@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 
 namespace OperaHouse {
     public class BagPanel : UIPanel {
@@ -12,6 +14,18 @@ namespace OperaHouse {
 
         [SerializeField] Button _clearButton = null;
         [SerializeField] Button _maskRemoveButton = null;
+
+        TweenerCore<Vector3, Vector3, VectorOptions> _panelTweener = null;
+        TweenerCore<Vector3, Vector3, VectorOptions> _buttonTweener = null;
+
+        public override bool IsPlayingAnimation {
+            get {
+                if(_panelTweener == null || _buttonTweener == null)
+                    return false;
+
+                return _panelTweener.IsComplete() && _buttonTweener.IsComplete();
+            }
+        }
 
         protected override void InitPos() {
             _panel.position = _panel.position - new Vector3(_panel.rect.width, 0, 0);
@@ -24,6 +38,13 @@ namespace OperaHouse {
         public override void OpenPanel() {
             if(DrawManager.Instance.IsAnyPanelOpened() && IsOpened == false)
                 return;
+
+            if(_panelTweener != null)
+                _panelTweener.Kill(true);
+
+            if(_buttonTweener != null)
+                _buttonTweener.Kill(true);
+
             if(IsOpened)
                 base.ClosePanel();
             else
@@ -31,12 +52,19 @@ namespace OperaHouse {
         }
 
         public override void ClosePanel() {
+            if(_panelTweener != null)
+                _panelTweener.Kill(true);
+
+            if(_buttonTweener != null)
+                _buttonTweener.Kill(true);
+
+
             base.ClosePanel();
         }
 
         protected override void OnEnablePanel() {
-            _panel.DOMove(_panel.position + new Vector3(_panel.rect.width, 0, 0), 1f);
-            _buttonGroup.DOMove(_buttonGroup.position - new Vector3(0, _buttonGroup.rect.height, 0), 1f);
+            _panelTweener = _panel.DOMove(_panel.position + new Vector3(_panel.rect.width, 0, 0), 1f);
+            _buttonTweener = _buttonGroup.DOMove(_buttonGroup.position - new Vector3(0, _buttonGroup.rect.height, 0), 1f);
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -45,8 +73,8 @@ namespace OperaHouse {
         }
 
         protected override void OnDisablePanel() {
-            _panel.DOMove(_panel.position - new Vector3(_panel.rect.width, 0, 0), 1f);
-            _buttonGroup.DOMove(_buttonGroup.position + new Vector3(0, _buttonGroup.rect.height, 0), 1f);
+            _panelTweener = _panel.DOMove(_panel.position - new Vector3(_panel.rect.width, 0, 0), 1f);
+            _buttonTweener = _buttonGroup.DOMove(_buttonGroup.position + new Vector3(0, _buttonGroup.rect.height, 0), 1f);
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

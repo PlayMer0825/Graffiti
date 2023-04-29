@@ -1,4 +1,6 @@
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +18,16 @@ namespace OperaHouse {
 
         private StencilData _curStencils = null;
 
+        TweenerCore<Vector3, Vector3, VectorOptions> _blackBookTweener = null;
+
+        public override bool IsPlayingAnimation { get {
+                if(_blackBookTweener == null)
+                    return false;
+
+                return _blackBookTweener.IsComplete();
+            }
+        }
+
         private void Update() {
             if(Input.GetKeyDown(KeyCode.Escape)) {
                 OnClick_ExitBlackBook();
@@ -30,6 +42,10 @@ namespace OperaHouse {
         public override void OpenPanel() {
             if(DrawManager.Instance.IsAnyPanelOpened() && IsOpened == false)
                 return;
+
+            if(_blackBookTweener != null)
+                _blackBookTweener.Kill(true);
+
             if(IsOpened)
                 base.ClosePanel();
             else
@@ -37,11 +53,14 @@ namespace OperaHouse {
         }
 
         public override void ClosePanel() {
+            if(_blackBookTweener != null)
+                _blackBookTweener.Kill(true);
+
             base.ClosePanel();
         }
 
         protected override void OnEnablePanel() {
-            _blackBookGroup.DOMove(_blackBookGroup.position - new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
+            _blackBookTweener = _blackBookGroup.DOMove(_blackBookGroup.position - new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -50,7 +69,7 @@ namespace OperaHouse {
         }
 
         protected override void OnDisablePanel() {
-            _blackBookGroup.DOMove(_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
+            _blackBookTweener = _blackBookGroup.DOMove(_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0), 1f);
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

@@ -77,16 +77,16 @@ public class Point_Of_View : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_pointInTime.state == true)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (Side == true)
-                    Tps_View();
-                else if (Tps == true)
-                    Side_View();
-            }
-        }
+        //if (_pointInTime.state == true)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.F))
+        //    {
+        //        if (Side == true)
+        //            Tps_View();
+        //        else if (Tps == true)
+        //            Side_View();
+        //    }
+        //}
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -187,5 +187,9 @@ public class Point_Of_View : MonoBehaviour
 
     public void ForceChangeToSide() {
         Side_View();
+    }
+
+    public void ForceChangeToTps() {
+        Tps_View();
     }
 }
