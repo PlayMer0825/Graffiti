@@ -12,9 +12,6 @@ namespace OperaHouse {
 
         [SerializeField]
         private InteractionArea _interactArea = null;
-
-
-        //Queue<>
         
         #region Unity Event Functions
         private void Awake() {
@@ -47,6 +44,7 @@ namespace OperaHouse {
             _interactCanvas.SetActive(false);
             _interactArea.SetColliderActivation(false);
             InteractionManager.Instance.StartedInteract(this);
+            DrawManager.Instance.StartDrawing();
         }
 
         public override void FinishInteract() {
@@ -54,7 +52,9 @@ namespace OperaHouse {
             _ptble.enabled = false;
             _interactCanvas.SetActive(true);
             _interactArea.SetColliderActivation(true);
-            InteractionManager.Instance.FinishedInteract(this);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         #endregion

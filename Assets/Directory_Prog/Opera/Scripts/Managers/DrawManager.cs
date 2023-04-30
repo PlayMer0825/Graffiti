@@ -6,40 +6,37 @@ using UnityEngine;
 
 
 namespace OperaHouse {
-    public enum CanvasType {
-        Draw,
+    public enum PanelUIType {
         Bag,
         BlackBook,
     }
 
     public class DrawManager :  Singleton<DrawManager>{
-        [SerializeField] private DrawPanel _drawCanvas = null;
+        [SerializeField] private DrawPanel _drawPanel = null;
         public DrawPanel Draw {
             get {
-                if(_drawCanvas == null)
-                    _drawCanvas = GetComponentInChildren<DrawPanel>();
+                if(_drawPanel == null)
+                    _drawPanel = GetComponentInChildren<DrawPanel>();
 
-                return _drawCanvas;
+                return _drawPanel;
             }
         }
 
-
-        [SerializeField] private Bag _bagPanel = null;
-        public Bag Bag {
+        [SerializeField] private BagPanel _bagPanel = null;
+        public BagPanel Bag {
             get {
                 if(_bagPanel == null)
-                    _bagPanel = GetComponentInChildren<Bag>();
+                    _bagPanel = GetComponentInChildren<BagPanel>();
 
                 return _bagPanel;
             }
         }
 
-
-        [SerializeField] private BlackBook _blackBookPanel = null;
-        public BlackBook BlackBook {
+        [SerializeField] private BlackBookPanel _blackBookPanel = null;
+        public BlackBookPanel BlackBook {
             get {
                 if(_blackBookPanel == null)
-                    _blackBookPanel = GetComponentInChildren<BlackBook>();
+                    _blackBookPanel = GetComponentInChildren<BlackBookPanel>();
 
 
 
@@ -47,58 +44,57 @@ namespace OperaHouse {
             }
         }
 
-        private bool _isSomethingOpened = false;
+        [SerializeField] private Spray _spray = null;
+        public Spray Spray { get => _spray; }
+
+
+        #region Melamine Works
+        [SerializeField] private Point_Of_View _pointOfView = null;
+
+
+        #endregion
 
         protected override void Awake() {
             base.Awake();
+            _pointOfView = GameObject.Find("Player").GetComponent<Point_Of_View>();
         }
+
 
         private void Update() {
             if(InteractionManager.Instance.IsInteracting == false)
                 return;
 
             if(Input.GetKeyDown(KeyCode.Tab)) {
-                if(_isSomethingOpened) {
-                    CloseAllPanels();
-                    _isSomethingOpened = false;
-                    return;
-                }
-                    
-                OpenCanvas(CanvasType.Draw);
+                _bagPanel.OpenPanel();
+            }
+
+            if(Input.GetKeyDown(KeyCode.B)) {
+                _blackBookPanel.OpenPanel();
             }
         }
 
-        public void OpenCanvas(CanvasType type) {
-            switch(type) {
-                case CanvasType.Draw: {
-                    _drawCanvas.gameObject.SetActive(true);
-                    _bagPanel.gameObject.SetActive(false);
-                    _blackBookPanel.gameObject.SetActive(false);
-                } break;
-
-                case CanvasType.Bag: {
-                    _bagPanel.gameObject.SetActive(true);
-                    _drawCanvas.gameObject.SetActive(false);
-                    _blackBookPanel.gameObject.SetActive(false);
-                } break;
-
-                case CanvasType.BlackBook: {
-                    _blackBookPanel.gameObject.SetActive(true);
-                    _drawCanvas.gameObject.SetActive(false);
-                    _bagPanel.gameObject.SetActive(false);
-                } break;
-
-                default:break;
-            }
-
-            _isSomethingOpened = true;
+        public void StartDrawing() {
+            _blackBookPanel.ClosePanel();
+            _bagPanel.ClosePanel();
+            _drawPanel.OpenPanel();
+            _pointOfView.ForceChangeToTps();
         }
 
-        public void CloseAllPanels() {
-            _bagPanel.gameObject.SetActive(false);
-            _drawCanvas.gameObject.SetActive(false);
-            _blackBookPanel.gameObject.SetActive(false);
-            _isSomethingOpened = false;
+        /// <summary>
+        /// 상시 켜진 DrawPanel을 제외한 다른 패널이 켜져있는지 확인 후 없다면 true, 있다면 false를 반환.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAnyPanelOpened() {
+            return _bagPanel.IsOpened || _blackBookPanel.IsOpened;
+        }
+
+        public void FinishDrawing() {
+            _blackBookPanel.ClosePanel();
+            _bagPanel.ClosePanel();
+            _drawPanel.ClosePanel();
+            _spray.OnClickMouseLeft(false);
+            _pointOfView.ForceChangeToSide();
+            GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
         }
     }
 }

@@ -5,47 +5,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace OperaHouse {
-    public class DrawPanel : MonoBehaviour {
-        [SerializeField] private Button _clearButton = null;
-        [SerializeField] private Button _maskRemoveButton = null;
+    public class DrawPanel : UIPanel {
         [SerializeField] private Slider _remainSlider = null;
 
-        public Button ClearButton { get => _clearButton; }
-        public Button MaskRemoveButton { get => _maskRemoveButton; }
         public Slider RemainSlider { get => _remainSlider; }
 
-        public void ActivateRemoveButtonWithMask(StencilMask mask) {
-            if(_maskRemoveButton == null)
-                return;
+        protected override void OnEnablePanel() {
+            //DrawPanel은 그림 그릴 땐 상시 출력되어야하기 때문에 아무 것도 하지 않는다.
+            gameObject.SetActive(true);
 
-            _maskRemoveButton.onClick.RemoveAllListeners();
-            _maskRemoveButton.onClick.AddListener(mask.ReleaseMask);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
 
-            _maskRemoveButton.gameObject.SetActive(true);
-            _clearButton.gameObject.SetActive(false);
+            base.OnEnablePanel();
         }
 
-
-        /// <summary>
-        /// 마스크 오브젝트 삭제 버튼을 눌렀을 때 호출하는 함수.
-        /// </summary>
-        public void OnClick_RemoveButton() {
-            _clearButton.gameObject.SetActive(true);
-            _maskRemoveButton.gameObject.SetActive(false);
-        }
-
-
-        /// <summary>
-        /// 그래피티를 종료버튼을 눌렀을 때 호출하는 함수.
-        /// </summary>
-        public void OnClick_ClearButton() {
-            Interactable interacted = InteractionManager.Instance.CurInteracting;
-
-            if(interacted == null)
-                return;
-
-            interacted.FinishInteract();
-            DrawManager.Instance.CloseAllPanels();
+        protected override void OnDisablePanel() {
+            //DrawPanel은 그림 그릴 땐 상시 출력되어야하기 때문에 아무 것도 하지 않는다.
+            gameObject.SetActive(false);
+            base.OnDisablePanel();
         }
     }
 }

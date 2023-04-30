@@ -12,7 +12,7 @@ namespace OperaHouse {
 
         public bool IsInstalled { get => _isInstalled; }
 
-        public void InstallStencilObject(Texture maskTexture, Sprite maskVisual) {
+        public void StartInstallStencil(Texture maskTexture, Sprite maskVisual) {
             if(_mask == null)
                 return;
 
@@ -25,7 +25,8 @@ namespace OperaHouse {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if(Physics.Raycast(ray, out hit, 1000f)) {
+                if(Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("Paintable"))) {
+                    Debug.Log($"hit.name: {hit.collider.name} hit.tag: {hit.collider.tag}");
                     _mask.SetMaskVisible(true);
                     _mask.SetMaskTransform(hit.point, hit.normal);
 

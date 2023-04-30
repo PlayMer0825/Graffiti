@@ -59,7 +59,7 @@ namespace OperaHouse {
         /// <param name="position"></param>
         /// <param name="rotation"></param>
         public void SetMaskTransform(Vector3 position, Vector3 rotation) {
-            transform.position = position;
+            transform.position = position + new Vector3(0, 0, -0.01f);
             transform.rotation = Quaternion.Euler(rotation);
         }
 
@@ -71,7 +71,7 @@ namespace OperaHouse {
         public void InstallMask(Vector3 position, Vector3 rotation) {
             SetMaskTransform(position, rotation);
             _maskPreview.gameObject.SetActive(false);
-            DrawManager.Instance.Draw.ActivateRemoveButtonWithMask(this);
+            DrawManager.Instance.Bag.ActivateRemoveButtonWithMask(this);
         }
 
         /// <summary>
