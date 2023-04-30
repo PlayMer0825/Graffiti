@@ -21,7 +21,7 @@ namespace OperaHouse {
         private void OnTriggerEnter(Collider other) {
             if(other.CompareTag(_playerTag) == false)
                 return;
-
+ 
             _interactObj.ReadyInteract(other);
         }
 
