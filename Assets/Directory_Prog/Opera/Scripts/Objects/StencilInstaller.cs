@@ -30,14 +30,7 @@ namespace OperaHouse {
                     _mask.SetMaskVisible(true);
                     _mask.SetMaskTransform(hit.point, hit.normal);
 
-                    if(hit.collider.CompareTag("Paintable") == true) {
-                        //TODO: 설치 범위 체크하는 함수 추가 필요. Collider.bounds써야할듯
-                        _canInstall = true;
-                    }
-                    else {
-                        //TODO: 설치 범위 체크하는 함수 추가 필요. Collider.bounds써야할듯
-                        _canInstall = false;
-                    }
+                    _canInstall = true;
                 }
                 else {
                     _canInstall = false; 

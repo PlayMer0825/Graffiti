@@ -6,10 +6,6 @@ using UnityEngine;
 
 
 namespace OperaHouse {
-    public enum PanelUIType {
-        Bag,
-        BlackBook,
-    }
 
     public class DrawManager :  Singleton<DrawManager>{
         [SerializeField] private DrawPanel _drawPanel = null;
@@ -54,6 +50,9 @@ namespace OperaHouse {
 
         #endregion
 
+        private bool _isDrawing = false;
+        public bool IsDrawing { get => _isDrawing; }
+
         protected override void Awake() {
             base.Awake();
             _pointOfView = GameObject.Find("Player").GetComponent<Point_Of_View>();
@@ -74,6 +73,7 @@ namespace OperaHouse {
         }
 
         public void StartDrawing() {
+            _isDrawing = true;
             _blackBookPanel.ClosePanel();
             _bagPanel.ClosePanel();
             _drawPanel.OpenPanel();
@@ -89,6 +89,7 @@ namespace OperaHouse {
         }
 
         public void FinishDrawing() {
+            _isDrawing = false;
             _blackBookPanel.ClosePanel();
             _bagPanel.ClosePanel();
             _drawPanel.ClosePanel();

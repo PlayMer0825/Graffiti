@@ -34,7 +34,7 @@ namespace OperaHouse {
             }
         }
 
-        protected override void InitPos() {
+        protected override void Init() {
             _blackBookGroup.position =_blackBookGroup.position + new Vector3(0, _blackBookGroup.rect.height, 0);
             _blackBookGroup.gameObject.SetActive(true);
         }
