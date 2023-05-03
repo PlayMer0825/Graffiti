@@ -10,10 +10,7 @@ namespace OperaHouse
 {
     public class DialogObject : Interactable
     {
-        [SerializeField] [InspectorName("Dialog")]
-        private Dialog _dialog = null;
-
-        [SerializeField] 
+        [SerializeField]
         private InteractionArea _interactArea = null;
 
         [SerializeField]
@@ -26,7 +23,7 @@ namespace OperaHouse
 
         private void Awake()
         {
-            _dialog = GetComponentInChildren<Dialog>();
+            
             _interactArea = GetComponentInChildren<InteractionArea>();
 
             if(_interactCanvas)
@@ -67,7 +64,6 @@ namespace OperaHouse
         }
         public override void StartInteract()
         {
-            _dialog.enabled = true;
 
             _interactArea.SetColliderActivation(false);
             InteractionManager.Instance.StartedInteract(this);
@@ -76,15 +72,21 @@ namespace OperaHouse
 
         public override void FinishInteract()
         {
-            //TODO: 카메라 종료 및 다이얼로그 기능 OFF
-            _dialog.enabled = false;
+            //TODO: 다이얼로그 기능 OFF
             _interactArea.SetColliderActivation(true);
-            InteractionManager.Instance.FinishedInteract(this);
+            InteractionManager.Instance.FinishedInteract();
 
         }
+
 
     }
 
 
  
 }
+
+
+
+
+
+
