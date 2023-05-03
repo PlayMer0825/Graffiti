@@ -47,18 +47,14 @@ namespace OperaHouse {
         #region Melamine Works
         [SerializeField] private Point_Of_View _pointOfView = null;
 
-
         #endregion
 
         private bool _isDrawing = false;
         public bool IsDrawing { get => _isDrawing; }
-
         protected override void Awake() {
             base.Awake();
             _pointOfView = GameObject.Find("Player").GetComponent<Point_Of_View>();
         }
-
-
         private void Update() {
             if(InteractionManager.Instance.IsInteracting == false)
                 return;
