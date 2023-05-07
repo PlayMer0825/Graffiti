@@ -16,11 +16,11 @@ namespace ZB.Dialogue.Graffiti
         private bool m_textAppearing;
 
         //텍스트 등장 속도
-        float m_textAppearDuration = 0.05f;
-        WaitForSeconds m_wfs_textAppearDuration;
+        private float m_textAppearDuration = 0.05f;
+        private WaitForSeconds m_wfs_textAppearDuration;
 
-        Vector3 m_actorPosition;    //말풍선 등장 위치
-        string m_talkText;          //대사
+        private Vector3 m_actorPosition;    //말풍선 등장 위치
+        private string m_talkText;          //대사
 
         public void AppearNew(Vector3 position, string text)
         {
@@ -53,11 +53,11 @@ namespace ZB.Dialogue.Graffiti
 
             m_focusingContent.m_Rtf.DOKill();
             m_focusingContent.m_Rtf.sizeDelta = Vector2.zero;
-            transform.DOMove(Vector2.zero, 0.01f).OnComplete(() =>
+            transform.DOMove(Vector2.zero, 0.05f).OnComplete(() =>
             {
                 m_focusingContent.m_Rtf.DOKill();
                 m_focusingContent.m_Rtf.sizeDelta = Vector2.one * 10;
-                m_focusingContent.m_Rtf.DOSizeDelta(m_rtf_sizeCheck.sizeDelta + Vector2.one * 20, 0.2f).SetDelay(0.01f);
+                m_focusingContent.m_Rtf.DOSizeDelta(m_rtf_sizeCheck.sizeDelta + Vector2.one * 20, 0.2f);
             });
 
             if (textAppear_C != null)
@@ -96,15 +96,6 @@ namespace ZB.Dialogue.Graffiti
                 yield return m_wfs_textAppearDuration;
             }
             m_textAppearing = false;
-        }
-
-        [Space(30)]
-        [SerializeField] Transform testTf;
-        [SerializeField] string testStr;
-        [ContextMenu("testAppear")]
-        public void TestAppear()
-        {
-            AppearNew(testTf.position, testStr);
         }
     }
 }
