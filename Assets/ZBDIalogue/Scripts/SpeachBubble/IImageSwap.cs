@@ -11,13 +11,13 @@ namespace ZB.Dialogue
         [SerializeField] SingleContent[] m_contents;
         public SingleContent m_focusingContent { get => m_contents[m_index]; }
 
-        [SerializeField] protected int m_index = 0;
+        protected int m_index = 0;
 
         protected abstract void AppearEvent();
         protected abstract void DisappearEvent();
         protected abstract void ResetState();
 
-        [SerializeField] bool imageOverlaping;
+        bool imageOverlaping;
 
         public void Appear(bool appearNew)
         {

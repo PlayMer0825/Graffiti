@@ -21,11 +21,13 @@ namespace ZB.Dialogue.Graffiti
     {
         public int m_ActorID;
         public string m_Context;
+        public string m_AniInput;
 
-        public Act(string ActorID, string Context)
+        public Act(string ActorID, string Context, string AniInput)
         {
             m_ActorID = int.Parse(ActorID);
             m_Context = Context;
+            m_AniInput = AniInput;
         }
     }
 
@@ -86,7 +88,8 @@ namespace ZB.Dialogue.Graffiti
         {
             Act result = new Act(
                             dic_str_str["ActorID"],
-                            dic_str_str["Context"]
+                            dic_str_str["Context"],
+                            dic_str_str["Acting/Face"]
                 );
 
             return result;

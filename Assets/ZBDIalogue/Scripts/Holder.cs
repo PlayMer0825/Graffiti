@@ -23,8 +23,11 @@ namespace ZB.Dialogue.Graffiti
 
         public ReadType m_ReadType { get => m_readType; }
 
+        [Header("말걸어서 대화 / 닿으면 강제대화")]
         [SerializeField] private ReadType m_readType;
+        [Header("하나의 대화만 / 여러개 대화 순차적으로")]
         [SerializeField] private ExportType m_exportType;
+        [Header("ID 세팅 입력필요")]
         [SerializeField] private IDSets[] m_idSets;
         [SerializeField] private int currentIndex;
 
@@ -51,6 +54,7 @@ namespace ZB.Dialogue.Graffiti
         public class IDSets
         {
             public int m_EventID;
+            [Header("해당 대화 끝나고 일어날 이벤트")]
             public UnityEvent m_uEvent_OnEscape;
         }
     }

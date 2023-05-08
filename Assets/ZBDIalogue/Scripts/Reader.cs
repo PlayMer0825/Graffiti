@@ -50,13 +50,14 @@ namespace ZB.Dialogue.Graffiti
         public void OnBtnInput()
         {
             //새 다이얼로그 입장
-            if (m_inputWaiting && !m_machine.Interacting)
+            if (m_inputWaiting && !m_machine.m_Interacting)
             {
                 NewExport();
+                m_readableShower.ShowStop();
             }
 
             //다이얼로그 계속 진행
-            else if (m_machine.Interacting)
+            else if (m_machine.m_Interacting)
             {
                 m_machine.TryNext();
             }
@@ -81,10 +82,9 @@ namespace ZB.Dialogue.Graffiti
             if (Input.GetKeyDown(KeyCode.E))
             {
                 OnBtnInput();
-                m_readableShower.ShowStop();
             }
 
-            if(!m_machine.Interacting && m_inputWaiting && !m_readableShower.m_Showing)
+            if(!m_machine.m_Interacting && m_inputWaiting && !m_readableShower.m_Showing)
             {
                 m_readableShower.ShowStart();
             }

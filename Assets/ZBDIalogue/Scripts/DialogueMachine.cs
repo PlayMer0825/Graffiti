@@ -7,22 +7,29 @@ namespace ZB.Dialogue.Graffiti
 {
     public class DialogueMachine : MonoBehaviour
     {
+        [Header("다이얼로그 입장할 때 이벤트")]
+        [SerializeField] private UnityEvent m_fixedEvent_OnEnter;
+        [Header("다이얼로그 퇴장할 때 이벤트")]
+        [SerializeField] private UnityEvent m_fixedEvent_OnEscape;
+
+        private UnityEvent m_uEvent_OnEscape;
         [SerializeField] private DialogueContentsPool m_pool;
         [SerializeField] private ActorConnector m_actorConnector;
         [SerializeField] private SpeechBubble m_speechBubble;
-        [SerializeField] private UnityEvent m_uEvent_OnEscape;
 
-        public bool Interacting { get => interacting; }
+        public bool m_Interacting { get => m_interacting; }
 
-        Interact nowInteract;
-        int index;
-        bool interacting;
+        Interact m_nowInteract;
+        int m_index;
+        bool m_interacting;
 
         public void NewExport(int EventID)
         {
-            nowInteract = m_pool.GetInteract(EventID);
-            index = -1;
-            interacting = true;
+            m_fixedEvent_OnEnter.Invoke();
+
+            m_nowInteract = m_pool.GetInteract(EventID);
+            m_index = -1;
+            m_interacting = true;
             TryNext();
         }
 
@@ -37,11 +44,11 @@ namespace ZB.Dialogue.Graffiti
             //등장 연출이 끝났다. 다음대화
             else
             {
-                index++;
+                m_index++;
                 //진행할 대화가 있다
-                if (index < nowInteract.m_Acts.Count)
+                if (m_index < m_nowInteract.m_Acts.Count)
                 {
-                    Act nowAct = nowInteract.m_Acts[index];
+                    Act nowAct = m_nowInteract.m_Acts[m_index];
 
                     //말풍선을 제외한 행동
                     m_actorConnector.Actor_Do(nowAct);
@@ -61,14 +68,20 @@ namespace ZB.Dialogue.Graffiti
 
         public void EscapeDialogue()
         {
-            interacting = false;
+            m_interacting = false;
             m_uEvent_OnEscape.Invoke();
+            m_fixedEvent_OnEscape.Invoke();
             m_uEvent_OnEscape.RemoveAllListeners();
         }
 
         public void AddEscapeEvent(UnityAction action)
         {
             m_uEvent_OnEscape.AddListener(action);
+        }
+
+        private void Awake()
+        {
+            m_uEvent_OnEscape = new UnityEvent();
         }
     }
 }
