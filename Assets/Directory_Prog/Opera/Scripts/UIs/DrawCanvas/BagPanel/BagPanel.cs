@@ -27,7 +27,7 @@ namespace OperaHouse {
             }
         }
 
-        protected override void InitPos() {
+        protected override void Init() {
             _panel.position = _panel.position - new Vector3(_panel.rect.width, 0, 0);
             _panel.gameObject.SetActive(true);
 

@@ -10,11 +10,13 @@ namespace OperaHouse {
         [SerializeField] private Animator _handAnim = null;
         private readonly int hashIsFiring = Animator.StringToHash("isFiring");
 
+        private DrawManager _drawManager = null;
+
         private bool _isEnabled = false;
 
         private void Start() {
             _spray = DrawManager.Instance.Spray;
-
+            _drawManager = DrawManager.Instance;
         }
 
         private void OnEnable() {
@@ -32,10 +34,19 @@ namespace OperaHouse {
             if(_spray == null)
                 return;
 
-            _spray.transform.position = _sprayHolder.transform.position;
-            _spray.transform.rotation = _sprayHolder.transform.rotation;
+            if(_drawManager.IsAnyPanelOpened())
+                return;
 
+            _spray.transform.position = _sprayHolder.transform.position;
+            _spray.SetSprayRotation();
+
+            bool isShaking = Input.GetMouseButton(2);
             bool isClicked = Input.GetMouseButton(0);
+
+            if(isShaking) {
+                _spray.OnShake(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+                isClicked = false;
+            }
 
             _spray.OnClickMouseLeft(isClicked);
             _handAnim.SetBool(hashIsFiring, isClicked);

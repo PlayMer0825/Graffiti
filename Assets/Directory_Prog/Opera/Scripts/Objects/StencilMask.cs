@@ -17,6 +17,14 @@ namespace OperaHouse {
             _mat = _maskPreview.material;
         }
 
+        private void Update() {
+            if(Input.GetKeyDown(KeyCode.Z)) {
+                bool isActive = _mask.enabled;
+                _mask.enabled = !isActive;
+                _maskVisual.gameObject.SetActive(!isActive);
+            }
+        }
+
         /// <summary>
         /// 마스크를 처음 생성할 때 초기화하는 함수
         /// </summary>

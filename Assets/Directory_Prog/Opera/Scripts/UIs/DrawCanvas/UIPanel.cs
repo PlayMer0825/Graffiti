@@ -11,7 +11,7 @@ namespace OperaHouse {
         public virtual bool IsPlayingAnimation { get; }
 
         private void Awake() {
-            InitPos();
+            Init();
         }
 
         public virtual void OpenPanel() {
@@ -33,7 +33,7 @@ namespace OperaHouse {
             _isOpened = false;
         }
 
-        protected virtual void InitPos() {
+        protected virtual void Init() {
 
         }
     }
