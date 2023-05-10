@@ -33,8 +33,8 @@ public class Board : MonoBehaviour
 
     public GameObject Bench;
     public Slider slider_Balance;
-    public float slider_Balance_Speed=150f;
-    public float slider_Balance_Auto = 300f;
+    public float slider_Balance_Auto=150f;
+    public float slider_Balance_Speed = 300f;
     private bool balance_Slider = false;
     public GameObject slider2;
 
@@ -79,12 +79,12 @@ public class Board : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 Debug.Log("a");
-                slider_Balance.value -= slider_Balance_Auto * Time.deltaTime;
+                slider_Balance.value -= slider_Balance_Speed * Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.D))
             {
                 Debug.Log("d");
-                slider_Balance.value += slider_Balance_Auto * Time.deltaTime;
+                slider_Balance.value += slider_Balance_Speed * Time.deltaTime;
             }
         }
 
@@ -154,10 +154,10 @@ public class Board : MonoBehaviour
             yield return null;
             if (slider_Balance.value <= 150)
             {
-                slider_Balance.value -= slider_Balance_Speed * Time.deltaTime;
+                slider_Balance.value -= slider_Balance_Auto * Time.deltaTime;
             }
             else
-                slider_Balance.value += slider_Balance_Speed * Time.deltaTime;
+                slider_Balance.value += slider_Balance_Auto * Time.deltaTime;
         }
         if(slider_Balance.value >= 0  && slider_Balance.value <= 300)
         {
