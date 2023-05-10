@@ -9,106 +9,125 @@ using UnityEngine.Video;
 /// </summary>
 public enum ECutSceneType { Video, Image } 
 
-public enum ECutSceneNames
-{
-    CutScene01,
-    CutScene02,
-    CutScene03
-}
-
 [System.Serializable]
-public class CCutSceneData
+public class CCutSceneDataSet
 {
     public ECutSceneType eCutSceneType;
-    public Image[] cutSceneImages;
-    public RawImage videoCutSceneImage;
+    public Sprite[] cutSceneImages;
     public VideoClip videoClip;
-
-    public void ECutSceneType(ECutSceneType _cutSceneType, Image[] _cutSceneImages = null, RawImage _videoCutSceneImage = null, VideoClip _cutVideoClip = null)
-    {
-        this.eCutSceneType = _cutSceneType;
-        this.cutSceneImages = _cutSceneImages;
-        this.videoCutSceneImage = _videoCutSceneImage;
-        this.videoClip = _cutVideoClip;
-    }
 }
 public class CutSceneManager : MonoBehaviour
 {
-    public Image image;
-    public RawImage rawImage;
-    public VideoPlayer videoPlayer;
+    [Header("컷씬 출력될 이미지들 넣어주기")]
+    [SerializeField] Image cutSceneImg;
+    [SerializeField] RawImage videoCutSceneImage;
+    [SerializeField] private VideoPlayer videoPlayer;
+    private VideoClip videoClip;
 
-    public CCutSceneData[] cutSceneData;
-    private int index = 0;
+    [Header("컷씬 데이터 지정")]
+    [SerializeField]
+    private CCutSceneDataSet[] cutSceneDataSet;
 
-    private bool isPlayingCutScene;
+    private bool isPlayingCutScene = false;
+    int currentCutSceneIndex = 0; // 현재 재생되고 있는 컷씬 인덱스
+    int currentImageindex = 0; // 이미지 재생 인덱스 
+
+    [SerializeField] int NowCutSceneIndex = 0; // 
+    
+
+    private void Awake()
+    {
+        //cutSceneImg = GetComponent<Image>();
+        //videoCutSceneImage = GetComponent<RawImage>();
+        videoClip = GetComponent<VideoClip>();
+
+        videoPlayer.clip = cutSceneDataSet[currentCutSceneIndex].videoClip; // videoPlayer 의 clip 에 할당 
+        cutSceneImg.sprite = cutSceneDataSet[currentCutSceneIndex].cutSceneImages[0]; // Image 인덱스 초기화
+
+
+
+    }
+
     private void Start()
     {
-        SetCutSceneType(index);
+        //ClearCutScene();
+        StartCutScene();
     }
 
     private void Update()
     {
-        if(isPlayingCutScene)
+        if (isPlayingCutScene == false) return;
+
+        if (cutSceneDataSet[currentCutSceneIndex].eCutSceneType == ECutSceneType.Image)
         {
-            if(Input.GetMouseButtonDown(0))
+            if (currentCutSceneIndex >= cutSceneDataSet.Length - 1) // 모든 이미지를 출력한 경우
             {
-                SetCutSceneType(index);
-                index++;
+                EndCutScene(); // 컷씬 종료
+            }
+            else
+            {
+                // 다음 이미지를 출력
+                cutSceneImg.sprite = cutSceneDataSet[currentCutSceneIndex].cutSceneImages[0];
+                currentCutSceneIndex++;
             }
         }
-    }
-    public void SetCutSceneType(int _index) // 컷씬 지정
-    {
-        ECutSceneType type = cutSceneData[_index].eCutSceneType;
-
-        if (type == ECutSceneType.Video) /// 컷씬 타입이 Video 라면
-        {
-            VideoClip videoClip = cutSceneData[_index].videoClip;  // CCutSceneData 의 videoClip 과 같음 
-            rawImage.gameObject.SetActive(true);
-            image.gameObject.SetActive(false);
-
-            PlayVideo();
-            videoPlayer.loopPointReached += VideoCutSceneCheckOver; // 비디오 컷씬 끝났을 때 컷씬 종료 
-
-
-        }
-        else if (type == ECutSceneType.Image) /// 컷씬 타입이 Image 라면 
-        {
-            Image[] images = cutSceneData[_index].cutSceneImages; // CCutSceneData 의 cutSceneImages 
-            
-        }
-
-    }   
-
-    void PlayVideo() // 비디오 컷씬 시작 
-    {
-        if(videoPlayer != null && videoPlayer.isPrepared)
-        {
-            isPlayingCutScene = true;
-            videoPlayer.Play();
-        }
-    }
-
-    void PlayImgCutScene()
-    {
 
     }
-    void VideoCutSceneCheckOver(VideoPlayer _vp) // 비디오 컷씬 종료 
+    public void ClearCutScene()
     {
-        Debug.Log("Video 컷씬 종료");
-        if(videoPlayer!=null && videoPlayer.isPrepared)
-        {
-            videoPlayer.Stop();
-            isPlayingCutScene = false;
-            rawImage.gameObject.SetActive(false);
-        }
-
-    }
-    void ImageCutSceneCheckOver(Image _img) // 이미지 컷씬 종료 
-    {
-        Debug.Log("Image 컷씬 종료");
         isPlayingCutScene = false;
-        image.gameObject.SetActive(false);
+        videoCutSceneImage.gameObject.SetActive(false);
+        cutSceneImg.gameObject.SetActive(false);
+        currentCutSceneIndex = 0;
+
     }
+    public void StartCutScene() // 공통적으로 들어가는 컷씬이 시작할 때 
+    {
+        // 컷씬 데이터가 없으면 리턴
+        if (cutSceneDataSet == null || cutSceneDataSet.Length == 0) { Debug.Log("컷씬 데이터가 없습니다"); return; }
+        // 이미 컷씬이 실행되고 있으면 리턴
+        if (isPlayingCutScene == true) { Debug.Log("컷씬이 현재 실행중입니다."); return; }
+
+        ECutSceneType type = cutSceneDataSet[currentCutSceneIndex].eCutSceneType;
+
+        switch(type)
+        {
+            case ECutSceneType.Video:
+                {
+                    Debug.Log(currentCutSceneIndex + " 번째는 비디오다!");
+                    VideoCutScene();
+                }
+                break;
+            case ECutSceneType.Image:
+                {
+                    Debug.Log(currentCutSceneIndex + " 번째는 이미지다!");
+                    ImageCutScene();
+                }
+                break;
+        }
+    }
+    public void EndCutScene() // 컷씬이 끝날 때 다음 행동 처리 할 수 있는 느낌으로 
+    {
+        isPlayingCutScene = false;
+        currentCutSceneIndex = 0;
+
+        cutSceneImg.gameObject.SetActive(false);
+        videoCutSceneImage.gameObject.SetActive(false);
+    }
+
+    public void VideoCutScene() // 비디오 컷씬에 대한 처리들 
+    {
+        Debug.Log("VideoCutScene 메서드 정상 작동중!");
+        videoPlayer.clip = cutSceneDataSet[currentCutSceneIndex].videoClip;
+        videoCutSceneImage.gameObject.SetActive(true);
+        videoPlayer.Play();
+    }
+
+    public void ImageCutScene() // 이미지 컷씬에 대한 처리들 
+    {
+        Debug.Log("ImageCutScene 메서드 정상 작동중!");
+        cutSceneImg.gameObject.SetActive(true);
+        //cutSceneImg.sprite = cutSceneDataSet[currentImgIndex].cutSceneImages[]
+    }
+
 }
