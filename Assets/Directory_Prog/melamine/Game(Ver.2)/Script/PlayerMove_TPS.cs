@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using OperaHouse;
+using DG.Tweening;
+using System;
+using UnityEngine.Events;
 
 public class PlayerMove_TPS : MonoBehaviour
 {
@@ -35,14 +38,18 @@ public class PlayerMove_TPS : MonoBehaviour
     private Animator animator;
     private DrawManager _drawManager;
 
+    private CinemachineBrain _cam = null;
 
+    private void Awake() {
+        myRigid = GetComponent<Rigidbody>();
+        animationMoveWeight = 0f;
+        animator = GetComponent<Animator>();
+
+        _cam = Camera.main.GetComponent<CinemachineBrain>();
+    }
 
     void Start()
     {
-        myRigid = GetComponent<Rigidbody>();
-        animationMoveWeight = 0f;
-        animator=GetComponent<Animator>();
-
         _drawManager = DrawManager.Instance;
     }
 
