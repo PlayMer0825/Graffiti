@@ -1,3 +1,4 @@
+using PaintIn3D;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +44,9 @@ namespace OperaHouse {
         [SerializeField] private Spray _spray = null;
         public Spray Spray { get => _spray; }
 
+        [SerializeField]private StencilMask _stencil = null;
+        public StencilMask Stencil { get => _stencil; }
+
 
         #region Melamine Works
         [SerializeField] private Point_Of_View _pointOfView = null;
@@ -51,10 +55,12 @@ namespace OperaHouse {
 
         private bool _isDrawing = false;
         public bool IsDrawing { get => _isDrawing; }
+
         protected override void Awake() {
             base.Awake();
             _pointOfView = GameObject.Find("Player").GetComponent<Point_Of_View>();
         }
+
         private void Update() {
             if(InteractionManager.Instance.IsInteracting == false)
                 return;
@@ -70,10 +76,19 @@ namespace OperaHouse {
 
         public void StartDrawing() {
             _isDrawing = true;
+            _blackBookPanel.gameObject.SetActive(true);
             _blackBookPanel.ClosePanel();
+            _bagPanel.gameObject.SetActive(true);
             _bagPanel.ClosePanel();
+            _drawPanel.gameObject.SetActive(true);
             _drawPanel.OpenPanel();
             _pointOfView.ForceChangeToTps();
+
+            P3dChangeCounter counter = InteractionManager.Instance.CurInteracting.gameObject.GetComponentInChildren<P3dChangeCounter>();
+            if(counter == null) return;
+            PercentageUI ui = _drawPanel.Percent;
+            if(ui == null) return;
+            ui.RegisterForChangeCounter(counter);
         }
 
         /// <summary>
@@ -87,10 +102,14 @@ namespace OperaHouse {
         public void FinishDrawing() {
             _isDrawing = false;
             _blackBookPanel.ClosePanel();
+            _blackBookPanel.gameObject.SetActive(false);
             _bagPanel.ClosePanel();
+            _bagPanel.gameObject.SetActive(false);
             _drawPanel.ClosePanel();
+            _drawPanel.gameObject.SetActive(false);
             _spray.OnClickMouseLeft(false);
             _pointOfView.ForceChangeToSide();
+            _drawPanel.Percent.ReleaseCounter();
             GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
         }
     }

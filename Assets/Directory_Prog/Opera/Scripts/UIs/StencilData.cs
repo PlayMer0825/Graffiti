@@ -11,7 +11,7 @@ namespace OperaHouse {
 
     [Serializable]
     public struct Stencil {
-        [SerializeField] private Texture _maskSprite;
+        [SerializeField] private Texture2D _maskSprite;
         [SerializeField] private Sprite _maskOutlineSprite;
         [SerializeField] private bool _isUnlocked;
 
@@ -22,7 +22,7 @@ namespace OperaHouse {
             _isUnlocked = false;
         }
 
-        public Texture MaskSprite { get => _maskSprite; }
+        public Texture2D MaskSprite { get => _maskSprite; }
         public Sprite MaskOutlineSprite { get => _maskOutlineSprite; }
         public bool IsUnlocked { get => _isUnlocked; set => _isUnlocked = value; }
     }
