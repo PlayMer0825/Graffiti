@@ -44,8 +44,6 @@ public class CutSceneManager : MonoBehaviour
         videoPlayer.clip = cutSceneDataSet[currentCutSceneIndex].videoClip; // videoPlayer 의 clip 에 할당 
         cutSceneImg.sprite = cutSceneDataSet[currentCutSceneIndex].cutSceneImages[0]; // Image 인덱스 초기화
 
-
-
     }
 
     private void Start()

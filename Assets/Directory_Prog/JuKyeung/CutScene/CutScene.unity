@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &312562887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -516,18 +516,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794f60209977b5b4182b0b7ca83eff9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1791366873}
-  rawImage: {fileID: 312562888}
+  cutSceneImg: {fileID: 1791366873}
+  videoCutSceneImage: {fileID: 312562888}
   videoPlayer: {fileID: 428272784}
-  cutSceneData:
-  - eCutSceneType: 0
-    cutSceneImages: []
-    videoCutSceneImage: {fileID: 312562888}
+  cutSceneDataSet:
+  - eCutSceneType: 1
+    cutSceneImages:
+    - {fileID: 21300000, guid: 8835bde50b873b548bf9b3f3854c4b28, type: 3}
+    - {fileID: 21300000, guid: 8768cbf22a664234c95f64d2dbeb6de5, type: 3}
+    - {fileID: 21300000, guid: 6fac4e39926fd9c4ca2ba4416160a857, type: 3}
     videoClip: {fileID: 32900000, guid: a6bd3a0f29ed4a246ba7d7749bcf0b60, type: 3}
-  - eCutSceneType: 0
-    cutSceneImages: []
-    videoCutSceneImage: {fileID: 312562888}
-    videoClip: {fileID: 32900000, guid: 68b3ec0b09643dc4e846c4782185e9b3, type: 3}
+  NowCutSceneIndex: 0
 --- !u!4 &1364893932
 Transform:
   m_ObjectHideFlags: 0
