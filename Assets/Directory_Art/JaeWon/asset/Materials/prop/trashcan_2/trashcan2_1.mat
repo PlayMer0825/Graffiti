@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: trashcan2_1
   m_Shader: {fileID: 4800000, guid: ee7e4c9a5f6364b688a332c67fc32cca, type: 3}
-  m_ShaderKeywords: _DETAIL_MULX2 _METALLICSPECGLOSSMAP _NORMALMAP _SPECULAR_SETUP
+  m_ShaderKeywords: _DETAIL_MULX2 _NORMALMAP _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: 3cda52c5e66d24741b878f3b5a945492, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -90,7 +90,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
-    - _DetailNormalMapScale: 1
+    - _DetailNormalMapScale: 0.189
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -104,7 +104,7 @@ Material:
     - _ReceiveShadows: 1
     - _SampleGI: 0
     - _Shininess: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.426
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
