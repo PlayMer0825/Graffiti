@@ -8,42 +8,35 @@ using DG.Tweening.Plugins.Options;
 
 namespace OperaHouse {
     public class BagPanel : UIPanel {
-        [SerializeField] RectTransform _panel = null;
+        [SerializeField] RectTransform _palette = null;
+        private Vector3 _paletteClosedPos, _paletteOpenPos;
+        [SerializeField] RectTransform _paletteArea = null;
 
-        [SerializeField] RectTransform _buttonGroup = null;
 
-        [SerializeField] Button _clearButton = null;
-        [SerializeField] Button _maskRemoveButton = null;
-
-        TweenerCore<Vector3, Vector3, VectorOptions> _panelTweener = null;
-        TweenerCore<Vector3, Vector3, VectorOptions> _buttonTweener = null;
+        TweenerCore<Vector3, Vector3, VectorOptions> _paletteTweener = null;
 
         public override bool IsPlayingAnimation {
             get {
-                if(_panelTweener == null || _buttonTweener == null)
+                if(_paletteTweener == null)
                     return false;
 
-                return _panelTweener.IsComplete() && _buttonTweener.IsComplete();
+                return _paletteTweener.IsComplete();
             }
         }
 
         protected override void Init() {
-            _panel.position = _panel.position - new Vector3(_panel.rect.width, 0, 0);
-            _panel.gameObject.SetActive(true);
-
-            _buttonGroup.position = _buttonGroup.position + new Vector3(0, _buttonGroup.rect.height, 0);
-            _buttonGroup.gameObject.SetActive(true);
+            _palette.localPosition = new Vector3(-(Screen.width / 2), _palette.localPosition.y, 0);
+            _paletteClosedPos = _palette.position;
+            _paletteOpenPos = _palette.position + new Vector3(_paletteArea.rect.width, 0f, 0f);
+            _palette.gameObject.SetActive(true);
         }
 
         public override void OpenPanel() {
             if(DrawManager.Instance.IsAnyPanelOpened() && IsOpened == false)
                 return;
 
-            if(_panelTweener != null)
-                _panelTweener.Kill(true);
-
-            if(_buttonTweener != null)
-                _buttonTweener.Kill(true);
+            if(_paletteTweener != null)
+                _paletteTweener.Kill();
 
             if(IsOpened)
                 base.ClosePanel();
@@ -52,20 +45,15 @@ namespace OperaHouse {
         }
 
         public override void ClosePanel() {
-            if(_panelTweener != null)
-                _panelTweener.Kill(true);
-
-            if(_buttonTweener != null)
-                _buttonTweener.Kill(true);
-
+            if(_paletteTweener != null)
+                _paletteTweener.Kill();
 
             base.ClosePanel();
         }
 
         protected override void OnEnablePanel() {
-            _panelTweener = _panel.DOMove(_panel.position + new Vector3(_panel.rect.width, 0, 0), 1f);
-            _buttonTweener = _buttonGroup.DOMove(_buttonGroup.position - new Vector3(0, _buttonGroup.rect.height, 0), 1f);
-
+            _paletteTweener = _palette.DOMove(_paletteOpenPos, 1f);
+            _palette.gameObject.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
@@ -73,9 +61,8 @@ namespace OperaHouse {
         }
 
         protected override void OnDisablePanel() {
-            _panelTweener = _panel.DOMove(_panel.position - new Vector3(_panel.rect.width, 0, 0), 1f);
-            _buttonTweener = _buttonGroup.DOMove(_buttonGroup.position + new Vector3(0, _buttonGroup.rect.height, 0), 1f);
-
+            _paletteTweener = _palette.DOMove(_paletteClosedPos, 1f);
+            //_paletteTweener.onComplete.
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -84,14 +71,14 @@ namespace OperaHouse {
 
 
         public void ActivateRemoveButtonWithMask(StencilMask mask) {
-            if(_maskRemoveButton == null)
-                return;
+            //if(_maskRemoveButton == null)
+            //    return;
 
-            _maskRemoveButton.onClick.RemoveAllListeners();
-            _maskRemoveButton.onClick.AddListener(mask.ReleaseMask);
+            //_maskRemoveButton.onClick.RemoveAllListeners();
+            //_maskRemoveButton.onClick.AddListener(mask.ReleaseMask);
 
-            _maskRemoveButton.gameObject.SetActive(true);
-            _clearButton.gameObject.SetActive(false);
+            //_maskRemoveButton.gameObject.SetActive(true);
+            //_clearButton.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -100,8 +87,8 @@ namespace OperaHouse {
         public void OnClick_RemoveButton() {
             //TODO: 여기서도 그림 다 그렸는지 체크
 
-            _clearButton.gameObject.SetActive(true);
-            _maskRemoveButton.gameObject.SetActive(false);
+            //_clearButton.gameObject.SetActive(true);
+            //_maskRemoveButton.gameObject.SetActive(false);
         }
 
 

@@ -116,8 +116,8 @@ namespace OperaHouse {
         /// </summary>
         private void SetPageGroupsWithCurrentPage() {
             SetCurrentPageUI();
-            _leftPage.InitializePage(GetStencilsInPage(_curPageNum));
-            _rightPage.InitializePage(GetStencilsInPage((_curPageNum + 1) * 6));
+            _leftPage.InitializePage(GetStencilsInPage(_curPageNum * 12));
+            _rightPage.InitializePage(GetStencilsInPage(_curPageNum * 12 + 6));
         }
 
         /// <summary>
