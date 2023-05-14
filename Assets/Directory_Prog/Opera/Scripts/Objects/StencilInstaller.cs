@@ -25,18 +25,13 @@ namespace OperaHouse {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if(Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("Paintable"))) {
-                    Debug.Log($"hit.name: {hit.collider.name} hit.tag: {hit.collider.tag}");
-                    _mask.SetMaskVisible(true);
-                    _mask.SetMaskTransform(hit.point, hit.normal);
-
+                if(Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("Paintable"))) 
                     _canInstall = true;
-                }
-                else {
+                else 
                     _canInstall = false; 
-                    _mask.SetMaskVisible(false);
-                }
+
                 _mask.SetMaskInstallationAvailable(_canInstall);
+                _mask.SetMaskTransform(hit.point, hit.normal);
 
                 if(Input.GetMouseButtonDown(1)) {
                     _mask.ReleaseMask();
