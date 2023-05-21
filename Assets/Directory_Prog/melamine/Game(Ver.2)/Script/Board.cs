@@ -12,8 +12,7 @@ public class Board : MonoBehaviour
     public float direction = 3.0f; //이동속도+방향
     public float diRection = 0f;
     public float dash = 4f;
-    public float dash_jump = 3f;
-    
+    public float dash_jump = 3f; 
     public float animMoveWeightSpeed;
 
     public float decrease = -1.5f;
@@ -58,18 +57,20 @@ public class Board : MonoBehaviour
     void Update()
     {
         CheckGround();
-        AnimationUpdate();
-        if (Input.GetKey(KeyCode.W) && ground&&bench_State==false)
+        //AnimationUpdate();
+        if (Input.GetKeyDown(KeyCode.W) && ground&&bench_State==false)
         {
+            animator.SetTrigger("isJumping");
             Debug.Log("jump");
             Vector3 jumpPower = Vector3.up * jumpHeight;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-            animator.SetTrigger("isJumping");
         }
 
         if (Input.GetMouseButtonDown(0)&&dash_Slider==false)
         {
+            
             slider1.SetActive(true);
+            //animator.SetFloat("slide_Speed", 1.0f);
             //diRection = direction * dash;
             dash_Slider = true;
             SetDash();
@@ -134,12 +135,14 @@ public class Board : MonoBehaviour
         if (slider_Dash.value >= minPos && slider_Dash.value <= maxPos)
         {
             Debug.Log("ok");
-            diRection = direction * dash;
+            animator.SetTrigger("isSliding");
+            diRection = direction * dash;   
             dash_Slider = false;
             slider1.SetActive(false);
         }
         else
         {
+            animator.SetTrigger("isSliding");
             diRection = direction * (dash/2);
             dash_Slider = false;
             slider1.SetActive(false);
@@ -183,7 +186,8 @@ public class Board : MonoBehaviour
     {
         if (other.gameObject.name == "Bench")
         {
-            bench = true;   
+            bench = true;
+            animator.SetBool("isBench", true);
         }
     }
     void CheckBalance()
@@ -204,7 +208,7 @@ public class Board : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isGround", false);
+            //animator.SetBool("isGround", false);
             ground = false;
         }
     }
@@ -241,5 +245,8 @@ public class Board : MonoBehaviour
         }
         animator.SetFloat("moveWeight", animationMoveWeight);
     }
-
+    void Jump()
+    {
+        
+    }
 }

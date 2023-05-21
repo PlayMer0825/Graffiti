@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008680698, g: 0.008848519, b: 0.01971401, a: 1}
+  m_IndirectSpecularColor: {r: 0.008648451, g: 0.008884113, b: 0.019687377, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3339,7 +3339,7 @@ MonoBehaviour:
   dash_jump: 3
   animMoveWeightSpeed: 5
   decrease: 0
-  jumpHeight: 1
+  jumpHeight: 7
   slider_Dash: {fileID: 521568670}
   slider_speed: 300
   minPos: 120
@@ -3385,7 +3385,7 @@ Animator:
   m_GameObject: {fileID: 159591797}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d527c8a502da96a41a44ebec701b092d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 21e2693873938c94fbd1cfa075977bcc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -10431,24 +10431,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1562275218897716241, guid: 30f35d9334ebccc4095a3b2f2bb42fbe, type: 3}
---- !u!1 &504787138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2702256300933890591, guid: 12d3e84b25e8dee4dab85252a1b399ec, type: 3}
-  m_PrefabInstance: {fileID: 1357142090}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &504787141
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 504787138}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.8}
-  m_Center: {x: 0, y: 0, z: 1.2}
 --- !u!1001 &504866886
 PrefabInstance:
   m_ObjectHideFlags: 0
