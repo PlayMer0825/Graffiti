@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.UI;
 
 namespace OperaHouse {
     public class Spray : MonoBehaviour {
         [SerializeField] ParticleSystem _particle = null;
         [SerializeField] P3dPaintSphere _p3dPaint = null;
         [SerializeField] private const float _sprayCapacity = 100f;
+        [SerializeField] private Image _remainFillImage = null;
         public float SprayCapacity {get => _sprayCapacity;}
 
         private float _sprayRemain = 0f;
@@ -24,6 +26,8 @@ namespace OperaHouse {
             set {
                 _p3dPaint.Color = value;
                 _particle.startColor = value;
+                if(_remainFillImage != null)
+                    _remainFillImage.color = value;
             }
         }
 
@@ -108,6 +112,10 @@ namespace OperaHouse {
 
             transform.LookAt(targetPoint);
             _canFire = true;
+        }
+
+        public void SetColor(Image colorObject) {
+            Color = colorObject.color;
         }
     }
 }

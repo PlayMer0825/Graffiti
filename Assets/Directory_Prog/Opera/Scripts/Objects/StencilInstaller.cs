@@ -43,6 +43,11 @@ namespace OperaHouse {
                     break;
                 }
 
+                float scale = Mathf.Clamp(_mask.transform.localScale.x + Input.GetAxis("Mouse ScrollWheel"), 0.2f, 5f);
+                _mask.transform.localScale = new Vector3(scale, scale, scale);
+                
+                
+
                 yield return null;
             }
 
