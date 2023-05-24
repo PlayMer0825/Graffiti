@@ -2,21 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using OperaHouse;
+using DG.Tweening;
+using System;
+using UnityEngine.Events;
 
 public class PlayerMove_TPS : MonoBehaviour
 {
     [SerializeField]
     private float walkSpeed;
 
-    [SerializeField]
-    private float lookSensitivity;
+    [SerializeField] private float _curSensitivity;
+    [SerializeField] private float lookSensitivity;
+    [SerializeField] private float onAimSensitivity = 25f;
+    [SerializeField] private float shakeSensitivity = 10f;
 
     [SerializeField]
     private float cameraRotationLimit;
     private float currentCameraRotationX = 0;
 
     [SerializeField]
-    private CinemachineVirtualCamera theCamera;
+    private GameObject theCamera;
 
     private Rigidbody myRigid;
 
@@ -29,26 +35,43 @@ public class PlayerMove_TPS : MonoBehaviour
 
     Vector3 _velocity;
 
-    Animator animator;
+    private Animator animator;
+    private DrawManager _drawManager;
 
+    private CinemachineBrain _cam = null;
 
-    // Use this for initialization
-    void Start()
-    {
+    private void Awake() {
         myRigid = GetComponent<Rigidbody>();
         animationMoveWeight = 0f;
-        animator=GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+
+        _cam = Camera.main.GetComponent<CinemachineBrain>();
     }
-    // Update is called once per frame
+
+    void Start()
+    {
+        _drawManager = DrawManager.Instance;
+    }
+
+    private void OnEnable() {
+        theCamera.SetActive(true);
+    }
+
+    private void OnDisable() {
+        theCamera.SetActive(false);
+    }
+
     void Update()
     {
+        if(_drawManager.IsAnyPanelOpened())
+            return;
+
         Move();
         //CameraRotation();
         //if(Input.GetKeyDown(KeyCode.LeftAlt))
         //CharacterRotation();
 
         CheckGround();
-
         if (Input.GetButtonDown("Jump") && ground)
         {
             Vector3 jumpPower = Vector3.up * jumpHeight;
@@ -56,6 +79,22 @@ public class PlayerMove_TPS : MonoBehaviour
         }
 
         AnimationUpdate();
+
+        _curSensitivity = Input.GetMouseButton(2) ? shakeSensitivity : Input.GetMouseButton(1) ? onAimSensitivity : lookSensitivity;
+
+        CharacterRotation();
+        CameraRotation();
+    }
+
+    void FixedUpdate()
+    {
+        if(_drawManager.IsAnyPanelOpened())
+            return;
+
+        //_curSensitivity = Input.GetMouseButton(1) ? onAimSensitivity : lookSensitivity;
+
+        //CharacterRotation();
+        //CameraRotation();
     }
 
     void FixedUpdate()
@@ -78,7 +117,7 @@ public class PlayerMove_TPS : MonoBehaviour
     private void CharacterRotation()
     {
         Vector3 _characterRotationY;
-        // ÁÂ¿ì Ä³¸¯ÅÍ È¸Àü
+        // ï¿½Â¿ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
         float _yRotation = Input.GetAxis("Mouse X");
         _characterRotationY = //Vector3.Lerp(_characterRotationY, new Vector3(0f, _yRotation, 0f) * lookSensitivity, 0f);
             lookSensitivity * Time.fixedDeltaTime * new Vector3(0f, _yRotation, 0f);
@@ -89,7 +128,7 @@ public class PlayerMove_TPS : MonoBehaviour
 
     private void CameraRotation()
     {
-        // »óÇÏ Ä«¸Þ¶ó È¸Àü
+        // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ È¸ï¿½ï¿½
         float _xRotation = Input.GetAxis("Mouse Y");
         float _cameraRotationX = _xRotation * lookSensitivity*Time.fixedDeltaTime;
         currentCameraRotationX -= _cameraRotationX;

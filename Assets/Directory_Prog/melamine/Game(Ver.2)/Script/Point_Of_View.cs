@@ -39,6 +39,11 @@ public class Point_Of_View : MonoBehaviour
 
     Animator animator;
 
+    private Point_In_Time _pointInTime = null;
+    private Changer _changer = null;
+    private PlayerMove_SIDE _side = null;
+    private PlayerMove_TPS _tps = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,16 +72,16 @@ public class Point_Of_View : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().state == true)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (Side == true)
-                    Tps_View();
-                else if (Tps == true)
-                    Side_View();
-            }
-        }
+        //if (_pointInTime.state == true)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.F))
+        //    {
+        //        if (Side == true)
+        //            Tps_View();
+        //        else if (Tps == true)
+        //            Side_View();
+        //    }
+        //}
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -87,9 +92,9 @@ public class Point_Of_View : MonoBehaviour
                 {
                     if (hit.collider.TryGetComponent(out Changer changer))
                     {
-                        GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().state = false;
-                        GameObject.Find("Player").GetComponent<PlayerMove_SIDE>().enabled = false;
-                        GameObject.Find("Player").GetComponent<PlayerMove_TPS>().enabled = true;
+                        _pointInTime.state = false;
+                        _side.enabled = false;
+                        _tps.enabled = true;
                         SIDE.enabled = false;
                         TPS.enabled = true;
                         changer.MouseClicked();
@@ -123,13 +128,13 @@ public class Point_Of_View : MonoBehaviour
                 grabbing = null;
             }
         }
-        if (GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>().hideOut_Area == true
-            && GameObject.Find("Changer").GetComponent<Changer>().Hide_Check==false)
+        if (_pointInTime.hideOut_Area == true
+            && _changer.Hide_Check==false)
         {
-            GameObject.Find("Changer").GetComponent<Changer>().Hide_Check = true;
+            _changer.Hide_Check = true;
             animator.SetBool("isTps", true);
-            GameObject.Find("Player").GetComponent<PlayerMove_SIDE>().enabled = false;
-            GameObject.Find("Player").GetComponent<PlayerMove_TPS>().enabled = true;
+            _side.enabled = false;
+            _tps.enabled = true;
             SIDE.enabled = false;
             TPS.enabled = true;
         }
@@ -160,8 +165,8 @@ public class Point_Of_View : MonoBehaviour
         Tps = false;
         SIDE.enabled = true;
         TPS.enabled = false;
-        gameObject.GetComponent<PlayerMove_SIDE>().enabled = true;
-        gameObject.GetComponent<PlayerMove_TPS>().enabled = false;
+        _side.enabled = true;
+        _tps.enabled = false;
     }
 
     void Tps_View()
@@ -171,7 +176,15 @@ public class Point_Of_View : MonoBehaviour
         Tps = true;
         SIDE.enabled = false;
         TPS.enabled = true;
-        gameObject.GetComponent<PlayerMove_SIDE>().enabled = false;
-        gameObject.GetComponent<PlayerMove_TPS>().enabled = true;
+        _side.enabled = false;
+        _tps.enabled = true;
+    }
+
+    public void ForceChangeToSide() {
+        Side_View();
+    }
+
+    public void ForceChangeToTps() {
+        Tps_View();
     }
 }
