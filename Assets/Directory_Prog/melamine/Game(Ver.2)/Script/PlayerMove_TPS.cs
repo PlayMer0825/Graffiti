@@ -40,7 +40,8 @@ public class PlayerMove_TPS : MonoBehaviour
 
     private CinemachineBrain _cam = null;
 
-    private void Awake() {
+    private void Awake()
+    {
         myRigid = GetComponent<Rigidbody>();
         animationMoveWeight = 0f;
         animator = GetComponent<Animator>();
@@ -53,17 +54,19 @@ public class PlayerMove_TPS : MonoBehaviour
         _drawManager = DrawManager.Instance;
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         theCamera.SetActive(true);
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         theCamera.SetActive(false);
     }
 
     void Update()
     {
-        if(_drawManager.IsAnyPanelOpened())
+        if (_drawManager.IsAnyPanelOpened())
             return;
 
         Move();
@@ -88,17 +91,14 @@ public class PlayerMove_TPS : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(_drawManager.IsAnyPanelOpened())
+        if (_drawManager.IsAnyPanelOpened())
             return;
 
         //_curSensitivity = Input.GetMouseButton(1) ? onAimSensitivity : lookSensitivity;
 
         //CharacterRotation();
         //CameraRotation();
-    }
 
-    void FixedUpdate()
-    {
         CharacterRotation();
         CameraRotation();
     }
@@ -130,7 +130,7 @@ public class PlayerMove_TPS : MonoBehaviour
     {
         // ���� ī�޶� ȸ��
         float _xRotation = Input.GetAxis("Mouse Y");
-        float _cameraRotationX = _xRotation * lookSensitivity*Time.fixedDeltaTime;
+        float _cameraRotationX = _xRotation * lookSensitivity * Time.fixedDeltaTime;
         currentCameraRotationX -= _cameraRotationX;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
@@ -154,21 +154,21 @@ public class PlayerMove_TPS : MonoBehaviour
     void AnimationUpdate()
     {
         bool front = Input.GetKey(KeyCode.W);
-        bool back=Input.GetKey(KeyCode.S);
-        bool left=Input.GetKey(KeyCode.A);
-        bool right=Input.GetKey(KeyCode.D);
+        bool back = Input.GetKey(KeyCode.S);
+        bool left = Input.GetKey(KeyCode.A);
+        bool right = Input.GetKey(KeyCode.D);
 
         bool isMove = _velocity.x != 0 || _velocity.z != 0;
-        
-        if(isMove)
+
+        if (isMove)
         {
-            if(left)
+            if (left)
             {
                 animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
                 if (animationMoveWeight < 0f)
                     animationMoveWeight = 0f;
             }
-            else if(right)
+            else if (right)
             {
                 if (animationMoveWeight < 0.25f)
                 {
@@ -183,7 +183,7 @@ public class PlayerMove_TPS : MonoBehaviour
                         animationMoveWeight = 0.25f;
                 }
             }
-            else if (front) 
+            else if (front)
             {
                 if (animationMoveWeight < 0.75f)
                 {
@@ -207,19 +207,19 @@ public class PlayerMove_TPS : MonoBehaviour
         }
         else
         {
-            if(animationMoveWeight>0.5f)
+            if (animationMoveWeight > 0.5f)
             {
                 animationMoveWeight -= Time.deltaTime * animMoveWeightSpeed;
                 if (animationMoveWeight < 0.5f)
                     animationMoveWeight = 0.5f;
             }
-            else if(animationMoveWeight<0.5f)
+            else if (animationMoveWeight < 0.5f)
             {
                 animationMoveWeight += Time.deltaTime * animMoveWeightSpeed;
                 if (animationMoveWeight > 0.5f)
                     animationMoveWeight = 0.5f;
             }
-            
+
         }
 
         animator.SetFloat("moveWeight_Tps", animationMoveWeight);
