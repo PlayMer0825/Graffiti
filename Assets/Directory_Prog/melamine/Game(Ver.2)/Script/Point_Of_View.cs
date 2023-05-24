@@ -62,11 +62,6 @@ public class Point_Of_View : MonoBehaviour
         Debug.Log("1");
         SetResolution();
         Debug.Log("2");
-
-        _pointInTime = GameObject.Find("Point_In_Time").GetComponent<Point_In_Time>();
-        //_changer = GameObject.Find("Changer").GetComponent<Changer>();
-        _side = GameObject.Find("Player").GetComponent<PlayerMove_SIDE>();
-        _tps = GameObject.Find("Player").GetComponent<PlayerMove_TPS>();
     }
     public void SetResolution()
     {

@@ -96,6 +96,12 @@ public class PlayerMove_TPS : MonoBehaviour
         //CharacterRotation();
         //CameraRotation();
     }
+
+    void FixedUpdate()
+    {
+        CharacterRotation();
+        CameraRotation();
+    }
     private void Move()
     {
         float _moveDirX = Input.GetAxisRaw("Horizontal");
@@ -111,10 +117,10 @@ public class PlayerMove_TPS : MonoBehaviour
     private void CharacterRotation()
     {
         Vector3 _characterRotationY;
-        // ÁÂ¿ì Ä³¸¯ÅÍ È¸Àü
+        // ï¿½Â¿ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
         float _yRotation = Input.GetAxis("Mouse X");
         _characterRotationY = //Vector3.Lerp(_characterRotationY, new Vector3(0f, _yRotation, 0f) * lookSensitivity, 0f);
-            _curSensitivity * Time.fixedDeltaTime * new Vector3(0f, _yRotation, 0f);
+            lookSensitivity * Time.fixedDeltaTime * new Vector3(0f, _yRotation, 0f);
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY));
         //Debug.Log(myRigid.rotation);
         //Debug.Log(myRigid.rotation.eulerAngles);
@@ -122,9 +128,9 @@ public class PlayerMove_TPS : MonoBehaviour
 
     private void CameraRotation()
     {
-        // »óÇÏ Ä«¸Þ¶ó È¸Àü
+        // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ È¸ï¿½ï¿½
         float _xRotation = Input.GetAxis("Mouse Y");
-        float _cameraRotationX = _xRotation * _curSensitivity  *Time.fixedDeltaTime;
+        float _cameraRotationX = _xRotation * lookSensitivity*Time.fixedDeltaTime;
         currentCameraRotationX -= _cameraRotationX;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
