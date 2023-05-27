@@ -74,8 +74,8 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     void StopToWall()
     {
-        Debug.DrawRay(transform.position, transform.forward * 3, Color.red);
-        isBorder = Physics.Raycast(transform.position, transform.forward, 3, LayerMask.GetMask("Wall"));
+        Debug.DrawRay(transform.position, transform.forward * 1, Color.red);
+        isBorder = Physics.Raycast(transform.position, transform.forward, 1, LayerMask.GetMask("Wall"));
     }
 
     void CheckGround()
