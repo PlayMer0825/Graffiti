@@ -22,7 +22,7 @@ namespace ZB.Dialogue.Graffiti
             if (other.gameObject.layer == m_targetLayer)
             {
                 //Holder 클래스 가져오는데에 성공
-                if(other.TryGetComponent(out m_holder))
+                if(other.TryGetComponent(out m_holder) && !m_machine.m_Interacting)
                 {
                     //강제 다이얼로그 입장
                     if (m_holder.m_ReadType == Holder.ReadType.enforce)
