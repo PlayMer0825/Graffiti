@@ -14,13 +14,15 @@ namespace ZB.Dialogue.Graffiti
         private ReadableShower m_readableShower;
         private Holder m_holder;
 
+        private Transform m_currentHolder;
+
         private void OnTriggerEnter(Collider other)
         {
             //Holder 클래스 들고있는 오브젝트와 충돌
             if (other.gameObject.layer == m_targetLayer)
             {
                 //Holder 클래스 가져오는데에 성공
-                if(other.TryGetComponent(out m_holder))
+                if(other.TryGetComponent(out m_holder) && !m_machine.m_Interacting)
                 {
                     //강제 다이얼로그 입장
                     if (m_holder.m_ReadType == Holder.ReadType.enforce)
@@ -32,7 +34,8 @@ namespace ZB.Dialogue.Graffiti
                     else if (m_holder.m_ReadType == Holder.ReadType.btnInput)
                     {
                         m_inputWaiting = true;
-                        m_readableShower.ShowStart();
+                        m_currentHolder = other.transform;
+                        m_readableShower.ShowStart(m_currentHolder);
                     }
                 }
             }
@@ -86,7 +89,7 @@ namespace ZB.Dialogue.Graffiti
 
             if(!m_machine.m_Interacting && m_inputWaiting && !m_readableShower.m_Showing)
             {
-                m_readableShower.ShowStart();
+                m_readableShower.ShowStart(m_currentHolder);
             }
         }
     }

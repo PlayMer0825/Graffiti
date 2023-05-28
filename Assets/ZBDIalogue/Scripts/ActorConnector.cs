@@ -12,6 +12,10 @@ namespace ZB.Dialogue.Graffiti
         {
             FindActor(act.m_ActorID).Do(act);
         }
+        public Transform GetActorTransform(Act act)
+        {
+            return FindActor(act.m_ActorID).transform;
+        }
         public Vector3 GetActorPos(Act act)
         {
             return FindActor(act.m_ActorID).transform.position;
@@ -58,7 +62,7 @@ namespace ZB.Dialogue.Graffiti
             }
 
             //실패했다면 LogError
-            Debug.LogError("ActorConnector / FindActor() / 찾기 실패 / 매개변수 입력오류 또는 찾고자하는 Actor오브젝트 비활성화");
+            Debug.LogError($"ActorConnector / FindActor() / 찾기 실패 / 받은 매개변수 : {actorID} / 매개변수 입력오류 또는 찾고자하는 Actor오브젝트 비활성화");
             return null;
         }
     }
