@@ -26,10 +26,8 @@ namespace OperaHouse {
 
         private void Update() {
             if(Input.GetKeyDown(KeyCode.Z)) {
-                bool isActive = _mask.enabled;
-                _mask.enabled = !isActive;
-                _maskVisual.gameObject.SetActive(!isActive);
-                _drawPanel.SetStencilVisible(_mask.enabled);
+                ChangeMaskChannel();
+                _drawPanel.SetStencilVisible(_mask.Channel == P3dChannel.Green);
             }
         }
 
@@ -52,13 +50,8 @@ namespace OperaHouse {
         /// 설치 범위를 벗어났을 때 호출하는 함수.
         /// </summary>
         /// <param name="isVisible"></param>
-        public void SetMaskVisible(bool isVisible) {
-            if(isVisible) {
-                _maskPreview.gameObject.SetActive(true);
-            }
-            else {
-                _maskPreview.gameObject.SetActive(true);
-            }
+        public void SetMaskPreviewVisiblity(bool isVisible) {
+            _maskPreview.gameObject.SetActive(isVisible);
         }
 
         /// <summary>
@@ -106,7 +99,17 @@ namespace OperaHouse {
             _maskPreview.gameObject.SetActive(false);
             gameObject.SetActive(false);
             _drawPanel.CloseStencilVisualizer();
+            SetMaskPreviewVisiblity(true);
             DrawManager.Instance.Draw.Percent.SetDrawFinishMode(false);
+        }
+
+        private void ChangeMaskChannel() {
+            if(_mask.Channel == P3dChannel.Green) {
+                _mask.Channel = P3dChannel.Alpha;
+            }
+            else {
+                _mask.Channel = P3dChannel.Green;
+            }
         }
 
         private int GetPixelCount(Texture2D texture) {

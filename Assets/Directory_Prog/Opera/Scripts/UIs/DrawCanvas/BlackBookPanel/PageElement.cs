@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PageElement : MonoBehaviour {
     private Button _elemButton = null;
-    private Image _elemImage = null;
+    [SerializeField] private Image _elemImage = null;
 
     private Stencil _stencil;
 
@@ -18,7 +18,6 @@ public class PageElement : MonoBehaviour {
 
     private void Awake() {
         _elemButton = GetComponent<Button>();
-        _elemImage = GetComponent<Image>();
     }
 
     public void InitElement(Stencil data) {
@@ -29,13 +28,13 @@ public class PageElement : MonoBehaviour {
             _elemButton.interactable = false;
         }
         else if (data.IsUnlocked == false) {
-            _elemImage.sprite = data.MaskOutlineSprite;
+            _elemImage.sprite = Sprite.Create(data.MaskSprite, new Rect(0, 0, data.MaskSprite.width, data.MaskSprite.height), new Vector2(0.5f, 0.5f));
             _stencil = data;
             _isInitialized = true;
             _elemButton.interactable = false;
         }
         else {
-            _elemImage.sprite = data.MaskOutlineSprite;
+            _elemImage.sprite = Sprite.Create(data.MaskSprite, new Rect(0, 0, data.MaskSprite.width, data.MaskSprite.height), new Vector2(0.5f, 0.5f));
             _stencil = data;
             _isInitialized = true;
             _elemButton.interactable = true;
