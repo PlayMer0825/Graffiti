@@ -39,10 +39,15 @@ public class Point_Of_View : MonoBehaviour
 
     Animator animator;
 
-    private Point_In_Time _pointInTime = null;
+    [SerializeField] private Point_In_Time _pointInTime = null;
     private Changer _changer = null;
     private PlayerMove_SIDE _side = null;
     private PlayerMove_TPS _tps = null;
+
+    private void Awake() {
+        _side = GetComponent<PlayerMove_SIDE>();
+        _tps = GetComponent<PlayerMove_TPS>();
+    }
 
     // Start is called before the first frame update
     void Start()
