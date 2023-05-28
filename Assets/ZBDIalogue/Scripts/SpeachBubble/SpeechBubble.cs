@@ -19,16 +19,16 @@ namespace ZB.Dialogue.Graffiti
         private float m_textAppearDuration = 0.05f;
         private WaitForSeconds m_wfs_textAppearDuration;
 
-        private Vector3 m_actorPosition;    //말풍선 등장 위치
+        private Transform m_actorTF;        //말풍선 등장해야할 액터
         private string m_talkText;          //대사
 
-        public void AppearNew(Vector3 position, string text)
+        public void AppearNew(Transform tf, string text)
         {
             //텍스트 정보 추가
             m_talkText = text;
             m_tmp_sizeCheck.text = text;
 
-            m_actorPosition = position;
+            m_actorTF = tf;
 
             Appear(false);
         }
@@ -49,7 +49,7 @@ namespace ZB.Dialogue.Graffiti
         protected override void AppearEvent()
         {
             m_focusingContent.m_Rtf.gameObject.SetActive(true);
-            m_focusingContent.m_Rtf.position = Camera.main.WorldToScreenPoint(m_actorPosition);
+            m_focusingContent.m_Rtf.position = Camera.main.WorldToScreenPoint(m_actorTF.position);
 
             m_focusingContent.m_Rtf.DOKill();
             m_focusingContent.m_Rtf.sizeDelta = Vector2.zero;
@@ -64,6 +64,9 @@ namespace ZB.Dialogue.Graffiti
                 StopCoroutine(textAppear_C);
             textAppear_C = textAppear();
             StartCoroutine(textAppear_C);
+
+            ShowPosFix_C = ShowPosFix();
+            StartCoroutine(ShowPosFix_C);
         }
         protected override void DisappearEvent()
         {
@@ -71,6 +74,8 @@ namespace ZB.Dialogue.Graffiti
 
             if (textAppear_C != null)
                 StopCoroutine(textAppear_C);
+
+            StopCoroutine(ShowPosFix_C);
         }
         protected override void ResetState()
         {
@@ -96,6 +101,17 @@ namespace ZB.Dialogue.Graffiti
                 yield return m_wfs_textAppearDuration;
             }
             m_textAppearing = false;
+        }
+        IEnumerator ShowPosFix_C;
+        IEnumerator ShowPosFix()
+        {
+            while(true)
+            {
+                m_focusingContent.m_Rtf.position =
+                    Vector2.Lerp(m_focusingContent.m_Rtf.position, Camera.main.WorldToScreenPoint(m_actorTF.position), Time.deltaTime * 5);
+
+                yield return null;
+            }
         }
     }
 }

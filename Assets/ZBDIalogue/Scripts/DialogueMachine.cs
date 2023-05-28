@@ -54,7 +54,7 @@ namespace ZB.Dialogue.Graffiti
                     m_actorConnector.Actor_Do(nowAct);
 
                     //말풍선
-                    m_speechBubble.AppearNew(m_actorConnector.GetActorPos(nowAct), nowAct.m_Context);
+                    m_speechBubble.AppearNew(m_actorConnector.GetActorTransform(nowAct), nowAct.m_Context);
                 }
 
                 //진행할 대화가 없다
