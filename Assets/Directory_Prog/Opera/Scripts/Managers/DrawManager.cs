@@ -3,8 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.Events;
 
 namespace OperaHouse {
 
@@ -46,6 +45,8 @@ namespace OperaHouse {
 
         [SerializeField]private StencilMask _stencil = null;
         public StencilMask Stencil { get => _stencil; }
+
+        public UnityEvent onDrawFinished = null;
 
 
         #region Melamine Works
@@ -110,6 +111,9 @@ namespace OperaHouse {
             _spray.OnClickMouseLeft(false);
             _pointOfView.ForceChangeToSide();
             _drawPanel.Percent.ReleaseCounter();
+
+            onDrawFinished?.Invoke();
+
             GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
         }
     }
