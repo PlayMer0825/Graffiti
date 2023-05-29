@@ -7,8 +7,13 @@ public class Fade_Out : MonoBehaviour
 {
     public Image image;
 
-    // Start is called before the first frame update
-    void Start()
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+        
+    //}
+
+    public void StartFadeOut()
     {
         StartCoroutine(FadeCoroutine());
     }

@@ -109,7 +109,6 @@ public class CutSceneManager : MonoBehaviour
     private void HandleAllCutScenesFinished()
     {
         // ÄÆ¾À Á¾·á ÀÌº¥Æ® Ã³¸®
-        Debug.Log("ÄÆ¾À ¿ÏÀü ´Ù ³¡³²");
         cutSceneFinishEvent.AddListener(DisableSkipButton); // ¹öÆ° ´Ý±â... 
         cutSceneObject.SetActive(false);
         cutSceneFinishEvent.Invoke();
