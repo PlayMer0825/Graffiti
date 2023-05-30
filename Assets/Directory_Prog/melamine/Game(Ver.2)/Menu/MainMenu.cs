@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
+    void Start()
+    {
+        Position.position = false;
+    }
     private bool isPlayerTriggered = false;
    public void PlayGame()
     {

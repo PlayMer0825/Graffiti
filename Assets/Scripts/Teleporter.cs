@@ -42,6 +42,7 @@ public class Teleporter : MonoBehaviour
             if (target_SceneName ==  string.Empty)
                 return;
             SceneManager.LoadScene(target_SceneName);
+            Position.position = true;
         }
     }
 
