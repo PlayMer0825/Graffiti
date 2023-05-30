@@ -31,6 +31,7 @@ namespace ZB.Dialogue.Graffiti
         [SerializeField] private IDSets[] m_idSets;
         [SerializeField] private int currentIndex;
 
+        [SerializeField] private GameObject targetObject; // 바라볼 오브젝트
         public int GetEventID(out UnityEvent uEvent_OnEscape)
         {
             switch(m_exportType)

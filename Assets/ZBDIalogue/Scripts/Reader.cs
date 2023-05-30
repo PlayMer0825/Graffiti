@@ -15,6 +15,8 @@ namespace ZB.Dialogue.Graffiti
         private Holder m_holder;
 
         private Transform m_currentHolder;
+        // 플레이어 객체 추가..
+        private Transform m_playerTransform;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -72,12 +74,18 @@ namespace ZB.Dialogue.Graffiti
             UnityEvent uEvent_OnEscape;
             m_machine.NewExport(m_holder.GetEventID(out uEvent_OnEscape));
             m_machine.AddEscapeEvent(uEvent_OnEscape.Invoke);
+
+
+            // 잠깐 추가한 부분... Holder 의 위치로 플레이어를 이동 
+            m_playerTransform.position = m_currentHolder.position;
+
         }
 
         private void Awake()
         {
             m_machine = FindObjectOfType<DialogueMachine>();
             m_readableShower = FindObjectOfType<ReadableShower>();
+            m_playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         private void Update()
