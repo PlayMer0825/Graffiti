@@ -9,7 +9,6 @@ public class SceneHandler : MonoBehaviour
     private bool isChanging = false; // 전환중인가
     private string targetSceneName; // 전환 씬 이름
 
-
     public void ChangeScene(string _sceneName)
     {
         if (isChanging)

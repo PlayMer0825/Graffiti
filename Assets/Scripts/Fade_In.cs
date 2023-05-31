@@ -15,7 +15,7 @@ public class Fade_In : MonoBehaviour
 
     IEnumerator FadeCoroutine()
     {
-        float fadeCount = 1;
+        float fadeCount = 1.5f;
         while(fadeCount>0f)
         {
             fadeCount -= 0.01f;
