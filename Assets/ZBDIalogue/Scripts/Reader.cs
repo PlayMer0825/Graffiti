@@ -76,8 +76,14 @@ namespace ZB.Dialogue.Graffiti
             m_machine.AddEscapeEvent(uEvent_OnEscape.Invoke);
 
 
-            // 잠깐 추가한 부분... Holder 의 위치로 플레이어를 이동 
+            // 잠깐 추가한 부분... Holder 의 위치로 플레이어를 이동 , 그리고 Holder 에서 지정한 target 오브젝트를 향해서 바라봄(설정해주면 됨)
             m_playerTransform.position = m_currentHolder.position;
+            Vector3 targetPosition = m_currentHolder.GetComponent<Holder>().targetObject.position;
+            targetPosition.y = m_playerTransform.position.y;
+            m_playerTransform.LookAt(targetPosition);
+
+            m_playerTransform.gameObject.GetComponent<Animator>().SetFloat("moveWeight_Side", 0f);
+            
 
         }
 
