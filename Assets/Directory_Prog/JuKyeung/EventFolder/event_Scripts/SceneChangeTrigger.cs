@@ -24,9 +24,11 @@ public class SceneChangeTrigger : MonoBehaviour
         {
             SceenChangeEvent.Invoke();
 
-            sceneManager.ChangeScene(targetSceneName);
-
-            
         }
+    }
+
+    public void ChangeScene()
+    {
+        sceneManager.ChangeScene(targetSceneName);
     }
 }
