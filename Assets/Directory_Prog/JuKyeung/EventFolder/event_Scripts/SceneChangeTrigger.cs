@@ -22,9 +22,11 @@ public class SceneChangeTrigger : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            SceenChangeEvent.Invoke();
+
             sceneManager.ChangeScene(targetSceneName);
 
-            SceenChangeEvent.Invoke();
+            
         }
     }
 }
