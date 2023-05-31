@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Security.Policy;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Board : MonoBehaviour
 {
@@ -84,12 +83,12 @@ public class Board : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                Debug.Log("a");
+                //Debug.Log("a");
                 slider_Balance.value -= slider_Balance_Speed * Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                Debug.Log("d");
+                //Debug.Log("d");
                 slider_Balance.value += slider_Balance_Speed * Time.deltaTime;
             }
         }
@@ -174,18 +173,21 @@ public class Board : MonoBehaviour
         if(slider_Balance.value >= 0  && slider_Balance.value <= 300)
         {
             yield return null;
+            Bench.GetComponent<BoxCollider>().enabled = false;
             bench = false;
             isJump = false;
-            Bench.GetComponent<BoxCollider>().enabled = false;
             balance_Slider = false;
+            Debug.Log("del");
             slider2.SetActive(false);
         }
         if(ground==true)
         {
-            bench = false;
-            isJump = false;
+            Debug.Log("hello");
             Bench.GetComponent<BoxCollider>().enabled = true;
+            bench = false;
+            isJump = true;
             balance_Slider = false;
+            Debug.Log("del");
             slider2.SetActive(false);
         }
     }
@@ -197,7 +199,7 @@ public class Board : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.name == "Bench")
+        if (other.gameObject.tag == "Bench")
         {
             bench = true;
             animator.SetBool("isBench", true);
@@ -217,7 +219,7 @@ public class Board : MonoBehaviour
     void CheckGround()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.down, out hit, 0.22f, layer))
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.down, out hit, 0.25f, layer))
         {
             bench = false;
             animator.SetBool("isBench", false);
