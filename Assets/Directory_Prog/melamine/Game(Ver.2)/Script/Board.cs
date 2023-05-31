@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Board : MonoBehaviour
 {
+    public static bool isBench=true;
+    public static bool isEnd = false;
     private Rigidbody rigidbody;
     public float currentPosition_x;
     public float direction = 3.0f; //이동속도+방향
@@ -48,6 +50,7 @@ public class Board : MonoBehaviour
     public LayerMask layer2;
     void Start()
     {
+        isEnd = false;
         currentPosition_x = transform.position.x;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -58,14 +61,22 @@ public class Board : MonoBehaviour
     }
     void Update()
     {
+        if(!isEnd)
+        {
+            diRection = diRection;
+        }
+        else if(isEnd)
+        {
+            diRection = 0;
+        }
         CheckGround();
         //AnimationUpdate();
-        if (Input.GetKeyDown(KeyCode.W) && ground && bench_State == false)
+        if (Input.GetKeyDown(KeyCode.W) && ground && bench_State == false&&!isDash)
         {
             animator.SetTrigger("isJumping");
             Debug.Log("jump");
             Vector3 jumpPower = Vector3.up * jumpHeight;
-            rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
+            rigidbody.AddForce(jumpPower, ForceMode.Impulse);
             Invoke("OnInvoke_Jump", 0.5f);
         }
 
@@ -106,6 +117,7 @@ public class Board : MonoBehaviour
             slider2.SetActive(true);
             SetBalance();
         }
+
         currentPosition_x += Time.deltaTime * diRection;
         transform.position = new Vector3(currentPosition_x, this.transform.position.y, this.transform.position.z);
     }
@@ -141,7 +153,7 @@ public class Board : MonoBehaviour
             animator.SetFloat("Slide_Speed", 1.5f);
             Debug.Log("ok");
             animator.SetTrigger("isSliding");
-            diRection = direction * dash;   
+            Invoke("OnInvoke_Dash_Success", 0.45f);
             dash_Slider = false;
             slider1.SetActive(false);
             Invoke("OnInvoke_Dash", 1.0f);
@@ -150,7 +162,7 @@ public class Board : MonoBehaviour
         {
             animator.SetFloat("Slide_Speed", 1.0f);
             animator.SetTrigger("isSliding");
-            diRection = direction * (dash/2);
+            Invoke("OnInvoke_Dash_Fail", 0.45f);
             dash_Slider = false;
             slider1.SetActive(false);
             Invoke("OnInvoke_Dash", 1.0f);
@@ -170,31 +182,34 @@ public class Board : MonoBehaviour
             else
                 slider_Balance.value += slider_Balance_Auto * Time.deltaTime;
         }
-        if(slider_Balance.value >= 0  && slider_Balance.value <= 300)
+        if (slider_Balance.value >= 0 && slider_Balance.value <= 300)
         {
             yield return null;
-            Bench.GetComponent<BoxCollider>().enabled = false;
+            isBench = false;
             bench = false;
             isJump = false;
             balance_Slider = false;
-            Debug.Log("del");
             slider2.SetActive(false);
         }
-        if(ground==true)
+        if (ground == true)
         {
-            Debug.Log("hello");
-            Bench.GetComponent<BoxCollider>().enabled = true;
+            isBench = true;
             bench = false;
             isJump = true;
             balance_Slider = false;
-            Debug.Log("del");
             slider2.SetActive(false);
         }
+        
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void FixedUpdate()
     {
-
+        if(!ground)
+        {
+            rigidbody.AddForce(Vector3.down *10);
+        }
+        
     }
 
     private void OnCollisionStay(Collision other)
@@ -227,14 +242,12 @@ public class Board : MonoBehaviour
             animator.SetBool("isGround", true);
             if(isJump==true)
             {
-                Debug.Log("land");
-                animator.SetTrigger("isLanding");
                 isJump = false;
             }
         }
         else
         {
-            //animator.SetBool("isGround", false);
+            animator.SetBool("isGround", false);
             ground = false;
         }
 
@@ -285,5 +298,15 @@ public class Board : MonoBehaviour
     void OnInvoke_Dash()
     {
         isDash = false;
+    }
+
+    void OnInvoke_Dash_Success()
+    {
+        diRection = direction * dash;
+    }
+
+    void OnInvoke_Dash_Fail()
+    {
+        diRection = direction * (dash / 2);
     }
 }

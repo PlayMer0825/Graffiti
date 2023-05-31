@@ -9,21 +9,20 @@ public class Bench : MonoBehaviour
 
     private void Start()
     {
-        Board.bench_State = false;
+        //Board.bench_State = false;
     }
-    private void OnTriigerStay(Collision collision)
+
+    private void Update()
     {
-        if (collision.gameObject.tag == "Player")
+        if (Board.isBench)
         {
-            Debug.Log("ok");
-            Board.bench_State = true;
+            this.GetComponent<BoxCollider>().enabled = true;
         }
-        else if(collision.gameObject.tag != "Player")
+        else if(!Board.isBench)
         {
-            Debug.Log("ok");
-            Board.bench_State = false;
+            this.GetComponent<BoxCollider>().enabled = false;
         }
-            
     }
+
 
 }
