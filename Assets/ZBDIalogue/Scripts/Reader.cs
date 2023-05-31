@@ -91,7 +91,7 @@ namespace ZB.Dialogue.Graffiti
             targetPosition.y = m_playerTransform.position.y;
             m_playerTransform.LookAt(targetPosition);
 
-            m_playerTransform.gameObject.GetComponent<Animator>().SetFloat("moveWeight_Side", 0f);
+            m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
             
 
         }
