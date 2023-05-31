@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using OperaHouse;
 
 public class Point_Of_View : MonoBehaviour
 {
@@ -59,7 +59,7 @@ public class Point_Of_View : MonoBehaviour
         grabbing = null;
 
         trigger.EventTriggerExit.AddListener(TriggerExit);
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         animator.SetBool("isTps", false);
 
@@ -67,6 +67,12 @@ public class Point_Of_View : MonoBehaviour
         Debug.Log("1");
         SetResolution();
         Debug.Log("2");
+
+        DrawManager draw =  DrawManager.Instance;
+        if(draw == null)
+            return;
+
+        draw._pointOfView = this;
     }
     public void SetResolution()
     {

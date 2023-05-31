@@ -50,7 +50,7 @@ namespace OperaHouse {
 
 
         #region Melamine Works
-        [SerializeField] private Point_Of_View _pointOfView = null;
+        public Point_Of_View _pointOfView = null;
 
         #endregion
 
