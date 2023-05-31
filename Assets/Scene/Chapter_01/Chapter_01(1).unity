@@ -8620,9 +8620,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -8967799442096616477, guid: 78bbc92eee43d394aa91d25316f279bf, type: 2}
-    value: {fileID: 3993772705220488237}
+    value: {fileID: 0}
   - key: {fileID: -3939026626193370093, guid: 78bbc92eee43d394aa91d25316f279bf, type: 2}
-    value: {fileID: 3993772705220488237}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 7c9433a04ef422246bb9c2f4d706838f: {fileID: 423179036}
@@ -43897,6 +43897,10 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1214393891}
+    - target: {fileID: 5266112383254424248, guid: 002c1b7f04ce8ca40adbfedaaec2c4f5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5cfbdb062351ec94398902c7240b0c4b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 002c1b7f04ce8ca40adbfedaaec2c4f5, type: 3}
 --- !u!1001 &1925205655823355618
@@ -44032,11 +44036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ca29ae77798c44e82ffd8b218624f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &3993772705220488237 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3392006548606968948, guid: 002c1b7f04ce8ca40adbfedaaec2c4f5, type: 3}
-  m_PrefabInstance: {fileID: 1764963442870257753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3993772705220488238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3392006548606968951, guid: 002c1b7f04ce8ca40adbfedaaec2c4f5, type: 3}

@@ -25,7 +25,7 @@ public class PlayerMove_SIDE : MonoBehaviour
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
-        animator=GetComponent<Animator>();
+        animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;
         speeds = speed;
     }

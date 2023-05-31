@@ -44,7 +44,7 @@ public class PlayerMove_TPS : MonoBehaviour
     {
         myRigid = GetComponent<Rigidbody>();
         animationMoveWeight = 0f;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         _cam = Camera.main.GetComponent<CinemachineBrain>();
     }

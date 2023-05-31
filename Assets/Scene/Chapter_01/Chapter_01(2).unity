@@ -9559,6 +9559,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 51569850c63dd274489a6c9cbe94fe41, type: 2}
+    - target: {fileID: 5866666021909216657, guid: b342316b1c3199a428252be1ad1b12a0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5cfbdb062351ec94398902c7240b0c4b, type: 2}
     - target: {fileID: 7576656668234463461, guid: b342316b1c3199a428252be1ad1b12a0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -9567,8 +9571,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 51569850c63dd274489a6c9cbe94fe41, type: 2}
-    m_RemovedComponents:
-    - {fileID: 5866666021909216657, guid: b342316b1c3199a428252be1ad1b12a0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b342316b1c3199a428252be1ad1b12a0, type: 3}
 --- !u!1 &971018164
 GameObject:
@@ -10358,7 +10361,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -368.56754
+  cooldown: -370.35034
   currentReader:
     dirty: 0
     requested: 0
@@ -15614,7 +15617,7 @@ PrefabInstance:
     - target: {fileID: 1415691099535271487, guid: 66afcca5090084d4da915f3ccecda048, type: 3}
       propertyPath: m_ani_Acting
       value: 
-      objectReference: {fileID: 3993772706338715649}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66afcca5090084d4da915f3ccecda048, type: 3}
 --- !u!4 &1513661066 stripped
@@ -24223,25 +24226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &3993772706338715649
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993772706338715657}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e0fcf95c94b239845bf2b67fff90bf32, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5cfbdb062351ec94398902c7240b0c4b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &3993772706338715650
 Transform:
   m_ObjectHideFlags: 0
@@ -24298,7 +24282,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3993772706338715650}
-  - component: {fileID: 3993772706338715649}
   - component: {fileID: 3993772706338715651}
   - component: {fileID: 3993772706338715660}
   - component: {fileID: 3993772706338715661}
