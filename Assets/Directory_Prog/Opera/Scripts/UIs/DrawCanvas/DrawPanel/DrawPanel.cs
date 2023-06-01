@@ -93,19 +93,5 @@ namespace OperaHouse {
             int res = isActive ? 1 : 0;
             _stencilVisualizer.sprite = _stencilVisualizerSprite[res];
         }
-
-        private void Update() {
-            if(_hotKeyImages.Length <= 0)
-                return;
-
-            for(int i = 0; i < _hotKeyImages.Length; i++) {
-                if(Input.GetKeyDown((KeyCode)(49 + i ))){
-                    if(_hotKeyFilled[i] == false)
-                        break;
-
-                    DrawManager.Instance.Spray.Color = _hotKeyImages[i].color;
-                }
-            }
-        }
     }
 }
