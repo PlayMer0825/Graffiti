@@ -26,8 +26,7 @@ namespace OperaHouse {
 
         private void Update() {
             if(Input.GetKeyDown(KeyCode.Z)) {
-                ChangeMaskChannel();
-                _drawPanel.SetStencilVisible(_mask.Channel == P3dChannel.Green);
+                _drawPanel.SetStencilVisible(ChangeMaskChannel());
             }
         }
 
@@ -85,6 +84,7 @@ namespace OperaHouse {
             SetMaskTransform(position, rotation);
             _maskPreview.gameObject.SetActive(false);
             DrawManager.Instance.Bag.ActivateRemoveButtonWithMask(this);
+            _drawPanel.SetStencilVisible(true);
             _drawPanel.OpenStencilVisualizer();
             DrawManager.Instance.Draw.Percent.SetDrawFinishMode(true);
         }
@@ -94,6 +94,7 @@ namespace OperaHouse {
         /// </summary>
         public void ReleaseMask() {
             _isMaskEnabled = false;
+            _mask.Channel = P3dChannel.Alpha;
             _mask.Texture = null;
             _maskVisual.sprite = null;
             _maskPreview.gameObject.SetActive(false);
@@ -103,12 +104,14 @@ namespace OperaHouse {
             DrawManager.Instance.Draw.Percent.SetDrawFinishMode(false);
         }
 
-        private void ChangeMaskChannel() {
+        private bool ChangeMaskChannel() {
             if(_mask.Channel == P3dChannel.Green) {
                 _mask.Channel = P3dChannel.Alpha;
+                return true;
             }
             else {
                 _mask.Channel = P3dChannel.Green;
+                return false;
             }
         }
 
