@@ -1,6 +1,8 @@
 using PaintIn3D;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,22 +11,22 @@ namespace OperaHouse {
     public class PercentageUI : MonoBehaviour {
         private P3dChangeCounterFill _percentage_Circle = null;
         private P3dChangeCounterText _percentage_Count = null;
-        private Image _percentageFill = null;
-        private Text _percentageText = null;
+        [SerializeField] private Image _percentageFill = null;
+        [SerializeField] private TMP_Text _percentageText = null;
         [SerializeField] private Button _clearButton = null;
         [SerializeField] private Button _finishButton = null;
         private P3dChangeCounter _curCounter = null;
         private Button _curExitButton = null;
+        private Func<bool> _checkFunc = null;
 
         public bool IsFinished { get => _percentageFill.fillAmount >= 0.3f; }
 
         private void Awake() {
             _percentage_Circle = GetComponentInChildren<P3dChangeCounterFill>();
             _percentage_Count = GetComponentInChildren<P3dChangeCounterText>();
-            _percentageFill = GetComponentInChildren<Image>();
-            _percentageText = GetComponentInChildren<Text>();
 
             _curExitButton = _finishButton;
+            _checkFunc = CheckDrawFinish;
         }
 
         private void OnEnable() {
@@ -35,19 +37,19 @@ namespace OperaHouse {
             if(DrawManager.Instance.IsDrawing == false)
                 return;
 
-            bool maskEnabled = DrawManager.Instance.Stencil.MaskEnabled;
-
-            if(( maskEnabled && IsStencilAllFilled ()) ||  IsFinished)
+            if(_checkFunc.Invoke())
                 _curExitButton.gameObject.SetActive(true);
 
             if(Input.GetKeyDown(KeyCode.Space)) {
                 if(_curExitButton.gameObject.activeSelf == false)
                     return;
 
-                if(maskEnabled)
+                if(_clearButton.gameObject.activeSelf) {
                     DrawManager.Instance.Stencil.ReleaseMask();
-                else 
+                }
+                else if(_finishButton.gameObject.activeSelf) {
                     DrawManager.Instance.FinishDrawing();
+                }
             }
         }
 
@@ -62,6 +64,7 @@ namespace OperaHouse {
             _curCounter = counter;
             _percentage_Circle.Counters.Add(_curCounter);
             _percentage_Count.Counters.Add(_curCounter);
+
         }
 
         public void ReleaseCounter() {
@@ -76,30 +79,33 @@ namespace OperaHouse {
             _curCounter = null;
         }
 
-        public void SetDrawFinishMode(bool isStencilActive) {
+        public void SetExitMethod(bool isStencilActive) {
             if(isStencilActive) {
                 _curExitButton = _clearButton;
+                _clearButton.gameObject.SetActive(false);
                 _finishButton.gameObject.SetActive(false);
+                _checkFunc = CheckStencilFinish;
             }
             else {
                 _curExitButton = _finishButton;
                 _clearButton.gameObject.SetActive(false);
+                _finishButton.gameObject.SetActive(false);
+                _checkFunc = CheckDrawFinish;
             }
         }
 
-        private bool IsStencilAllFilled() {
+        private bool CheckStencilFinish() {
             StencilMask mask = DrawManager.Instance.Stencil;
-            if(mask == null)
-                return false;
+            if(mask == null) return false;
 
-            //_curCounter.Count
-            if(mask.MaskEnabled == false)
-                return false;
+            DrawObject obj = DrawManager.Instance.curDrawing;
+            if(obj == null) return false;
 
-            if(mask.MaskPixelCount <= _curCounter.Count)
-                return true;
-            return false;
+            return _percentageFill.fillAmount * obj.MaxPixelCount >= mask.MaskPixelCount;
+        }
+
+        private bool CheckDrawFinish() {
+            return _percentageFill.fillAmount >= 0.9f;
         }
     }
-
 }

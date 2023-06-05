@@ -11,19 +11,22 @@ namespace OperaHouse {
 
     [Serializable]
     public struct Stencil {
-        [SerializeField] private Texture2D _maskSprite;
-        [SerializeField] private Sprite _maskOutlineSprite;
+        [SerializeField] private Sprite _maskVisualSprite;
+        [SerializeField] private Texture2D _maskInTexture;
+        [SerializeField] private Sprite _maskOutSprite;
         [SerializeField] private bool _isUnlocked;
 
         public Stencil(bool isUnlocked = false)
         {
-            _maskSprite = null;
-            _maskOutlineSprite = null;
+            _maskVisualSprite = null;
+            _maskInTexture = null;
+            _maskOutSprite = null;
             _isUnlocked = false;
         }
 
-        public Texture2D MaskSprite { get => _maskSprite; }
-        public Sprite MaskOutlineSprite { get => _maskOutlineSprite; }
+        public Sprite MaskVisualSprite { get => _maskVisualSprite; }
+        public Texture2D MaskSprite { get => _maskInTexture; }
+        public Sprite MaskOutlineSprite { get => _maskOutSprite; }
         public bool IsUnlocked { get => _isUnlocked; set => _isUnlocked = value; }
     }
 }

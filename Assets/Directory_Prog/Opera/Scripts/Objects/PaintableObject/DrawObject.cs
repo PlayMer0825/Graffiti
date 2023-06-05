@@ -1,3 +1,4 @@
+using Insomnia;
 using PaintIn3D;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,10 @@ namespace OperaHouse {
 
         [SerializeField]
         private InteractionArea _interactArea = null;
+
+        private bool m_isFisrtDraw = true;
+        public bool IsFirstDraw { get => m_isFisrtDraw; }
+        public int MaxPixelCount { get; private set; }
         
         #region Unity Event Functions
         private void Awake() {
@@ -21,14 +26,13 @@ namespace OperaHouse {
             if(_interactArea == null)
                 return;
 
+            MeshRenderer renderer = _ptble.gameObject.GetComponent<MeshRenderer>();
+            MaxPixelCount = GetPixelCount((Texture2D)renderer.material.mainTexture);
+            Debug.Log($"DrawObject MaxPixelCount: {MaxPixelCount}");
         }
 
         #endregion
 
-        #region Interactable override functions
-        //public bool CheckNofiForInteraction(InteractType type) {
-
-        //}
 
         public override void ReadyInteract(Collider other) {
             base.ReadyInteract(other);
@@ -44,6 +48,10 @@ namespace OperaHouse {
             _interactCanvas.SetActive(false);
             _interactArea.SetColliderActivation(false);
             InteractionManager.Instance.StartedInteract(this);
+            if(m_isFisrtDraw) 
+                DrawManager.Instance.onDrawStart.AddListener(() => { DrawManager.Instance.BlackBook.OpenPanel(); });
+
+            DrawManager.Instance.curDrawing = this;
             DrawManager.Instance.StartDrawing();
         }
 
@@ -52,11 +60,32 @@ namespace OperaHouse {
             _ptble.enabled = false;
             _interactCanvas.SetActive(true);
             _interactArea.SetColliderActivation(true);
+            if(DrawManager.Instance.curDrawing == this)
+                DrawManager.Instance.curDrawing = null;
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
 
-        #endregion
+
+        private int GetPixelCount(Texture2D texture) {
+            var tw = texture.width;
+            var th = texture.height;
+            var source = texture.GetPixels();
+            var pixels = texture.GetPixels();
+            int result = 0;
+
+            int i1 = 0;
+
+            for(int iy = 0; iy < th; iy++) {
+                for(int ix = 0; ix < tw; ix++) {
+                    if(source[i1++].a >= 0.9f)
+                        result++;
+                }
+            }
+
+            return (int)( result * 0.1f );
+        }
+
     }
 }

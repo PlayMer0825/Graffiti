@@ -191,10 +191,16 @@ public class Point_Of_View : MonoBehaviour
         _tps.enabled = true;
     }
 
+    /// <summary>
+    /// 게임 화면을 강제로 사이드뷰로 전환하는 함수.
+    /// </summary>
     public void ForceChangeToSide() {
         Side_View();
     }
 
+    /// <summary>
+    /// 게임 화면을 강제로 TPS로 전환하는 함수.
+    /// </summary>
     public void ForceChangeToTps() {
         Tps_View();
     }
