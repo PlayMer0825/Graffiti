@@ -11,14 +11,16 @@ namespace OperaHouse {
         [SerializeField] P3dPaintSphere _p3dPaint = null;
         [SerializeField] private const float _sprayCapacity = 100f;
         [SerializeField] private Image _remainFillImage = null;
+        [SerializeField] private AudioSource m_audioPlayer = null;
+        [SerializeField] private AudioClip m_sprayFireSound = null;
+
         public float SprayCapacity {get => _sprayCapacity;}
 
         private float _sprayRemain = 0f;
         private bool _isFiring = false;
         [SerializeField] private bool _canFire = false;
-        private WaitForSeconds _sprayDecreaseInterval = null;
-        [SerializeField] private float _sprayDecreaseIntervalTime = 1f;
-        [SerializeField] private float _sprayDecreaseIntervalAmount = 0.4f;
+        [SerializeField] private float _sprayDecreaseAmount = 0.4f;
+        [SerializeField]private LayerMask _sprayLayer;
 
         public float SprayRemain { get => _sprayRemain; }
         public Color Color {
@@ -48,9 +50,9 @@ namespace OperaHouse {
         private void Awake() {
             _particle = GetComponent<ParticleSystem>();
             _p3dPaint = GetComponent<P3dPaintSphere>();
+            m_audioPlayer = GetComponent<AudioSource>();
 
             _sprayRemain = _sprayCapacity;
-            _sprayDecreaseInterval = new WaitForSeconds(_sprayDecreaseIntervalTime);
         }
         
         public void OnClickMouseLeft(bool isPerformed) {
@@ -62,28 +64,34 @@ namespace OperaHouse {
 
             _isFiring = isPerformed;
 
-            if(_canFire && _isFiring && _sprayRemain > 0)
+            if(_canFire && _isFiring && _sprayRemain > 0) {
                 StartCoroutine(CoStartFireSpray());
+                m_audioPlayer.Play();
+            }
         }
 
         private IEnumerator CoStartFireSpray() {
             _particle.Play();
 
-            while(_canFire && _isFiring && _sprayRemain >= 0f) {
-                _sprayRemain -= _sprayDecreaseIntervalAmount;
-                yield return _sprayDecreaseInterval;
+            while(true) {
+                _sprayRemain -= _sprayDecreaseAmount * Time.deltaTime;
+                if((_canFire && _isFiring && _sprayRemain >= 0f) == false)
+                    break;
+
+                yield return null;
             }
 
             _particle.Stop();
+            m_audioPlayer.Stop();
             yield break;
         }
 
         public void OnShake(Vector2 mouseDelta) {
-            float deltaMag = mouseDelta.magnitude;
-            if(deltaMag  <= 0.2f)
+            float delta = mouseDelta.magnitude;
+            if(delta  <= 0.2f)
                 return;
 
-            _sprayRemain = Mathf.Clamp(_sprayRemain + deltaMag * 0.005f, 0f, _sprayCapacity);
+            _sprayRemain = Mathf.Clamp(_sprayRemain + delta * 0.005f, 0f, _sprayCapacity);
         }
 
         public void SetSprayRotation() {
@@ -95,13 +103,10 @@ namespace OperaHouse {
 
             Ray ray = Camera.main.ScreenPointToRay(new Vector2(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight / 2));
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("Paintable"))) {
-                Debug.Log($"TargetPoint: {hit.point}");
+            if(Physics.Raycast(ray, out hit, 1000f, _sprayLayer)) 
                 SetTargetDirection(hit.point);
-            }
-            else {
+            else 
                 SetTargetDirection(Vector3.zero, false);
-            }
         }
 
         private void SetTargetDirection(Vector3 targetPoint, bool isValid = true) {

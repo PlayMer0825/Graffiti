@@ -28,13 +28,13 @@ public class PageElement : MonoBehaviour {
             _elemButton.interactable = false;
         }
         else if (data.IsUnlocked == false) {
-            _elemImage.sprite = Sprite.Create(data.MaskSprite, new Rect(0, 0, data.MaskSprite.width, data.MaskSprite.height), new Vector2(0.5f, 0.5f));
+            _elemImage.sprite = data.MaskVisualSprite;
             _stencil = data;
             _isInitialized = true;
             _elemButton.interactable = false;
         }
         else {
-            _elemImage.sprite = Sprite.Create(data.MaskSprite, new Rect(0, 0, data.MaskSprite.width, data.MaskSprite.height), new Vector2(0.5f, 0.5f));
+            _elemImage.sprite = data.MaskVisualSprite;
             _stencil = data;
             _isInitialized = true;
             _elemButton.interactable = true;

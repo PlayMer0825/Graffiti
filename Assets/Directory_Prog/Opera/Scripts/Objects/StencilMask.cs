@@ -43,6 +43,8 @@ namespace OperaHouse {
             _maskVisual.sprite = maskVisualSprite;
             _maskPreview.gameObject.SetActive(true);
             gameObject.SetActive(true);
+
+            Debug.Log($"Mask's Pixel Count: {_curMaskPixelCount}");
         }
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace OperaHouse {
             DrawManager.Instance.Bag.ActivateRemoveButtonWithMask(this);
             _drawPanel.SetStencilVisible(true);
             _drawPanel.OpenStencilVisualizer();
-            DrawManager.Instance.Draw.Percent.SetDrawFinishMode(true);
+            DrawManager.Instance.Draw.Percent.SetExitMethod(true);
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace OperaHouse {
             gameObject.SetActive(false);
             _drawPanel.CloseStencilVisualizer();
             SetMaskPreviewVisiblity(true);
-            DrawManager.Instance.Draw.Percent.SetDrawFinishMode(false);
+            DrawManager.Instance.Draw.Percent.SetExitMethod(false);
         }
 
         private bool ChangeMaskChannel() {

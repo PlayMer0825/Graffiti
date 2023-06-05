@@ -10,7 +10,9 @@ namespace OperaHouse {
     public class BagPanel : UIPanel {
         [SerializeField] RectTransform _palette = null;
         private Vector3 _paletteClosedPos, _paletteOpenPos;
-        [SerializeField] RectTransform _paletteArea = null;
+        //[SerializeField] RectTransform _paletteArea = null;
+        [SerializeField] RectTransform _paletteOpen = null;
+        [SerializeField] RectTransform _paletteClose = null;
 
 
         TweenerCore<Vector3, Vector3, VectorOptions> _paletteTweener = null;
@@ -25,9 +27,9 @@ namespace OperaHouse {
         }
 
         protected override void Init() {
-            _palette.localPosition = new Vector3(-(Screen.width / 2), _palette.localPosition.y, 0);
-            _paletteClosedPos = _palette.position;
-            _paletteOpenPos = _palette.position + new Vector3(_paletteArea.rect.width, 0f, 0f);
+            //_palette.localPosition = new Vector3(-(Screen.width / 2), _palette.localPosition.y, 0);
+            //_paletteClosedPos = _palette.position;
+            //_paletteOpenPos = _palette.position + new Vector3(_paletteArea.rect.width, 0f, 0f);
             _palette.gameObject.SetActive(true);
         }
 
@@ -52,7 +54,10 @@ namespace OperaHouse {
         }
 
         protected override void OnEnablePanel() {
-            _paletteTweener = _palette.DOMove(_paletteOpenPos, 1f);
+            //_paletteTweener = _palette.DOMove(_paletteOpenPos, 1f);
+
+            _paletteTweener = _palette.DOMove(_paletteOpen.position, 1f);
+
             _palette.gameObject.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -61,7 +66,8 @@ namespace OperaHouse {
         }
 
         protected override void OnDisablePanel() {
-            _paletteTweener = _palette.DOMove(_paletteClosedPos, 1f);
+            //_paletteTweener = _palette.DOMove(_paletteClosedPos, 1f);
+            _paletteTweener = _palette.DOMove(_paletteClose.position, 1f);
             //_paletteTweener.onComplete.
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

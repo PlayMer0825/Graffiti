@@ -6,8 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace OperaHouse {
-
+    /// Finish가 그래피티 종료
+    /// Clear가 스텐실 종료
     public class DrawManager :  Singleton<DrawManager>{
+        #region UI Panel
         [SerializeField] private DrawPanel _drawPanel = null;
         public DrawPanel Draw {
             get {
@@ -40,13 +42,17 @@ namespace OperaHouse {
             }
         }
 
+        #endregion
+
         [SerializeField] private Spray _spray = null;
         public Spray Spray { get => _spray; }
 
         [SerializeField]private StencilMask _stencil = null;
         public StencilMask Stencil { get => _stencil; }
 
+        public UnityEvent onDrawStart = null;
         public UnityEvent onDrawFinished = null;
+        public DrawObject curDrawing = null;
 
 
         #region Melamine Works
@@ -90,6 +96,8 @@ namespace OperaHouse {
             PercentageUI ui = _drawPanel.Percent;
             if(ui == null) return;
             ui.RegisterForChangeCounter(counter);
+
+            onDrawStart?.Invoke();
         }
 
         /// <summary>
