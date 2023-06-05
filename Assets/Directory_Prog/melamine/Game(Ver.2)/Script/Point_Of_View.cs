@@ -94,7 +94,7 @@ public class Point_Of_View : MonoBehaviour
         //    }
         //}
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseRay, out RaycastHit hit, 100.0f))
@@ -148,16 +148,16 @@ public class Point_Of_View : MonoBehaviour
             _tps.enabled = true;
             SIDE.enabled = false;
             TPS.enabled = true;
-        }
+        }*/
     }
 
-    private void FixedUpdate()
+   /* private void FixedUpdate()
     {
         if (grabbing != null)
         {
             grabbing.FollowOnFixedTime(grabPosition, transform.rotation);
         }
-    }
+    }*/
 
     private void TriggerExit(GameObject gameObject)
     {
