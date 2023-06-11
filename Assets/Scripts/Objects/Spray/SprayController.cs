@@ -101,13 +101,13 @@ public class SprayController : MonoBehaviour {
         SizeOverLifetimeModule sizeModule = e_sprayParticle.sizeOverLifetime;
         Debug.Log($"Size: {sizeModule.sizeMultiplier}");
 
-        e_sprayDrawer.Radius = Mathf.Clamp(e_sprayDrawer.Radius + wheelDelta * 0.1f, 0.04f, 0.5f);
+        //e_sprayDrawer.Radius = Mathf.Clamp(e_sprayDrawer.Radius + wheelDelta * 0.1f, 0.04f, 0.5f);
         //얘는 굳이 조절 안해줘도 될듯? 얘보단 Opacity조절하는게 더 쓸모있어보임
         //e_sprayDrawer.Scale = new Vector3(shape.angle, shape.angle, shape.angle);
     }
 
     public void ChangeSprayNozzleSizeWithSlider(float value) {
-        e_sprayDrawer.Radius = value;
+        //e_sprayDrawer.Radius = value;
     }
 
     public void ChangeSprayOpacityWithSlider(float value) {

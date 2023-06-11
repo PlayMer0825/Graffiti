@@ -12,7 +12,12 @@ namespace OperaHouse {
         [Header("Interactable UIs")]
         [SerializeField] protected GameObject _interactCanvas = null;
 
+        [Header("Interactable: Status")]
+        [SerializeField] private bool m_isStandby = false;
+
         //[Header("Delegate Functions' Queue for Any Events")]
+
+        protected bool IsStandby { get => m_isStandby; }
 
 
         /// <summary>
@@ -20,6 +25,7 @@ namespace OperaHouse {
         /// </summary>
         public virtual void ReadyInteract(Collider other) {
             _interactCanvas.SetActive(true);
+            m_isStandby = true;
         }
 
         /// <summary>
@@ -27,6 +33,7 @@ namespace OperaHouse {
         /// </summary>
         public virtual void UnReadyInteract(Collider other) {
             _interactCanvas.SetActive(false);
+            m_isStandby = false;
         }
 
         /// <summary>

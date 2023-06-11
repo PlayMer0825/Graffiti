@@ -43,7 +43,12 @@ namespace OperaHouse {
         public float Radius {
             get => _p3dPaint.Radius;
             set {
-                _p3dPaint.Radius = value;
+                if(value == 0)
+                    return;
+                float val = value < 0f ? -0.1f : 0.1f;
+                _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.2f, 3f);
+                ParticleSystem.ShapeModule shape = _particle.shape;
+                shape.angle = _p3dPaint.Radius;
             }
         }
 
@@ -107,6 +112,11 @@ namespace OperaHouse {
                 SetTargetDirection(hit.point);
             else 
                 SetTargetDirection(Vector3.zero, false);
+        }
+
+        public void SetSprayRadius(float scrollDelta) {
+            float val = scrollDelta < 0f ? -0.1f : 0.1f;
+            _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.2f, 5f);
         }
 
         private void SetTargetDirection(Vector3 targetPoint, bool isValid = true) {

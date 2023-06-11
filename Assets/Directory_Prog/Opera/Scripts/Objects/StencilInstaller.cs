@@ -9,8 +9,10 @@ namespace OperaHouse {
 
         private bool _canInstall = false;
         private bool _isInstalled = false;
+        private bool _isInstalling = false;
 
         public bool IsInstalled { get => _isInstalled; }
+        public bool IsInstalling { get => _isInstalling; }
 
         public void StartInstallStencil(Texture2D maskTexture, Sprite maskVisual) {
             if(_mask == null)
@@ -21,6 +23,7 @@ namespace OperaHouse {
         }
 
         private IEnumerator CoStartInstall() {
+            _isInstalling = true;
             while(true) {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -50,7 +53,7 @@ namespace OperaHouse {
 
                 yield return null;
             }
-
+            _isInstalling = false;
             yield break;
         }
     }

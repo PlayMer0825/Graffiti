@@ -18,6 +18,7 @@ namespace OperaHouse {
         public PercentageUI Percent { get => _percent; }
 
         private bool[] _hotKeyFilled;
+        private bool isVisualOpened = false;
 
         TweenerCore<Vector3, Vector3,VectorOptions> _stencilTweener = null;
 
@@ -73,17 +74,25 @@ namespace OperaHouse {
         }
 
         public void OpenStencilVisualizer() {
+            if(isVisualOpened)
+                return;
+
             if(_stencilTweener != null)
                 _stencilTweener.Kill(true);
 
             _stencilTweener = _stencilVisualizer.transform.DOMove(_stencilVisualizer.transform.position + new Vector3(0, _stencilVisualizer.rectTransform.rect.height, 0), 1f);
+            isVisualOpened = true;
         }
 
         public void CloseStencilVisualizer() {
+            if(isVisualOpened == false)
+                return;
+
             if(_stencilTweener != null)
                 _stencilTweener.Kill(true);
 
             _stencilTweener = _stencilVisualizer.transform.DOMove(_stencilVisualizer.transform.position - new Vector3(0, _stencilVisualizer.rectTransform.rect.height, 0), 1f);
+            isVisualOpened = false;
         }
 
         public void SetStencilVisible(bool isActive) {

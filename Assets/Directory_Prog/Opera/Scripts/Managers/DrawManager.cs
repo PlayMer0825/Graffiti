@@ -119,6 +119,8 @@ namespace OperaHouse {
             _spray.OnClickMouseLeft(false);
             _pointOfView.ForceChangeToSide();
             _drawPanel.Percent.ReleaseCounter();
+            curDrawing.FinishInteract();
+            curDrawing = null;
 
             onDrawFinished?.Invoke();
 
