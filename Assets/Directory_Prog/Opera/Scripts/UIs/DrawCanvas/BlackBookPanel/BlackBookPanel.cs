@@ -28,6 +28,8 @@ namespace OperaHouse {
             }
         }
 
+        public StencilInstaller StencilInstaller { get => _stencilInstaller; }
+
         private void Update() {
             if(Input.GetKeyDown(KeyCode.Escape)) {
                 OnClick_ExitBlackBook();
