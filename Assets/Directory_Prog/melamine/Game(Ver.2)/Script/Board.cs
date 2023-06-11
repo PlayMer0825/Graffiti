@@ -48,6 +48,12 @@ public class Board : MonoBehaviour
 
     public LayerMask layer;
     public LayerMask layer2;
+
+    public AudioSource Rolling;
+    public AudioSource Jump;
+    public AudioSource Slide;
+    public AudioSource Landing;
+
     void Start()
     {
         isEnd = false;
@@ -73,6 +79,7 @@ public class Board : MonoBehaviour
         //AnimationUpdate();
         if (Input.GetKeyDown(KeyCode.W) && ground && bench_State == false&&!isDash)
         {
+            Jump.Play();
             animator.SetTrigger("isJumping");
             Debug.Log("jump");
             Vector3 jumpPower = Vector3.up * jumpHeight;
@@ -111,8 +118,9 @@ public class Board : MonoBehaviour
             }
         }
 
-        if (bench == true&&balance_Slider==false)
+        if (bench == true&&balance_Slider==false&&bench_State==false)
         {
+            Slide.Play();
             balance_Slider = true;
             slider2.SetActive(true);
             SetBalance();
@@ -193,14 +201,11 @@ public class Board : MonoBehaviour
         }
         if (ground == true)
         {
-            isBench = true;
             bench = false;
             isJump = true;
             balance_Slider = false;
             slider2.SetActive(false);
         }
-        
-        
     }
 
     public void FixedUpdate()
@@ -233,15 +238,24 @@ public class Board : MonoBehaviour
     }
     void CheckGround()
     {
+        
         RaycastHit hit;
+        Debug.DrawRay(transform.position + (Vector3.up * 0.2f), Vector3.up*5f, Color.red);
         if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.down, out hit, 0.25f, layer))
         {
+            isBench = true;
             bench = false;
             animator.SetBool("isBench", false);
             ground = true;
             animator.SetBool("isGround", true);
+
+            if(!Rolling.isPlaying)
+            {
+                Rolling.Play();
+            }
             if(isJump==true)
             {
+                Landing.Play();
                 isJump = false;
             }
         }
@@ -249,12 +263,16 @@ public class Board : MonoBehaviour
         {
             animator.SetBool("isGround", false);
             ground = false;
+            Rolling.Stop();
         }
 
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.up, out hit, 1f, layer2))
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.up, out hit, 3f, layer2))
         {
+            bench_State = true;
             Debug.Log("bench");
         }
+        else
+            bench_State = false;
     }
 
     void AnimationUpdate()
@@ -308,5 +326,6 @@ public class Board : MonoBehaviour
     void OnInvoke_Dash_Fail()
     {
         diRection = direction * (dash / 2);
+
     }
 }
