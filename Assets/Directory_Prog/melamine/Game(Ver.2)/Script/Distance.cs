@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class Distance : MonoBehaviour
 {
-    
+    public CinemachineVirtualCamera cam;
     float fadeCount = 1;
     public Image image;
     public GameObject image1;
@@ -29,14 +30,15 @@ public class Distance : MonoBehaviour
     void Update()
     {
         distance = other.position.x - other1.transform.position.x;
-        distanceText.text = distance.ToString();
+        distanceText.text = distance.ToString("F1");
 
         if(other.position.x<=other1.position.x)
         {
-            Board.isEnd = true;
-            image.color = new Color(0, 0, 0, 1);
-            image1.SetActive(true);
-            image2.SetActive(true);
+            cam.Follow = null;
+            //Board.isEnd = true;
+            //image.color = new Color(0, 0, 0, 1);
+            //image1.SetActive(true);
+            //image2.SetActive(true);
         }
     }
 
