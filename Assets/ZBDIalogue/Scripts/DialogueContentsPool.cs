@@ -29,6 +29,12 @@ namespace ZB.Dialogue.Graffiti
             m_Context = Context;
             m_AniInput = AniInput;
         }
+
+        //NUll 판별 여부
+        public bool IsActingEmpty()
+        {
+            return string.IsNullOrEmpty(m_AniInput);
+        }
     }
 
     public class DialogueContentsPool : MonoBehaviour

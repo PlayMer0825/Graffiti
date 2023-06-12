@@ -37,8 +37,18 @@ namespace ZB.Dialogue.Graffiti
                 actingTriggerID = splitStr[0];
             }
 
-            if (m_ani_Acting != null) 
-                m_ani_Acting.SetTrigger(actingTriggerID);
+            if (m_ani_Acting != null)
+            {
+                if(!act.IsActingEmpty())
+                {
+                    m_ani_Acting.SetTrigger(actingTriggerID);
+                }
+                else
+                {
+                    m_ani_Acting.ResetTrigger(actingTriggerID);
+                }
+            }
+               
             if (m_ani_Face != null)
                 m_ani_Face.SetTrigger(faceTriggerID);
         }

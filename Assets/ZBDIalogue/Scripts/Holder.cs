@@ -31,7 +31,9 @@ namespace ZB.Dialogue.Graffiti
         [SerializeField] private IDSets[] m_idSets;
         [SerializeField] private int currentIndex;
 
-        public Transform targetObject; // 바라볼 오브젝트
+        [Header("다이얼로그 진행 시 플레이어가 바라볼 곳 / 위치할 곳 ")]
+        public Transform targetObject; // 바라볼 방향 (오브젝트 ) 를 설정
+        public Transform holder_Playerpos; // 다이얼로그 진행 시 플레이어가 위치할 곳을 설정
 
         private void Start()
         {

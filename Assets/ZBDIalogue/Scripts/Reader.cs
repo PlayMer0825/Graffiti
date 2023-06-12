@@ -78,9 +78,18 @@ namespace ZB.Dialogue.Graffiti
             float currentPlayerPositionY = m_playerTransform.position.y;
 
             // 잠깐 추가한 부분... Holder 의 위치로 플레이어를 이동 , 그리고 Holder 에서 지정한 target 오브젝트를 향해서 바라봄(설정해주면 됨)
-            m_playerTransform.position = m_currentHolder.position;
+            // m_playerTransform.position = m_currentHolder.position;
             // 이동시킬 때 이동할 부분의 y 축이 플레이어의 y 축보다 작거나 크다면 이동할 포지션의 y 는 현재 플레이어의 y 포지션으로 고정한다. 
-            if(m_currentHolder.position.y > currentPlayerPositionY || m_currentHolder.position.y < currentPlayerPositionY)
+            /*if(m_currentHolder.position.y > currentPlayerPositionY || m_currentHolder.position.y < currentPlayerPositionY)
+            {
+                Vector3 playerPosition = m_playerTransform.position;
+                playerPosition.y = currentPlayerPositionY;
+                m_playerTransform.position = playerPosition;
+            }*/
+
+            // 포지션을 따로 설정하기
+            m_playerTransform.position = m_holder.holder_Playerpos.position;
+            if(m_holder.holder_Playerpos.position.y > currentPlayerPositionY || m_holder.holder_Playerpos.position.y < currentPlayerPositionY)
             {
                 Vector3 playerPosition = m_playerTransform.position;
                 playerPosition.y = currentPlayerPositionY;
@@ -91,6 +100,7 @@ namespace ZB.Dialogue.Graffiti
             targetPosition.y = m_playerTransform.position.y;
             m_playerTransform.LookAt(targetPosition);
 
+            // 다이얼로그 진입 시 기본 동작 : Idle
             m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
             
 
