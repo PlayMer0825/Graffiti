@@ -39,17 +39,18 @@ namespace ZB.Dialogue.Graffiti
         {
             Transform parent = transform.parent;
             holder_playerPos = transform.GetChild(1);
+            targetObject = transform.GetChild(0);
 
-            // 만약에 targetObject의 부모가 있다면 부모방향을 바라보고 holder 자식 오브젝트 중 targetObject 를 비활성화
-            if(parent != null )
-            {
-                targetObject = parent;
-                transform.GetChild(0).gameObject.SetActive(false);
-            }
-            else
-            {
-                targetObject = transform.GetChild(0);
-            }
+            //// 만약에 targetObject의 부모가 있다면 부모방향을 바라보고 holder 자식 오브젝트 중 targetObject 를 비활성화
+            //if(parent != null )
+            //{
+            //    targetObject = parent;
+            //    transform.GetChild(0).gameObject.SetActive(false);
+            //}
+            //else
+            //{
+            //targetObject = transform.GetChild(0);
+            //}
 
         }
         public int GetEventID(out UnityEvent uEvent_OnEscape)

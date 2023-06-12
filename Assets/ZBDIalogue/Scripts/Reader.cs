@@ -102,7 +102,7 @@ namespace ZB.Dialogue.Graffiti
             m_playerTransform.LookAt(targetPosition);
 
             // 다이얼로그 진입 시 기본 동작 : Idle
-            m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
+            //  m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
             
 
         }
