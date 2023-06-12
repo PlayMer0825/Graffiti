@@ -37,10 +37,30 @@ namespace ZB.Dialogue.Graffiti
                 actingTriggerID = splitStr[0];
             }
 
-            if (m_ani_Acting != null) 
-                m_ani_Acting.SetTrigger(actingTriggerID);
+            if (m_ani_Acting != null)
+            {
+                if(!act.IsActingEmpty())
+                {
+                    m_ani_Acting.SetTrigger(actingTriggerID);
+                    Debug.Log("액팅 연출할 것이 있음");
+                }
+                else
+                {
+                    m_ani_Acting.ResetTrigger(actingTriggerID);
+                    Debug.Log("액팅 연출할 것이 없음");
+                }
+            }
             if (m_ani_Face != null)
                 m_ani_Face.SetTrigger(faceTriggerID);
+            
+            // 내가 추가.. 
+            //else if(m_ani_Acting == null)
+            //{
+            //    Debug.Log("액팅 null");
+            //    m_ani_Acting.ResetTrigger(actingTriggerID);
+            //    //m_ani_Face.ResetTrigger(faceTriggerID);
+            //}
+            // 그게 되어야 겠네.. 액팅의 내용을 판별해가지고 내용이 비어있으면 트리거를 해제하고 비어있지 않으면 해당 내용을 하는 식으로
         }
     }
 }

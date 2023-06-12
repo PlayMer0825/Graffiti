@@ -32,6 +32,7 @@ namespace ZB.Dialogue.Graffiti
         [SerializeField] private int currentIndex;
 
         public Transform targetObject; // 바라볼 오브젝트
+        public Transform player_Position;
 
         private void Start()
         {
