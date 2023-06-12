@@ -88,8 +88,8 @@ namespace ZB.Dialogue.Graffiti
             }*/
 
             // 포지션을 따로 설정하기
-            m_playerTransform.position = m_holder.holder_Playerpos.position;
-            if(m_holder.holder_Playerpos.position.y > currentPlayerPositionY || m_holder.holder_Playerpos.position.y < currentPlayerPositionY)
+            m_playerTransform.position = m_holder.holder_playerPos.position;
+            if(m_holder.holder_playerPos.position.y > currentPlayerPositionY || m_holder.holder_playerPos.position.y < currentPlayerPositionY)
             {
                 Vector3 playerPosition = m_playerTransform.position;
                 playerPosition.y = currentPlayerPositionY;
@@ -97,11 +97,12 @@ namespace ZB.Dialogue.Graffiti
             }
 
             Vector3 targetPosition = m_currentHolder.GetComponent<Holder>().targetObject.position;
+
             targetPosition.y = m_playerTransform.position.y;
             m_playerTransform.LookAt(targetPosition);
 
             // 다이얼로그 진입 시 기본 동작 : Idle
-            m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
+            //  m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
             
 
         }
