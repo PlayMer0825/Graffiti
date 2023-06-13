@@ -23,7 +23,6 @@ namespace ZB.Dialogue.Graffiti
         int m_index;
         bool m_interacting;
 
-        // 매개변수로 이벤트 ID 넣으면 다이얼로그 바로 불러올 수 있다.. -> TimeLine 에서 사용하기 
         public void NewExport(int EventID)
         {
             m_fixedEvent_OnEnter.Invoke();

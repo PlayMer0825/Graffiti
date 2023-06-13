@@ -24,7 +24,7 @@ namespace ZB.Dialogue.Graffiti
             if (other.gameObject.layer == m_targetLayer)
             {
                 //Holder 클래스 가져오는데에 성공
-                if(other.TryGetComponent(out m_holder) && !m_machine.m_Interacting)
+                if (other.TryGetComponent(out m_holder) && !m_machine.m_Interacting)
                 {
                     //강제 다이얼로그 입장
                     if (m_holder.m_ReadType == Holder.ReadType.enforce)
@@ -75,21 +75,13 @@ namespace ZB.Dialogue.Graffiti
             m_machine.NewExport(m_holder.GetEventID(out uEvent_OnEscape));
             m_machine.AddEscapeEvent(uEvent_OnEscape.Invoke);
 
+            /*
             float currentPlayerPositionY = m_playerTransform.position.y;
 
             // 잠깐 추가한 부분... Holder 의 위치로 플레이어를 이동 , 그리고 Holder 에서 지정한 target 오브젝트를 향해서 바라봄(설정해주면 됨)
-            // m_playerTransform.position = m_currentHolder.position;
+            m_playerTransform.position = m_currentHolder.position;
             // 이동시킬 때 이동할 부분의 y 축이 플레이어의 y 축보다 작거나 크다면 이동할 포지션의 y 는 현재 플레이어의 y 포지션으로 고정한다. 
-            /*if(m_currentHolder.position.y > currentPlayerPositionY || m_currentHolder.position.y < currentPlayerPositionY)
-            {
-                Vector3 playerPosition = m_playerTransform.position;
-                playerPosition.y = currentPlayerPositionY;
-                m_playerTransform.position = playerPosition;
-            }*/
-
-            // 포지션을 따로 설정하기
-            m_playerTransform.position = m_holder.holder_playerPos.position;
-            if(m_holder.holder_playerPos.position.y > currentPlayerPositionY || m_holder.holder_playerPos.position.y < currentPlayerPositionY)
+            if(m_currentHolder.position.y > currentPlayerPositionY || m_currentHolder.position.y < currentPlayerPositionY)
             {
                 Vector3 playerPosition = m_playerTransform.position;
                 playerPosition.y = currentPlayerPositionY;
@@ -97,13 +89,24 @@ namespace ZB.Dialogue.Graffiti
             }
 
             Vector3 targetPosition = m_currentHolder.GetComponent<Holder>().targetObject.position;
-
             targetPosition.y = m_playerTransform.position.y;
             m_playerTransform.LookAt(targetPosition);
 
-            // 다이얼로그 진입 시 기본 동작 : Idle
-            //  m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
+            m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
+            */
+
+            float currentPlayerPositionY = m_playerTransform.position.y; // 일단 currentPlayerPositionY 에 다이얼로그를 입장하는 순간의 플레이어 포지션을 저장
+            Transform holderPosition = m_currentHolder.GetComponent<Holder>().playerPosition;  // 플레이어의 포지션을 currentHolder 의 playerPosition 으로 이동 하되, y 값은 currentPlayerpositionY를 유지한다. 
+            Debug.Log(m_currentHolder.gameObject.name);
             
+            Vector3 exportPlayerPos = new Vector3(holderPosition.position.x, currentPlayerPositionY, holderPosition.position.z);
+            m_playerTransform.position = exportPlayerPos;
+
+            Vector3 targetPosition = m_currentHolder.GetComponent<Holder>().targetObject.position; // 플레이어는 targetPosition 을 향해 바라보되, y 값은 변하지 않는다. 
+            targetPosition.y = m_playerTransform.position.y;
+            m_playerTransform.LookAt(targetPosition);
+
+            m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f); // 다이얼로그로 진입했을 경우에는 플레이어의 애니메이터를 Idle 상태로 고정한다 
 
         }
 
@@ -121,7 +124,7 @@ namespace ZB.Dialogue.Graffiti
                 OnBtnInput();
             }
 
-            if(!m_machine.m_Interacting && m_inputWaiting && !m_readableShower.m_Showing)
+            if (!m_machine.m_Interacting && m_inputWaiting && !m_readableShower.m_Showing)
             {
                 m_readableShower.ShowStart(m_currentHolder);
             }

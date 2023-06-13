@@ -31,31 +31,31 @@ namespace ZB.Dialogue.Graffiti
         [SerializeField] private IDSets[] m_idSets;
         [SerializeField] private int currentIndex;
 
-        [Header("다이얼로그 진행 시 플레이어가 바라볼 곳 / 위치할 곳 ")]
-        public Transform targetObject; // 바라볼 방향 (오브젝트 ) 를 설정
-        public Transform holder_playerPos; // 다이얼로그 진행 시 플레이어가 위치할 곳을 설정
+        public Transform targetObject; // 바라볼 오브젝트
+        public Transform playerPosition;
+
+        private void Awake()
+        {
+            // 부모 객체를 바라보는 것을 뺀 후, 아예 따로 하나하나 설정해주는 것으로 교체 
+            targetObject = transform.GetChild(0).gameObject.transform;
+            playerPosition = transform.GetChild(1).gameObject.transform;
+        }
 
         private void Start()
         {
-            Transform parent = transform.parent;
-            holder_playerPos = transform.GetChild(1);
-            targetObject = transform.GetChild(0);
+            //Transform parent = transform.parent;
 
-            //// 만약에 targetObject의 부모가 있다면 부모방향을 바라보고 holder 자식 오브젝트 중 targetObject 를 비활성화
             //if(parent != null )
             //{
             //    targetObject = parent;
-            //    transform.GetChild(0).gameObject.SetActive(false);
             //}
-            //else
-            //{
-            //targetObject = transform.GetChild(0);
-            //}
+
+
 
         }
         public int GetEventID(out UnityEvent uEvent_OnEscape)
         {
-            switch(m_exportType)
+            switch (m_exportType)
             {
                 case ExportType.single:
                     uEvent_OnEscape = m_idSets[0].m_uEvent_OnEscape;
