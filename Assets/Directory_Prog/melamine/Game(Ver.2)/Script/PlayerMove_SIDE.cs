@@ -21,9 +21,17 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     Animator animator;
 
+    public AudioSource Walk;
+    public AudioSource Run;
+
+    public bool isWalk = false;
+    public bool isRun = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        isWalk = false;
+        isRun = false;
         rigidbody = this.GetComponent<Rigidbody>();
         animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;
@@ -39,11 +47,11 @@ public class PlayerMove_SIDE : MonoBehaviour
 
         CheckGround();
 
-        if (Input.GetButtonDown("Jump") && ground)
+        /*if (Input.GetButtonDown("Jump") && ground)
         {
             Vector3 jumpPower = Vector3.up * jumpHeight;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -128,5 +136,13 @@ public class PlayerMove_SIDE : MonoBehaviour
         }
 
         animator.SetFloat("moveWeight_Side", animationMoveWeight);
+    }
+
+    public void IsWalk()
+    {
+        if (!Run.isPlaying)
+        {
+            Run.Play();
+        }
     }
 }
