@@ -15,12 +15,10 @@ public class PaintableObject : Interactable
     public override void OnInteract() {
         base.OnInteract();
         InteractManager.Instance.StartInteractWith(this);
-        _paintable.enabled = true;
     }
 
     public override void OffInteract() {
         base.OffInteract();
-        _paintable.enabled = false;
     }
 
     protected override void OnPlayerTriggered() {
