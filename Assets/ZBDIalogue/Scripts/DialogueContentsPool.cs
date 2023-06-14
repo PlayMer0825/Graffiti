@@ -29,12 +29,6 @@ namespace ZB.Dialogue.Graffiti
             m_Context = Context;
             m_AniInput = AniInput;
         }
-
-        //NUll 판별 여부
-        public bool IsActingEmpty()
-        {
-            return string.IsNullOrEmpty(m_AniInput);
-        }
     }
 
     public class DialogueContentsPool : MonoBehaviour
@@ -90,7 +84,7 @@ namespace ZB.Dialogue.Graffiti
         {
             MakeInteracts();
         }
-        private Act MakeAct(Dictionary<string,string> dic_str_str)
+        private Act MakeAct(Dictionary<string, string> dic_str_str)
         {
             Act result = new Act(
                             dic_str_str["ActorID"],

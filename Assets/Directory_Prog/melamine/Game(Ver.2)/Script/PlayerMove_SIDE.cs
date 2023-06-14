@@ -23,7 +23,7 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
         rigidbody = this.GetComponent<Rigidbody>();
         animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;
@@ -39,11 +39,11 @@ public class PlayerMove_SIDE : MonoBehaviour
 
         CheckGround();
 
-        /*if (Input.GetButtonDown("Jump") && ground)
+        if (Input.GetButtonDown("Jump") && ground)
         {
             Vector3 jumpPower = Vector3.up * jumpHeight;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-        }*/
+        }
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
