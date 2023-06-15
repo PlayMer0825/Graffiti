@@ -9,7 +9,7 @@ namespace OperaHouse {
     public class Spray : MonoBehaviour {
         [SerializeField] ParticleSystem _particle = null;
         [SerializeField] P3dPaintSphere _p3dPaint = null;
-        [SerializeField] private const float _sprayCapacity = 100f;
+        [SerializeField] private const float _sprayCapacity = 10f;
         [SerializeField] private Image _remainFillImage = null;
         [SerializeField] private AudioSource m_audioPlayer = null;
         [SerializeField] private AudioClip m_sprayFireSound = null;
@@ -46,7 +46,7 @@ namespace OperaHouse {
                 if(value == 0)
                     return;
                 float val = value < 0f ? -0.1f : 0.1f;
-                _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.2f, 3f);
+                _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.08f, 3f);
                 ParticleSystem.ShapeModule shape = _particle.shape;
                 shape.angle = _p3dPaint.Radius;
             }
@@ -96,7 +96,7 @@ namespace OperaHouse {
             if(delta  <= 0.2f)
                 return;
 
-            _sprayRemain = Mathf.Clamp(_sprayRemain + delta * 0.005f, 0f, _sprayCapacity);
+            _sprayRemain = Mathf.Clamp(_sprayRemain + delta * 0.05f, 0f, _sprayCapacity);
         }
 
         public void SetSprayRotation() {
@@ -116,7 +116,7 @@ namespace OperaHouse {
 
         public void SetSprayRadius(float scrollDelta) {
             float val = scrollDelta < 0f ? -0.1f : 0.1f;
-            _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.2f, 5f);
+            _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.08f, 5f);
         }
 
         private void SetTargetDirection(Vector3 targetPoint, bool isValid = true) {
