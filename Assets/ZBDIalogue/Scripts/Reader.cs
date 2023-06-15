@@ -17,7 +17,6 @@ namespace ZB.Dialogue.Graffiti
         private Transform m_currentHolder;
         // 플레이어 객체 추가..
         private Transform m_playerTransform;
-        private PlayerMove_SIDE m_playerMoveside;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -51,11 +50,6 @@ namespace ZB.Dialogue.Graffiti
                 m_inputWaiting = false;
                 m_readableShower.ShowStop();
             }
-            //if(m_playerMoveside != null)
-            //{
-            //    m_playerMoveside.enabled = true;
-            //}
-            //m_currentHolder.GetComponent<Collider>().isTrigger = false;
         }
 
         public void OnBtnInput()
@@ -108,23 +102,11 @@ namespace ZB.Dialogue.Graffiti
             Vector3 exportPlayerPos = new Vector3(holderPosition.position.x, currentPlayerPositionY, holderPosition.position.z);
             m_playerTransform.position = exportPlayerPos;
 
-            //m_playerTransform.GetComponent<Collider>().isTrigger = false;
-            //m_playerTransform.position = exportPlayerPos;
-            //m_playerTransform.GetComponent<Collider>().isTrigger = true;
-
-           // m_currentHolder.GetComponent<Collider>().isTrigger = false;
-
             Vector3 targetPosition = m_currentHolder.GetComponent<Holder>().targetObject.position; // 플레이어는 targetPosition 을 향해 바라보되, y 값은 변하지 않는다. 
             targetPosition.y = m_playerTransform.position.y;
             m_playerTransform.LookAt(targetPosition);
 
             m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f); // 다이얼로그로 진입했을 경우에는 플레이어의 애니메이터를 Idle 상태로 고정한다 
-
-            //m_playerMoveside = m_playerTransform.GetComponent<PlayerMove_SIDE>();
-            //if(m_playerMoveside != null)
-            //{
-            //    m_playerMoveside.enabled = false;
-            //}
 
         }
 
