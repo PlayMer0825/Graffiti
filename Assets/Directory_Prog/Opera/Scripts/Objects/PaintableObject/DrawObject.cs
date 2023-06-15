@@ -47,6 +47,8 @@ namespace OperaHouse {
 
         public override void StartInteract() {
             //TODO: 카메라 이동 및 그림 그리기 기능 ON
+            if (interactable == false)
+                return;
             m_isDrawing = true;
             _ptble.enabled = true;
             _interactCanvas.SetActive(false);
@@ -100,7 +102,7 @@ namespace OperaHouse {
                 return;
 
             if(m_isDrawing)
-                return;
+                return;//
 
             if(Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
                 StartInteract();
