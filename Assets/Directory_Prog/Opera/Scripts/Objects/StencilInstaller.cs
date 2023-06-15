@@ -26,7 +26,7 @@ namespace OperaHouse {
             _isInstalling = true;
             while(true) {
                 RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
 
                 if(Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("Paintable"))) 
                     _canInstall = true;

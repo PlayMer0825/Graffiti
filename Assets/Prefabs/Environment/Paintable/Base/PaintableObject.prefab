@@ -80,9 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6299bf56c4f2be942b422b693fff98bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactCanvas: {fileID: 0}
+  _interactCanvas: {fileID: 6442533721756154048}
+  m_isStandby: 0
   _ptble: {fileID: 0}
-  _interactArea: {fileID: 0}
+  _interactArea: {fileID: 1814481030586658194}
+  m_areaConstraint: {fileID: 302988339657898091}
 --- !u!1 &1779269847421041215
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}
+--- !u!1 &6442533721756154048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4066350574313126616, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}
+  m_PrefabInstance: {fileID: 6991537175588471320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6710372505443092195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4334404824441832699, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}

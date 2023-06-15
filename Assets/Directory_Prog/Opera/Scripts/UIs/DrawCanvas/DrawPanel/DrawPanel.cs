@@ -95,6 +95,10 @@ namespace OperaHouse {
             isVisualOpened = false;
         }
 
+        /// <summary>
+        /// false(Green) : out true(Alpha) : in
+        /// </summary>
+        /// <param name="isActive"></param>
         public void SetStencilVisible(bool isActive) {
             if(_stencilVisualizerSprite.Length < 2)
                 return;
