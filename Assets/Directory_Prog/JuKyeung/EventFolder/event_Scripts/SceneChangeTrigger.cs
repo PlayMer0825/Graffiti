@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneChangeTrigger : MonoBehaviour
 {
     public UnityEvent sceneChangeEvent;
-    public GameObject buttonUI;
+    //public GameObject buttonUI;
     public string targetSceneName;
 
     private bool isInRange;
@@ -15,19 +15,19 @@ public class SceneChangeTrigger : MonoBehaviour
 
     private void Start()
     {
-        buttonUI.SetActive(false);
+       // buttonUI.SetActive(false);
     }
 
     private void Update()
     {
-        if (isInRange && !isEventExecuted)
-        {
-            // 클릭하거나 'E' 키를 누르면 이벤트 실행
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
-            {
-                ExecuteEvent();
-            }
-        }
+        //if (isInRange && !isEventExecuted)
+        //{
+        //    // 클릭하거나 'E' 키를 누르면 이벤트 실행
+        //    if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        ExecuteEvent();
+        //    }
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,7 +35,8 @@ public class SceneChangeTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInRange = true;
-            buttonUI.SetActive(true);
+            // buttonUI.SetActive(true);
+            ExecuteEvent();
         }
     }
 
@@ -44,7 +45,7 @@ public class SceneChangeTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInRange = false;
-            buttonUI.SetActive(false);
+            //buttonUI.SetActive(false);
         }
     }
 
