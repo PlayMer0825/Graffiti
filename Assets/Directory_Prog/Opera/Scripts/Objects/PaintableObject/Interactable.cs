@@ -14,10 +14,13 @@ namespace OperaHouse {
 
         [Header("Interactable: Status")]
         [SerializeField] private bool m_isStandby = false;
+        protected bool interactable = true;
 
         //[Header("Delegate Functions' Queue for Any Events")]
 
         protected bool IsStandby { get => m_isStandby; }
+
+        public bool IsInteractable { get => interactable; set => interactable = value; }
 
 
         /// <summary>
