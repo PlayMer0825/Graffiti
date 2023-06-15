@@ -45,7 +45,7 @@ namespace OperaHouse {
             set {
                 if(value == 0)
                     return;
-                float val = value < 0f ? -0.1f : 0.1f;
+                float val = value < 0f ? -0.05f : 0.05f;
                 _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.08f, 3f);
                 ParticleSystem.ShapeModule shape = _particle.shape;
                 shape.angle = _p3dPaint.Radius;
@@ -115,7 +115,7 @@ namespace OperaHouse {
         }
 
         public void SetSprayRadius(float scrollDelta) {
-            float val = scrollDelta < 0f ? -0.1f : 0.1f;
+            float val = scrollDelta < 0f ? -0.05f : 0.05f;
             _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.08f, 5f);
         }
 

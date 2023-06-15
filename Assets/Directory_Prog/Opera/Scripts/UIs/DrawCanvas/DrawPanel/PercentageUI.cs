@@ -105,7 +105,7 @@ namespace OperaHouse {
         }
 
         private bool CheckDrawFinish() {
-            return _percentageFill.fillAmount >= 0.9f;
+            return _percentageFill.fillAmount >= 0.5f;
         }
     }
 }
