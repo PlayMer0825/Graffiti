@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove_SIDE : MonoBehaviour
 {
@@ -128,5 +129,21 @@ public class PlayerMove_SIDE : MonoBehaviour
         }
 
         animator.SetFloat("moveWeight_Side", animationMoveWeight);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(Telepoter_This.telepoter==true)
+        {
+            if (other.CompareTag("Secret"))
+                Position_This.position = true;
+            if (other.CompareTag("Back_Front"))
+                Position_This.Back_Front = true;
+            if (other.CompareTag("Back_Back"))
+                Position_This.Back_Back = true;
+            if (other.CompareTag("City"))
+                Position_This.City = true;
+        }
+        
     }
 }
