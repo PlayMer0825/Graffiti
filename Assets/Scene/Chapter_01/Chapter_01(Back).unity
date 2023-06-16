@@ -9065,7 +9065,6 @@ GameObject:
   m_Component:
   - component: {fileID: 777649323}
   - component: {fileID: 777649322}
-  - component: {fileID: 777649324}
   m_Layer: 0
   m_Name: CM_TimeLine01
   m_TagString: Untagged
@@ -9123,40 +9122,6 @@ Transform:
   m_Father: {fileID: 756717373}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &777649324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777649321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &778812614 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8822386830239222847, guid: 20fdc558011e4dd40a73eb92a9402bad, type: 3}
@@ -9544,6 +9509,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2139166246481071124, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.700012
+      objectReference: {fileID: 0}
     - target: {fileID: 2655081701759389768, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -9551,6 +9520,10 @@ PrefabInstance:
     - target: {fileID: 3005736791120188626, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462433169044832387, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17.400024
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.size
@@ -9715,6 +9688,10 @@ PrefabInstance:
     - target: {fileID: 5875801745158641353, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653377334506479923, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.1000137
       objectReference: {fileID: 0}
     - target: {fileID: 6798969054432836802, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -12938,7 +12915,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -5415.8486
+  cooldown: -5437.3975
   currentReader:
     dirty: 0
     requested: 0
@@ -16911,6 +16888,8 @@ PlayableDirector:
     value: {fileID: 6309497142850498973}
   - key: {fileID: 9100030894044566534, guid: 7a9c7e36fa4cace43bd9d5f4e408bec5, type: 2}
     value: {fileID: 1960876665}
+  - key: {fileID: 8467395797839495467, guid: 7a9c7e36fa4cace43bd9d5f4e408bec5, type: 2}
+    value: {fileID: 2083804936}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1321825101
@@ -16988,6 +16967,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2083804936}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1340696883
 GameObject:
