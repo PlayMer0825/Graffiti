@@ -75,11 +75,11 @@ public class PlayerMove_TPS : MonoBehaviour
         //CharacterRotation();
 
         CheckGround();
-        if (Input.GetButtonDown("Jump") && ground)
+        /*if (Input.GetButtonDown("Jump") && ground)
         {
             Vector3 jumpPower = Vector3.up * jumpHeight;
             myRigid.AddForce(jumpPower, ForceMode.VelocityChange);
-        }
+        }*/
 
         AnimationUpdate();
 
