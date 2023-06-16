@@ -19,9 +19,6 @@ public class PlayerMove_SIDE : MonoBehaviour
     private bool isBorder;
     private float animationMoveWeight;
     public LayerMask layer;
-
-    public AudioSource Click;
-
     Animator animator;
 
     // Start is called before the first frame update
@@ -47,12 +44,6 @@ public class PlayerMove_SIDE : MonoBehaviour
             Vector3 jumpPower = Vector3.up * jumpHeight;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
         }*/
-
-        if(Input.GetMouseButtonDown(0))
-        {
-            Click.Play();
-        }
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speeds = speed * dash;
