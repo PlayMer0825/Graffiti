@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class Tutorial : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Button exitButton;
     private int currentTutorialIndex = 0;
     private bool isUIActive = true;
+
+    [System.Serializable]
+    public class TutorialCompletedEvent : UnityEvent { }
+    public TutorialCompletedEvent onTutorialCompleted;
+
 
     private void Start()
     {
@@ -86,6 +92,9 @@ public class Tutorial : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
+        // 튜토리얼 완료 이벤트 호출
+        onTutorialCompleted?.Invoke();
+
         gameObject.SetActive(false);
     }
 

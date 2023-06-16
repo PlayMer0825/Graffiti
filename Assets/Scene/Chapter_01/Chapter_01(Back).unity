@@ -7023,6 +7023,34 @@ PrefabInstance:
       propertyPath: tutorialSprites.Array.data[12]
       value: 
       objectReference: {fileID: 21300000, guid: b1a4db2ea0ca4d948ba08007fa2d10e7, type: 3}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1396766578}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_IsInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OperaHouse.Interactable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892522738078387955, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
+      propertyPath: onTutorialCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3892522739867183688, guid: 89e127fdcc2a39045a7e16499106d4b6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -13235,7 +13263,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -5519.763
+  cooldown: -5529.3027
   currentReader:
     dirty: 0
     requested: 0
@@ -14923,19 +14951,19 @@ PrefabInstance:
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1396766578}
+      objectReference: {fileID: 3993772706338715657}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 3993772706338715657}
+      objectReference: {fileID: 6309497142850498975}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 6309497142850498975}
+      objectReference: {fileID: 653352435}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 653352435}
+      objectReference: {fileID: 602715090}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -14970,7 +14998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: set_IsInteractable
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
@@ -14994,7 +15022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: OperaHouse.Interactable, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
@@ -15018,11 +15046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.data[0].m_uEvent_OnEscape.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
