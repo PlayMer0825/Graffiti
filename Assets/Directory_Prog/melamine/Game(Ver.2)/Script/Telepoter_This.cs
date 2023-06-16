@@ -35,7 +35,7 @@ public class Telepoter_This : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isPlayerTriggered)
+        if (Input.GetMouseButtonDown(0) && isPlayerTriggered)
         {
             StartCoroutine(FadeCoroutine());
             if (target_SceneName == string.Empty)
