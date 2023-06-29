@@ -20,49 +20,39 @@ public class Tutorial : MonoBehaviour
     public class TutorialCompletedEvent : UnityEvent { }
     public TutorialCompletedEvent onTutorialCompleted;
 
-    public PlayerMove_SIDE playerMoveSide ;
+    public PlayerMove_SIDE playerMoveSide;
 
     [SerializeField] private bool isGraffitiActive = false;
 
     private void OnEnable()
     {
-
         currentTutorialIndex = 0;
-
 
         DisplayTutorialImage(currentTutorialIndex);
         UpdateButtonInteractivity();
 
-        if (tutorialSprites.Length <= 1)
+        if (tutorialSprites.Length <= 1) // 켜질 때 스프라이트 갯수가 1보다 작거나 같으면 아무런 버튼도 Active 하지 않음 
         {
             prevButton.gameObject.SetActive(false);
             nextButton.gameObject.SetActive(false);
             exitButton.gameObject.SetActive(true);
         }
-        else
+        else // 그게 아니라면 일단 
         {
-            prevButton.gameObject.SetActive(currentTutorialIndex > 0);
+            prevButton.gameObject.SetActive(currentTutorialIndex > 0); // currentTutorialIndex 번호가 0보다 큰 상태라면 prevButton 을 활성화 
+
             exitButton.gameObject.SetActive(false);
 
         }
 
-        if(currentTutorialIndex <= tutorialSprites.Length -1)
-        {
-            nextButton.gameObject.SetActive(true);
-        }
         isUIActive = true;
 
     }
 
-    //private void OnDisable()
-    //{
-
-    //    currentTutorialIndex = 0;
-    //}
 
     private void Start()
     {
-        DisplayTutorialImage(currentTutorialIndex);
+        DisplayTutorialImage(currentTutorialIndex); // 디스플레이 이미지 초기화
 
         isGraffitiActive = false;
 
@@ -71,12 +61,18 @@ public class Tutorial : MonoBehaviour
 
     private void Update()
     {
-        if (isUIActive  /*&& (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))*/)
+        if (isUIActive)
         {
-            //if (Input.GetKeyDown(KeyCode.LeftArrow))
-            //    ShowPreviousTutorialImage();
-            //else if (Input.GetKeyDown(KeyCode.RightArrow))
-            //    ShowNextTutorialImage();
+            if (currentTutorialIndex > 0)
+            {
+                prevButton.gameObject.SetActive(true);
+            }
+
+            else
+            {
+                prevButton.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+            }
 
             playerMoveSide.enabled = false;
 
@@ -120,7 +116,7 @@ public class Tutorial : MonoBehaviour
         ShowNextTutorialImage();
     }
 
-    public void OnPrevButtonClicked()
+    public void OnPrevButtonClicked() // 어째서 작동을 안하지? 
     {
         ShowPreviousTutorialImage();
     }
@@ -134,7 +130,7 @@ public class Tutorial : MonoBehaviour
 
         isUIActive = false;
 
-        if(isGraffitiActive == true)
+        if (isGraffitiActive == true) // 그래피티 상태라면은 
         {
             playerMoveSide.enabled = false;
             isGraffitiActive = false;
