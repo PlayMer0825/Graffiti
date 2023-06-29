@@ -12,7 +12,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Button prevButton;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button exitButton;
-    private int currentTutorialIndex = 0;
+    [SerializeField] private int currentTutorialIndex = 0;
+    private int index = 0;
     [SerializeField] private bool isUIActive = true;
 
     [System.Serializable]
@@ -21,10 +22,14 @@ public class Tutorial : MonoBehaviour
 
     public PlayerMove_SIDE playerMoveSide ;
 
+    [SerializeField] private bool isGraffitiActive = false;
 
-    private void Start()
+    private void OnEnable()
     {
-        playerMoveSide = FindObjectOfType<PlayerMove_SIDE>();
+
+        currentTutorialIndex = 0;
+
+
         DisplayTutorialImage(currentTutorialIndex);
         UpdateButtonInteractivity();
 
@@ -38,9 +43,30 @@ public class Tutorial : MonoBehaviour
         {
             prevButton.gameObject.SetActive(currentTutorialIndex > 0);
             exitButton.gameObject.SetActive(false);
+
         }
 
+        if(currentTutorialIndex <= tutorialSprites.Length -1)
+        {
+            nextButton.gameObject.SetActive(true);
+        }
         isUIActive = true;
+
+    }
+
+    //private void OnDisable()
+    //{
+
+    //    currentTutorialIndex = 0;
+    //}
+
+    private void Start()
+    {
+        DisplayTutorialImage(currentTutorialIndex);
+
+        isGraffitiActive = false;
+
+        playerMoveSide = FindObjectOfType<PlayerMove_SIDE>();
     }
 
     private void Update()
@@ -72,6 +98,7 @@ public class Tutorial : MonoBehaviour
         if (currentTutorialIndex >= tutorialSprites.Length - 1)
         {
             exitButton.gameObject.SetActive(true);
+            nextButton.gameObject.SetActive(false);
         }
     }
 
@@ -105,6 +132,28 @@ public class Tutorial : MonoBehaviour
 
         gameObject.SetActive(false);
 
+        isUIActive = false;
+
+        if(isGraffitiActive == true)
+        {
+            playerMoveSide.enabled = false;
+            isGraffitiActive = false;
+        }
+        else
+        {
+            playerMoveSide.enabled = true;
+        }
+
     }
+
+    public void SetGraffitiActive(bool active)
+    {
+        isGraffitiActive = active;
+    }
+
+    //private void OnGraffitiButtonClicked()
+    //{
+    //    SetGraffitiActive(true);
+    //}
 
 }
