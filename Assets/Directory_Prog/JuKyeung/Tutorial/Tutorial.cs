@@ -13,15 +13,18 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button exitButton;
     private int currentTutorialIndex = 0;
-    private bool isUIActive = true;
+    [SerializeField] private bool isUIActive = true;
 
     [System.Serializable]
     public class TutorialCompletedEvent : UnityEvent { }
     public TutorialCompletedEvent onTutorialCompleted;
 
+    public PlayerMove_SIDE playerMoveSide ;
+
 
     private void Start()
     {
+        playerMoveSide = FindObjectOfType<PlayerMove_SIDE>();
         DisplayTutorialImage(currentTutorialIndex);
         UpdateButtonInteractivity();
 
@@ -36,16 +39,21 @@ public class Tutorial : MonoBehaviour
             prevButton.gameObject.SetActive(currentTutorialIndex > 0);
             exitButton.gameObject.SetActive(false);
         }
+
+        isUIActive = true;
     }
 
     private void Update()
     {
-        if (isUIActive && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        if (isUIActive  /*&& (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))*/)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-                ShowPreviousTutorialImage();
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-                ShowNextTutorialImage();
+            //if (Input.GetKeyDown(KeyCode.LeftArrow))
+            //    ShowPreviousTutorialImage();
+            //else if (Input.GetKeyDown(KeyCode.RightArrow))
+            //    ShowNextTutorialImage();
+
+            playerMoveSide.enabled = false;
+
         }
     }
 
@@ -55,7 +63,7 @@ public class Tutorial : MonoBehaviour
         nextButton.interactable = currentTutorialIndex < tutorialSprites.Length - 1;
     }
 
-    private void ShowNextTutorialImage()
+    private void ShowNextTutorialImage() // 다음 이미지 
     {
         currentTutorialIndex++;
         DisplayTutorialImage(currentTutorialIndex);
@@ -67,7 +75,7 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    private void ShowPreviousTutorialImage()
+    private void ShowPreviousTutorialImage() // 뒤로 이미지 
     {
         currentTutorialIndex--;
         DisplayTutorialImage(currentTutorialIndex);
@@ -96,10 +104,7 @@ public class Tutorial : MonoBehaviour
         onTutorialCompleted?.Invoke();
 
         gameObject.SetActive(false);
+
     }
 
-    public void SetUIActive(bool active)
-    {
-        isUIActive = active;
-    }
 }
