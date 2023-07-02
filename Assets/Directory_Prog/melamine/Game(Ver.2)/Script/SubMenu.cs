@@ -26,6 +26,11 @@ public class SubMenu : MonoBehaviour
         subMenu.SetActive(false);
     }
 
+    public void Save()
+    {
+        DataManager.Instance.SaveGameData();
+    }
+
     public void MainMenu()
     {
         Time.timeScale = 1f;
