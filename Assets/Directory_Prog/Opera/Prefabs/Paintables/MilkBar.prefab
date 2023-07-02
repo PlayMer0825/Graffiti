@@ -386,6 +386,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9197891532164757957, guid: 48d9c8f7b3d787e41bd7d0360956539c, type: 3}
   m_PrefabInstance: {fileID: 5225357994833414811}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &3589661683735897405
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3972538762227610462}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6403534580157361564, guid: ee368cccf37b78e40ad8c16ca5e765be, type: 3}
 --- !u!114 &1713365714987464185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,8 +416,8 @@ MonoBehaviour:
   interval: 0
   async: 1
   downsampleSteps: 3
-  registeredPaintableTexture: {fileID: 0}
-  cooldown: -69.401375
+  registeredPaintableTexture: {fileID: 5576706852910275208}
+  cooldown: -73.48961
   currentReader:
     dirty: 0
     requested: 0
@@ -476,8 +490,8 @@ MonoBehaviour:
     index: 0
   undoRedo: 0
   stateLimit: 10
-  saveLoad: 0
-  saveName: 
+  saveLoad: 1
+  saveName: MilkBar_Paint
   width: 1024
   height: 1024
   texture: {fileID: 2800000, guid: 7cc27854879f68743874b89d8c126e66, type: 3}
@@ -527,20 +541,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
---- !u!64 &3589661683735897405
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3972538762227610462}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6403534580157361564, guid: ee368cccf37b78e40ad8c16ca5e765be, type: 3}
 --- !u!1001 &7128861673075951312
 PrefabInstance:
   m_ObjectHideFlags: 0
