@@ -382,6 +382,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2502307813964236185, guid: 4d976508ae321a942855886230685e14, type: 3}
   m_PrefabInstance: {fileID: 2972450385525124914}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &6290186942370909846
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862923468356151979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3097850632750140695, guid: 05ca25863c8853b408f57faf309163ae, type: 3}
 --- !u!114 &2972450385525124876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +440,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 2972450385525124878}
-  cooldown: -107.12285
+  cooldown: -110.66174
   currentReader:
     dirty: 0
     requested: 0
@@ -483,8 +497,8 @@ MonoBehaviour:
     index: 0
   undoRedo: 0
   stateLimit: 10
-  saveLoad: 0
-  saveName: 
+  saveLoad: 1
+  saveName: Icecream_Paint
   width: 1024
   height: 1024
   texture: {fileID: 2800000, guid: 7cc27854879f68743874b89d8c126e66, type: 3}
@@ -523,20 +537,6 @@ MonoBehaviour:
   activated: 0
   current: {fileID: 0}
   original: {fileID: 0}
---- !u!64 &6290186942370909846
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862923468356151979}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3097850632750140695, guid: 05ca25863c8853b408f57faf309163ae, type: 3}
 --- !u!1001 &5208041217091750024
 PrefabInstance:
   m_ObjectHideFlags: 0

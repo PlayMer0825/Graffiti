@@ -24,6 +24,11 @@ public class PlayerMove_SIDE : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(MainMenu.loadGame==true)
+        {
+            this.transform.position = DataManager.Instance.data.playerPosition;
+            MainMenu.loadGame = false;
+        }
         rigidbody = this.GetComponent<Rigidbody>();
         animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;

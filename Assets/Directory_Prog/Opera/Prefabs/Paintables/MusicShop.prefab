@@ -533,6 +533,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5629750538003119782, guid: c02831fea72bcc648967451481250848, type: 3}
   m_PrefabInstance: {fileID: 6438880148676118448}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &6985770725831807285
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692116681957767446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3717457960363268660, guid: 9ad889c3b8405a94381b9c3703d958f4, type: 3}
 --- !u!114 &6438880148676118452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,8 +567,8 @@ MonoBehaviour:
     index: 0
   undoRedo: 0
   stateLimit: 10
-  saveLoad: 0
-  saveName: 
+  saveLoad: 1
+  saveName: MusicShop_Paint
   width: 1024
   height: 1024
   texture: {fileID: 2800000, guid: 7cc27854879f68743874b89d8c126e66, type: 3}
@@ -637,7 +651,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 6438880148676118452}
-  cooldown: -51.147137
+  cooldown: -55.099277
   currentReader:
     dirty: 0
     requested: 0
@@ -674,17 +688,3 @@ MonoBehaviour:
     downsampleSteps: 0
     downsampleBoost: 0
     tempTexture: {fileID: 0}
---- !u!64 &6985770725831807285
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692116681957767446}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3717457960363268660, guid: 9ad889c3b8405a94381b9c3703d958f4, type: 3}
