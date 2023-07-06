@@ -24,6 +24,7 @@ public class TimelineEventHandler : MonoBehaviour
     {
         // 타임라인 재생 완료 이벤트 호출
         timelineFinishedEvent.Invoke();
+        Debug.Log(timeline.name + "에 등록된 이베트들 실행");
 
         // 타임라인 재생 상태 변경
         isTimelinePlayed = true;
