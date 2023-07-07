@@ -31,12 +31,5 @@ namespace OperaHouse {
             _isInteracting = false;
             _curInteracting = null;
         }
-
-        public void SetCurInteractActivation(bool isSet) {
-            if(_curInteracting == null)
-                return;
-
-            _curInteracting.IsInteractable = isSet;
-        }
     }
 }
