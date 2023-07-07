@@ -22,14 +22,10 @@ namespace OperaHouse {
         }
 
         protected virtual void Awake() {
-            if(_instance == null) {
-                _instance = this as T;
-                DontDestroyOnLoad(gameObject);
-            }
-            else {
-                Destroy(gameObject);
-            }
-        }
+            if(_instance != null)
+                Destroy(_instance.gameObject);
 
+            _instance = this as T;
+        }
     }
 }
