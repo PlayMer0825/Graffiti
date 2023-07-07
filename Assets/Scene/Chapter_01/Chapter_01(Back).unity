@@ -8891,17 +8891,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1156637715139078935, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
   m_PrefabInstance: {fileID: 1396766577}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &653352436 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4847234840903322148, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
-  m_PrefabInstance: {fileID: 1396766577}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653352435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26666f576e1e7da49a677015db182aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &655053115
 GameObject:
   m_ObjectHideFlags: 0
@@ -11561,7 +11550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -11594,11 +11583,11 @@ PrefabInstance:
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2020192913}
+      objectReference: {fileID: 1833681065}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 653352436}
+      objectReference: {fileID: 1833681065}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -11645,7 +11634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetColliderActivation
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -11669,7 +11658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: OperaHouse.InteractionArea, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -11685,7 +11674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: onDrawFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -15428,7 +15417,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -10151.172
+  cooldown: -10151.789
   currentReader:
     dirty: 0
     requested: 0
@@ -17832,7 +17821,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174489694}
-  m_LocalRotation: {x: 0.12731312, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.13052616, y: -0, z: -0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 4.554064, z: 3.6020753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -30686,7 +30675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083804936}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 103.42, y: 4.454064, z: 8.522076}
+  m_LocalPosition: {x: 0, y: 4.554064, z: 3.6020753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1919686602}
