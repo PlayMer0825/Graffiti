@@ -17,6 +17,7 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     private bool ground = false;
     private bool isBorder;
+    public static bool isLoad;
     private float animationMoveWeight;
     public LayerMask layer;
     Animator animator;
@@ -33,6 +34,7 @@ public class PlayerMove_SIDE : MonoBehaviour
         animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;
         speeds = speed;
+        isLoad = true;
     }
 
     // Update is called once per frame
@@ -70,7 +72,7 @@ public class PlayerMove_SIDE : MonoBehaviour
             }
             transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
-        if (!isBorder)
+        if (!isBorder&&isLoad==true)
         {
             rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speeds * Time.fixedDeltaTime);
         }

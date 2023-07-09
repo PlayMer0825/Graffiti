@@ -9,16 +9,19 @@ public class Position_This : MonoBehaviour
     public static bool Back_Front = false;
     public static bool Back_Back = false;
     public static bool City = false;
+    public static bool Secret = false;
+    public static bool Riverside = false;
 
     public float A, B, C;
     public float E, F, G;
     public float H, I, J;
     public float K, L, M;
+    public float Q, R, S;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(position)
+        if (position)
         {
             GameObject.transform.position = new Vector3(A,B,C);
             position = false;
@@ -38,8 +41,16 @@ public class Position_This : MonoBehaviour
         }
         if(City)
         {
+            Debug.Log("city");
             GameObject.transform.position = new Vector3(K,L,M);
             City = false;
+            Telepoter_This.telepoter = false;
+        }
+        if (Riverside)
+        {
+            Debug.Log("river");
+            GameObject.transform.position = new Vector3(Q, R, S);
+            Riverside = false;
             Telepoter_This.telepoter = false;
         }
     }

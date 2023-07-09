@@ -11,13 +11,15 @@ public class Telepoter_This : MonoBehaviour
 
     IEnumerator FadeCoroutine()
     {
-        float fadeCount = 1;
-        while (fadeCount > 0f)
+        float fadeCount = 0;
+        while (fadeCount < 1.0f)
         {
-            fadeCount -= 0.01f;
+            fadeCount += 0.01f;
             yield return new WaitForSeconds(0.01f);
             image.color = new Color(0, 0, 0, fadeCount);
         }
+        telepoter = true;
+        SceneManager.LoadScene(target_SceneName);
     }
 
 
@@ -37,11 +39,10 @@ public class Telepoter_This : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isPlayerTriggered)
         {
+            PlayerMove_SIDE.isLoad = false;
             StartCoroutine(FadeCoroutine());
             if (target_SceneName == string.Empty)
                 return;
-            SceneManager.LoadScene(target_SceneName);
-            telepoter = true;
         }
     }
 
