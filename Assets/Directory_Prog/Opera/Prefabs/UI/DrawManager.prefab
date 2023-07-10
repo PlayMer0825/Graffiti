@@ -50,6 +50,7 @@ MonoBehaviour:
   _mask: {fileID: 1919990325122238039}
   _maskVisual: {fileID: 1990319649020883032}
   _drawPanel: {fileID: 1709493964388612781}
+  _curMaskPixelCount: 0
   availColor: {r: 0, g: 1, b: 0.036848783, a: 0.6117647}
   nonAvailColor: {r: 1, g: 0, b: 0, a: 0.6117647}
 --- !u!114 &1919990325122238039
@@ -122,6 +123,7 @@ MonoBehaviour:
   _percentageText: {fileID: 1277426959007076095}
   _clearButton: {fileID: 5168842322172941554}
   _finishButton: {fileID: 8008774311484468597}
+  m_finishAmount: 0.5
 --- !u!1 &96294585056514225
 GameObject:
   m_ObjectHideFlags: 0
@@ -10131,7 +10133,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3376fe725aa6dae4e9dc0963f49a7c16, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b940813d988a2164ab7fba5b1f04dc83, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -8313,6 +8313,9 @@ MonoBehaviour:
   K: 0
   L: 0
   M: 0
+  Q: 0
+  R: 0
+  S: 0
 --- !u!4 &890884377
 Transform:
   m_ObjectHideFlags: 0
@@ -8925,6 +8928,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+--- !u!114 &929678726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7693201020809655317, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+  m_PrefabInstance: {fileID: 929678725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a982bc1131b3649b67fca6f15cbcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &932732511
 GameObject:
   m_ObjectHideFlags: 0
@@ -10318,7 +10332,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -503.11926
+  cooldown: -504.01172
   currentReader:
     dirty: 0
     requested: 0
@@ -12249,6 +12263,10 @@ PrefabInstance:
       propertyPath: _pointInTime
       value: 
       objectReference: {fileID: 2117281815}
+    - target: {fileID: 6176041932622012117, guid: a1c62c8025c7c1b4f840e4e234d4fa47, type: 3}
+      propertyPath: _spray
+      value: 
+      objectReference: {fileID: 929678726}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c62c8025c7c1b4f840e4e234d4fa47, type: 3}
 --- !u!1 &1210641851 stripped
