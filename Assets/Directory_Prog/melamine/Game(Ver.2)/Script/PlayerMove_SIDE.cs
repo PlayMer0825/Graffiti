@@ -17,6 +17,7 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     private bool ground = false;
     private bool isBorder;
+    public static bool isLoad;
     private float animationMoveWeight;
     public LayerMask layer;
     Animator animator;
@@ -33,6 +34,7 @@ public class PlayerMove_SIDE : MonoBehaviour
         animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;
         speeds = speed;
+        isLoad = true;
     }
 
     // Update is called once per frame
@@ -70,7 +72,7 @@ public class PlayerMove_SIDE : MonoBehaviour
             }
             transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
-        if (!isBorder)
+        if (!isBorder&&isLoad==true)
         {
             rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speeds * Time.fixedDeltaTime);
         }
@@ -139,14 +141,15 @@ public class PlayerMove_SIDE : MonoBehaviour
         if(Telepoter_This.telepoter==true)
         {
             if (other.CompareTag("Secret"))
-                Position_This.position = true;
+                Position_This.Secret = true;
             if (other.CompareTag("Back_Front"))
                 Position_This.Back_Front = true;
             if (other.CompareTag("Back_Back"))
                 Position_This.Back_Back = true;
             if (other.CompareTag("City"))
                 Position_This.City = true;
+            if(other.CompareTag("Riverside"))
+                Position_This.Riverside = true;
         }
-        
     }
 }

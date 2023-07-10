@@ -54,8 +54,6 @@ public class Distance : MonoBehaviour
             StartFadeOut();
             isEnd = true;
         }
-
-
     }
     public void StartFadeOut()
     {
@@ -71,6 +69,7 @@ public class Distance : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             image.color = new Color(0, 0, 0, fadeCount);
         }
+        SceneManager.LoadScene("Scene/Chapter_02/Chapter_02(Riverside)");
     }
 
     /*IEnumerator FadeCoroutine()
