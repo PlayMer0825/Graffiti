@@ -60,8 +60,12 @@ namespace OperaHouse {
 
         #endregion
 
+        private bool m_isSwitching = false;
+
         private bool _isDrawing = false;
         public bool IsDrawing { get => _isDrawing; }
+
+        public bool CanMove { get => m_isSwitching == false; }
 
         protected override void Awake() {
             base.Awake();
@@ -96,6 +100,8 @@ namespace OperaHouse {
             PercentageUI ui = _drawPanel.Percent;
             if(ui == null) return;
             ui.RegisterForChangeCounter(counter);
+            m_isSwitching = true;
+            Invoke("AfterOneSecSetBool", 2.2f);
 
             onDrawStart?.Invoke();
         }
@@ -122,9 +128,16 @@ namespace OperaHouse {
             curDrawing.FinishInteract();
             curDrawing = null;
 
+            m_isSwitching = true;
+            Invoke("AfterOneSecSetBool", 2.2f);
+
             onDrawFinished?.Invoke();
 
             GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
+        }
+
+        private void AfterOneSecSetBool() {
+            m_isSwitching = false;
         }
     }
 }

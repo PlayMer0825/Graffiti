@@ -1,3 +1,4 @@
+using OperaHouse;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,9 @@ public class PlayerMove_SIDE : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(DrawManager.Instance.CanMove == false)
+            return;
+
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
         dir.Normalize();

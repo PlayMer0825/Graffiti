@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace OperaHouse {
         [SerializeField] private GameObject m_arm = null;
         [SerializeField] private Transform _sprayHolder = null;
         [SerializeField] private Spray _spray = null;
+        [SerializeField] private float m_defaultSensitivity = 100f;
 
         [SerializeField] private Animator _handAnim = null;
         private readonly int hashIsFiring = Animator.StringToHash("isFiring");
@@ -27,7 +29,7 @@ namespace OperaHouse {
             if(m_arm == null)
                 return;
 
-            StartCoroutine(CoStartEnableArm(true, 1f));
+            StartCoroutine(CoStartEnableArm(true, 2.2f));
         }
 
         private void OnDisable() {

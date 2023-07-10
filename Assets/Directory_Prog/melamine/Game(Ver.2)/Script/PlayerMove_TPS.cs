@@ -12,8 +12,8 @@ public class PlayerMove_TPS : MonoBehaviour
     [SerializeField]
     private float walkSpeed;
 
-    [SerializeField] private float _curSensitivity;
-    [SerializeField] private float lookSensitivity;
+    [SerializeField] private float _curSensitivity = 100;
+    [SerializeField] private float lookSensitivity = 100;
     [SerializeField] private float onAimSensitivity = 25f;
     [SerializeField] private float shakeSensitivity = 10f;
 
@@ -69,6 +69,9 @@ public class PlayerMove_TPS : MonoBehaviour
         if (_drawManager.IsAnyPanelOpened())
             return;
 
+        if(_drawManager.CanMove == false)
+            return;
+
         Move();
         //CameraRotation();
         //if(Input.GetKeyDown(KeyCode.LeftAlt))
@@ -83,7 +86,12 @@ public class PlayerMove_TPS : MonoBehaviour
 
         AnimationUpdate();
 
-        _curSensitivity = Input.GetMouseButton(2) ? shakeSensitivity : Input.GetMouseButton(1) ? onAimSensitivity : lookSensitivity;
+        if(Input.GetMouseButton(2))
+            _curSensitivity = shakeSensitivity;
+        else if(Input.GetMouseButton(1))
+            _curSensitivity = onAimSensitivity;
+        else
+            _curSensitivity = lookSensitivity;
 
         CharacterRotation();
         CameraRotation();
@@ -92,6 +100,9 @@ public class PlayerMove_TPS : MonoBehaviour
     void FixedUpdate()
     {
         if (_drawManager.IsAnyPanelOpened())
+            return;
+
+        if(_drawManager.CanMove == false)
             return;
 
         //_curSensitivity = Input.GetMouseButton(1) ? onAimSensitivity : lookSensitivity;
@@ -120,7 +131,7 @@ public class PlayerMove_TPS : MonoBehaviour
         // �¿� ĳ���� ȸ��
         float _yRotation = Input.GetAxis("Mouse X");
         _characterRotationY = //Vector3.Lerp(_characterRotationY, new Vector3(0f, _yRotation, 0f) * lookSensitivity, 0f);
-            lookSensitivity * Time.fixedDeltaTime * new Vector3(0f, _yRotation, 0f);
+            _curSensitivity * Time.fixedDeltaTime * new Vector3(0f, _yRotation, 0f);
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY));
         //Debug.Log(myRigid.rotation);
         //Debug.Log(myRigid.rotation.eulerAngles);
@@ -130,7 +141,7 @@ public class PlayerMove_TPS : MonoBehaviour
     {
         // ���� ī�޶� ȸ��
         float _xRotation = Input.GetAxis("Mouse Y");
-        float _cameraRotationX = _xRotation * lookSensitivity * Time.fixedDeltaTime;
+        float _cameraRotationX = _xRotation * _curSensitivity * Time.fixedDeltaTime;
         currentCameraRotationX -= _cameraRotationX;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
