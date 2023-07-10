@@ -11,7 +11,7 @@ namespace OperaHouse {
         [SerializeField] private SpriteRenderer _maskVisual = null;
         [SerializeField] private DrawPanel _drawPanel = null;
         private Material _mat = null;
-        private int _curMaskPixelCount = 0;
+        [SerializeField] private int _curMaskPixelCount = 0;
         bool _isMaskEnabled = false;
 
         public bool MaskEnabled { get => _isMaskEnabled; }
@@ -83,6 +83,7 @@ namespace OperaHouse {
         /// <param name="rotation"></param>
         public void InstallMask(Vector3 position, Vector3 rotation) {
             _isMaskEnabled = true;
+            _curMaskPixelCount = (int)(_curMaskPixelCount * gameObject.transform.localScale.x );
             SetMaskTransform(position, rotation);
             _maskPreview.gameObject.SetActive(false);
             DrawManager.Instance.Bag.ActivateRemoveButtonWithMask(this);

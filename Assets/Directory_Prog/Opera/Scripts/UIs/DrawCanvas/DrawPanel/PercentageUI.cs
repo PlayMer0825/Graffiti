@@ -19,6 +19,8 @@ namespace OperaHouse {
         private Button _curExitButton = null;
         private Func<bool> _checkFunc = null;
 
+        [SerializeField] private float m_finishAmount = 0.5f;
+
         public bool IsFinished { get => _percentageFill.fillAmount >= 0.3f; }
 
         private void Awake() {
@@ -105,7 +107,7 @@ namespace OperaHouse {
         }
 
         private bool CheckDrawFinish() {
-            return _percentageFill.fillAmount >= 0.5f;
+            return _percentageFill.fillAmount >= m_finishAmount;
         }
     }
 }
