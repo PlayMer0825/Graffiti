@@ -6,8 +6,8 @@ public class Position_This : MonoBehaviour
 {
     public GameObject GameObject;
     public static bool position = false;
-    public static bool Back_Front = false;
-    public static bool Back_Back = false;
+    public static bool Front = false;
+    public static bool Back = false;
     public static bool City = false;
     public static bool Secret = false;
     public static bool Riverside = false;
@@ -28,18 +28,18 @@ public class Position_This : MonoBehaviour
             position = false;
             Telepoter_This.telepoter = false;
         }
-        if(Back_Front)
+        if(Front)
         {
             Debug.Log("Front");
             GameObject.transform.position = new Vector3(E,F,G);
-            Back_Front = false;
+            Front = false;
             Telepoter_This.telepoter = false;
         }
-        if (Back_Back)
+        if (Back)
         {
             Debug.Log("Back");
             GameObject.transform.position = new Vector3(H,I,J);
-            Back_Back = false;
+            Back = false;
             Telepoter_This.telepoter = false;
         }
         if(City)

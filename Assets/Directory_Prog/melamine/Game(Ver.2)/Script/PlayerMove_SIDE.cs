@@ -146,10 +146,16 @@ public class PlayerMove_SIDE : MonoBehaviour
         {
             if (other.CompareTag("Secret"))
                 Position_This.Secret = true;
-            if (other.CompareTag("Back_Front"))
-                Position_This.Back_Front = true;
-            if (other.CompareTag("Back_Back"))
-                Position_This.Back_Back = true;
+            if (other.CompareTag("Front"))
+            {
+                Debug.Log("front");
+                Position_This.Front = true;
+            }
+            if (other.CompareTag("Back"))
+            {
+                Debug.Log("back");
+                Position_This.Back = true;
+            }
             if (other.CompareTag("City"))
                 Position_This.City = true;
             if(other.CompareTag("Riverside"))

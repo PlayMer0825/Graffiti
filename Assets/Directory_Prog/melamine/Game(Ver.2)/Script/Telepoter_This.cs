@@ -18,7 +18,7 @@ public class Telepoter_This : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             image.color = new Color(0, 0, 0, fadeCount);
         }
-        telepoter = true;
+        
         SceneManager.LoadScene(target_SceneName);
     }
 
@@ -40,6 +40,7 @@ public class Telepoter_This : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isPlayerTriggered)
         {
             PlayerMove_SIDE.isLoad = false;
+            telepoter = true;
             StartCoroutine(FadeCoroutine());
             if (target_SceneName == string.Empty)
                 return;
