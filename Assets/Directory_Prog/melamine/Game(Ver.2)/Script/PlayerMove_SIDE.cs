@@ -141,14 +141,15 @@ public class PlayerMove_SIDE : MonoBehaviour
         if(Telepoter_This.telepoter==true)
         {
             if (other.CompareTag("Secret"))
-                Position_This.position = true;
+                Position_This.Secret = true;
             if (other.CompareTag("Back_Front"))
                 Position_This.Back_Front = true;
             if (other.CompareTag("Back_Back"))
                 Position_This.Back_Back = true;
             if (other.CompareTag("City"))
                 Position_This.City = true;
+            if(other.CompareTag("Riverside"))
+                Position_This.Riverside = true;
         }
-        
     }
 }

@@ -21,20 +21,23 @@ public class Position_This : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (position)
+        if (Secret)
         {
+            Debug.Log("Secret");
             GameObject.transform.position = new Vector3(A,B,C);
             position = false;
             Telepoter_This.telepoter = false;
         }
         if(Back_Front)
         {
+            Debug.Log("Front");
             GameObject.transform.position = new Vector3(E,F,G);
             Back_Front = false;
             Telepoter_This.telepoter = false;
         }
         if (Back_Back)
         {
+            Debug.Log("Back");
             GameObject.transform.position = new Vector3(H,I,J);
             Back_Back = false;
             Telepoter_This.telepoter = false;
