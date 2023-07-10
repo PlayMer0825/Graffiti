@@ -104,7 +104,7 @@ namespace OperaHouse {
             if(m_isDrawing)
                 return;//
 
-            if(Input.GetKeyDown(KeyCode.E)/* || Input.GetMouseButtonDown(0)*/)
+            if(Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
                 StartInteract();
         }
     }
