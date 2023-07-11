@@ -3157,18 +3157,6 @@ MonoBehaviour:
   CollisionStartEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 226669405}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 226669407}
         m_TargetAssemblyTypeName: CollisionEvent, Assembly-CSharp
         m_MethodName: MoveObject
@@ -4977,6 +4965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 385270019}
   - component: {fileID: 385270020}
+  - component: {fileID: 385270021}
   m_Layer: 0
   m_Name: ch01_TL003_re_2
   m_TagString: Untagged
@@ -5032,6 +5021,34 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - fe2dca56d0f6e1047a01f5846741b8c4: {fileID: 389019648}
+--- !u!114 &385270021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385270018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59adfa0b9fa809741b1c7039c9b660db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeline: {fileID: 385270020}
+  timelineFinishedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6309497142566497192}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &389019646
 GameObject:
   m_ObjectHideFlags: 0
@@ -14301,7 +14318,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -13739.298
+  cooldown: -13749.034
   currentReader:
     dirty: 0
     requested: 0
@@ -30679,7 +30696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1415691099535271484, guid: 66afcca5090084d4da915f3ccecda048, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.42
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 1415691099535271484, guid: 66afcca5090084d4da915f3ccecda048, type: 3}
       propertyPath: m_LocalPosition.z
