@@ -113,6 +113,7 @@ namespace Insomnia {
             _curPageNum = 0;
 
             SetPageGroupsWithCurrentPage();
+            DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 
         public void OnClick_ExitBlackBook() {
