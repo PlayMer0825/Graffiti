@@ -10261,10 +10261,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -11.700012
       objectReference: {fileID: 0}
-    - target: {fileID: 2655081701759389768, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b940813d988a2164ab7fba5b1f04dc83, type: 3}
     - target: {fileID: 2837100328949532508, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -10900,6 +10896,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811140949}
   m_Mesh: {fileID: -7550262638168013577, guid: 82d9611c38a3a7744b97aa52031386e2, type: 3}
+<<<<<<< HEAD
 --- !u!1 &812727366
 GameObject:
   m_ObjectHideFlags: 0
@@ -10930,6 +10927,19 @@ Transform:
   m_Father: {fileID: 1753736001}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+--- !u!114 &811833086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7693201020809655317, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+  m_PrefabInstance: {fileID: 805404485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a982bc1131b3649b67fca6f15cbcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> main
 --- !u!1 &817369010
 GameObject:
   m_ObjectHideFlags: 0
@@ -14318,7 +14328,11 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
+<<<<<<< HEAD
   cooldown: -13749.034
+=======
+  cooldown: -6092.846
+>>>>>>> main
   currentReader:
     dirty: 0
     requested: 0
@@ -18952,7 +18966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1345416573
 Transform:
   m_ObjectHideFlags: 0
@@ -30775,10 +30789,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1176683799}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 6666533554820267375, guid: 4d8f90fe41d71fe47bb7f44e8470d03d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+=======
+    - target: {fileID: 344878417141177452, guid: 4d8f90fe41d71fe47bb7f44e8470d03d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 82c7ba3a1bc9e584d85f9c916fa08af0, type: 2}
+    - target: {fileID: 2721852159099849436, guid: 4d8f90fe41d71fe47bb7f44e8470d03d, type: 3}
+      propertyPath: _spray
+      value: 
+      objectReference: {fileID: 811833086}
+>>>>>>> main
     - target: {fileID: 6915668625157095952, guid: 4d8f90fe41d71fe47bb7f44e8470d03d, type: 3}
       propertyPath: virtualCamera
       value: 
