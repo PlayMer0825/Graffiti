@@ -12138,6 +12138,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12, y: 2, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &912729733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912729730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d9a9502034ace47a9862bbe5982815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionStartEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 912729733}
+        m_TargetAssemblyTypeName: CollisionEvent, Assembly-CSharp
+        m_MethodName: MoveObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  targetObject: {fileID: 1176683799}
+  localOffset: {x: 100.53, y: 0.46, z: 18.9252}
+  localRotationOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &912729734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14314,7 +14344,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -13749.034
+  cooldown: -13753.808
   currentReader:
     dirty: 0
     requested: 0
