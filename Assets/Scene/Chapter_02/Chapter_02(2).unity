@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 54233c1922d27824599add15d1fa0807, type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 824cd888b98a1aa42a9b96dbd4501746, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: d4d4ffc254d12d24caf8d23b07b4b3a1, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8313,6 +8313,9 @@ MonoBehaviour:
   K: 0
   L: 0
   M: 0
+  Q: 0
+  R: 0
+  S: 0
 --- !u!4 &890884377
 Transform:
   m_ObjectHideFlags: 0
@@ -8925,6 +8928,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+--- !u!114 &929678726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7693201020809655317, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+  m_PrefabInstance: {fileID: 929678725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a982bc1131b3649b67fca6f15cbcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &932732511
 GameObject:
   m_ObjectHideFlags: 0
@@ -10318,7 +10332,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -503.11926
+  cooldown: -546.1726
   currentReader:
     dirty: 0
     requested: 0
@@ -12249,6 +12263,10 @@ PrefabInstance:
       propertyPath: _pointInTime
       value: 
       objectReference: {fileID: 2117281815}
+    - target: {fileID: 6176041932622012117, guid: a1c62c8025c7c1b4f840e4e234d4fa47, type: 3}
+      propertyPath: _spray
+      value: 
+      objectReference: {fileID: 929678726}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c62c8025c7c1b4f840e4e234d4fa47, type: 3}
 --- !u!1 &1210641851 stripped
@@ -21727,7 +21745,7 @@ GameObject:
   - component: {fileID: 983377694179545653}
   m_Layer: 0
   m_Name: Telepoter_Main
-  m_TagString: Back_Back
+  m_TagString: Back
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21741,7 +21759,7 @@ Transform:
   m_GameObject: {fileID: 983377694179545649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 159.37, y: -0.72, z: 14}
-  m_LocalScale: {x: 4.528383, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -21771,7 +21789,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 17}
+  m_Size: {x: 7, y: 1, z: 17}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &3476143236341199520
 PrefabInstance:
@@ -23018,7 +23036,7 @@ GameObject:
   - component: {fileID: 7221507311207360382}
   m_Layer: 0
   m_Name: Telepoter
-  m_TagString: Back_Front
+  m_TagString: Front
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23034,7 +23052,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 16}
+  m_Size: {x: 2, y: 4, z: 16}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7221507311207360382
 MonoBehaviour:
@@ -23058,7 +23076,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7221507311207360378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: -0.5, z: 14}
+  m_LocalPosition: {x: 5, y: 0.27, z: 14}
   m_LocalScale: {x: 2.525, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

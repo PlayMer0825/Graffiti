@@ -1,3 +1,4 @@
+using Insomnia;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class PlayerMove_SIDE : MonoBehaviour
 
     private bool ground = false;
     private bool isBorder;
+    public static bool isLoad;
     private float animationMoveWeight;
     public LayerMask layer;
     Animator animator;
@@ -33,11 +35,15 @@ public class PlayerMove_SIDE : MonoBehaviour
         animator=GetComponentInChildren<Animator>();
         animationMoveWeight= 0f;
         speeds = speed;
+        isLoad = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(DrawManager.Instance.CanMove == false)
+            return;
+
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
         dir.Normalize();
@@ -70,7 +76,7 @@ public class PlayerMove_SIDE : MonoBehaviour
             }
             transform.forward = Vector3.Lerp(transform.forward, dir.normalized, rotSpeed * Time.fixedDeltaTime);
         }
-        if (!isBorder)
+        if (!isBorder&&isLoad==true)
         {
             rigidbody.MovePosition(this.gameObject.transform.position + dir.normalized * speeds * Time.fixedDeltaTime);
         }
@@ -139,14 +145,21 @@ public class PlayerMove_SIDE : MonoBehaviour
         if(Telepoter_This.telepoter==true)
         {
             if (other.CompareTag("Secret"))
-                Position_This.position = true;
-            if (other.CompareTag("Back_Front"))
-                Position_This.Back_Front = true;
-            if (other.CompareTag("Back_Back"))
-                Position_This.Back_Back = true;
+                Position_This.Secret = true;
+            if (other.CompareTag("Front"))
+            {
+                Debug.Log("front");
+                Position_This.Front = true;
+            }
+            if (other.CompareTag("Back"))
+            {
+                Debug.Log("back");
+                Position_This.Back = true;
+            }
             if (other.CompareTag("City"))
                 Position_This.City = true;
+            if(other.CompareTag("Riverside"))
+                Position_This.Riverside = true;
         }
-        
     }
 }

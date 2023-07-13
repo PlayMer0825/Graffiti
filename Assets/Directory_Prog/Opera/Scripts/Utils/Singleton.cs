@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class Singleton<T> : MonoBehaviour where T : Component {
         private static T _instance = null;
         public static T Instance {

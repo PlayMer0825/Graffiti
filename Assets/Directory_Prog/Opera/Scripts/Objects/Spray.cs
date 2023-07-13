@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class Spray : MonoBehaviour {
         [SerializeField] ParticleSystem _particle = null;
         [SerializeField] P3dPaintSphere _p3dPaint = null;
@@ -13,6 +13,7 @@ namespace OperaHouse {
         [SerializeField] private Image _remainFillImage = null;
         [SerializeField] private AudioSource m_audioPlayer = null;
         [SerializeField] private AudioClip m_sprayFireSound = null;
+        [SerializeField] private AudioClip m_sprayShakeSound = null;
 
         public float SprayCapacity {get => _sprayCapacity;}
 
@@ -71,6 +72,7 @@ namespace OperaHouse {
 
             if(_canFire && _isFiring && _sprayRemain > 0) {
                 StartCoroutine(CoStartFireSpray());
+                m_audioPlayer.clip = m_sprayFireSound;
                 m_audioPlayer.Play();
             }
         }
@@ -93,10 +95,24 @@ namespace OperaHouse {
 
         public void OnShake(Vector2 mouseDelta) {
             float delta = mouseDelta.magnitude;
-            if(delta  <= 0.2f)
+            if(delta  <= 0.2f) {
+                if(m_audioPlayer.clip == m_sprayShakeSound)
+                    m_audioPlayer.Stop();
+                return;
+            }
+            _sprayRemain = Mathf.Clamp(_sprayRemain + delta * 0.05f, 0f, _sprayCapacity);
+
+            if(m_sprayShakeSound == null)
                 return;
 
-            _sprayRemain = Mathf.Clamp(_sprayRemain + delta * 0.05f, 0f, _sprayCapacity);
+            if(m_audioPlayer.isPlaying)
+                if(m_audioPlayer.clip == m_sprayShakeSound)
+                    return;
+                else
+                    m_audioPlayer.Stop();
+
+            m_audioPlayer.clip = m_sprayShakeSound;
+            m_audioPlayer.Play();
         }
 
         public void SetSprayRotation() {
@@ -131,6 +147,7 @@ namespace OperaHouse {
 
         public void SetColor(Image colorObject) {
             Color = colorObject.color;
+            DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Bag_Select);
         }
     }
 }

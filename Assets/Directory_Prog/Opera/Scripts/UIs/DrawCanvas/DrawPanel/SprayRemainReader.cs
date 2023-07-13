@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class SprayRemainReader : MonoBehaviour {
         [SerializeField] private Slider _sprayRemainSlider = null;
         [SerializeField] private Spray _spray = null;

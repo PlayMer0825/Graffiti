@@ -1,13 +1,10 @@
 using PaintIn3D;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class PercentageUI : MonoBehaviour {
         private P3dChangeCounterFill _percentage_Circle = null;
         private P3dChangeCounterText _percentage_Count = null;
@@ -18,6 +15,8 @@ namespace OperaHouse {
         private P3dChangeCounter _curCounter = null;
         private Button _curExitButton = null;
         private Func<bool> _checkFunc = null;
+
+        [SerializeField] private float m_finishAmount = 0.5f;
 
         public bool IsFinished { get => _percentageFill.fillAmount >= 0.3f; }
 
@@ -37,8 +36,12 @@ namespace OperaHouse {
             if(DrawManager.Instance.IsDrawing == false)
                 return;
 
-            if(_checkFunc.Invoke())
-                _curExitButton.gameObject.SetActive(true);
+            if(_checkFunc.Invoke()) {
+                if(_curExitButton.gameObject.activeSelf == false) {
+                    _curExitButton.gameObject.SetActive(true);
+                    DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Stencil_Finished);
+                }
+            }
 
             if(Input.GetKeyDown(KeyCode.Space)) {
                 if(_curExitButton.gameObject.activeSelf == false)
@@ -105,7 +108,7 @@ namespace OperaHouse {
         }
 
         private bool CheckDrawFinish() {
-            return _percentageFill.fillAmount >= 0.5f;
+            return _percentageFill.fillAmount >= m_finishAmount;
         }
     }
 }

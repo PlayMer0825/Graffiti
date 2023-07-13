@@ -1,3 +1,4 @@
+using Insomnia;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SubMenu : MonoBehaviour
 {
+    
     public GameObject subMenu;
 
     private void Start()
@@ -13,7 +15,7 @@ public class SubMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&&DrawManager.Instance.IsDrawing==false)
         {
             subMenu.SetActive(true);
             Time.timeScale = 0f;

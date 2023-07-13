@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace OperaHouse {
+namespace Insomnia {
     //public class CircleColorPicker : Singleton<CircleColorPicker>{
     //    public Image circlePalette;
     //    public Image picker;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
 using UnityEngine;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class UIPanel : MonoBehaviour {
         [SerializeField] private bool _isOpened = false;
         public bool IsOpened { get => _isOpened; }
