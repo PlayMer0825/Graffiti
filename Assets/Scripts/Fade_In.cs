@@ -8,7 +8,13 @@ public class Fade_In : MonoBehaviour
     public Image image;
     
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    //PlayerMove_SIDE.isLoad = true;
+    //    //StartCoroutine(FadeCoroutine());
+    //}
+
+    private void OnEnable()
     {
         PlayerMove_SIDE.isLoad = true;
         StartCoroutine(FadeCoroutine());
