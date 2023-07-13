@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class Spray : MonoBehaviour {
         [SerializeField] ParticleSystem _particle = null;
         [SerializeField] P3dPaintSphere _p3dPaint = null;
@@ -147,6 +147,7 @@ namespace OperaHouse {
 
         public void SetColor(Image colorObject) {
             Color = colorObject.color;
+            DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Bag_Select);
         }
     }
 }

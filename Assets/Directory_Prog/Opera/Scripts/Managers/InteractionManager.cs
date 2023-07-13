@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class InteractionManager : Singleton<InteractionManager> {
         private Interactable _curInteracting = null;
         private bool _isInteracting = false;

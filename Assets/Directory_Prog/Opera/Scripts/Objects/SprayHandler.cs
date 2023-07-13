@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class SprayHandler : MonoBehaviour {
         [SerializeField] private GameObject[] m_bodies = null;
         [SerializeField] private GameObject m_arm = null;

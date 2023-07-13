@@ -1,20 +1,24 @@
-using OperaHouse;
+using Insomnia;
 using PaintIn3D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OperaHouse {
+namespace Insomnia {
+    [RequireComponent(typeof(AudioSource))]
     public class InteractionArea : MonoBehaviour {
-        [SerializeField] private string _playerTag = "Player";
-        [SerializeField] private Interactable _interactObj = null;
-        private Collider _interactTrigger = null;
+        [SerializeField] private AudioSource m_source = null;
 
+        [SerializeField] private string _playerTag = "Player";
+        [SerializeField] private Interactable m_itObj = null;
+        private Collider m_itTrigger = null;
+        private bool m_triggered = false;
 
         private void Awake() {
-            _interactTrigger = GetComponent<Collider>();
-            _interactObj = GetComponentInParent<Interactable>();
-            if(_interactObj == null)
+            m_source = GetComponent<AudioSource>();
+            m_itTrigger = GetComponent<Collider>();
+            m_itObj = GetComponentInParent<Interactable>();
+            if(m_itObj == null)
                 gameObject.SetActive(false);
         }
 
@@ -22,7 +26,15 @@ namespace OperaHouse {
             if(other.CompareTag(_playerTag) == false)
                 return;
 
-            _interactObj.ReadyInteract(other);
+            m_itObj.ReadyInteract(other);
+            if(m_triggered)
+                return;
+            m_triggered = true;
+
+            if(m_source == null || m_source.clip == null)
+                return;
+
+            m_source.PlayOneShot(m_source.clip);
         }
 
         private void OnTriggerExit(Collider other) {
@@ -32,15 +44,16 @@ namespace OperaHouse {
             if(!gameObject.activeSelf)
                 return;
 
-            _interactObj.UnReadyInteract(other);
+            m_itObj.UnReadyInteract(other);
+            m_triggered = false;
         }
 
         public void OnInteractClicked() {
-            _interactObj.StartInteract();
+            m_itObj.StartInteract();
         }
 
         public void SetColliderActivation(bool isActive) {
-            _interactTrigger.enabled = isActive;
+            m_itTrigger.enabled = isActive;
         }
     }
 }

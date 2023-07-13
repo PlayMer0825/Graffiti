@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OperaHouse {
+namespace Insomnia {
     public class PageGroupUI : MonoBehaviour {
         List<PageElement> _elements = new List<PageElement>();
 
