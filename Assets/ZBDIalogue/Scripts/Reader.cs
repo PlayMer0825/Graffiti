@@ -200,7 +200,15 @@ namespace ZB.Dialogue.Graffiti
             float currentPlayerPositionY = m_playerTransform.position.y;
             Transform holderPosition = currentHolder.GetComponent<Holder>().playerPosition;
 
-            Vector3 exportPlayerPos = new Vector3(holderPosition.position.x, currentPlayerPositionY, holderPosition.position.z);
+            Vector3 exportPlayerPos;
+            if (holderPosition != null)
+            {
+                exportPlayerPos = new Vector3(holderPosition.position.x, currentPlayerPositionY, holderPosition.position.z);
+            }
+            else
+            {
+                exportPlayerPos = m_playerTransform.position;
+            }
             m_playerTransform.position = exportPlayerPos;
 
             Vector3 targetPosition = currentHolder.GetComponent<Holder>().targetObject.position;

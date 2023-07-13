@@ -38,19 +38,11 @@ namespace ZB.Dialogue.Graffiti
         {
             // 부모 객체를 바라보는 것을 뺀 후, 아예 따로 하나하나 설정해주는 것으로 교체 
             targetObject = transform.GetChild(0).gameObject.transform;
-            playerPosition = transform.GetChild(1).gameObject.transform;
+           //  playerPosition = transform.GetChild(1).gameObject.transform;
         }
 
         private void Start()
         {
-            //Transform parent = transform.parent;
-
-            //if(parent != null )
-            //{
-            //    targetObject = parent;
-            //}
-
-
 
         }
         public int GetEventID(out UnityEvent uEvent_OnEscape)

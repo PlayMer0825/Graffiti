@@ -25,4 +25,9 @@ public class Fade_In : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        image.color = new Color(0, 0, 0, 255);
+    }
+
 }

@@ -42,6 +42,20 @@ public class DataManager : MonoBehaviour
             string FromJsonData = File.ReadAllText(filePath);
             data = JsonUtility.FromJson<Data>(FromJsonData);
             print("불러오기 완료");
+
+            SceneManager.LoadScene(data.sceneIndex);
+
+            GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+            foreach (GameObject obj in objects)
+            {
+                string objName = obj.name;
+                bool isActive;
+
+                if(data.activeObjectState.TryGetValue(objName, out isActive))
+                {
+                    obj.SetActive(isActive);
+                }
+            }
         }
     }
 
@@ -51,6 +65,21 @@ public class DataManager : MonoBehaviour
     {
         data.playerPosition = GameObject.Find("Player").transform.position;
         data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+
+        // 활성화된 모든 오브젝트 저장
+        data.activeObjectState.Clear();
+        // 런타임 중 로드된 씬들의 모든 오브젝트 반환
+        GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject obj in objects)
+        {
+            bool isActive = obj.activeSelf;
+            string objName = obj.name;
+
+            data.activeObjectState[objName] = isActive;
+        }
+
+
         // 클래스를 Json 형식으로 전환 (true : 가독성 좋게 작성)
         string ToJsonData = JsonUtility.ToJson(data, true);
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
@@ -59,5 +88,8 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(filePath, ToJsonData);
 
         // 올바르게 저장됐는지 확인 (자유롭게 변형)
+
+
+       
     }
 }
