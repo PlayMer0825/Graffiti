@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Insomnia {
+namespace OperaHouse {
     public class StencilMask : MonoBehaviour {
         [SerializeField] MeshRenderer _maskPreview = null;
         [SerializeField] private P3dMask _mask = null;

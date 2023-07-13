@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Insomnia {
+namespace OperaHouse {
 
     public class BlackBookPanel : UIPanel {
         [SerializeField] private RectTransform _blackBookGroup = null;
@@ -48,14 +48,10 @@ namespace Insomnia {
             if(_blackBookTweener != null)
                 _blackBookTweener.Kill(true);
 
-            if(IsOpened) {
+            if(IsOpened)
                 base.ClosePanel();
-                DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_Close);
-            }
-            else {
+            else
                 base.OpenPanel();
-                DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_Open);
-            }
         }
 
         public override void ClosePanel() {
@@ -89,7 +85,6 @@ namespace Insomnia {
 
             _curPageNum++;
             SetPageGroupsWithCurrentPage();
-            DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 
         public void OnClick_PrevPage() {
@@ -98,7 +93,6 @@ namespace Insomnia {
 
             _curPageNum--;
             SetPageGroupsWithCurrentPage();
-            DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 
         /// <summary>

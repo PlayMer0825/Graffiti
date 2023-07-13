@@ -1,10 +1,10 @@
-using Insomnia;
+using OperaHouse;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Insomnia {
+namespace OperaHouse {
     [RequireComponent(typeof(Button))]
     public class PanelButton : MonoBehaviour {
         public void OnClick_OpenCanvas(UIPanel panel) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Insomnia {
+namespace OperaHouse {
     public class BookIndex {
         public List<PageElement> _elements = new List<PageElement>();
 

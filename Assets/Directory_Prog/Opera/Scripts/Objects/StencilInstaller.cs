@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Insomnia {
+namespace OperaHouse {
     public class StencilInstaller : MonoBehaviour {
         [SerializeField] private StencilMask _mask = null;
 

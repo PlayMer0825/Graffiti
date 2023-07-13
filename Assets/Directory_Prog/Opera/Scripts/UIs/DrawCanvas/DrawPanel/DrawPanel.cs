@@ -1,13 +1,13 @@
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using Insomnia;
+using OperaHouse;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Insomnia {
+namespace OperaHouse {
     public class DrawPanel : UIPanel {
         [SerializeField] private Slider _remainSlider = null;
         [SerializeField] private Image[] _hotKeyImages;

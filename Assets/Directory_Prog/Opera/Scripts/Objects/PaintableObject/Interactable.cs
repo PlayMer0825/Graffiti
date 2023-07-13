@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
-namespace Insomnia {
+namespace OperaHouse {
     /// <summary>
     /// 상호작용 가능한 오브젝트에 대한 부모 클래스
     /// </summary>

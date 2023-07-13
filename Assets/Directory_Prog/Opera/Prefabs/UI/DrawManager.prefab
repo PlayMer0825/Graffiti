@@ -2317,12 +2317,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6740267126992114083}
-        m_TargetAssemblyTypeName: Insomnia.BlackBookPanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: OperaHouse.BlackBookPanel, Assembly-CSharp
         m_MethodName: OnClick_SetBlackBookTag
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Insomnia.StencilData, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: OperaHouse.StencilData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3884,8 +3884,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7965959953715772890}
   - component: {fileID: 3956795077865265115}
-  - component: {fileID: 1608965322469832128}
-  - component: {fileID: 7956821454688067950}
   m_Layer: 0
   m_Name: DrawManager
   m_TagString: Untagged
@@ -3922,12 +3920,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4f3e9633b22ba45848dceb6890adec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_draw: {fileID: 1709493964388612781}
-  m_bag: {fileID: 6954496707291191576}
-  m_blackbook: {fileID: 6740267126992114083}
-  m_spray: {fileID: 7693201020809655317}
-  m_stencil: {fileID: 7282431172050851997}
-  m_speaker: {fileID: 7956821454688067950}
+  _drawPanel: {fileID: 1709493964388612781}
+  _bagPanel: {fileID: 6954496707291191576}
+  _blackBookPanel: {fileID: 6740267126992114083}
+  _spray: {fileID: 7693201020809655317}
+  _stencil: {fileID: 7282431172050851997}
   onDrawStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3936,123 +3933,6 @@ MonoBehaviour:
       m_Calls: []
   curDrawing: {fileID: 0}
   _pointOfView: {fileID: 0}
---- !u!82 &1608965322469832128
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4132863792272128366}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &7956821454688067950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4132863792272128366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 770be46bb376f454d8f66e62b30f29e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_source: {fileID: 0}
-  m_clips:
-  - {fileID: 8300000, guid: 43368a7ea86d572499bb03be694ea4f7, type: 3}
-  - {fileID: 8300000, guid: 98754c40a84103f4cb90cafd3d0e3ec3, type: 3}
-  - {fileID: 8300000, guid: 0bfb249094b115f48b6b42c811711c85, type: 3}
-  - {fileID: 8300000, guid: eb4ca99e95fba90429a209cfcb12eaa8, type: 3}
-  - {fileID: 8300000, guid: 5fe6de5e2c396f149b712414f37965cc, type: 3}
-  - {fileID: 8300000, guid: c8106fd50c69a69459718408cf97e166, type: 3}
-  - {fileID: 8300000, guid: 36feb1c4dd9b4304ab427a7cdad167f7, type: 3}
 --- !u!1 &4398185294594626568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,12 +4682,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6740267126992114083}
-        m_TargetAssemblyTypeName: Insomnia.BlackBookPanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: OperaHouse.BlackBookPanel, Assembly-CSharp
         m_MethodName: OnClick_SetBlackBookTag
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 136c87d028a0b1d48a73a08f8bf76485, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Insomnia.StencilData, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: OperaHouse.StencilData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12125,12 +12005,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6740267126992114083}
-        m_TargetAssemblyTypeName: Insomnia.BlackBookPanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: OperaHouse.BlackBookPanel, Assembly-CSharp
         m_MethodName: OnClick_SetBlackBookTag
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Insomnia.StencilData, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: OperaHouse.StencilData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13669,12 +13549,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6740267126992114083}
-        m_TargetAssemblyTypeName: Insomnia.BlackBookPanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: OperaHouse.BlackBookPanel, Assembly-CSharp
         m_MethodName: OnClick_SetBlackBookTag
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 98cfe78219a554a46a9849ff55aa8bda, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Insomnia.StencilData, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: OperaHouse.StencilData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

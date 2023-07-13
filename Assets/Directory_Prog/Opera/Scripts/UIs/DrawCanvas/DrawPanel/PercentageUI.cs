@@ -1,10 +1,13 @@
 using PaintIn3D;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Security;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Insomnia {
+namespace OperaHouse {
     public class PercentageUI : MonoBehaviour {
         private P3dChangeCounterFill _percentage_Circle = null;
         private P3dChangeCounterText _percentage_Count = null;
@@ -36,12 +39,8 @@ namespace Insomnia {
             if(DrawManager.Instance.IsDrawing == false)
                 return;
 
-            if(_checkFunc.Invoke()) {
-                if(_curExitButton.gameObject.activeSelf == false) {
-                    _curExitButton.gameObject.SetActive(true);
-                    DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Stencil_Finished);
-                }
-            }
+            if(_checkFunc.Invoke())
+                _curExitButton.gameObject.SetActive(true);
 
             if(Input.GetKeyDown(KeyCode.Space)) {
                 if(_curExitButton.gameObject.activeSelf == false)

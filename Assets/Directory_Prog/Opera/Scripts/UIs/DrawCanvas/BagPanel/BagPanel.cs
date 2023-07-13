@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 
-namespace Insomnia {
+namespace OperaHouse {
     public class BagPanel : UIPanel {
         [SerializeField] RectTransform _palette = null;
         private Vector3 _paletteClosedPos, _paletteOpenPos;
@@ -40,14 +40,10 @@ namespace Insomnia {
             if(_paletteTweener != null)
                 _paletteTweener.Kill();
 
-            if(IsOpened) {
+            if(IsOpened)
                 base.ClosePanel();
-                DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Bag_Close);
-            }
-            else {
+            else
                 base.OpenPanel();
-                DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Bag_Open);
-            }   
         }
 
         public override void ClosePanel() {

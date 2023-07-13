@@ -1,4 +1,3 @@
-using Insomnia;
 using PaintIn3D;
 using System;
 using System.Collections;
@@ -6,51 +5,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Insomnia {
+namespace OperaHouse {
     /// Finish가 그래피티 종료
     /// Clear가 스텐실 종료
     public class DrawManager :  Singleton<DrawManager>{
         #region UI Panel
-        [SerializeField] private DrawPanel m_draw = null;
+        [SerializeField] private DrawPanel _drawPanel = null;
         public DrawPanel Draw {
             get {
-                if(m_draw == null)
-                    m_draw = GetComponentInChildren<DrawPanel>();
+                if(_drawPanel == null)
+                    _drawPanel = GetComponentInChildren<DrawPanel>();
 
-                return m_draw;
+                return _drawPanel;
             }
         }
 
-        [SerializeField] private BagPanel m_bag = null;
+        [SerializeField] private BagPanel _bagPanel = null;
         public BagPanel Bag {
             get {
-                if(m_bag == null)
-                    m_bag = GetComponentInChildren<BagPanel>();
+                if(_bagPanel == null)
+                    _bagPanel = GetComponentInChildren<BagPanel>();
 
-                return m_bag;
+                return _bagPanel;
             }
         }
 
-        [SerializeField] private BlackBookPanel m_blackbook = null;
+        [SerializeField] private BlackBookPanel _blackBookPanel = null;
         public BlackBookPanel BlackBook {
             get {
-                if(m_blackbook == null)
-                    m_blackbook = GetComponentInChildren<BlackBookPanel>();
+                if(_blackBookPanel == null)
+                    _blackBookPanel = GetComponentInChildren<BlackBookPanel>();
 
-                return m_blackbook;
+
+
+                return _blackBookPanel;
             }
         }
 
         #endregion
 
-        [SerializeField] private Spray m_spray = null;
-        public Spray Spray { get => m_spray; }
+        [SerializeField] private Spray _spray = null;
+        public Spray Spray { get => _spray; }
 
-        [SerializeField]private StencilMask m_stencil = null;
-        public StencilMask Stencil { get => m_stencil; }
-
-        [SerializeField] private Speaker m_speaker = null;
-        public Speaker DrawSpeaker { get => m_speaker; }
+        [SerializeField]private StencilMask _stencil = null;
+        public StencilMask Stencil { get => _stencil; }
 
         public UnityEvent onDrawStart = null;
         public UnityEvent onDrawFinished = null;
@@ -79,27 +77,27 @@ namespace Insomnia {
                 return;
 
             if(Input.GetKeyDown(KeyCode.Tab)) {
-                m_bag.OpenPanel();
+                _bagPanel.OpenPanel();
             }
 
             if(Input.GetKeyDown(KeyCode.B)) {
-                m_blackbook.OpenPanel();
+                _blackBookPanel.OpenPanel();
             }
         }
 
         public void StartDrawing() {
             _isDrawing = true;
-            m_blackbook.gameObject.SetActive(true);
-            m_blackbook.ClosePanel();
-            m_bag.gameObject.SetActive(true);
-            m_bag.ClosePanel();
-            m_draw.gameObject.SetActive(true);
-            m_draw.OpenPanel();
+            _blackBookPanel.gameObject.SetActive(true);
+            _blackBookPanel.ClosePanel();
+            _bagPanel.gameObject.SetActive(true);
+            _bagPanel.ClosePanel();
+            _drawPanel.gameObject.SetActive(true);
+            _drawPanel.OpenPanel();
             _pointOfView.ForceChangeToTps();
 
             P3dChangeCounter counter = InteractionManager.Instance.CurInteracting.gameObject.GetComponentInChildren<P3dChangeCounter>();
             if(counter == null) return;
-            PercentageUI ui = m_draw.Percent;
+            PercentageUI ui = _drawPanel.Percent;
             if(ui == null) return;
             ui.RegisterForChangeCounter(counter);
             m_isSwitching = true;
@@ -113,20 +111,20 @@ namespace Insomnia {
         /// </summary>
         /// <returns></returns>
         public bool IsAnyPanelOpened() {
-            return m_bag.IsOpened || m_blackbook.IsOpened;
+            return _bagPanel.IsOpened || _blackBookPanel.IsOpened;
         }
 
         public void FinishDrawing() {
             _isDrawing = false;
-            m_blackbook.ClosePanel();
-            m_blackbook.gameObject.SetActive(false);
-            m_bag.ClosePanel();
-            m_bag.gameObject.SetActive(false);
-            m_draw.ClosePanel();
-            m_draw.gameObject.SetActive(false);
-            m_spray.OnClickMouseLeft(false);
+            _blackBookPanel.ClosePanel();
+            _blackBookPanel.gameObject.SetActive(false);
+            _bagPanel.ClosePanel();
+            _bagPanel.gameObject.SetActive(false);
+            _drawPanel.ClosePanel();
+            _drawPanel.gameObject.SetActive(false);
+            _spray.OnClickMouseLeft(false);
             _pointOfView.ForceChangeToSide();
-            m_draw.Percent.ReleaseCounter();
+            _drawPanel.Percent.ReleaseCounter();
             curDrawing.FinishInteract();
             curDrawing = null;
 
