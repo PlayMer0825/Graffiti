@@ -53,15 +53,12 @@ namespace Insomnia {
             bool isShaking = Input.GetMouseButton(2);
             bool isClicked = Input.GetMouseButton(0);
             float scrollDelta = Input.mouseScrollDelta.y;
-            Debug.Log($"scrollDelta: {scrollDelta}");
-
-            _handAnim.SetBool(hashIsShaking, isShaking);
-            
 
             if(isShaking) {
                 Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
                 _handAnim.speed = Mathf.Clamp01(mouseDelta.magnitude);
-                _spray.OnShake(mouseDelta);
+                bool shakeValid = _spray.OnShake(mouseDelta);
+                _handAnim.SetBool(hashIsShaking, isShaking && shakeValid);
                 isClicked = false;
             }
             else {

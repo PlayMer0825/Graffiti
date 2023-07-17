@@ -1,6 +1,7 @@
 using PaintIn3D;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
@@ -93,26 +94,42 @@ namespace Insomnia {
             yield break;
         }
 
-        public void OnShake(Vector2 mouseDelta) {
-            float delta = mouseDelta.magnitude;
-            if(delta  <= 0.2f) {
-                if(m_audioPlayer.clip == m_sprayShakeSound)
+        public bool OnShake(Vector2 mouseDelta) {
+            float magnitude = mouseDelta.magnitude;
+            if(magnitude <= 0.1f) {
+                if(m_audioPlayer.clip == m_sprayShakeSound) {
                     m_audioPlayer.Stop();
-                return;
+                    Debug.Log("SprayShaking Sound Stop");
+                }
+                    
+                return false;
             }
-            _sprayRemain = Mathf.Clamp(_sprayRemain + delta * 0.05f, 0f, _sprayCapacity);
+
+            if(_sprayRemain >= _sprayCapacity) {
+                if(m_audioPlayer.clip == m_sprayShakeSound) {
+                    m_audioPlayer.Stop();
+                    Debug.Log("SprayShaking Sound Stop");
+                }
+
+                return false;
+            }
+            magnitude = mouseDelta.magnitude;
+            _sprayRemain = Mathf.Clamp(_sprayRemain + magnitude * 0.05f, 0f, _sprayCapacity);
 
             if(m_sprayShakeSound == null)
-                return;
+                return false;
 
             if(m_audioPlayer.isPlaying)
                 if(m_audioPlayer.clip == m_sprayShakeSound)
-                    return;
+                    return true;
                 else
                     m_audioPlayer.Stop();
 
             m_audioPlayer.clip = m_sprayShakeSound;
             m_audioPlayer.Play();
+            Debug.Log("SprayShaking Sound Play");
+
+            return true;
         }
 
         public void SetSprayRotation() {

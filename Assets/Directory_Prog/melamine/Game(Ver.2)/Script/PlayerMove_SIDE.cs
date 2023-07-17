@@ -41,8 +41,11 @@ public class PlayerMove_SIDE : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DrawManager.Instance.CanMove == false)
+        if(DrawManager.Instance.CanMove == false) {
+            dir.x = 0;
+            dir.z = 0;
             return;
+        }
 
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
