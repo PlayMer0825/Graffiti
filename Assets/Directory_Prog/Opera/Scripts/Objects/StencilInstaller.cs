@@ -35,7 +35,6 @@ namespace Insomnia {
 
                 _mask.SetMaskInstallationAvailable(_canInstall);
                 _mask.SetMaskTransform(hit.point + new Vector3(0, 0, -0.03f), hit.normal);
-                Debug.DrawRay(hit.point, hit.normal, Color.red);
 
                 if(_canInstall == false) {
                     yield return null;

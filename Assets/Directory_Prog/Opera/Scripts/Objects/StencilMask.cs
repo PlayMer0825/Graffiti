@@ -75,7 +75,7 @@ namespace Insomnia {
             transform.position = position + new Vector3(0, 0, -0.03f);
             //transform.rotation = Quaternion.Euler(rotation);
             //transform.rotation.SetEulerRotation(rotation);
-            transform.LookAt(position + rotation);
+            transform.LookAt(position - rotation);
         }
 
         /// <summary>
