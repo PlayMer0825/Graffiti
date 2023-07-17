@@ -88,8 +88,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.593266, y: 13.396685, z: 53.908997}
-  m_Center: {x: 1.4110909, y: 6.1983423, z: -4.7992268}
+  m_Size: {x: 17.593266, y: 13.396685, z: 52.131874}
+  m_Center: {x: 1.4110909, y: 6.1983423, z: 0.42247772}
 --- !u!114 &7565405428719378270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,9 +603,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cfca19368501ee46bd1398116a670c1, type: 2}
     - target: {fileID: 919132149155446097, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
       propertyPath: m_Name
       value: bridge_below_PaintableArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
+      propertyPath: m_TagString
+      value: Paintable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
@@ -633,6 +645,60 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7647463442239531939, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
+--- !u!114 &2109337128752358486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012412129021691112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93669d9f171d43e40a38bc8a881b901b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintableTexture: {fileID: 8202159678227986876}
+  interval: 0
+  async: 1
+  downsampleSteps: 3
+  registeredPaintableTexture: {fileID: 0}
+  cooldown: -19.9097
+  currentReader:
+    dirty: 0
+    requested: 0
+    buffer: {fileID: 0}
+    originalSize: {x: 0, y: 0}
+    downsampledSize: {x: 0, y: 0}
+    downsampleSteps: 0
+    downsampleBoost: 0
+    tempTexture: {fileID: 0}
+  maskMesh: {fileID: -7647463442239531939, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
+  maskSubmesh: 0
+  maskTexture: {fileID: 0}
+  maskChannel: 3
+  total: 0
+  maskReader:
+    dirty: 0
+    requested: 0
+    buffer: {fileID: 0}
+    originalSize: {x: 0, y: 0}
+    downsampledSize: {x: 0, y: 0}
+    downsampleSteps: 0
+    downsampleBoost: 0
+    tempTexture: {fileID: 0}
+  threshold: 0.1
+  texture: {fileID: 2800000, guid: d34cc01bda5420a44905266b6d1c8ad2, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  count: 0
+  changeReader:
+    dirty: 0
+    requested: 0
+    buffer: {fileID: 0}
+    originalSize: {x: 0, y: 0}
+    downsampledSize: {x: 0, y: 0}
+    downsampleSteps: 0
+    downsampleBoost: 0
+    tempTexture: {fileID: 0}
 --- !u!114 &8202159678227986876
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,7 +34,13 @@ namespace Insomnia {
                     _canInstall = false; 
 
                 _mask.SetMaskInstallationAvailable(_canInstall);
-                _mask.SetMaskTransform(hit.point, hit.normal);
+                _mask.SetMaskTransform(hit.point + new Vector3(0, 0, -0.03f), hit.normal);
+                Debug.DrawRay(hit.point, hit.normal, Color.red);
+
+                if(_canInstall == false) {
+                    yield return null;
+                    continue;
+                }
 
                 if(Input.GetMouseButtonDown(1)) {
                     _mask.ReleaseMask();
@@ -49,8 +55,6 @@ namespace Insomnia {
                 float scale = Mathf.Clamp(_mask.transform.localScale.x + Input.GetAxis("Mouse ScrollWheel"), 1f, 6f);
                 _mask.transform.localScale = new Vector3(scale, scale, scale);
                 
-                
-
                 yield return null;
             }
             _isInstalling = false;
