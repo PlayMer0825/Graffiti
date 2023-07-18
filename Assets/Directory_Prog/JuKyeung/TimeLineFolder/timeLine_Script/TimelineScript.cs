@@ -13,6 +13,7 @@ public class TimelineScript : MonoBehaviour
     public void TimeLinePlaying()
     {
         playerMoveSide.enabled = false;
+        Debug.Log("타임라인 플레잉");
 
     }
 }
