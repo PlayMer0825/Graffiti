@@ -51,6 +51,7 @@ public class Distance : MonoBehaviour
 
         if(isSame&&!isEnd)
         {
+            Minigame_Tel.isBoard = true;
             StartFadeOut();
             isEnd = true;
         }

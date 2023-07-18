@@ -65,6 +65,7 @@ public class DataManager : MonoBehaviour
     {
         data.playerPosition = GameObject.Find("Player").transform.position;
         data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        data.board = Minigame_Tel.isBoard;
 
 
         // 활성화된 모든 오브젝트 저장

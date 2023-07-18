@@ -29,6 +29,7 @@ public class PlayerMove_SIDE : MonoBehaviour
         if(MainMenu.loadGame==true)
         {
             this.transform.position = DataManager.Instance.data.playerPosition;
+            Minigame_Tel.isBoard = DataManager.Instance.data.board;
             MainMenu.loadGame = false;
         }
         rigidbody = this.GetComponent<Rigidbody>();

@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
         start.Play();
         image.enabled = true;
         PlayerPrefs.DeleteAll();
+        Minigame_Tel.isBoard = false;
         StartCoroutine(FadeCoroutine());
     }
 
@@ -52,6 +53,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator FadeCoroutine()
     {
+        Debug.Log("d");
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
@@ -64,6 +66,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator FadeCoroutine1()
     {
+        
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
