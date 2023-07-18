@@ -53,6 +53,8 @@ public class Board : MonoBehaviour
     public AudioSource Jump;
     public AudioSource Slide;
     public AudioSource Landing;
+    public AudioSource Drag;
+    public AudioSource Perfect;
 
     void Start()
     {
@@ -165,6 +167,7 @@ public class Board : MonoBehaviour
             dash_Slider = false;
             slider1.SetActive(false);
             Invoke("OnInvoke_Dash", 1.0f);
+            Perfect.Play();
         }
         else
         {
@@ -179,6 +182,8 @@ public class Board : MonoBehaviour
 
     IEnumerator Balance()
     {
+        Debug.Log("Drag Playing");
+        Drag.Play();
         yield return null;
         while (!(bench == false || slider_Balance.value == 0 || slider_Balance.value == 300))
         {
@@ -190,6 +195,8 @@ public class Board : MonoBehaviour
             else
                 slider_Balance.value += slider_Balance_Auto * Time.deltaTime;
         }
+        Drag.Stop();
+        Debug.Log("Drag Stopped");
         if (slider_Balance.value >= 0 && slider_Balance.value <= 300)
         {
             yield return null;

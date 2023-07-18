@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Insomnia;
 
 public class MainMenu : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class MainMenu : MonoBehaviour
         image.enabled = true;
         PlayerPrefs.DeleteAll();
         Minigame_Tel.isBoard = false;
+
+        if(QuestContainer.Instance != null)
+            QuestContainer.Instance.RemoveAllQuest();
+
         StartCoroutine(FadeCoroutine());
     }
 
@@ -53,7 +58,6 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator FadeCoroutine()
     {
-        Debug.Log("d");
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
@@ -66,7 +70,6 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator FadeCoroutine1()
     {
-        
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {

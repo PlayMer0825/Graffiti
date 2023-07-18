@@ -9,13 +9,6 @@ namespace Insomnia{
         #region Singleton
         private static QuestContainer m_instance = null;
 		public static QuestContainer Instance { get {
-				if(m_instance == null) {
-					QuestContainer go = new GameObject().AddComponent<QuestContainer>();
-					m_instance = go;
-					m_instance.gameObject.name = "@QuestContainer";
-					DontDestroyOnLoad(go.gameObject);
-				}
-
 				return m_instance;
 			} 
 		}
@@ -40,6 +33,7 @@ namespace Insomnia{
 
 		[Header("QuestContainer: Settings")]
 		[SerializeField] private string m_endingSceneName = "";
+		[SerializeField] private int m_endingSceneBuildIndex = -1;
 
 		public bool IsOpened { get => m_isOpened; }
 
@@ -120,6 +114,21 @@ namespace Insomnia{
 			UpdateUI();
 		}
 
+		public void RemoveAllQuest()
+		{
+			if (m_quests == null)
+				return;
+
+			if (m_quests.Count <= 0)
+				return;
+
+			for (int i = 0; i < m_quests.Count; i++)
+			{
+				Destroy(m_elements[i].gameObject);			}
+			m_quests.Clear();
+			m_elements.Clear();
+        }
+
 		public void UpdateQuest(uint questID, int inc = 1) {
 			if(m_quests.ContainsKey(questID) == false)
 				return;
@@ -186,7 +195,13 @@ namespace Insomnia{
                 m_fadeImage.color = new Color(0, 0, 0, fadeCount);
             }
 
-            SceneManager.LoadScene(m_endingSceneName);
+			if (m_endingSceneBuildIndex == -1){
+				Debug.LogError("BuildIndex is -1");
+                yield break;
+            }
+			
+			Position_This.setFalse();
+            SceneManager.LoadScene(m_endingSceneBuildIndex);
 			SceneManager.sceneLoaded += (scene, mode) => {
 				StartCoroutine(FadeoutCoroutine());
 			};

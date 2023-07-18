@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Telepoter_This : MonoBehaviour
 {
+    [SerializeField] private GameObject m_doorIcon = null;
     public Image image;
     public static bool telepoter = false;
 
@@ -23,21 +24,29 @@ public class Telepoter_This : MonoBehaviour
     }
 
 
-    private bool isPlayerTriggered = false;
+    private bool m_isPlayerTriggered = false;
     [SerializeField]
     private string target_SceneName = string.Empty;
 
     private void OnTriggerEnter(Collider other)
     {
+        if (m_isPlayerTriggered)
+            return;
+
         if (other.CompareTag("Player"))
         {
-            isPlayerTriggered = true;
+            m_isPlayerTriggered = true;
+            //TODO: UI ÄÑÁÖ±â
+            if (m_doorIcon == null)
+                return;
+
+            m_doorIcon.SetActive(true);
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetMouseButtonDown(0) && isPlayerTriggered)
+        if (Input.GetMouseButtonDown(0) && m_isPlayerTriggered)
         {
             PlayerMove_SIDE.isLoad = false;
             telepoter = true;
@@ -49,9 +58,17 @@ public class Telepoter_This : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (m_isPlayerTriggered == false)
+            return;
+
         if (other.CompareTag("Player"))
         {
-            isPlayerTriggered = false;
+            m_isPlayerTriggered = false;
+
+            if (m_doorIcon == null)
+                return;
+
+            m_doorIcon.SetActive(false);
         }
     }
 }

@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
             data = JsonUtility.FromJson<Data>(FromJsonData);
             print("불러오기 완료");
 
-            SceneManager.LoadScene(data.sceneIndex);
+            //SceneManager.LoadScene(data.sceneIndex);
 
             GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
             foreach (GameObject obj in objects)
