@@ -1544,10 +1544,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: a4ca24d8f90ab2a47b22c9a0bf791b1e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &6915668625157095957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,6 +1611,7 @@ MonoBehaviour:
   TPS: {fileID: 6915668625909263547}
   trigger: {fileID: 6915668624102981499}
   grabPosition: {fileID: 6915668624662819918}
+  animator: {fileID: 0}
   _pointInTime: {fileID: 0}
 --- !u!114 &6915668625157095952
 MonoBehaviour:
@@ -2628,6 +2629,7 @@ MonoBehaviour:
   m_arm: {fileID: 7229598144284213124}
   _sprayHolder: {fileID: 5287789112668166312}
   _spray: {fileID: 0}
+  m_defaultSensitivity: 100
   _handAnim: {fileID: 7536168028173435593}
 --- !u!1 &8876686576679550636
 GameObject:

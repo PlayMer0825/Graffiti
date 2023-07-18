@@ -12852,6 +12852,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920761572}
   m_Mesh: {fileID: -7550262638168013577, guid: 82d9611c38a3a7744b97aa52031386e2, type: 3}
+--- !u!1 &922424356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4893976424308091206, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+  m_PrefabInstance: {fileID: 1396766577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &926519143
 GameObject:
   m_ObjectHideFlags: 0
@@ -14681,7 +14686,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -14278.485
+  cooldown: -14281.645
   currentReader:
     dirty: 0
     requested: 0
@@ -19825,6 +19830,34 @@ PrefabInstance:
     - target: {fileID: 1852831393570499517, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
       propertyPath: m_LocalPosition.z
       value: -14.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 922424356}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173123318152109460, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
+      propertyPath: onFinishInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3536681351355694742, guid: ff56c2fefce40314696966fc4bcad5f6, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b

@@ -57,4 +57,14 @@ public class Position_This : MonoBehaviour
             Telepoter_This.telepoter = false;
         }
     }
+
+    public static void setFalse()
+    {
+        position = false;
+        Front = false;
+        Back = false;
+        City = false;
+        Secret = false;
+        Riverside = false;
+    }
 }
