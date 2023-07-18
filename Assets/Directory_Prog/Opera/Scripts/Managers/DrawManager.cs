@@ -134,7 +134,6 @@ namespace Insomnia {
             Invoke("AfterOneSecSetBool", 2.2f);
 
             onDrawFinished?.Invoke();
-
             GameObject.Find("Player").GetComponent<Point_Of_View>().ForceChangeToSide();
         }
 

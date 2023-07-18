@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5213067126806566885}
   - component: {fileID: 8470025917580689130}
+  - component: {fileID: 1454413667866141404}
   m_Layer: 0
   m_Name: MilkBar
   m_TagString: Untagged
@@ -82,9 +83,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactCanvas: {fileID: 6521310831386655752}
   m_isStandby: 0
+  onStartInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1454413667866141404}
+        m_TargetAssemblyTypeName: Insomnia.QuestModifier, Assembly-CSharp
+        m_MethodName: IncreaseQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _ptble: {fileID: 9042545114109271813}
   _interactArea: {fileID: 1929360389631912282}
   m_areaConstraint: {fileID: 566413025281686691}
+--- !u!114 &1454413667866141404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697459915180295329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf73c8b2a0813ee44a2dcce115a5c7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_questIDtoIncrease: 103
 --- !u!1 &1970641018163134199
 GameObject:
   m_ObjectHideFlags: 0

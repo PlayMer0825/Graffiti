@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Insomnia {
     /// <summary>
@@ -16,8 +17,9 @@ namespace Insomnia {
         [SerializeField] private bool m_isStandby = false;
         protected bool interactable = true;
 
-        //[Header("Delegate Functions' Queue for Any Events")]
-
+        [SerializeField] protected UnityEvent onStartInteract = new UnityEvent();
+        [SerializeField] protected UnityEvent onFinishInteract = new UnityEvent();
+        
         protected bool IsStandby { get => m_isStandby; }
 
         public bool IsInteractable { get => interactable; set => interactable = value; }

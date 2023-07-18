@@ -286,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363416823175767513}
   - component: {fileID: 3402697375855348950}
+  - component: {fileID: 2272472112845017292}
   m_Layer: 0
   m_Name: MusicShop
   m_TagString: Untagged
@@ -325,9 +326,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactCanvas: {fileID: 14360894763552308}
   m_isStandby: 0
+  onStartInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2272472112845017292}
+        m_TargetAssemblyTypeName: Insomnia.QuestModifier, Assembly-CSharp
+        m_MethodName: IncreaseQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _ptble: {fileID: 6438880148676118454}
   _interactArea: {fileID: 4644666433719278438}
   m_areaConstraint: {fileID: 6732618845559525023}
+--- !u!114 &2272472112845017292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989431910921270941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf73c8b2a0813ee44a2dcce115a5c7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_questIDtoIncrease: 104
 --- !u!1 &6732618845559525023
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,14 +653,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c02831fea72bcc648967451481250848, type: 3}
---- !u!4 &8312835153263492004 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3028214341477465108, guid: c02831fea72bcc648967451481250848, type: 3}
-  m_PrefabInstance: {fileID: 6438880148676118448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1692116681957767446 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5629750538003119782, guid: c02831fea72bcc648967451481250848, type: 3}
+  m_PrefabInstance: {fileID: 6438880148676118448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8312835153263492004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3028214341477465108, guid: c02831fea72bcc648967451481250848, type: 3}
   m_PrefabInstance: {fileID: 6438880148676118448}
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &6985770725831807285

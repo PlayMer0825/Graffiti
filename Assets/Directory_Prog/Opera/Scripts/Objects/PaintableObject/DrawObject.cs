@@ -3,6 +3,7 @@ using PaintIn3D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static Define;
 
 namespace Insomnia {
@@ -15,6 +16,8 @@ namespace Insomnia {
         private InteractionArea _interactArea = null;
 
         [SerializeField] private GameObject m_areaConstraint = null;
+
+        
 
         private bool m_isDrawing = false;
 
@@ -62,6 +65,7 @@ namespace Insomnia {
                 m_areaConstraint.SetActive(true);
             DrawManager.Instance.curDrawing = this;
             DrawManager.Instance.StartDrawing();
+            onStartInteract?.Invoke();
         }
 
         public override void FinishInteract() {
@@ -76,6 +80,7 @@ namespace Insomnia {
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            onFinishInteract?.Invoke();
         }
 
         private int GetPixelCount(Texture2D texture) {
