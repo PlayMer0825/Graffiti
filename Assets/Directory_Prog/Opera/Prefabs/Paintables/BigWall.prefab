@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7236375961940220672}
   - component: {fileID: 6467132524877492751}
+  - component: {fileID: 8736284981982893898}
   m_Layer: 0
   m_Name: BigWall
   m_TagString: Untagged
@@ -93,9 +94,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactCanvas: {fileID: 8553484476636229869}
   m_isStandby: 0
+  onStartInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8736284981982893898}
+        m_TargetAssemblyTypeName: Insomnia.QuestModifier, Assembly-CSharp
+        m_MethodName: IncreaseQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _ptble: {fileID: 9101602599159540067}
   _interactArea: {fileID: 3959291322916218303}
   m_areaConstraint: {fileID: 3163779645457608774}
+--- !u!114 &8736284981982893898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709387340985944132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf73c8b2a0813ee44a2dcce115a5c7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_questIDtoIncrease: 100
 --- !u!1 &3163779645457608774
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,10 +655,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintableTexture: {fileID: 656124145350687395}
   interval: 0
-  async: 1
+  async: 0
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 656124145350687395}
-  cooldown: -58.410152
+  cooldown: -59.215412
   currentReader:
     dirty: 0
     requested: 0

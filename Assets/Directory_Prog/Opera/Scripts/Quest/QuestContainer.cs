@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Insomnia{
 	public class QuestContainer : MonoBehaviour {
@@ -29,12 +31,17 @@ namespace Insomnia{
 		[SerializeField] private Transform m_questParent = null;
 		[SerializeField] private GameObject m_elementPrefab = null;
 		[SerializeField] private List<QuestUIElement> m_elements = new List<QuestUIElement>();
+		[SerializeField] private Image m_fadeImage = null;
 
 		[Header("QuestContainer: Instances")]
 		[SerializeField] private Dictionary<uint, Quest> m_quests = new Dictionary<uint, Quest>();
 
 		[Header("QuestContainer: Status")]
 		[SerializeField] private bool m_isOpened = false;
+		[SerializeField] private bool m_isEnd = false;
+
+		[Header("QuestContainer: Settings")]
+		[SerializeField] private string m_endingSceneName = "";
 
 		public bool IsOpened { get => m_isOpened; }
 
@@ -55,8 +62,8 @@ namespace Insomnia{
                 if(IsOpened)
                     return;
 
-                m_questUI.SetActive(true);
-                m_isOpened = true;
+                m_questUI.SetActive(false);
+                m_isOpened = false;
 				return;
             }
 
@@ -127,6 +134,9 @@ namespace Insomnia{
 		}
 
 		private bool CheckAllQuestClear() {
+			if(m_isEnd)
+				return false;
+
 			if(m_quests == null)
 				return false;
 
@@ -143,8 +153,52 @@ namespace Insomnia{
 		}
 
 		private void ChangeSceneToEnding() {
-			//TODO: SceneChanger로 마지막 씬으로 넘기기
-		}
+            m_isEnd = true;
+
+			for(int i = 0; i < m_elements.Count; i++) {
+				m_elements[i].gameObject.SetActive(false);
+			}
+
+            PlayerMove_SIDE.isLoad = false;
+			StartCoroutine(FadeCoroutine());
+
+            //TODO: SceneChanger로 마지막 씬으로 넘기기
+        }
+        #endregion
+
+        #region Copied Functions
+
+        IEnumerator FadeCoroutine() {
+			if(m_fadeImage == null)
+				yield break;
+
+            float fadeCount = 0;
+            while(fadeCount < 1.0f) {
+                fadeCount += 0.01f;
+                yield return new WaitForSeconds(0.01f);
+                m_fadeImage.color = new Color(0, 0, 0, fadeCount);
+            }
+
+            SceneManager.LoadScene(m_endingSceneName);
+			SceneManager.sceneLoaded += (scene, mode) => {
+				StartCoroutine(FadeoutCoroutine());
+			};
+        }
+
+		IEnumerator FadeoutCoroutine() {
+            if(m_fadeImage == null)
+                yield break;
+
+            float fadeCount = 1;
+            while(fadeCount >= 0.1f) {
+                fadeCount -= 0.01f;
+                yield return new WaitForSeconds(0.01f);
+                m_fadeImage.color = new Color(0, 0, 0, fadeCount);
+            }
+
+			m_fadeImage.color = new Color(0, 0, 0, 0);
+			yield break;
+        }
         #endregion
     }
 }

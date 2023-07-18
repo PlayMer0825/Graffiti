@@ -227,6 +227,9 @@ namespace ZB.Dialogue.Graffiti
 
         private void Update()
         {
+            if(m_machine == null)
+                return;
+
             if (/*Input.GetKeyDown(KeyCode.E) ||*/ Input.GetMouseButtonDown(0))
             {
                 OnBtnInput();

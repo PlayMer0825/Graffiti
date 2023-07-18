@@ -6605,6 +6605,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1657935036881822680, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 606474066}
     - target: {fileID: 3956795077865265115, guid: c663c2ac4d756ad4e837450fd8465cce, type: 3}
       propertyPath: _pointOfView
       value: 
@@ -7166,9 +7170,9 @@ GameObject:
   - component: {fileID: 606474065}
   - component: {fileID: 606474064}
   - component: {fileID: 606474063}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21080,7 +21084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3924510521900085544, guid: dc41d45b8ed83e54e864849fb5b29993, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924510521900085544, guid: dc41d45b8ed83e54e864849fb5b29993, type: 3}
       propertyPath: m_LocalScale.y
@@ -23238,7 +23242,7 @@ PrefabInstance:
     - target: {fileID: 3425304781811439134, guid: a1c62c8025c7c1b4f840e4e234d4fa47, type: 3}
       propertyPath: SIDE
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 813162360}
     - target: {fileID: 6176041932622012117, guid: a1c62c8025c7c1b4f840e4e234d4fa47, type: 3}
       propertyPath: _spray
       value: 
@@ -25443,7 +25447,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4207285386861027809, guid: db85de07cf096a64fa3bc68d0f16aab7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4207285386861027809, guid: db85de07cf096a64fa3bc68d0f16aab7, type: 3}
       propertyPath: m_LocalPosition.x

@@ -37,7 +37,7 @@ public class Point_Of_View : MonoBehaviour
 
     private GrabableObject grabbing;
 
-    Animator animator;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private Point_In_Time _pointInTime = null;
     private Changer _changer = null;
@@ -47,6 +47,7 @@ public class Point_Of_View : MonoBehaviour
     private void Awake() {
         _side = GetComponent<PlayerMove_SIDE>();
         _tps = GetComponent<PlayerMove_TPS>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update

@@ -363,6 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4207285386861027809}
   - component: {fileID: 554044562149394670}
+  - component: {fileID: 426799635387730461}
   m_Layer: 0
   m_Name: UnderBridge
   m_TagString: Untagged
@@ -402,9 +403,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactCanvas: {fileID: 2935105112175806988}
   m_isStandby: 0
+  onStartInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 426799635387730461}
+        m_TargetAssemblyTypeName: Insomnia.QuestModifier, Assembly-CSharp
+        m_MethodName: IncreaseQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _ptble: {fileID: 8202159678227986877}
   _interactArea: {fileID: 7565405428719378270}
   m_areaConstraint: {fileID: 8495902774411184807}
+--- !u!114 &426799635387730461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905357208632177317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf73c8b2a0813ee44a2dcce115a5c7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_questIDtoIncrease: 106
 --- !u!1001 &1212878706885767380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -542,14 +574,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}
---- !u!1 &2935105112175806988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4066350574313126616, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}
-  m_PrefabInstance: {fileID: 1212878706885767380}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3239184314538652719 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4334404824441832699, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}
+  m_PrefabInstance: {fileID: 1212878706885767380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2935105112175806988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4066350574313126616, guid: 21a956137a90fec48a1ce666d45a0e6a, type: 3}
   m_PrefabInstance: {fileID: 1212878706885767380}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8202159678227986873
@@ -621,14 +653,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
---- !u!1 &9012412129021691112 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
-  m_PrefabInstance: {fileID: 8202159678227986873}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8527941619330244178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
+  m_PrefabInstance: {fileID: 8202159678227986873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9012412129021691112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32d567738f57d2b4f84baf5a1ee754f8, type: 3}
   m_PrefabInstance: {fileID: 8202159678227986873}
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &8202159678227986882
@@ -659,10 +691,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintableTexture: {fileID: 8202159678227986876}
   interval: 0
-  async: 1
+  async: 0
   downsampleSteps: 3
-  registeredPaintableTexture: {fileID: 0}
-  cooldown: -19.9097
+  registeredPaintableTexture: {fileID: 8202159678227986876}
+  cooldown: -43.654682
   currentReader:
     dirty: 0
     requested: 0
@@ -713,7 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot:
     Index: 0
-    Name: _BASE_COLOR_MAP
+    Name: _MainTex
   coord: 0
   group:
     index: 0
