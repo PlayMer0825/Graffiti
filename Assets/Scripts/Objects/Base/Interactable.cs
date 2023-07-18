@@ -10,6 +10,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary> 상호작용 오브젝트 상위 클래스 </summary>
+[Obsolete]
 public class Interactable : MonoBehaviour {
     #region Components
     [Header("Interaction_GameObject")]

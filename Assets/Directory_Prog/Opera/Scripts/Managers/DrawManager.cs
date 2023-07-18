@@ -1,8 +1,4 @@
-using Insomnia;
 using PaintIn3D;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -85,6 +81,14 @@ namespace Insomnia {
             if(Input.GetKeyDown(KeyCode.B)) {
                 m_blackbook.OpenPanel();
             }
+        }
+
+        private void OnDisable() {
+            _instance = null;
+        }
+
+        private void OnDestroy() {
+            _instance = null;
         }
 
         public void StartDrawing() {

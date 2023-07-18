@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Insomnia {
     public class Singleton<T> : MonoBehaviour where T : Component {
-        private static T _instance = null;
+        protected static T _instance = null;
         public static T Instance {
             get {
                 if(_instance == null) {
@@ -12,8 +10,7 @@ namespace Insomnia {
 
                     if(_instance == null) {
                         Debug.LogWarning($"{typeof(T)} not Exist");
-                        GameObject go = new GameObject(typeof(T).Name);
-                        _instance = go.AddComponent<T>();
+                        return null;
                     }
                 }
 
@@ -25,7 +22,7 @@ namespace Insomnia {
             if(_instance != null)
                 Destroy(_instance.gameObject);
 
-            _instance = this as T;
+            _instance = gameObject.GetComponent<T>();
         }
     }
 }

@@ -1,8 +1,5 @@
 using PaintIn3D;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Insomnia {
     public class StencilMask : MonoBehaviour {

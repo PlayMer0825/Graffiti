@@ -1,7 +1,3 @@
-using Insomnia;
-using PaintIn3D;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Insomnia {

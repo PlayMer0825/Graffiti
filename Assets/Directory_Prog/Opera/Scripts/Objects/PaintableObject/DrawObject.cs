@@ -1,10 +1,5 @@
-using Insomnia;
 using PaintIn3D;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using static Define;
 
 namespace Insomnia {
     public class DrawObject : Interactable {

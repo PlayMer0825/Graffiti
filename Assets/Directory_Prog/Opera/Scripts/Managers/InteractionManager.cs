@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Insomnia {
     public class InteractionManager : Singleton<InteractionManager> {
         private Interactable _curInteracting = null;

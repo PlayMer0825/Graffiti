@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -58,8 +56,17 @@ namespace Insomnia{
         }
 
         private void Update() {
+			if(m_isEnd) {
+                if(IsOpened == false)
+                    return;
+
+                m_questUI.SetActive(false);
+                m_isOpened = false;
+                return;
+            }
+
 			if(DrawManager.Instance == null) {
-                if(IsOpened)
+                if(IsOpened == false)
                     return;
 
                 m_questUI.SetActive(false);
