@@ -4,11 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//테스트
+[RequireComponent(typeof(AudioSource))]
+//여까지
 public class Telepoter_This : MonoBehaviour
 {
+    //테스트
+    [SerializeField] private AudioSource m_source = null;
+    //여까지
     [SerializeField] private GameObject m_doorIcon = null;
     public Image image;
     public static bool telepoter = false;
+
+    //테스트
+    private void Awake()
+    {
+        m_source = GetComponent<AudioSource>();
+    }
+    //여까지
 
     IEnumerator FadeCoroutine()
     {
@@ -41,6 +54,13 @@ public class Telepoter_This : MonoBehaviour
                 return;
 
             m_doorIcon.SetActive(true);
+
+            //테스트
+            if (m_source == null || m_source.clip == null)
+                return;
+
+            m_source.PlayOneShot(m_source.clip);
+            //여까지
         }
     }
 

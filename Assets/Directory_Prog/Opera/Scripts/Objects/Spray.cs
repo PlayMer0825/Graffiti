@@ -7,7 +7,7 @@ namespace Insomnia {
     public class Spray : MonoBehaviour {
         [SerializeField] ParticleSystem _particle = null;
         [SerializeField] P3dPaintSphere _p3dPaint = null;
-        [SerializeField] private const float _sprayCapacity = 10f;
+        [SerializeField] private const float _sprayCapacity = 3.5f;
         [SerializeField] private Image _remainFillImage = null;
         [SerializeField] private AudioSource m_audioPlayer = null;
         [SerializeField] private AudioClip m_sprayFireSound = null;
@@ -18,7 +18,7 @@ namespace Insomnia {
         private float _sprayRemain = 0f;
         private bool _isFiring = false;
         [SerializeField] private bool _canFire = false;
-        [SerializeField] private float _sprayDecreaseAmount = 0.4f;
+        [SerializeField] private float _sprayDecreaseAmount = 1f;
         [SerializeField]private LayerMask _sprayLayer;
 
         public float SprayRemain { get => _sprayRemain; }
@@ -111,7 +111,7 @@ namespace Insomnia {
                 return false;
             }
             magnitude = mouseDelta.magnitude;
-            _sprayRemain = Mathf.Clamp(_sprayRemain + magnitude * 0.05f, 0f, _sprayCapacity);
+            _sprayRemain = Mathf.Clamp(_sprayRemain + magnitude * 0.01f, 0f, _sprayCapacity);
 
             if(m_sprayShakeSound == null)
                 return false;
@@ -145,8 +145,8 @@ namespace Insomnia {
         }
 
         public void SetSprayRadius(float scrollDelta) {
-            float val = scrollDelta < 0f ? -0.05f : 0.05f;
-            _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.08f, 5f);
+            float val = scrollDelta < 0f ? -0.03f : 0.03f;
+            _p3dPaint.Radius = Mathf.Clamp(_p3dPaint.Radius + val, 0.03f, 5f);
         }
 
         private void SetTargetDirection(Vector3 targetPoint, bool isValid = true) {
