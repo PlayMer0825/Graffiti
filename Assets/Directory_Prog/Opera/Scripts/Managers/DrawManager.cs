@@ -1,6 +1,7 @@
 using PaintIn3D;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 namespace Insomnia {
     /// Finish가 그래피티 종료
@@ -36,6 +37,8 @@ namespace Insomnia {
                 return m_blackbook;
             }
         }
+        [SerializeField]private Notifier m_notifier = null;
+        public Notifier Notify { get => m_notifier; }
 
         #endregion
 
@@ -90,6 +93,17 @@ namespace Insomnia {
         private void OnDestroy() {
             _instance = null;
         }
+
+        private void OnGUI() {
+            if(GUI.Button(new Rect(230, 710, 100, 20), "랜덤 스텐실 오픈")) {
+                int i = Random.Range(0, 36);
+                BlackBook.UnlockStencil(i);
+            }
+
+            if(GUI.Button(new Rect(230, 650, 100, 20), "스텐실 초기화")) {
+                BlackBook.InitializeStencil();
+            }
+        }   
 
         public void StartDrawing() {
             _isDrawing = true;
