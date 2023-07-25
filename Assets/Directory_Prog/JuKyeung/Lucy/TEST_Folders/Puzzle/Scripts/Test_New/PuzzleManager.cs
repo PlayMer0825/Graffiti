@@ -16,15 +16,21 @@ public class PuzzleManager : MonoBehaviour
     [Serializable]
     public class PuzzlePiece
     {
+        [Header("퍼즐 조각 오브젝트")]
         public GameObject pieceObject;
+        [Header("정답 오브젝트 ")]
         public GameObject correctAnswer;
+        [Header("스냅 거리 조절")]
         public float snapDistance; // 조각을 스냅시키기 위한 거리
+        [Header("퍼즐 조각이 정답 위치에 위치했을 때 이벤트")]
         public UnityEvent onCorrectPlacement;
     }
 
     public int totalPieces;
+    [Header("퍼즐 설정")]
     public List<PuzzlePiece> puzzlePieces = new List<PuzzlePiece>();
 
+    [Header("퍼즐을 전부 정답 위치에 스냅시켰을 때 일어날 이벤트")]
     public UnityEvent endPuzzleEvent;
 
     private int correctPieces;
