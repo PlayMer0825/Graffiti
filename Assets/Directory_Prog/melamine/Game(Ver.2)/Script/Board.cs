@@ -150,6 +150,7 @@ public class Board : MonoBehaviour
             StartCoroutine(Balance());
         }
     }
+    
     IEnumerator Dash()
     {
         yield return null;
@@ -160,6 +161,7 @@ public class Board : MonoBehaviour
         }
         if (slider_Dash.value >= minPos && slider_Dash.value <= maxPos)
         {
+            effect.isEffect = true;
             animator.SetFloat("Slide_Speed", 1.5f);
             Debug.Log("ok");
             animator.SetTrigger("isSliding");
@@ -214,6 +216,9 @@ public class Board : MonoBehaviour
             slider2.SetActive(false);
         }
     }
+
+
+
 
     public void FixedUpdate()
     {
@@ -323,6 +328,7 @@ public class Board : MonoBehaviour
     void OnInvoke_Dash()
     {
         isDash = false;
+        effect.isEffect = false;
     }
 
     void OnInvoke_Dash_Success()
