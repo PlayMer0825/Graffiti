@@ -9,7 +9,8 @@ public class PuzzleManager : MonoBehaviour
 {
     public enum PuzzleType
     {
-        Normal,
+        Street,
+        Building,
         Note
     }
 
@@ -50,8 +51,17 @@ public class PuzzleManager : MonoBehaviour
     {
         if (!puzzleComplete && correctPieces == totalPieces)
         {
-            puzzleComplete = true;
-            endPuzzleEvent.Invoke();
+            if(puzzleType == PuzzleType.Note)
+            {
+                puzzleComplete = true;
+                endPuzzleEvent.Invoke();
+            }
+            else if(puzzleType == PuzzleType.Street)
+            {
+                puzzleComplete = true;
+                endPuzzleEvent.Invoke();
+            }  
+            
         }
     }
 
