@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using System;
 
 public class PuzzleEffect : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class PuzzleEffect : MonoBehaviour
 
     public GameObject moveObject;
     public Transform targetPosition;
+
+    public PuzzleManager puzzleManager;
+
+     public bool endpuzzleMessage;
+
+    private void Start()
+    {
+        puzzleManager = puzzleManager.GetComponent<PuzzleManager>();
+    }
 
     /// <summary>
     ///  점등 효과
@@ -44,7 +54,7 @@ public class PuzzleEffect : MonoBehaviour
         xEffect.color = finalColor;
 
         yield return 2.0f;
-        Debug.Log("2초 지연");
+        xEffect.gameObject.SetActive(false);
         StartCoroutine( MoveObjectCorutine());
     }
 
@@ -63,24 +73,28 @@ public class PuzzleEffect : MonoBehaviour
         // float moveDuration = 2.5f;
         float moveSpeed = 100f;
 
-
-        //while(moveObject.transform.position != targetPosition.position)
-        //{
-        //    moveObject.GetComponent<Draggable>().enabled = false;
-        //    moveObject.transform.position = Vector3.MoveTowards(moveObject.transform.position, 
-        //        targetPosition.position, moveSpeed * Time.deltaTime);
-
-        //    yield return null;
-        //}
+        Color objectColor = moveObject.GetComponent<Image>().color;
+        Color xObjectColor = xEffect.color;
         while (Vector3.Distance(moveObject.transform.position, targetPosition.position) > 0.1f)
         {
             moveObject.transform.position = Vector3.MoveTowards(moveObject.transform.position,
                 targetPosition.position, moveSpeed * Time.deltaTime);
 
+            objectColor.a -= 0.3f * Time.deltaTime;
+            xObjectColor.a -= 0.3f * Time.deltaTime;
+            moveObject.GetComponent<Image>().color = objectColor;
+            xEffect.color = xObjectColor;
             yield return null;
         }
         moveObject.SetActive(false);
+        objectColor.a = 0f;
+        xEffect.gameObject.SetActive(false);
+        xObjectColor.a = 0f;
 
+
+        puzzleManager.endPuzzleEvent.Invoke();
+        Debug.Log("정상적 종료 이벤트 출력");
     }
+
 }
 
