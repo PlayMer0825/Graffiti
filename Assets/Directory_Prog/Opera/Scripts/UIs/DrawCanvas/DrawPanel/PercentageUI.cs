@@ -12,6 +12,9 @@ namespace Insomnia {
         [SerializeField] private TMP_Text _percentageText = null;
         [SerializeField] private Button _clearButton = null;
         [SerializeField] private Button _finishButton = null;
+        [SerializeField] private Color m_defaultColor = Color.white;
+        [SerializeField] private Color m_finishColor = Color.yellow;
+
         private P3dChangeCounter _curCounter = null;
         private Button _curExitButton = null;
         private Func<bool> _checkFunc = null;
@@ -24,6 +27,8 @@ namespace Insomnia {
             _percentage_Circle = GetComponentInChildren<P3dChangeCounterFill>();
             _percentage_Count = GetComponentInChildren<P3dChangeCounterText>();
 
+            
+
             _curExitButton = _finishButton;
             _checkFunc = CheckDrawFinish;
         }
@@ -35,6 +40,12 @@ namespace Insomnia {
         private void Update() {
             if(DrawManager.Instance.IsDrawing == false)
                 return;
+
+            if(_curCounter != null) {
+                Color color = Color.Lerp(m_defaultColor, m_finishColor, _curCounter.Ratio);
+                _percentageText.color = _percentageFill.color = color;
+            }
+
 
             if(_checkFunc.Invoke()) {
                 if(_curExitButton.gameObject.activeSelf == false) {
