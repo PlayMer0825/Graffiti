@@ -32,6 +32,7 @@ public class SubMenu : MonoBehaviour
     public void Save()
     {
         save.SetActive(true);
+        StartCoroutine(WaitForSecondsRealtime(3f));
         //SetSave();
         DataManager.Instance.SaveGameData();
     }
@@ -52,8 +53,22 @@ public class SubMenu : MonoBehaviour
         Invoke("Invoke_save", 1.0f);
         yield return new WaitForSecondsRealtime(1f);
     }
-public void Invoke_save()
+    public void Invoke_save()
     {
+        save.SetActive(false);
+    }
+
+    IEnumerator WaitForSecondsRealtime(double time)
+    {
+        save.SetActive(true);
+        var startTime = System.DateTime.Now;
+        var elapsedTime = 0d;
+        while (elapsedTime < time)
+        {
+            yield return null;
+            var currentTime = System.DateTime.Now;
+            elapsedTime = (currentTime - startTime).TotalSeconds;
+        }
         save.SetActive(false);
     }
 }
