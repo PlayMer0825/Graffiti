@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SubMenu : MonoBehaviour
 {
-    
     public GameObject subMenu;
+    public GameObject save;
 
     private void Start()
     {
@@ -15,14 +15,15 @@ public class SubMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&DrawManager.Instance.IsDrawing==false)
+        if (Input.GetKeyDown(KeyCode.Escape) && DrawManager.Instance.IsDrawing == false)
         {
             subMenu.SetActive(true);
+            save.SetActive(false);
             Time.timeScale = 0f;
         }
     }
 
-   public void Resume()
+    public void Resume()
     {
         Time.timeScale = 1f;
         subMenu.SetActive(false);
@@ -30,6 +31,8 @@ public class SubMenu : MonoBehaviour
 
     public void Save()
     {
+        save.SetActive(true);
+        //SetSave();
         DataManager.Instance.SaveGameData();
     }
 
@@ -37,5 +40,20 @@ public class SubMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Scene/MainMenu");
+    }
+
+    public void SetSave()
+    {
+        StartCoroutine(Save_Complete());
+    }
+
+    IEnumerator Save_Complete()
+    {
+        Invoke("Invoke_save", 1.0f);
+        yield return new WaitForSecondsRealtime(1f);
+    }
+public void Invoke_save()
+    {
+        save.SetActive(false);
     }
 }
