@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1177261284079712738}
   - component: {fileID: 1177261284079712739}
   - component: {fileID: 1177261284079712740}
-  - component: {fileID: 1177261284079712741}
   m_Layer: 5
   m_Name: St_Draggble4
   m_TagString: Untagged
@@ -90,6 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &1177261284079712740
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -102,21 +103,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1177261284079712741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177261284079712742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8390c2e020ccc804b8b678ff1dcd3ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xEffect: {fileID: 0}
-  moveObject: {fileID: 1177261284079712742}
-  targetPosition: {fileID: 0}
 --- !u!1 &1177261284531955960
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -250,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -325,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -400,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -581,6 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &1529820368282478783
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -795,7 +783,6 @@ GameObject:
   - component: {fileID: 1529820369010694936}
   - component: {fileID: 1529820369010694938}
   - component: {fileID: 1529820369010694933}
-  - component: {fileID: 1529820369010694913}
   m_Layer: 5
   m_Name: St_Draggble3
   m_TagString: Untagged
@@ -872,6 +859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &1529820369010694933
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -884,21 +873,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1529820369010694913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529820369010694942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8390c2e020ccc804b8b678ff1dcd3ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xEffect: {fileID: 0}
-  moveObject: {fileID: 1529820369010694942}
-  targetPosition: {fileID: 0}
 --- !u!1 &1529820369029188752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,6 +1072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &1529820369144871067
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1237,6 +1213,7 @@ GameObject:
   - component: {fileID: 1529820370313865014}
   - component: {fileID: 1529820370313865015}
   - component: {fileID: 1529820370313865011}
+  - component: {fileID: 4817228745493554820}
   m_Layer: 5
   m_Name: Lucy_StreetPuzzle
   m_TagString: Untagged
@@ -1344,7 +1321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c32dd7810e720d47b7e29ae28fdf3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalPieces: 3
+  totalPieces: 4
   puzzlePieces:
   - pieceObject: {fileID: 1529820369144871068}
     correctAnswer: {fileID: 1529820369029188752}
@@ -1364,13 +1341,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1177261284794675611}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 4817228745493554820}
+          m_TargetAssemblyTypeName: StreetPuzzle_PuzzleEffect, Assembly-CSharp
+          m_MethodName: ActiveCrowd
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1177261284794675610}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1394,13 +1371,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1177261285183250430}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 4817228745493554820}
+          m_TargetAssemblyTypeName: StreetPuzzle_PuzzleEffect, Assembly-CSharp
+          m_MethodName: ActiveCrowd
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1177261285183250429}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1424,13 +1401,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1177261286090639251}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 4817228745493554820}
+          m_TargetAssemblyTypeName: StreetPuzzle_PuzzleEffect, Assembly-CSharp
+          m_MethodName: ActiveCrowd
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1177261286090639250}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1442,19 +1419,43 @@ MonoBehaviour:
     onCorrectPlacement:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1177261284531955960}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 4817228745493554820}
+          m_TargetAssemblyTypeName: StreetPuzzle_PuzzleEffect, Assembly-CSharp
+          m_MethodName: ActiveCrowd
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1177261284531955847}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
   endPuzzleEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529820370313865012}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   puzzleType: 0
+--- !u!114 &4817228745493554820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529820370313865012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3406d8a018056e44e8877fd0cae9d994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
