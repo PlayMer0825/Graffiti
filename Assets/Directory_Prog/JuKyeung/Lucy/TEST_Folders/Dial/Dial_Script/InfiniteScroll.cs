@@ -42,6 +42,8 @@ public class InfiniteScroll : UIBehaviour
 	private int checkWheelCount = 0;
 
 	public UnityEvent scrollCheckEvent; // 스크롤 조건 만족 시 이벤트 
+
+	public UnityEvent scrollEndEvent;
 	public enum Direction
 	{
 		Vertical,
@@ -222,7 +224,7 @@ public class InfiniteScroll : UIBehaviour
         {
 			Debug.Log("퍼즐 끝나야 합니다");
 			// 여기에서 유니티 이벤트를 넣어서 처리하는것이 좋을 것 같아보이긴 함;; 
-
+			scrollEndEvent.Invoke();
         }
 
     }

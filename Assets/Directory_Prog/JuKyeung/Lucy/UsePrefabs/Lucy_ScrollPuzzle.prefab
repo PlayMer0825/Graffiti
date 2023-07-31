@@ -687,7 +687,7 @@ MonoBehaviour:
   onUpdateItem:
     m_PersistentCalls:
       m_Calls: []
-  maxWheelCount: 20
+  maxWheelCount: 15
   fadeOutObjCount: 2
   fadeTime: 3
   oneTimeDeleteObject: 1
@@ -703,6 +703,21 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PeopleFadeOut, Assembly-CSharp
         m_MethodName: EventCheck
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  scrollEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6533784983861808423}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

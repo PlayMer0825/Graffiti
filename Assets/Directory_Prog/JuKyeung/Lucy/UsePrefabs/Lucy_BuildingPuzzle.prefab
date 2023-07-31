@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &7439007627328552882
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -284,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &7439007627462679612
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -570,6 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fda2c1f4f6c4ebd4cc236d4df778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableTransform: {fileID: 0}
+  originalTransform: {x: 0, y: 0}
 --- !u!225 &7439007628077730840
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -817,7 +823,7 @@ MonoBehaviour:
   - pieceObject: {fileID: 7439007627462679611}
     correctAnswer: {fileID: 7439007627381090359}
     snapDistance: 60
-    onCorrectPlacement:
+    puzzleSolvedEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7439007628077730823}
@@ -835,7 +841,7 @@ MonoBehaviour:
   - pieceObject: {fileID: 7439007628077730823}
     correctAnswer: {fileID: 7439007627638204559}
     snapDistance: 60
-    onCorrectPlacement:
+    puzzleSolvedEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7439007627328552889}
@@ -853,7 +859,7 @@ MonoBehaviour:
   - pieceObject: {fileID: 7439007627328552889}
     correctAnswer: {fileID: 7439007627629665088}
     snapDistance: 60
-    onCorrectPlacement:
+    puzzleSolvedEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7439007627328552870}
