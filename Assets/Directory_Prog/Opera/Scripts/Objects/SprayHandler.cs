@@ -60,6 +60,7 @@ namespace Insomnia {
                 isClicked = false;
             }
             else {
+                _handAnim.SetBool(hashIsShaking, false);
                 _handAnim.speed = 1f;
             }
             
