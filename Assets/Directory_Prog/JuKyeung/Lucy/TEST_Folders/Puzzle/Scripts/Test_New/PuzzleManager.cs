@@ -24,7 +24,7 @@ public class PuzzleManager : MonoBehaviour
         [Header("스냅 거리 조절")]
         public float snapDistance; // 조각을 스냅시키기 위한 거리
         [Header("퍼즐 조각이 정답 위치에 위치했을 때 이벤트")]
-        public UnityEvent onCorrectPlacement;
+        public UnityEvent puzzleSolvedEvent;
     }
 
     public int totalPieces;
@@ -85,7 +85,12 @@ public class PuzzleManager : MonoBehaviour
                 draggable.transform.localPosition = Vector3.zero;
 
                 correctPieces++;
-                puzzlePiece.onCorrectPlacement.Invoke();
+                puzzlePiece.puzzleSolvedEvent.Invoke();
+            }
+            else
+            {
+                Draggable draggable = piece.GetComponent<Draggable>();
+                draggable.draggableTransform.anchoredPosition = draggable.originalTransform;
             }
         }
         else
@@ -98,7 +103,7 @@ public class PuzzleManager : MonoBehaviour
                 draggable.transform.localPosition = Vector3.zero;
 
                 correctPieces++;
-                puzzlePiece.onCorrectPlacement.Invoke();
+                puzzlePiece.puzzleSolvedEvent.Invoke();
             }
 
         }
