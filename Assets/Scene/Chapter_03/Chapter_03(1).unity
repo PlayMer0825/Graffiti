@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.69
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.12130654, g: 0.5040495, b: 0.8867924, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f8d9bd50388c43449a16ad1fa76bc8ed, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5c8d5031ce45e4962818ca2b5426a8cf, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -8120,6 +8120,7 @@ MonoBehaviour:
   m_arm: {fileID: 0}
   _sprayHolder: {fileID: 713736235}
   _spray: {fileID: 0}
+  m_defaultSensitivity: 100
   _handAnim: {fileID: 1330308587}
 --- !u!1 &349148980
 GameObject:
@@ -9125,6 +9126,7 @@ MonoBehaviour:
   TPS: {fileID: 971681852}
   trigger: {fileID: 1278561829}
   grabPosition: {fileID: 421866452}
+  animator: {fileID: 0}
   _pointInTime: {fileID: 0}
 --- !u!114 &407478066
 MonoBehaviour:
@@ -26896,6 +26898,7 @@ MonoBehaviour:
   TPS: {fileID: 0}
   trigger: {fileID: 2034556730}
   grabPosition: {fileID: 37281862}
+  animator: {fileID: 0}
   _pointInTime: {fileID: 0}
 --- !u!114 &1267561995
 MonoBehaviour:
@@ -30891,6 +30894,7 @@ MonoBehaviour:
   m_arm: {fileID: 1439537689}
   _sprayHolder: {fileID: 1439537688}
   _spray: {fileID: 1477742497}
+  m_defaultSensitivity: 100
   _handAnim: {fileID: 1439537690}
 --- !u!1001 &1468574648
 PrefabInstance:
@@ -31470,6 +31474,7 @@ MonoBehaviour:
   TPS: {fileID: 0}
   trigger: {fileID: 1430126666}
   grabPosition: {fileID: 729335579}
+  animator: {fileID: 0}
   _pointInTime: {fileID: 0}
 --- !u!114 &1488949985
 MonoBehaviour:
@@ -46672,6 +46677,7 @@ MonoBehaviour:
   TPS: {fileID: 0}
   trigger: {fileID: 0}
   grabPosition: {fileID: 0}
+  animator: {fileID: 0}
   _pointInTime: {fileID: 0}
 --- !u!114 &3993772705220488228
 MonoBehaviour:

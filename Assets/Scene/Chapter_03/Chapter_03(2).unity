@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.69
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.58431375, g: 0.50980395, b: 0.8392157, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 3876d0e183013044aab5adba683217d7, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 94caf2ba4ca5e46bfaba53afcc8778dd, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.711
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0061719767, g: 0.0062912973, b: 0.014016662, a: 0.711}
+  m_IndirectSpecularColor: {r: 0.0017708614, g: 0.030451221, b: 0.088491954, a: 0.711}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10250,7 +10250,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -155.19164
+  cooldown: -176.81981
   currentReader:
     dirty: 0
     requested: 0
@@ -22563,15 +22563,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3476143236848324253, guid: 053034d5a60e506448325d29d27f57a8, type: 3}
       propertyPath: m_Color.b
-      value: 0.34117648
+      value: 0.35686275
       objectReference: {fileID: 0}
     - target: {fileID: 3476143236848324253, guid: 053034d5a60e506448325d29d27f57a8, type: 3}
       propertyPath: m_Color.g
-      value: 0.21176471
+      value: 0.2179458
       objectReference: {fileID: 0}
     - target: {fileID: 3476143236848324253, guid: 053034d5a60e506448325d29d27f57a8, type: 3}
       propertyPath: m_Color.r
-      value: 0.23137255
+      value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476143236848324253, guid: 053034d5a60e506448325d29d27f57a8, type: 3}
+      propertyPath: m_Intensity
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 3476143236869324045, guid: 053034d5a60e506448325d29d27f57a8, type: 3}
       propertyPath: m_Layer
@@ -23708,6 +23712,7 @@ MonoBehaviour:
   TPS: {fileID: 3993772706818889379}
   trigger: {fileID: 3993772705278936419}
   grabPosition: {fileID: 3993772705842384470}
+  animator: {fileID: 0}
   _pointInTime: {fileID: 2117281815}
 --- !u!114 &3993772706818889379
 MonoBehaviour:
@@ -24234,6 +24239,7 @@ MonoBehaviour:
   m_arm: {fileID: 0}
   _sprayHolder: {fileID: 7307052013362571448}
   _spray: {fileID: 921865475}
+  m_defaultSensitivity: 100
   _handAnim: {fileID: 1821503476860579331}
 --- !u!1 &5700358098460357040
 GameObject:
