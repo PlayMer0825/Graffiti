@@ -5,14 +5,27 @@ using UnityEngine.Events;
 
 public class LucyPuzzleManager : MonoBehaviour
 {
-    public enum Puzzles
-    {
-       
-    }
     public UnityEvent LucyPuzzleCompletEvent;
 
-    public static Puzzles LucyPuzzleChecking ( bool _checking)
+    public bool isAllPuzzleClear;
+    private int clearPuzzleIndex = 3;
+    public int currentClearPuzzle = 0;
+
+    private void Start()
     {
-        
+        currentClearPuzzle = 0;
+    }
+
+    public void LucyPuzzleClearCheck(int _clear)
+    {
+        currentClearPuzzle += _clear;
+    }
+
+    public void Update()
+    {
+        if(currentClearPuzzle == clearPuzzleIndex)
+        {
+
+        }
     }
 }
