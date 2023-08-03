@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace Insomnia{
 	public class QuestContainer : MonoBehaviour {
@@ -35,8 +37,18 @@ namespace Insomnia{
 		[SerializeField] private string m_endingSceneName = "";
 		[SerializeField] private int m_endingSceneBuildIndex = -1;
 
-		public bool IsOpened { get => m_isOpened; }
+		[SerializeField] private event Action<Quest> onQuestCompleted = null;
+		public event Action<Quest> OnQuestCompleted {
+			add{
+				onQuestCompleted -= value;
+				onQuestCompleted += value;
+			}
+			remove{
+                onQuestCompleted -= value;
+            }
+		}
 
+		public bool IsOpened { get => m_isOpened; }
 
         #region Unity Event Functions
         private void Awake() {
@@ -130,15 +142,40 @@ namespace Insomnia{
         }
 
 		public void UpdateQuest(uint questID, int inc = 1) {
-			if(m_quests.ContainsKey(questID) == false)
+			Quest quest;
+			if(m_quests.TryGetValue(questID, out quest) == false)
 				return;
 
-			m_quests[questID].Increase(inc);
+			quest.Increase(inc);
             UpdateUI();
+
+			if(quest.IsCompleted) {
+				Quest nextQuest;
+
+				if(m_quests.TryGetValue(questID + 1, out nextQuest)) {
+					onQuestCompleted.Invoke(nextQuest);
+				}
+			}
 
 			if(CheckAllQuestClear())
 				ChangeSceneToEnding();
         }
+		public Quest GetRecentQuest() {
+			if(m_quests.Values.Count <= 0)
+				return null;
+
+			var enumerator = m_quests.Values.GetEnumerator();
+			Quest selection = null;
+
+			while(enumerator.MoveNext()) {
+				if(enumerator.Current.IsCompleted == false) {
+					selection = enumerator.Current;
+					break;
+				}
+			}
+
+			return selection;
+		}
 
 		public void UpdateUI() {
 			if(m_quests.Count <= 0)
