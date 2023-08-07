@@ -2,6 +2,7 @@ using PaintIn3D;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Insomnia {
@@ -20,6 +21,9 @@ namespace Insomnia {
         private Func<bool> _checkFunc = null;
 
         [SerializeField] private float m_finishAmount = 0.25f;
+
+        public UnityEvent onClearCondSolved = new UnityEvent();
+        public UnityEvent onFinishCondSolved = new UnityEvent();
 
         public bool IsFinished { get => _percentageFill.fillAmount >= 0.3f; }
 
@@ -51,6 +55,10 @@ namespace Insomnia {
                 if(_curExitButton.gameObject.activeSelf == false) {
                     _curExitButton.gameObject.SetActive(true);
                     DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Stencil_Finished);
+                    if(_curExitButton == _clearButton)
+                        onClearCondSolved?.Invoke();
+                    else if(_curExitButton == _finishButton)
+                        onFinishCondSolved?.Invoke();
                 }
             }
 

@@ -1,5 +1,6 @@
 using PaintIn3D;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Insomnia {
     public class StencilMask : MonoBehaviour {
@@ -16,6 +17,8 @@ namespace Insomnia {
         public float ScaleRatio { get => transform.localScale.x; }
 
         [SerializeField] private Color availColor, nonAvailColor;
+
+        public UnityEvent onInstallFinished = new UnityEvent();
 
         private void Awake() {
             _mat = _maskPreview.material;
@@ -89,6 +92,7 @@ namespace Insomnia {
             _drawPanel.SetStencilVisible(true);
             _drawPanel.OpenStencilVisualizer();
             DrawManager.Instance.Draw.Percent.SetExitMethod(true);
+            onInstallFinished?.Invoke();
         }
 
         /// <summary>
