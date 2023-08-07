@@ -40,6 +40,9 @@ public class Board : MonoBehaviour
     private bool balance_Slider = false;
     public GameObject slider2;
 
+    public float dashTime;
+    private Coroutine dashCoroutine;
+
     public static bool bench_State = false;
 
 
@@ -117,6 +120,10 @@ public class Board : MonoBehaviour
             if (ground == true && diRection >= 3)
             {
                 diRection = diRection + decrease * Time.deltaTime;
+            }
+            else if (ground == false && diRection < 3)
+            {
+                diRection = 3;
             }
         }
 
@@ -333,12 +340,36 @@ public class Board : MonoBehaviour
 
     void OnInvoke_Dash_Success()
     {
-        diRection = direction * dash;
+        if (dashCoroutine != null)
+        {
+            StopCoroutine(dashCoroutine);
+        }
+        dashCoroutine = StartCoroutine(Dash(true));
     }
 
     void OnInvoke_Dash_Fail()
     {
-        diRection = direction * (dash / 2);
+        if (dashCoroutine != null)
+        {
+            StopCoroutine(dashCoroutine);
+        }
+        dashCoroutine = StartCoroutine(Dash(false));
+    }
 
+    IEnumerator Dash(bool isSuccess)
+    {
+        float time = 0f;
+        var acc = isSuccess ? dash : -dash;
+        while (time < dashTime)
+        {
+            diRection += acc * Time.deltaTime;
+            if (diRection < 3)
+                diRection = 3;
+            else if (diRection > 24)
+                diRection = 24;
+            yield return null;
+            time += Time.deltaTime;
+        }
+        dashCoroutine = null;
     }
 }

@@ -2636,7 +2636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1343556556
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3608,6 +3608,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 609898171}
     - target: {fileID: 3280920415958738602, guid: 8d47eb6cb50abae458d512405802fb12, type: 3}
+      propertyPath: dash
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280920415958738602, guid: 8d47eb6cb50abae458d512405802fb12, type: 3}
       propertyPath: pass
       value: 
       objectReference: {fileID: 0}
@@ -3639,6 +3643,10 @@ PrefabInstance:
       propertyPath: slider2
       value: 
       objectReference: {fileID: 1505730038665500258}
+    - target: {fileID: 3280920415958738602, guid: 8d47eb6cb50abae458d512405802fb12, type: 3}
+      propertyPath: dashTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3280920415958738602, guid: 8d47eb6cb50abae458d512405802fb12, type: 3}
       propertyPath: direction
       value: 6
