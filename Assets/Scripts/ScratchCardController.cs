@@ -33,7 +33,7 @@ public class ScratchCardController : MonoBehaviour
     public int targetBrushCount; // 몇번의 브러쉬를 찍으면의 조건
     [SerializeField] private int brushCount;
     [SerializeField] private  Texture2D mouseCurser_Brush;
-    Texture2D mouseCurser_Original;
+    // Texture2D mouseCurser_Original;
 
     [SerializeField] private Vector2 currentScreenPoint; // 현재 마우스의 위치를 저장
     [SerializeField] private float brushDelayTime = 0.0f;
@@ -77,7 +77,7 @@ public class ScratchCardController : MonoBehaviour
         brushDelayTime = 0.0f;
 
         //mouseCurser_Brush = Resources.Load<Texture2D>("Cursor/RollerCursor");
-        mouseCurser_Original = Resources.Load<Texture2D>("Cursor/DefaultCursor");
+        //mouseCurser_Original = Resources.Load<Texture2D>("Cursor/DefaultCursor");
 
         // CoverRenderTexture의 크기를 ScratchArea의 크기와 일치하도록 설정합니다.
         CoverRenderTexture.width = Mathf.RoundToInt(ScratchArea.rect.width) / 2;
@@ -112,7 +112,7 @@ public class ScratchCardController : MonoBehaviour
         // 객체가 비활성화될 때 YieldScratching 코루틴을 정지합니다.
         StopCoroutine(YieldScratching());
         mainCamera.SetActive(true);
-        Cursor.SetCursor(mouseCurser_Original, Vector2.zero, CursorMode.Auto);
+        // Cursor.SetCursor(mouseCurser_Original, Vector2.zero, CursorMode.Auto);
     }
 
     // 스크래치 과정을 처리하는 코루틴.
