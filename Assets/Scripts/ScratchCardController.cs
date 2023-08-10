@@ -32,8 +32,13 @@ public class ScratchCardController : MonoBehaviour
 
     public int targetBrushCount; // 몇번의 브러쉬를 찍으면의 조건
     [SerializeField] private int brushCount;
+    [SerializeField] private  Texture2D mouseCurser_Brush;
+    Texture2D mouseCurser_Original;
 
+    [SerializeField] private Vector2 currentScreenPoint; // 현재 마우스의 위치를 저장
+    [SerializeField] private float brushDelayTime = 0.0f;
     // 텍스처를 복제하여 새로운 Texture2D를 생성하는 도우미 메서드.
+
     Texture2D duplicateTexture(Texture source)
     {
         RenderTexture renderTex = RenderTexture.GetTemporary(
@@ -69,9 +74,10 @@ public class ScratchCardController : MonoBehaviour
     private void Start()
     {
         brushCount = 0;
+        brushDelayTime = 0.0f;
 
-        // progressText가 null인지 확인하여 오류를 방지합니다.
-        // _isprogressTextNull = null == progressText;
+        //mouseCurser_Brush = Resources.Load<Texture2D>("Cursor/RollerCursor");
+        mouseCurser_Original = Resources.Load<Texture2D>("Cursor/DefaultCursor");
 
         // CoverRenderTexture의 크기를 ScratchArea의 크기와 일치하도록 설정합니다.
         CoverRenderTexture.width = Mathf.RoundToInt(ScratchArea.rect.width) / 2;
@@ -90,6 +96,7 @@ public class ScratchCardController : MonoBehaviour
         {
             scratchEndEvent.Invoke();
         }
+
     }
 
     private void OnEnable()
@@ -97,6 +104,7 @@ public class ScratchCardController : MonoBehaviour
         // 객체가 활성화될 때 YieldScratching 코루틴을 시작합니다.
         StartCoroutine(YieldScratching());
         mainCamera.SetActive(false);
+        Cursor.SetCursor(mouseCurser_Brush, Vector2.zero, CursorMode.Auto);
     }
 
     private void OnDisable()
@@ -104,16 +112,19 @@ public class ScratchCardController : MonoBehaviour
         // 객체가 비활성화될 때 YieldScratching 코루틴을 정지합니다.
         StopCoroutine(YieldScratching());
         mainCamera.SetActive(true);
+        Cursor.SetCursor(mouseCurser_Original, Vector2.zero, CursorMode.Auto);
     }
 
     // 스크래치 과정을 처리하는 코루틴.
     IEnumerator YieldScratching()
     {
+
         while (true)
         {
             if (isTouched)
             {
                 // 화면이 터치되면 스크래치 과정을 계속합니다.
+                brushDelayTime -= Time.deltaTime;
                 yield return YieldInstantiateScratch();
             }
 
@@ -124,6 +135,7 @@ public class ScratchCardController : MonoBehaviour
                     // 터치가 시작되면 isTouched 플래그를 true로 설정하고 스크래치를 시작합니다.
                     isTouched = true;
                     Debug.Log("Touch down");
+
                     yield return YieldInstantiateScratch();
                 }
             }
@@ -143,15 +155,24 @@ public class ScratchCardController : MonoBehaviour
     {
         Vector2 screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // 브러시를 화면 터치 위치에 생성합니다.
-        yield return Instantiate(Brush, screenPos, Quaternion.identity, transform);
+        if (currentScreenPoint != screenPos)
+        {
+            // 브러시를 화면 터치 위치에 생성합니다.
+            yield return Instantiate(Brush, screenPos, Quaternion.identity, transform);
 
-        // 스크래치한 픽셀을 체크합니다.
-        yield return YieldCheckPixelColor();
+            // 스크래치한 픽셀을 체크합니다.
+            yield return YieldCheckPixelColor();
 
-        // 브러쉬의 카운트 증가합니다. 
-        brushCount += 1;
+            if(brushDelayTime <= 0)
+            {
+                // 브러쉬의 카운트 증가합니다. 
+                brushCount += 1;
+                brushDelayTime = 0.1f;
+            }
+        }
 
+        currentScreenPoint = screenPos;
+        yield return currentScreenPoint;
     }
 
     // CoverRenderTexture의 픽셀 색상을 체크하는 코루틴.
