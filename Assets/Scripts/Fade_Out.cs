@@ -21,7 +21,7 @@ public class Fade_Out : MonoBehaviour
     IEnumerator FadeCoroutine()
     {
         float fadeCount = 0;
-        while (fadeCount < 1.0f)
+        while (fadeCount < 1f)
         {
             fadeCount += 0.01f;
             yield return new WaitForSeconds(0.01f);
