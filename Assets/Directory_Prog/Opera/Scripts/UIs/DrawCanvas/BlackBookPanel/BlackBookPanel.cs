@@ -4,6 +4,7 @@ using DG.Tweening.Plugins.Options;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Insomnia {
 
@@ -19,6 +20,8 @@ namespace Insomnia {
         [SerializeField] private StencilData m_graffitiStencil = null;
         [SerializeField] private StencilData m_shapeStencil = null;
 #endif
+
+        public UnityEvent onStencilTagSelected;
 
         private StencilData _curStencils = null;
 
@@ -117,6 +120,7 @@ namespace Insomnia {
             _curPageNum = 0;
 
             SetPageGroupsWithCurrentPage();
+            onStencilTagSelected?.Invoke();
             DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 

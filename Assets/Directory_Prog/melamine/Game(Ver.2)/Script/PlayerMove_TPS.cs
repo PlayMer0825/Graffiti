@@ -72,6 +72,9 @@ public class PlayerMove_TPS : MonoBehaviour
         if(_drawManager.CanMove == false)
             return;
 
+        if(TutorialObject.IsAnyTutorialPlaying)
+            return;
+
         Move();
         //CameraRotation();
         //if(Input.GetKeyDown(KeyCode.LeftAlt))

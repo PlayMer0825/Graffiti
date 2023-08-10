@@ -45,6 +45,9 @@ namespace Insomnia {
             if(_drawManager.IsAnyPanelOpened())
                 return;
 
+            if(TutorialObject.IsAnyTutorialPlaying)
+                return;
+
             _spray.transform.position = _sprayHolder.transform.position;
             _spray.SetSprayRotation();
 

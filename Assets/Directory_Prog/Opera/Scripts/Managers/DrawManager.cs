@@ -77,6 +77,9 @@ namespace Insomnia {
             if(InteractionManager.Instance.IsInteracting == false)
                 return;
 
+            if(TutorialObject.IsAnyTutorialPlaying)
+                return;
+
             if(Input.GetKeyDown(KeyCode.Tab)) {
                 m_bag.OpenPanel();
             }
