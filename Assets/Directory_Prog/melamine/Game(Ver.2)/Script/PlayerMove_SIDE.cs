@@ -48,6 +48,8 @@ public class PlayerMove_SIDE : MonoBehaviour
             return;
         }
 
+
+
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
         dir.Normalize();

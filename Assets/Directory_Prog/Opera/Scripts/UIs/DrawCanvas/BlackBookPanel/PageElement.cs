@@ -42,6 +42,9 @@ namespace Insomnia {
             if(_isInitialized == false && _stencil.IsUnlocked == false)
                 return;
 
+            if(TutorialObject.IsAnyTutorialPlaying)
+                return;
+
             DrawManager.Instance.BlackBook.InstallStencil(_stencil);
         }
     }

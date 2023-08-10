@@ -7,13 +7,17 @@ public abstract class TutorialObject : MonoBehaviour {
     [SerializeField] protected Canvas m_Canvas = null;
     [SerializeField] protected Image m_Image = null;
     [SerializeField] protected Sprite[] m_tutorialSprite = null;
+
     [SerializeField] protected bool m_isTemporal = true;
     [SerializeField] private bool m_opened = false;
+    [SerializeField] private bool m_keyBlock = false;
     private bool m_activated = false;
     private bool m_disabled = false;
     private int m_spriteIndex = 0;
 
     public UnityEvent onTutorialFinished = new UnityEvent();
+
+    public static bool IsAnyTutorialPlaying { get; protected set; }
 
     protected int SpriteIndex { get => m_spriteIndex; }
     protected bool Activated { get => m_activated; }
@@ -58,6 +62,9 @@ public abstract class TutorialObject : MonoBehaviour {
         m_opened = true;
         OnClick();
         m_Canvas.gameObject.SetActive(true);
+
+        if(m_keyBlock)
+            IsAnyTutorialPlaying = true;
     }
 
     public virtual void OnClick() {
@@ -89,6 +96,9 @@ public abstract class TutorialObject : MonoBehaviour {
         m_activated = false;
 
         onTutorialFinished?.Invoke();
+
+        if(m_keyBlock)
+            IsAnyTutorialPlaying = false;
 
         if(m_isTemporal) {
             PlayerPrefs.SetInt($"{gameObject.name}_Tutorial", 1);
