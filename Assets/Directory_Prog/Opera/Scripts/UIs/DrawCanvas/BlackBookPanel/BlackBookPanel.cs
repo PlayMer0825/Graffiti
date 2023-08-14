@@ -124,6 +124,14 @@ namespace Insomnia {
             DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 
+        public void OpenTutorialPage() {
+
+        }
+
+        public void OpenCover() {
+
+        }
+
         public void OnClick_ExitBlackBook() {
             ClosePanel();
         }

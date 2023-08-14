@@ -74,6 +74,10 @@ namespace Insomnia {
         }
 
         private void Update() {
+            if(Input.GetKeyDown(KeyCode.B)) {
+                m_blackbook.OpenPanel();
+            }
+
             if(InteractionManager.Instance.IsInteracting == false)
                 return;
 
@@ -82,10 +86,6 @@ namespace Insomnia {
 
             if(Input.GetKeyDown(KeyCode.Tab)) {
                 m_bag.OpenPanel();
-            }
-
-            if(Input.GetKeyDown(KeyCode.B)) {
-                m_blackbook.OpenPanel();
             }
         }
 
