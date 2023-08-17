@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Insomnia{
 	public class Defines {
-		public enum StencilType {
-			Graffiti = 0,
-			Tagging,
-			Freestyle,
+		public enum PageDisplayType {
+			Selection,
 			Cover,
 			Tutorial,
 		}

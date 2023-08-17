@@ -45,7 +45,6 @@ namespace Insomnia {
 
     [Serializable]
     public class Stencil {
-        [SerializeField] private StencilType m_type;
         [SerializeField] private string m_stencilName;
         [SerializeField] private Sprite m_maskVisualSprite;
         [SerializeField] private Texture2D m_maskInTexture;
@@ -67,6 +66,5 @@ namespace Insomnia {
         public Sprite MaskOutlineSprite { get => m_maskOutSprite; }
         public bool IsUnlocked { get => m_isUnlocked; set { m_isUnlocked = value; } }
         public Sprite Image { get => m_maskVisualSprite; }
-        public StencilType Type { get => m_type; }
     }
 }

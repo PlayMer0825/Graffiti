@@ -6,14 +6,34 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+using static Insomnia.Defines;
+
 namespace Insomnia {
 
     public class BlackBookPanel : UIPanel {
+        [Header("BlackBookPanel: Components")]
         [SerializeField] private RectTransform _blackBookGroup = null;
-        [SerializeField] private TextMeshProUGUI _pageText = null;
+        [SerializeField] private TextMeshProUGUI _pageIndexTxt = null;
+
+        [Header("BlackBookPanel: Reference")]
         [SerializeField] private StencilInstaller _stencilInstaller = null;
+
+        [Header("BlackBookPanel: Selection Page")]
+        [SerializeField] private GameObject _selectionPage = null;
+
+        [Header("BlackBookPanel: Selection Page Elements")]
         [SerializeField] private PageGroupUI _leftPage = null;
         [SerializeField] private PageGroupUI _rightPage = null;
+
+        [Header("BlackBookPanel: CoverPage")]
+        [SerializeField] private CoverPage _coverPage = null;
+
+        [Header("BlackBookPanel: TutorialPage")]
+        [SerializeField] private TutorialPage _tutorialPage = null;
+
+        [Header("BlackBookPanel: Status")]
+        [SerializeField] private PageDisplayType _curDisplay = PageDisplayType.Selection;
+
         private int _curPageNum = 0;
 
 #if UNITY_EDITOR
@@ -108,13 +128,15 @@ namespace Insomnia {
             DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 
+
         /// <summary>
-        /// 블랙북의 태그를 선택했을 때 처음 접근하는 함수
+        /// Change BlackBook Page to Selection
         /// </summary>
-        /// <param name="data"></param>
         public void OnClick_SetBlackBookTag(StencilData data) {
             if(data == null)
                 return;
+
+            SwitchPageElement(PageDisplayType.Selection);
 
             _curStencils = data;
             _curPageNum = 0;
@@ -124,12 +146,41 @@ namespace Insomnia {
             DrawManager.Instance.DrawSpeaker.PlayOneShot(SFX_GraffitiUI.Blackbook_PageShift);
         }
 
-        public void OpenTutorialPage() {
+        /// <summary>
+        /// Change BlackBook Page to Tutorial
+        /// </summary>
+        public void OnClick_SetBlackBookTag(Object sprite) {
+            SwitchPageElement(PageDisplayType.Tutorial);
 
+
+            _tutorialPage.DisplayTutorial(sprite as Sprite);
         }
 
-        public void OpenCover() {
+        /// <summary>
+        /// Change BlackBook Page to Cover
+        /// </summary>
+        public void OnClick_SetBlackBookTag() {
+            SwitchPageElement(PageDisplayType.Cover);
+        }
 
+        private void SwitchPageElement(PageDisplayType type) {
+            if(_curDisplay == type)
+                return;
+
+            _selectionPage.SetActive(false);
+            _coverPage.gameObject.SetActive(false);
+            _tutorialPage.gameObject.SetActive(false);
+
+            switch(type) {
+                case PageDisplayType.Selection:     
+                    _selectionPage.SetActive(true);             break;
+                case PageDisplayType.Cover:     
+                    _coverPage.gameObject.SetActive(true);      break;
+                case PageDisplayType.Tutorial:  
+                    _tutorialPage.gameObject.SetActive(true);   break;
+            }
+
+            _curDisplay = type;
         }
 
         public void OnClick_ExitBlackBook() {
@@ -150,6 +201,9 @@ namespace Insomnia {
         /// </summary>
         /// <param name="data"></param>
         public void InstallStencil(Stencil data) {
+            if(DrawManager.Instance.IsDrawing == false)
+                return;
+
             if(data.MaskSprite == null)
                 return;
 
@@ -177,7 +231,7 @@ namespace Insomnia {
         /// </summary>
         private void SetCurrentPageUI() {
             int lastPage = _curStencils.m_stencils.Count % 12 > 0 ? _curStencils.m_stencils.Count / 12 + 1 : _curStencils.m_stencils.Count / 12;
-            _pageText.text = $"{_curPageNum + 1}/{lastPage}";
+            _pageIndexTxt.text = $"{_curPageNum + 1}/{lastPage}";
         }
 
         public void UnlockStencil(StencilData stencilSO, string name) {
