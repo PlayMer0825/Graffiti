@@ -101,6 +101,11 @@ public class ScratchCardController : MonoBehaviour
             scratchEndEvent.Invoke();
         }
 
+        if(isTouched || Input.GetMouseButtonDown(0))
+        {
+            UpdateRollerImagePosition();
+        }
+
     }
 
     private void OnEnable()
@@ -120,7 +125,13 @@ public class ScratchCardController : MonoBehaviour
         // Cursor.SetCursor(mouseCurser_Original, Vector2.zero, CursorMode.Auto);
         Cursor.visible = true;
     }
-
+    private void UpdateRollerImagePosition()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = rollerImage.transform.position.z - Camera.main.transform.position.z;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        rollerImage.transform.position = worldPos;
+    }
     // 스크래치 과정을 처리하는 코루틴.
     IEnumerator YieldScratching()
     {
