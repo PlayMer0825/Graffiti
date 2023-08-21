@@ -32,12 +32,16 @@ public class ScratchCardController : MonoBehaviour
 
     public int targetBrushCount; // 몇번의 브러쉬를 찍으면의 조건
     [SerializeField] private int brushCount;
-    [SerializeField] private  Texture2D mouseCurser_Brush;
-    // Texture2D mouseCurser_Original;
+   // [SerializeField] private  Texture2D mouseCurser_Brush;
+    //private  Texture2D mouseCurser_Original;
 
     [SerializeField] private Vector2 currentScreenPoint; // 현재 마우스의 위치를 저장
     [SerializeField] private float brushDelayTime = 0.0f;
     // 텍스처를 복제하여 새로운 Texture2D를 생성하는 도우미 메서드.
+
+    // 롤러 이미지가 마우스를 따라다니게
+    [SerializeField] private Image rollerImage;
+
 
     Texture2D duplicateTexture(Texture source)
     {
@@ -77,7 +81,7 @@ public class ScratchCardController : MonoBehaviour
         brushDelayTime = 0.0f;
 
         //mouseCurser_Brush = Resources.Load<Texture2D>("Cursor/RollerCursor");
-        //mouseCurser_Original = Resources.Load<Texture2D>("Cursor/DefaultCursor");
+        //mouseCurser_Original = Resources.Load<Texture2D>("Cursor/OriginalCursor");
 
         // CoverRenderTexture의 크기를 ScratchArea의 크기와 일치하도록 설정합니다.
         CoverRenderTexture.width = Mathf.RoundToInt(ScratchArea.rect.width) / 2;
@@ -97,6 +101,11 @@ public class ScratchCardController : MonoBehaviour
             scratchEndEvent.Invoke();
         }
 
+        //if(isTouched /*|| Input.GetMouseButtonDown(0)*/)
+        //{
+            UpdateRollerImagePosition();
+        //}
+
     }
 
     private void OnEnable()
@@ -104,7 +113,8 @@ public class ScratchCardController : MonoBehaviour
         // 객체가 활성화될 때 YieldScratching 코루틴을 시작합니다.
         StartCoroutine(YieldScratching());
         mainCamera.SetActive(false);
-        Cursor.SetCursor(mouseCurser_Brush, Vector2.zero, CursorMode.Auto);
+        // Cursor.SetCursor(mouseCurser_Brush, Vector2.zero, CursorMode.Auto);
+        Cursor.visible= false;
     }
 
     private void OnDisable()
@@ -113,9 +123,19 @@ public class ScratchCardController : MonoBehaviour
         StopCoroutine(YieldScratching());
         mainCamera.SetActive(true);
         // Cursor.SetCursor(mouseCurser_Original, Vector2.zero, CursorMode.Auto);
+        Cursor.visible = true;
     }
+    private void UpdateRollerImagePosition()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = rollerImage.transform.position.z - Camera.main.transform.position.z;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 
-    // 스크래치 과정을 처리하는 코루틴.
+        worldPos.y = worldPos.y - 1.2f; // Adjust the roller image position
+        worldPos.z = rollerImage.transform.position.z; // Keep the original Z position
+        rollerImage.transform.position = worldPos;
+    }
+    // 스크래치 과정을 처리하는 코루틴.   
     IEnumerator YieldScratching()
     {
 
