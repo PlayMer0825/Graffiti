@@ -101,10 +101,10 @@ public class ScratchCardController : MonoBehaviour
             scratchEndEvent.Invoke();
         }
 
-        if(isTouched || Input.GetMouseButtonDown(0))
-        {
+        //if(isTouched /*|| Input.GetMouseButtonDown(0)*/)
+        //{
             UpdateRollerImagePosition();
-        }
+        //}
 
     }
 
@@ -130,9 +130,12 @@ public class ScratchCardController : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = rollerImage.transform.position.z - Camera.main.transform.position.z;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        worldPos.y = worldPos.y - 1.2f; // Adjust the roller image position
+        worldPos.z = rollerImage.transform.position.z; // Keep the original Z position
         rollerImage.transform.position = worldPos;
     }
-    // 스크래치 과정을 처리하는 코루틴.
+    // 스크래치 과정을 처리하는 코루틴.   
     IEnumerator YieldScratching()
     {
 
