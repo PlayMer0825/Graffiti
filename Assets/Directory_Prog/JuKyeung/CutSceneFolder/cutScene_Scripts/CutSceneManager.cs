@@ -91,17 +91,36 @@ public class CutSceneManager : MonoBehaviour
 
     public void SkipCutScene()
     {
-        videoPlayer.Stop();
+        //videoPlayer.Pause();
+        //skipButton.interactable = false;
+        //currentSceneIndex++;
+
+        //if (currentSceneIndex < cutScenes.Length)
+        //{
+        //    PlayCutScene(currentSceneIndex);
+        //}
+        //else
+        //{
+        //    // 모든 컷씬 종료 후에 이벤트 처리
+        //    HandleAllCutScenesFinished();
+        //}
+        videoPlayer.Pause(); // 비디오를 중지하는 대신 일시 정지
         skipButton.interactable = false;
+        DisableSkipButton(); // 스킵 버튼을 즉시 비활성화
+
+        // 현재 프레임을 유지한 채로 컷씬 오브젝트를 숨김
+        cutSceneObject.SetActive(false);
+
         currentSceneIndex++;
 
         if (currentSceneIndex < cutScenes.Length)
         {
+            // 다음 컷씬 재생
             PlayCutScene(currentSceneIndex);
         }
         else
         {
-            // 모든 컷씬 종료 후에 이벤트 처리
+            // 모든 컷씬 종료
             HandleAllCutScenesFinished();
         }
     }
@@ -112,5 +131,7 @@ public class CutSceneManager : MonoBehaviour
         cutSceneFinishEvent.AddListener(DisableSkipButton); // 버튼 닫기... 
         cutSceneObject.SetActive(false);
         cutSceneFinishEvent.Invoke();
+        videoPlayer.Stop();
+
     }
 }
