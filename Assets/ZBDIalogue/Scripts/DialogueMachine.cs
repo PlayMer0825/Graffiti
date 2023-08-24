@@ -17,20 +17,12 @@ namespace ZB.Dialogue.Graffiti
         [SerializeField] private ActorConnector m_actorConnector;
         [SerializeField] private SpeechBubble m_speechBubble;
 
-
-        [SerializeField] private GameObject playerAnimator;
-        public bool isDialoging;
-
         public bool m_Interacting { get => m_interacting; }
 
         Interact m_nowInteract;
         int m_index;
         bool m_interacting;
 
-        private void Start()
-        {
-            playerAnimator = GameObject.FindGameObjectWithTag("Player");
-        }
         public void NewExport(int EventID)
         {
             m_fixedEvent_OnEnter.Invoke();
@@ -39,10 +31,6 @@ namespace ZB.Dialogue.Graffiti
             m_index = -1;
             m_interacting = true;
             TryNext();
-
-            isDialoging = true;
-
-            playerAnimator.gameObject.GetComponentInChildren<Animator>().SetBool("is_titi_Idle_Bool", true);
         }
 
         public void TryNext()
@@ -84,9 +72,6 @@ namespace ZB.Dialogue.Graffiti
             m_uEvent_OnEscape.Invoke();
             m_fixedEvent_OnEscape.Invoke();
             m_uEvent_OnEscape.RemoveAllListeners();
-
-            playerAnimator.gameObject.GetComponentInChildren<Animator>().SetBool("is_titi_Idle_Bool", false);
-            isDialoging = false;
         }
 
         public void AddEscapeEvent(UnityAction action)

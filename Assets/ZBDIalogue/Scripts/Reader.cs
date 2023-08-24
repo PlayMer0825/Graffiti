@@ -215,19 +215,7 @@ namespace ZB.Dialogue.Graffiti
             targetPosition.y = m_playerTransform.position.y;
             m_playerTransform.LookAt(targetPosition);
 
-             m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
-
-            //Animator animator = m_playerTransform.gameObject.GetComponentInChildren<Animator>();
-            //animator.SetFloat("moveWeight_Side", 0f);
-
-            //// Stop other animations if they are playing
-            //foreach (AnimatorControllerParameter parameter in animator.parameters)
-            //{
-            //    if (parameter.type == AnimatorControllerParameterType.Float)
-            //    {
-            //        animator.SetFloat(parameter.name, 0f);
-            //    }
-            //}
+            m_playerTransform.gameObject.GetComponentInChildren<Animator>().SetFloat("moveWeight_Side", 0f);
         }
 
         private void Awake()
