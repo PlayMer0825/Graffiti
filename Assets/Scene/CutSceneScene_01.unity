@@ -323,12 +323,12 @@ GameObject:
   - component: {fileID: 910104583}
   - component: {fileID: 910104582}
   m_Layer: 14
-  m_Name: Canvas
+  m_Name: FadeCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &910104582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +402,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1011070517}
+  - {fileID: 1439838172}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -423,7 +424,7 @@ GameObject:
   - component: {fileID: 1011070519}
   - component: {fileID: 1011070518}
   m_Layer: 14
-  m_Name: Panel
+  m_Name: lightFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,10 +458,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1011070516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4949af6cdbeb464458de5ab616cf4010, type: 3}
+  m_Script: {fileID: 11500000, guid: cd471c5298d476e44846419026637af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1011070519}
+  fadeEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2103162938}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1011070516}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1011070519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +526,122 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011070516}
+  m_CullTransparentMesh: 1
+--- !u!1 &1439838171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439838172}
+  - component: {fileID: 1439838175}
+  - component: {fileID: 1439838174}
+  - component: {fileID: 1439838173}
+  m_Layer: 14
+  m_Name: DarkFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 0
+--- !u!224 &1439838172
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439838171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_Children: []
+  m_Father: {fileID: 910104585}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1439838173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439838171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39c258323cb97f42adbe54ca0767004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1439838174}
+  fadeEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1439838171}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 476468058}
+        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Chapter_01(Back)
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1439838174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439838171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1439838175
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439838171}
   m_CullTransparentMesh: 1
 --- !u!1001 &1579125533
 PrefabInstance:
@@ -641,6 +785,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CutSceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 808672248252724468, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 808672248252724470, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
       propertyPath: cutScenes.Array.size
       value: 1
@@ -651,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 32900000, guid: d1153886e7173624d8417ddb01e1b596, type: 3}
     - target: {fileID: 808672248252724470, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
       propertyPath: cutSceneFinishEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 808672248252724470, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
       propertyPath: cutSceneFinishEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -664,7 +812,7 @@ PrefabInstance:
     - target: {fileID: 808672248252724470, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
       propertyPath: cutSceneFinishEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 910104581}
+      objectReference: {fileID: 1439838171}
     - target: {fileID: 808672248252724470, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
       propertyPath: cutSceneFinishEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -831,6 +979,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
+--- !u!1 &2103162938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 808672248252724468, guid: 235c0ea3ed8a18049b941a0aa76495d5, type: 3}
+  m_PrefabInstance: {fileID: 2103162937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2200640860622978551
 PrefabInstance:
   m_ObjectHideFlags: 0
