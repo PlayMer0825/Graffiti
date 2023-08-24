@@ -3828,11 +3828,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialImage: {fileID: 1935363505}
   tutorialSprites:
+  - {fileID: 21300000, guid: 18869e8c34b0d5b438c2a7f0c51b4f2d, type: 3}
+  - {fileID: 21300000, guid: 984c86d64435b0c4d91f0e0fc6511c69, type: 3}
+  - {fileID: 21300000, guid: a8ab7e90728b81e44a6ae84ac92ff108, type: 3}
+  - {fileID: 21300000, guid: c328946379335464d9c9d47fc14610b7, type: 3}
+  - {fileID: 21300000, guid: 4629c3ffac8b54f45b712fc847b22312, type: 3}
+  - {fileID: 21300000, guid: 628b574777157424fa1847e9f057db83, type: 3}
+  - {fileID: 21300000, guid: 4f18a10d3c37b454baace6009c079965, type: 3}
   - {fileID: 21300000, guid: 7f0c052ad19b4e344af72cb185e76b95, type: 3}
   - {fileID: 21300000, guid: e000b270574982241ac09b6c19628e10, type: 3}
   - {fileID: 21300000, guid: faef3c82f635e3e42a59f34c273dd462, type: 3}
   - {fileID: 21300000, guid: 8a6d3f6d8c9f6684b90bc4ac147a3e3b, type: 3}
   - {fileID: 21300000, guid: 56ed2fb29fbc95441b7449dfdc96dcc2, type: 3}
+  - {fileID: 21300000, guid: 11be68384470e28408dc1bfb8abaaa0a, type: 3}
   prevButton: {fileID: 1120384028}
   nextButton: {fileID: 628447175}
   exitButton: {fileID: 40398901}
@@ -6445,7 +6453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489350648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 342456596}
@@ -9138,7 +9146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5175487965480826807, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -179.59
+      value: -217.3
       objectReference: {fileID: 0}
     - target: {fileID: 5175487965480826807, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9184,6 +9192,10 @@ PrefabInstance:
       propertyPath: m_readType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 489350649}
     - target: {fileID: 6530423334936294704, guid: 7969bf42341361649a7b399b67a0d202, type: 3}
       propertyPath: m_idSets.Array.size
       value: 1
@@ -15430,7 +15442,7 @@ MonoBehaviour:
   async: 1
   downsampleSteps: 3
   registeredPaintableTexture: {fileID: 1023241261}
-  cooldown: -14973.06
+  cooldown: -15007.462
   currentReader:
     dirty: 0
     requested: 0
