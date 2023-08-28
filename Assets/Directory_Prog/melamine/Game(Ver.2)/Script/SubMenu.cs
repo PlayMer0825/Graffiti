@@ -16,11 +16,17 @@ public class SubMenu : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && DrawManager.Instance.IsDrawing == false)
-        {
-            subMenu.SetActive(true);
-            save.SetActive(false);
-            Time.timeScale = 0f;
-        }
+            if(subMenu.activeSelf==false)
+            {
+                subMenu.SetActive(true);
+                save.SetActive(false);
+                Time.timeScale = 0f;
+            }
+            else if(subMenu.activeSelf==true)
+            {
+                Time.timeScale = 1f;
+                subMenu.SetActive(false);
+            }
     }
 
     public void Resume()
