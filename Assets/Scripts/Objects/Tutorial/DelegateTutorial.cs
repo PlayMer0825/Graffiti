@@ -5,19 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DelegateTutorial : TutorialObject {
-    [SerializeField] protected Button m_button = null;
-    [SerializeField] protected TextMeshProUGUI m_text = null;
     private bool m_pointerUp = false;
     protected override void OnAwake() { }
-
-    public override void OnClick() {
-        base.OnClick();
-
-        if(SpriteIndex < m_tutorialSprite.Length - 2)
-            m_text.text = "´ÙÀ½";
-        else
-            m_text.text = "´Ý±â";
-    }
 
     private void Update() {
         if(Activated == false)
