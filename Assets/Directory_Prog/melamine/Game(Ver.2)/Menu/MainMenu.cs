@@ -11,12 +11,16 @@ public class MainMenu : MonoBehaviour
     public AudioSource start;
     public AudioSource quit;
     public Image image;
+    private Credits m_credits = null;
+
     public static bool loadGame = false;
     void Start()
     {
         image.color = new Color(0, 0, 0, 0f);
         image.enabled = false;
         Position.position = false;
+        m_credits = GameObject.FindObjectOfType<Credits>();
+
     }
     private bool isPlayerTriggered = false;
    public void NewGame()
@@ -56,6 +60,11 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void PrintCredit()
+    {
+
+    }
+
     IEnumerator FadeCoroutine()
     {
         float fadeCount = 0;
@@ -78,5 +87,21 @@ public class MainMenu : MonoBehaviour
             image.color = new Color(0, 0, 0, fadeCount);
         }
         SceneManager.LoadScene(DataManager.Instance.data.sceneIndex);
+    }
+
+    public  void OnClickCreditStart()
+    {
+        if (null == m_credits)
+            return;
+
+        m_credits.PrintCredit();
+    }
+
+    public void OnClickCreditSkip()
+    {
+        if (null == m_credits)
+            return;
+
+        m_credits.PrintCredit();
     }
 }
