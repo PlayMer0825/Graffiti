@@ -14,6 +14,7 @@ public class Credits : MonoBehaviour
     public float x;
     public float y;
     public float y_1;
+    public double Credit_Speed= (float)0.75;
 
     void Start()
     {
@@ -26,16 +27,17 @@ public class Credits : MonoBehaviour
         x= credit.transform.position.x;
         y = credit.transform.position.y;
         y_1= credit.transform.position.y;
+   
     }
     void Update()
     {
         credit.transform.position = new Vector2(x, y);
         if (isCredit == true)
         {
-            y++;
+            y = (float)y + (float)Credit_Speed;
         }
 
-        if (y >= 2160)
+        if (y >= 3500)
         {
             y = y_1;
             isCredit = false;
